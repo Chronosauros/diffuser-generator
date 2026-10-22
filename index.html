@@ -1,0 +1,1720 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#22252A">
+<title>Soundblooms Diffuser Generator</title>
+<script type="importmap">
+{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}
+</script>
+<style>
+/* Generator design system (from Satyr 3 Grille Studio), Printables palette: flat Graphite ground, light text, one Sky accent.
+   Muted, dim and rule tones are only the text colour mixed into the ground (62 / 40 / 18 %); shadows are black at low alpha.
+   Controls are raised at rest, flat under the hand, pressed on click and while on. Geom only, no monospace. */
+@font-face{
+  font-family:"Geom";
+  src:url(data:font/woff;base64,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) format("woff");
+  font-weight:500; font-style:normal; font-display:block;
+}
+:root{
+  --bg-rgb:34,37,42;--fg-rgb:243,244,246;--acc-rgb:124,183,255;--shade-rgb:0,0,0;
+  --paper:#22252A;--ink:#F3F4F6;--acc:#7CB7FF;
+  --kicker:rgba(var(--fg-rgb),.62);--ghost:rgba(var(--fg-rgb),.62);--dim:rgba(var(--fg-rgb),.4);
+  --deep:color-mix(in srgb,var(--acc) 78%,var(--paper));
+  --sans:"Geom",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --well:inset 0 1px 2px rgba(var(--shade-rgb),.5),inset 0 0 0 1px rgba(var(--fg-rgb),.07);
+  --well-bg:rgba(var(--shade-rgb),.2);
+  --slug:inset 0 1px 0 rgba(var(--fg-rgb),.1),inset 0 0 0 1px rgba(var(--fg-rgb),.1),0 1px 0 rgba(var(--shade-rgb),.5);
+  --slug-bg:rgba(var(--fg-rgb),.08);
+  --press:inset 0 2px 3px rgba(var(--shade-rgb),.5),inset 0 0 0 1px rgba(var(--fg-rgb),.08);
+  --press-bg:rgba(var(--shade-rgb),.22);
+  --rule:rgba(var(--fg-rgb),.18);
+  --ease:cubic-bezier(.16,.84,.3,1);
+}
+*{box-sizing:border-box}
+html{color-scheme:dark}
+html,body{margin:0}
+body{
+  background:var(--paper);
+  color:var(--ink);font-family:var(--sans);font-weight:500;font-size:16px;line-height:1.45;
+  font-synthesis:none;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+::selection{background:var(--acc);color:var(--paper)}
+button,input{font-family:inherit;font-weight:500;color:inherit;-webkit-tap-highlight-color:transparent}
+h1,h2,h3,p{margin:0}
+.wrap{max-width:1240px;margin:0 auto;padding:0 clamp(16px,3.4vw,44px) 72px}
+
+/* pressed rule: a hairline cut into the ground */
+.mast,.ctrls,section.gal .gal-head,footer,.psec{position:relative}
+.mast::after,.gal-head::after,footer::before,.psec::before{
+  content:"";position:absolute;left:0;right:0;height:1px;background:var(--rule)}
+.mast::after,.gal-head::after{bottom:0}
+footer::before,.psec::before{top:0}
+
+.mast{display:flex;justify-content:space-between;align-items:flex-end;gap:12px 32px;flex-wrap:wrap;
+  padding:clamp(28px,5vh,56px) 0 clamp(16px,2.4vh,24px);margin-bottom:clamp(18px,2.8vh,30px)}
+.title{display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 18px}
+.mast h1{font-weight:500;font-size:clamp(34px,4.2vw,56px);line-height:1;letter-spacing:-.035em}
+.by{--by-fs:20px;--by-ink:var(--ink);--by-word:var(--ink)}
+.mast p{margin:0 0 .35em;max-width:28em;font-size:15px;color:var(--ghost);font-size:16px;line-height:1.45}
+.credit{margin:calc(-1 * clamp(4px,1vh,12px)) 0 clamp(20px,3vh,32px);font-size:13.5px;line-height:1.55;color:var(--ghost);max-width:96ch;overflow-wrap:anywhere}
+.credit cite{font-style:normal}
+.credit strong{font-weight:500;color:var(--ink)}
+
+.err{margin:0 0 20px;padding:12px 16px;background:var(--press-bg);box-shadow:var(--press);color:var(--ink);font-size:15px}
+.err[hidden]{display:none}
+
+.grid{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:clamp(28px,3.4vw,48px);align-items:start}
+.slab{background:none;min-width:0}
+
+/* stage */
+.stage-top{display:flex;justify-content:space-between;align-items:flex-start;gap:14px 20px;flex-wrap:wrap}
+.nameplate{font-weight:500;font-size:clamp(26px,2.4vw,34px);letter-spacing:-.025em;line-height:1.05}
+.nameplate small{display:block;font-weight:500;font-size:15px;letter-spacing:0;color:var(--ghost);margin-top:6px}
+.mats{display:flex;gap:26px 10px;flex-wrap:wrap;padding-bottom:22px}
+.chip{width:48px;height:48px;border:0;border-radius:0;cursor:pointer;padding:0;position:relative;display:block;
+  box-shadow:inset 0 0 0 1px rgba(var(--fg-rgb),.18),0 1px 0 rgba(var(--shade-rgb),.5);
+  transition:box-shadow .25s,transform .12s}
+.chip:hover{box-shadow:inset 0 0 0 1px rgba(var(--fg-rgb),.4)}
+.chip:hover:active,.chip:active,.chip.on{transform:translateY(1px);
+  box-shadow:inset 0 2px 4px rgba(var(--shade-rgb),.45),inset 0 0 0 2px var(--ink)}
+.chip:active{transition-duration:.05s}
+.chip:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.chip span{position:absolute;left:50%;top:100%;transform:translateX(-50%);margin-top:6px;font-size:12px;font-weight:500;
+  color:var(--kicker);white-space:nowrap;opacity:0;pointer-events:none}
+.chip.on span{opacity:1}
+.mats>.chip:first-child span{left:0;transform:none}
+/* own colour: the swatch opens the native picker, the hex field sits in a well beside it */
+.custom{display:flex;gap:10px;align-items:flex-start}
+.chip.cust input{position:absolute;inset:0;width:100%;height:100%;margin:0;padding:0;border:0;opacity:0;cursor:pointer}
+.chip.cust:focus-within{outline:2px solid var(--ink);outline-offset:3px}
+.chip.cust{background:#5E7FA8}
+.chip.cust span{left:0;transform:none}
+.hex,.num{border:0;border-radius:0;margin:0;font:500 15px var(--sans);color:var(--ink);background:var(--well-bg);box-shadow:var(--well);font-variant-numeric:tabular-nums}
+.hex{width:100px;height:48px;padding:0 10px;letter-spacing:.02em;text-transform:uppercase}
+.hex::placeholder{color:var(--ghost)}
+.hex:focus-visible,.num:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.hex.bad,.num:invalid{box-shadow:inset 0 0 0 2px var(--ink),var(--well)}
+
+/* the preview sits on the ground itself: flat Graphite, a faint hairline frame, no texture */
+.viewport{position:relative;height:clamp(300px,calc(100vh - 360px),600px);margin-top:14px;overflow:hidden;
+  background:var(--paper);box-shadow:inset 0 0 0 1px rgba(var(--fg-rgb),.12)}
+.viewport canvas{display:block;width:100%;height:100%}
+.viewport .none{height:100%;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;color:var(--ghost);font-size:15px}
+.viewbar{display:flex;justify-content:space-between;align-items:center;gap:8px 16px;flex-wrap:wrap;margin-top:10px}
+.viewbar .note{margin-top:0}
+
+.lab{font-size:14px;font-weight:500;color:var(--ghost)}
+.val{font-weight:500;font-size:28px;line-height:1.05;letter-spacing:-.025em;margin-top:4px;font-variant-numeric:tabular-nums}
+.val small{font-size:15px;letter-spacing:0;color:var(--ghost);margin-left:4px}
+.bar{position:relative;height:10px;background:var(--well-bg);margin-top:16px;margin-bottom:30px;
+  box-shadow:inset 0 1px 2px rgba(var(--shade-rgb),.5)}
+.bar i{position:absolute;left:0;top:0;bottom:0;background:var(--acc)}
+.bar b{position:absolute;top:-4px;bottom:-4px;width:1px;background:var(--ink)}
+.bar b::after{content:attr(data-l);position:absolute;top:100%;left:50%;transform:translateX(-50%);font:500 12px var(--sans);margin-top:3px;white-space:nowrap;color:var(--kicker)}
+.bar b.first::after{left:0;transform:none}
+.bar u{position:absolute;top:-6px;bottom:-6px;width:0;border-left:2px dashed var(--ink);margin-left:-1px}
+.note,.status{font-size:14px;color:var(--ghost);min-height:20px;margin-top:10px}
+.bandbox{margin-top:22px;background:var(--well-bg);box-shadow:var(--well);padding:18px 18px 4px}
+.bandbox .big{font-weight:500;font-size:clamp(20px,2.2vw,26px);line-height:1.2;letter-spacing:-.02em;margin-top:4px}
+.bandbox .big em{font-style:normal;color:var(--acc)}
+.bandbox .note{margin-top:8px}
+.bandbox .note.fine{margin:0 0 14px}
+.info{display:grid;grid-template-columns:auto 1fr;gap:0;margin:22px 0 0;font-size:15px}
+.info dt,.info dd{margin:0;padding:8px 0;border-top:1px solid var(--rule)}
+.info dt{padding-right:20px}
+.info dt{color:var(--ghost)}
+.info dd{text-align:right;font-variant-numeric:tabular-nums}
+
+/* buttons: raised slug at rest, flat under the hand, pressed into the ground on click and while on */
+.btn,.key{border:0;border-radius:0;cursor:pointer;color:var(--ink);
+  background:var(--slug-bg);box-shadow:var(--slug);transition:color .25s,background .25s,box-shadow .25s,transform .12s}
+.btn{font:500 15px var(--sans);letter-spacing:-.01em;padding:12px 20px;min-height:48px}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+.btn.big{flex:1 1 260px;font-size:16px;background:var(--acc);color:var(--paper);
+  box-shadow:0 1px 0 rgba(var(--shade-rgb),.55)}
+.btn.ghost{flex:1 1 220px}
+.btn:hover:not(:disabled),.key:hover{background:transparent;box-shadow:none}
+.btn.big:hover:not(:disabled){background:var(--acc);box-shadow:none}
+.btn:focus-visible,.key:focus-visible{outline:2px solid var(--ink);outline-offset:-6px}
+.btn.big:focus-visible{outline-color:var(--paper)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+/* pressed stands after hover with at least hover's specificity, so a held click always shows the bite */
+.btn:hover:active:not(:disabled),.btn:active:not(:disabled),.btn.on,
+.key:hover:active,.key:active,.key.on,.key[aria-pressed="true"]{transform:translateY(1px);background:var(--press-bg);box-shadow:var(--press)}
+.btn.big:hover:active:not(:disabled),.btn.big:active:not(:disabled){background:var(--deep);
+  box-shadow:inset 0 2px 4px rgba(var(--shade-rgb),.5)}
+.btn:active,.key:active{transition-duration:.05s}
+.btn.on,.key.on,.key[aria-pressed="true"]{color:var(--acc)}
+.key.small{min-height:36px;padding:6px 14px;font-size:14px}
+
+/* panel */
+.panel h3{font-weight:500;font-size:19px;letter-spacing:-.012em;margin:0 0 12px}
+.hrow{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:12px}
+.hrow h3{margin:0}
+.hrow .aside,.hrow output{font-size:14px;color:var(--ghost);white-space:nowrap;font-variant-numeric:tabular-nums}
+.psec{padding-top:22px;margin-top:24px}
+.keys{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.key{font:500 15px var(--sans);letter-spacing:-.005em;text-align:left;padding:10px 14px;min-height:48px;line-height:1.2}
+.key b{display:block;font-weight:500}
+.key small{display:block;font-size:12.5px;color:var(--ghost);margin-top:2px;line-height:1.2}
+.tiles{display:grid;gap:8px}
+.tiles .key{padding:0;text-align:center;font-variant-numeric:tabular-nums}
+.xyz{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+.xyz label{display:block;font-size:13px;color:var(--ghost);margin-bottom:4px}
+.num{width:100%;height:44px;padding:0 10px}
+.ctrl .row{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:-4px}
+.ctrl label{font-weight:500;font-size:15px}
+.ctrl output{font:500 14px var(--sans);font-variant-numeric:tabular-nums;color:var(--ink);background:var(--well-bg);box-shadow:var(--well);padding:2px 8px;white-space:nowrap}
+.scale{display:flex;justify-content:space-between;font-size:13px;color:var(--ghost);font-variant-numeric:tabular-nums}
+input,select{accent-color:var(--acc)}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:48px;background:transparent;margin:0;cursor:pointer}
+input[type=range]:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+input[type=range]::-webkit-slider-runnable-track{height:8px;background:var(--well-bg);
+  box-shadow:inset 0 1px 2px rgba(var(--shade-rgb),.5)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:28px;margin-top:-10px;border:0;border-radius:0;
+  background:var(--acc);box-shadow:0 1px 0 rgba(var(--shade-rgb),.55)}
+input[type=range]:active::-webkit-slider-thumb{background:var(--deep);box-shadow:inset 0 2px 3px rgba(var(--shade-rgb),.5)}
+input[type=range]::-moz-range-track{height:8px;background:var(--well-bg);box-shadow:inset 0 1px 2px rgba(var(--shade-rgb),.5)}
+input[type=range]::-moz-range-thumb{width:18px;height:28px;border:0;border-radius:0;background:var(--acc);
+  box-shadow:0 1px 0 rgba(var(--shade-rgb),.55)}
+
+/* wall chooser, print estimate, links */
+/* the chooser is the chart: one column per wall option, each column is the button. Height steps with the level of the wall,
+   the face sits on top, under it the name and the wall size */
+.walls{display:grid;gap:14px}
+.walls .wrow{--n:7;display:grid;grid-template-columns:24px repeat(var(--n),minmax(0,1fr));gap:0 3px;align-items:start}
+.walls .wleg,.walls .wk{display:flex;flex-direction:column;align-items:center;text-align:center;padding:8px 0 6px;min-height:0;line-height:1.2}
+.walls .wleg{color:var(--ghost);font-size:12px}
+.walls .wc{height:100px;width:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:4px}
+.walls .wbar{display:block;width:calc(100% - 10px);max-width:56px;height:var(--bh);background:rgba(var(--fg-rgb),.22);transition:background .25s}
+.walls .l0{--bh:16px}.walls .l1{--bh:34px}.walls .l2{--bh:52px}.walls .l3{--bh:70px}
+.walls .wk[aria-pressed="true"] .wbar{background:var(--acc)}
+.walls .face{width:24px;height:24px}
+.walls .wk .face{color:var(--ghost)}
+.walls .wk[aria-pressed="true"] .face{color:var(--acc)}
+.walls .wn{height:20px;line-height:20px;margin-top:8px;font-size:13px;white-space:nowrap}
+.walls .ws{height:16px;line-height:16px;font-size:11.5px;color:var(--ghost);white-space:nowrap;font-variant-numeric:tabular-nums}
+.about.tight{margin:0 0 12px}
+.wcap{margin-top:12px;font-size:13.5px}
+.wcap+.wcap{margin-top:4px}
+/* tiles of the wall under the preview: a viewer, not a setting - flat text tabs, a Sky underline on the one on screen */
+.tilepick{margin-top:16px}
+.tilepick h3{font-weight:500;font-size:15px;letter-spacing:0;color:var(--ghost)}
+.tilepick .hrow{margin-bottom:4px}
+.tilepick .tiles{gap:0;box-shadow:inset 0 -1px 0 var(--rule)}
+.tilepick .tiles button{appearance:none;border:0;border-radius:0;margin:0;cursor:pointer;background:none;box-shadow:inset 0 -2px 0 transparent;
+  color:var(--ghost);font:500 14px var(--sans);font-variant-numeric:tabular-nums;min-height:36px;padding:0 4px;text-align:center;transition:color .25s,box-shadow .25s}
+.tilepick .tiles button:hover{color:var(--ink)}
+.tilepick .tiles button[aria-pressed="true"]{color:var(--acc);box-shadow:inset 0 -2px 0 var(--acc)}
+.tilepick .tiles button:focus-visible{outline:2px solid var(--ink);outline-offset:-4px}
+/* "Your wall" card under the tiles: what you have chosen now */
+.dash{margin-top:18px;background:var(--well-bg);box-shadow:var(--well)}
+.dash-row{display:grid;grid-template-columns:.8fr 1.1fr 1.05fr 1.05fr}
+.dc{padding:16px 14px 18px 18px;position:relative;min-width:0}
+.dc+.dc::before{content:"";position:absolute;left:0;top:14px;bottom:14px;width:1px;background:var(--rule)}
+.dc .val{font-size:clamp(26px,2.2vw,30px);margin-top:8px;overflow-wrap:anywhere}
+.dc .val small{margin-left:0;margin-right:5px}
+.dc .val small.after{margin-left:5px;margin-right:0}
+.dc .sub{font-size:14px;line-height:1.35;color:var(--ghost);margin-top:6px}
+.dc .ro{margin-top:8px}
+.sense{display:flex;align-items:center;flex-wrap:wrap;gap:6px 10px;margin-top:8px;color:var(--acc)}
+.sense .face{width:44px;height:44px}
+.sense .name{font-size:clamp(19px,1.8vw,23px);line-height:1.1;letter-spacing:-.02em;color:var(--ink)}
+.dash-notes{border-top:1px solid var(--rule);padding:10px 18px 14px}
+.dash-notes .note{margin-top:6px;font-size:13.5px;min-height:0}
+.dash-notes .note:first-child{margin-top:0}
+.dash-notes .effect{font-size:15px;margin:0}
+.dash-notes .effect+.note{margin-top:8px}
+/* readout: icon beside a large value with a small "about" - in the card and in the download band */
+.ros{display:flex;flex-wrap:wrap;gap:14px 30px}
+.ro{display:flex;align-items:center;gap:12px;font-size:clamp(28px,3.2vw,38px);line-height:1;letter-spacing:-.025em;font-variant-numeric:tabular-nums}
+.ro .ico{width:1.15em;height:1.15em;color:var(--acc)}
+.ro small{display:block;font-size:14px;letter-spacing:0;color:var(--ghost);margin-bottom:4px}
+.dash .ro{font-size:clamp(24px,2.1vw,30px);gap:10px}
+.dash .ro .ico{width:1.3em;height:1.3em}
+.ro.wait{font-size:16px;color:var(--ghost);letter-spacing:0;line-height:1.3}
+.dash .ro.wait{font-size:14px}
+/* the band stated once: the range of the chosen wall sits under the bar */
+.bandbox .thiswall{border-top:1px solid var(--rule);margin-top:14px;padding-top:12px}
+.bandbox .thiswall .lead{margin-bottom:14px}
+/* downloads sit right above the wall plan: what each button gives and what it costs */
+.getbar{margin-top:clamp(36px,5vh,56px)}
+.getbar+section.gal{margin-top:clamp(28px,4vh,44px)}
+.gethead{font-weight:500;font-size:clamp(22px,2.4vw,28px);letter-spacing:-.025em;line-height:1.1;margin:0}
+.getgrid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,2.4vw,28px);margin-top:16px}
+.gcol{display:flex;flex-direction:column;gap:16px;min-width:0;padding:18px;background:var(--well-bg);box-shadow:var(--well)}
+.gcol .btn{width:100%;flex:none}
+.gcol .gbtn{margin-top:auto}
+.gcol .gbtn .note{margin-top:10px}
+.gcol.one .ro{font-size:clamp(22px,2.2vw,26px)}
+.getbar>.note{margin-top:14px}
+/* faces of the wall levels (sad to happy): stroke in currentColor */
+.face{width:28px;height:28px;flex:none;display:inline-block;vertical-align:middle}
+.lvl{display:flex;align-items:center;gap:10px;font-size:18px;letter-spacing:-.01em;margin-top:6px;color:var(--acc)}
+/* print estimate icons */
+.ico{width:22px;height:22px;flex:none;display:inline-block;vertical-align:middle}
+.bandbox .lead{font-size:18px;line-height:1.35;letter-spacing:-.01em;margin-top:4px}
+.bandbox .effect{font-size:15px;margin-top:10px}
+.bandbox .effect+.note.fine{margin-top:12px}
+.links{list-style:none;margin:0;padding:0;display:grid;gap:18px;max-width:80ch}
+.links a{display:block;color:var(--ink);font-size:17px;letter-spacing:-.01em;text-underline-offset:.15em;text-decoration-thickness:1px}
+.links a:hover{color:var(--acc)}
+.links span{display:block;font-size:14px;color:var(--ghost);margin-top:3px}
+
+/* wall plan */
+section.gal{margin-top:clamp(44px,7vh,80px)}
+.gal-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px 20px;padding-bottom:14px;margin-bottom:24px}
+.gal-head h2{font-weight:500;font-size:clamp(26px,2.8vw,36px);letter-spacing:-.03em}
+.gal-head p{font-size:15px;color:var(--ghost)}
+.about{font-size:14px;line-height:1.5;color:var(--ghost);margin:0 0 20px;max-width:80ch}
+.prow{margin:0 0 28px}
+.prow:last-child{margin-bottom:0}
+.prow figcaption{font-weight:500;font-size:17px;letter-spacing:-.012em;margin-bottom:10px}
+.prow p{font-size:14px;color:var(--ghost);margin-top:10px}
+.prow svg{display:block;width:100%;height:auto}
+.plan svg text{font-family:var(--sans)}
+.tilehi{fill:none;stroke:none}
+.sel .tilehi{stroke:var(--acc);stroke-width:3px}
+
+footer{margin-top:clamp(44px,7vh,72px);padding-top:18px;font-size:13.5px;line-height:1.55;color:var(--ghost);max-width:78ch}
+footer p{margin:0 0 10px}
+footer a,.credit a{color:var(--ink);text-decoration:underline;text-underline-offset:.15em;text-decoration-thickness:1px}
+footer a:hover,.credit a:hover{color:var(--acc)}
+footer .footer-icons{margin:0 0 0 -11px}
+footer .footer-icons a{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;color:var(--ghost);text-decoration:none}
+footer .footer-icons a:hover{color:var(--acc)}
+
+@media (max-width:960px){
+  .grid{grid-template-columns:1fr}
+  .viewport{height:clamp(280px,64vw,460px)}
+}
+@media (max-width:600px){
+  .mast{padding-top:28px}
+  .getgrid{grid-template-columns:1fr}
+  .mats{gap:26px 8px}
+  .tiles{gap:6px}
+}
+/* the card's cells sit 2 x 2 where the preview column is narrow: phones, and the band just above the two-column layout */
+@media (max-width:760px),(min-width:961px) and (max-width:1200px){
+  .dash-row{grid-template-columns:1fr 1fr}
+  .dc:nth-child(3)::before{display:none}
+  .dc:nth-child(n+3)::after{content:"";position:absolute;left:14px;right:14px;top:0;height:1px;background:var(--rule)}
+  .dc .val{font-size:clamp(26px,5vw,32px)}
+  .dash .ro{font-size:clamp(26px,5vw,32px)}
+}
+@media (max-height:800px) and (min-width:961px){
+  .mast{padding-top:24px}
+  .psec{padding-top:16px;margin-top:16px}
+  .key{min-height:44px}
+  .viewport{height:clamp(260px,calc(100vh - 340px),600px)}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* "by soundblooms" lockup (soundblooms-mark skill, soundblooms.css) */
+.by{position:relative;display:inline-flex;align-items:baseline;gap:.4em;font-size:var(--by-fs,16px);white-space:nowrap;text-decoration:none;color:var(--by-ink,currentColor);flex:none}
+.by::after{content:"";position:absolute;top:50%;left:-6px;right:-6px;height:48px;transform:translateY(-50%)}
+.by-word{font:500 .8em/1 "Geom",sans-serif;color:var(--by-word,currentColor);-webkit-text-stroke:0}
+.sb-mark{font:500 1em/1 "Geom",sans-serif;white-space:nowrap;-webkit-text-stroke:0}
+.sb-face{position:relative;display:inline-block;width:.62em;height:1em;vertical-align:baseline;margin:0 .05em}
+.sb-band{position:absolute;left:50%;bottom:.6em;width:.56em;height:.085em;border-radius:.085em;background:currentColor;transform:translate(-50%,0);will-change:transform}
+.sb-eyes{position:absolute;inset:auto 0 .24em 0;display:flex;justify-content:center;gap:.15em}
+.sb-eyes>i{position:relative;display:block;box-sizing:border-box;width:.14em;height:.14em;border-radius:50%;background:currentColor;transform-origin:center;
+  transition:width .35s ease-in-out,height .35s ease-in-out,border-radius .35s ease-in-out,background-color .28s ease,translate .33s ease-in-out}
+.sb-arc{position:absolute;left:50%;top:50%;width:.245em;height:.189em;translate:-50% -50%;scale:.8;opacity:0;transition:opacity .28s ease-out,scale .34s ease-out;pointer-events:none}
+.sb-eyes[data-eyes="annoyed"]>i,.sb-eyes[data-eyes="fixing"]>i{width:.28em;height:.105em;border-radius:.052em}
+.sb-eyes[data-eyes="fixing"]>i{animation:sb-eye-fix 1s ease-in-out both}
+.sb-eyes[data-eyes="happy"]>i{background:transparent}
+.sb-eyes[data-eyes="happy"] .sb-arc{opacity:1;scale:1}
+.sb-eyes[data-eyes="blink"]>i{animation:sb-eye-blink .55s ease-in-out both}
+.sb-eyes>i:nth-child(2){animation-delay:.07s}
+@keyframes sb-eye-fix{
+  0%{translate:0 0}
+  20%{translate:0 -.12em}
+  38%{translate:0 -.10em}
+  58%{translate:0 -.22em}
+  78%{translate:0 .03em}
+  90%{translate:0 -.045em}
+  100%{translate:0 0}
+}
+@keyframes sb-eye-blink{
+  0%{scale:1 .16}
+  48%{scale:1.05 1}
+  100%{scale:1 1}
+}
+@media (prefers-reduced-motion: reduce){
+  .sb-band,.sb-eyes>i,.sb-arc{transition:none!important;animation:none!important}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="mast">
+    <div class="title">
+      <h1>Diffuser Generator</h1>
+      <a class="by" href="https://soundblooms.com/" rel="noopener" target="_blank" aria-label="by Soundblooms"><span class="by-word" aria-hidden="true">by</span><span class="sb-mark" aria-hidden="true">sound<span class="sb-face"><i class="sb-band"></i><span class="sb-eyes" data-eyes="calm"><i><svg class="sb-arc" viewBox="0 0 22 17" fill="none" aria-hidden="true"><path d="M3,13 Q11,2.6 19,13" stroke="currentColor" stroke-width="4.6" stroke-linecap="round"/></svg></i><i><svg class="sb-arc" viewBox="0 0 22 17" fill="none" aria-hidden="true"><path d="M3,13 Q11,2.6 19,13" stroke="currentColor" stroke-width="4.6" stroke-linecap="round"/></svg></i></span></span>blooms</span></a>
+    </div>
+  </header>
+  <p class="credit"><strong>Working diffusers, not wall art.</strong> Every well depth comes from the quadratic residue sequence n&sup2; mod N (Schroeder), so a tile spreads a reflection into many directions and arrival times instead of sending it back as one echo. They do not absorb sound and do nothing for bass, room modes or loudness. Deep tiles treat a room from about their design frequency up, once the wall is wide enough; block tiles are a shallow 2D diffuser for upper mids and treble. Formulas after T. J. Cox and P. D'Antonio, <cite>Acoustic Absorbers and Diffusers</cite>, 3rd ed., CRC Press, 2016. The band shown is a calculated design band, not a measurement.</p>
+
+  <div id="err" class="err" role="alert" hidden></div>
+
+  <div class="grid">
+    <section class="stage slab" aria-label="Preview and downloads">
+      <div class="stage-top">
+        <div class="nameplate" id="nameplate">Deep series<small>Loading...</small></div>
+        <div class="mats" id="mats" role="group" aria-label="Preview colour"></div>
+      </div>
+      <div class="viewport" id="view"><div class="none" id="viewNone">Loading the 3D preview...</div></div>
+      <div class="viewbar"><p class="note">Drag to orbit, scroll to zoom, right-drag to pan.</p><button type="button" class="key small" id="bReset">Reset view</button></div>
+      <div class="tilepick">
+        <div class="hrow"><h3 id="lTile">See each tile of this wall</h3><output id="tileOut"></output></div>
+        <div class="tiles" id="tiles" role="group" aria-labelledby="lTile"></div>
+      </div>
+      <section class="dash" id="dash" aria-label="Your wall: how many tiles, how much sense, print time and filament" aria-live="polite"></section>
+      <section class="bandbox" id="band" aria-label="Frequency band"></section>
+      <dl class="info" id="derived"></dl>
+    </section>
+
+    <aside class="panel slab" aria-label="Settings">
+      <h3 id="lSeries">Series</h3>
+      <div class="keys" id="series" role="group" aria-labelledby="lSeries">
+        <button type="button" class="key" data-series="deep" aria-pressed="true"><b>Deep</b><small>1D QRD, wells with fins</small></button>
+        <button type="button" class="key" data-series="blocks" aria-pressed="false"><b>Blocks</b><small>2D QRD, shallow</small></button>
+      </div>
+
+      <div class="psec">
+        <div class="hrow"><h3 id="lWall">How many tiles?</h3><output id="wallOut"></output></div>
+        <p class="about tight">You choose the whole wall, not one tile. Taller column, happier face: the wall makes more sense.</p>
+        <div class="walls" id="walls" role="group" aria-labelledby="lWall"></div>
+        <p class="note wcap">Placement guidance, not a measurement. Diffusers work best a little away from you; very close to your ears they help less.</p>
+      </div>
+
+      <div class="psec">
+        <h3 id="lBed">Printer bed</h3>
+        <p class="about tight">25 mm margin on every axis, so the tile sticks to the bed</p>
+        <div class="keys" id="beds" role="group" aria-labelledby="lBed"></div>
+        <div class="xyz">
+          <div><label for="bx">X (mm)</label><input class="num" id="bx" type="number" inputmode="numeric" min="100" max="600" step="1"></div>
+          <div><label for="by_">Y (mm)</label><input class="num" id="by_" type="number" inputmode="numeric" min="100" max="600" step="1"></div>
+          <div><label for="bz">Z (mm)</label><input class="num" id="bz" type="number" inputmode="numeric" min="100" max="600" step="1"></div>
+        </div>
+      </div>
+
+      <div class="psec">
+        <h3>Depth</h3>
+        <div class="ctrl">
+          <div class="row"><label for="depth">Depth of the tile</label><output id="depthOut" for="depth"></output></div>
+          <input id="depth" type="range" step="1" min="40" max="100" value="100">
+          <div class="scale"><span id="dMin"></span><span id="dMax"></span></div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <section class="getbar" id="get" aria-label="Download">
+    <h2 class="gethead">What you are about to print</h2>
+    <div class="getgrid">
+      <div class="gcol">
+        <div class="lab" id="getWallT">Whole wall</div>
+        <div class="ros" id="estWall" aria-live="polite"></div>
+        <div class="gbtn">
+          <button type="button" class="btn big" id="bZip" disabled>Download this wall (ZIP)</button>
+          <p class="note" id="getNote"></p>
+        </div>
+      </div>
+      <div class="gcol one">
+        <div class="lab" id="getTileT">One tile</div>
+        <div class="ros" id="estTile" aria-live="polite"></div>
+        <div class="gbtn">
+          <button type="button" class="btn ghost" id="bStl" disabled>Download tile STL</button>
+        </div>
+      </div>
+    </div>
+    <p class="note" id="estNote"></p>
+    <p class="status" id="status" role="status" aria-live="polite">Starting...</p>
+  </section>
+
+  <section class="gal plan" id="plan" aria-label="Wall plan">
+    <div class="gal-head">
+      <h2>Wall plan</h2>
+      <p>Seen from the room</p>
+    </div>
+    <div id="planBody"></div>
+  </section>
+
+  <section class="gal learn" aria-label="Learn more">
+    <div class="gal-head">
+      <h2>Learn more</h2>
+      <p>What you see on this page, explained</p>
+    </div>
+    <ul class="links">
+      <li><a href="https://en.wikipedia.org/wiki/Diffusion_(acoustics)" target="_blank" rel="noopener">Diffusion (acoustics) - Wikipedia</a><span>What diffusion is, and the quadratic residue (Schroeder) and 2D skyline designs.</span></li>
+      <li><a href="https://acousticstoday.org/wp-content/uploads/2019/10/A-BRIEF-HISTORY-OF-ROOM-ACOUSTIC-DIFFUSERS-Trevor-J.-Cox.pdf" target="_blank" rel="noopener">A Brief History of Room Acoustic Diffusers - Acoustics Today (T. J. Cox, P. D'Antonio)</a><span>Flat walls, absorbers and diffusers compared, with simple pictures.</span></li>
+      <li><a href="https://www.soundonsound.com/techniques/practical-acoustic-treatment-part-4" target="_blank" rel="noopener">Practical Acoustic Treatment, Part 4 - Sound On Sound</a><span>Early reflections, the wall behind you and quadratic residue panels in a home studio.</span></li>
+      <li><a href="https://www.soundonsound.com/techniques/room-improvement" target="_blank" rel="noopener">Room For Improvement - Sound On Sound</a><span>Reflection points, and why diffusers need some distance in small rooms.</span></li>
+      <li><a href="https://www.routledge.com/Acoustic-Absorbers-and-Diffusers-Theory-Design-and-Application/Cox-DAntonio/p/book/9781498740999" target="_blank" rel="noopener">Acoustic Absorbers and Diffusers, 3rd ed. - Cox and D'Antonio, CRC Press</a><span>Deeper reading: the textbook these formulas come from.</span></li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>Part of Soundblooms - the home of everything I make: <a href="https://soundblooms.com" target="_blank" rel="noopener">https://soundblooms.com</a></p>
+    <p>Geometry is built in your browser with <a href="https://github.com/elalish/manifold" target="_blank" rel="noopener">manifold-3d</a> and previewed with <a href="https://threejs.org" target="_blank" rel="noopener">three.js</a>. Made by <a href="https://github.com/Chronosauros" target="_blank" rel="noopener">Chronosaur</a>.</p>
+    <p>Set in Geom, copyright 2022 The Geom Project Authors (<a href="https://github.com/ThanosPoulakidas/Geom" target="_blank" rel="noopener">https://github.com/ThanosPoulakidas/Geom</a>), licensed under the SIL Open Font License 1.1 (<a href="https://openfontlicense.org" target="_blank" rel="noopener">https://openfontlicense.org</a>). Page design adapted from <a href="https://chronosauros.github.io/satyr3-grille-studio/" target="_blank" rel="noopener">Satyr 3 Grille Studio</a>.</p>
+    <p class="footer-icons"><a href="https://github.com/Chronosauros" rel="noopener" target="_blank" aria-label="GitHub profile" title="GitHub"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a><a href="https://www.reddit.com/user/T6_8K/" rel="noopener" target="_blank" aria-label="Reddit profile" title="Reddit"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 0C5.373 0 0 5.373 0 12c0 3.314 1.343 6.314 3.515 8.485l-2.286 2.286C.775 23.225 1.097 24 1.738 24H12c6.627 0 12-5.373 12-12S18.627 0 12 0Zm4.388 3.199c1.104 0 1.999.895 1.999 1.999 0 1.105-.895 2-1.999 2-.946 0-1.739-.657-1.947-1.539v.002c-1.147.162-2.032 1.15-2.032 2.341v.007c1.776.067 3.4.567 4.686 1.363.473-.363 1.064-.58 1.707-.58 1.547 0 2.802 1.254 2.802 2.802 0 1.117-.655 2.081-1.601 2.531-.088 3.256-3.637 5.876-7.997 5.876-4.361 0-7.905-2.617-7.998-5.87-.954-.447-1.614-1.415-1.614-2.538 0-1.548 1.255-2.802 2.803-2.802.645 0 1.239.218 1.712.585 1.275-.79 2.881-1.291 4.64-1.365v-.01c0-1.663 1.263-3.034 2.88-3.207.188-.911.993-1.595 1.959-1.595Zm-8.085 8.376c-.784 0-1.459.78-1.506 1.797-.047 1.016.64 1.429 1.426 1.429.786 0 1.371-.369 1.418-1.385.047-1.017-.553-1.841-1.338-1.841Zm7.406 0c-.786 0-1.385.824-1.338 1.841.047 1.017.634 1.385 1.418 1.385.785 0 1.473-.413 1.426-1.429-.046-1.017-.721-1.797-1.506-1.797Zm-3.703 4.013c-.974 0-1.907.048-2.77.135-.147.015-.241.168-.183.305.483 1.154 1.622 1.964 2.953 1.964 1.33 0 2.47-.81 2.953-1.964.057-.137-.037-.29-.184-.305-.863-.087-1.795-.135-2.769-.135Z"/></svg></a><a href="https://discord.gg/msgvnUG7js" rel="noopener" target="_blank" aria-label="Discord server" title="Discord"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path fill="currentColor" d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/></svg></a><a href="https://x.com/soundblooms" rel="noopener" target="_blank" aria-label="X profile" title="X"><svg viewBox="-2 -2 28 28" width="22" height="22" aria-hidden="true" focusable="false"><path fill="currentColor" d="M14.234 10.162 22.977 0h-2.072l-7.591 8.824L7.251 0H.258l9.168 13.343L.258 24H2.33l8.016-9.318L16.749 24h6.993zm-2.837 3.299-.929-1.329L3.076 1.56h3.182l5.965 8.532.929 1.329 7.754 11.09h-3.182z"/></svg></a></p>
+  </footer>
+</div>
+
+<!-- ===================================================================== CORE: geometry, no DOM -->
+<script id="diffuser-core">
+/* Soundblooms diffuser core. A 1:1 port of the stage 1 Python canon (qrd.py, diffuser.py) plus the derive/limits rules of
+   the generator. No DOM, no window, no fetch: createDiffuser(M) takes an initialised manifold-3d module and returns the
+   pure functions and the two tile builders. M is touched only inside deepTile / blockTile.
+   All lengths in mm, frequencies in Hz. */
+function createDiffuser(M) {
+  "use strict";
+  if (M && typeof M.setup === "function") M.setup();
+
+  var C = 343.0;                 // speed of sound, m/s at 20 C
+  var LABEL_DEPTH = 0.4;
+  var MARGIN = 25;               // mm kept free on every bed axis: a tile at the full bed size would lift off the bed (rule v2)
+  var SEGMENTS = { 1: "bc", 2: "abged", 3: "abgcd", 4: "fgbc", 5: "afgcd", 6: "afgecd", 7: "abc", 8: "abcdefg", 9: "abcdfg" };
+
+  var PRESETS = {
+    deep: {
+      S: { N: 7, pitch: 25.0, length: 175.0, dmax: 100.0, fin: 1.2, edge: 0.8, floor: 1.6, back: 2.0, cap: 1.2, chamfer: 3.0,
+           bed: "Bambu Lab A1 mini (180 x 180 x 180)" },
+      L: { N: 7, pitch: 35.0, length: 205.0, dmax: 140.0, fin: 1.2, edge: 0.8, floor: 1.6, back: 2.0, cap: 1.2, chamfer: 4.0,
+           bed: "Prusa MK4 (250 x 210 x 220), Core One, Bambu P1S/X1" }
+    },
+    blocks: {
+      S: { Nx: 13, Ny: 13, W: 175.0, H: 175.0, hmax: 48.0, base: 3.0, bed: "Bambu Lab A1 mini (180 x 180 x 180)" },
+      L: { Nx: 13, Ny: 11, W: 245.0, H: 205.0, hmax: 60.0, base: 3.0, bed: "Prusa MK4 (250 x 210 x 220), Core One, Bambu P1S/X1" }
+    }
+  };
+
+  /* wall orders and block shifts from the stage 1 layout search (design/out/layouts.json); nothing else is copied */
+  var LAYOUTS = {"deep":{"S":{"room_left_to_right":{"4":[4,5,3,6],"7":[1,7,2,4,5,3,6]}},"L":{"room_left_to_right":{"3":[4,3,6],"5":[5,2,4,3,6],"7":[1,7,5,2,4,3,6]}}},"blocks":{"S":{"shifts":[[12,12],[3,9],[5,5],[11,1],[1,4],[7,0],[10,10],[5,11],[6,8]],"grids":{"2x2":[[1,2],[3,4]],"2x3":[[1,2,5],[3,4,6]],"3x3":[[1,2,5],[3,4,6],[7,8,9]]}},"L":{"shifts":[[11,8],[9,3],[3,7],[4,0],[0,4],[3,5]],"grids":{"2x2":[[1,2],[3,4]],"2x3":[[1,2,5],[3,4,6]]}}}};
+
+  /* beds offered by the page (extra member, not part of the stage 1 canon) */
+  var BEDS = [
+    { key: "a1mini", name: "Bambu Lab A1 mini", short: "A1 mini", x: 180, y: 180, z: 180 },
+    { key: "mk4", name: "Prusa MK4 / Core One", short: "MK4 / Core One", x: 250, y: 210, z: 220 },
+    { key: "p1s", name: "Bambu Lab P1S / X1", short: "P1S / X1", x: 256, y: 256, z: 256 }
+  ];
+
+  // ------------------------------------------------------------------ qrd.py
+  function residues(N) {
+    var r = [];
+    for (var n = 0; n < N; n++) r.push((n * n) % N);
+    return r;
+  }
+
+  function shifted(N, k) {
+    var s = residues(N), r = [];
+    for (var n = 0; n < N; n++) r.push(s[(n + k) % N]);
+    return r;
+  }
+
+  function deepShift(tile) {
+    return (tile + 3) % 7;
+  }
+
+  function deepDepths(p, tile) {
+    var s = shifted(p.N, deepShift(tile));
+    var smax = Math.max.apply(null, residues(p.N));
+    return s.map(function (si) { return si * p.dmax / smax; });
+  }
+
+  function deepBand(p) {
+    var N = p.N, smax = Math.max.apply(null, residues(N));
+    var f0 = C * smax / (2 * N * p.dmax / 1000);
+    var w = p.pitch - p.fin;
+    var fw = C / (2 * w / 1000);
+    var fn = N * f0;
+    var period = N * p.pitch;
+    return { f0: f0, f_width: fw, f_flat: fn, f_high: Math.min(fw, fn), well_width: w, period: period,
+             f_period: C / (period / 1000), lambda0: C / f0 * 1000, unit_depth: p.dmax / smax };
+  }
+
+  function deepDims(p) {
+    return [p.N * p.pitch, p.length, p.dmax + p.back];
+  }
+
+  function phaseFraction(Nx, Ny, n, m, k, l) {
+    k = k || 0; l = l || 0;
+    var a = ((n + k) * (n + k)) % Nx;
+    var b = ((m + l) * (m + l)) % Ny;
+    if (Nx === Ny) return ((a + b) % Nx) / Nx;     // exact integers for the square case
+    var v = a / Nx + b / Ny;
+    return v - Math.trunc(v);
+  }
+
+  function phaseMax(Nx, Ny) {
+    var best = -Infinity;
+    for (var n = 0; n < Nx; n++)
+      for (var m = 0; m < Ny; m++) {
+        var f = phaseFraction(Nx, Ny, n, m, 0, 0);
+        if (f > best) best = f;
+      }
+    return best;
+  }
+
+  function blockHeights(p, k, l) {
+    var pm = phaseMax(p.Nx, p.Ny), rows = [];
+    for (var m = 0; m < p.Ny; m++) {
+      var row = [];
+      for (var n = 0; n < p.Nx; n++) row.push(p.hmax * (1 - phaseFraction(p.Nx, p.Ny, n, m, k, l) / pm));
+      rows.push(row);
+    }
+    return rows;
+  }
+
+  function blockBand(p) {
+    var pm = phaseMax(p.Nx, p.Ny);
+    var f0 = C * pm / (2 * p.hmax / 1000);
+    var w = Math.min(p.W / p.Nx, p.H / p.Ny);
+    var fw = C / (2 * w / 1000);
+    return { f0: f0, f_width: fw, f_high: fw, block: w, phase_max: pm, lambda0: C / f0 * 1000,
+             f_period: C / (Math.max(p.W, p.H) / 1000) };
+  }
+
+  function blockDims(p) {
+    return [p.W, p.H, p.base + p.hmax];
+  }
+
+  function fmtG(v) {                // Python f"{v:g}" for the magnitudes used here
+    return String(+v.toPrecision(6));
+  }
+
+  function name(series, p, tile) {
+    var dims = series === "deep" ? deepDims(p) : blockDims(p);
+    var tag = series === "deep" ? "qrd-deep" : "qrd-blocks";
+    return "soundblooms-diffuser-" + tag + "-" + dims.map(fmtG).join("x") + "-tile" + tile;
+  }
+
+  // ------------------------------------------------------------------ derive / limits (generator rule, N fixed)
+  function bedLabel(series, bed) {
+    return (bed.name || "Custom") + " (" + bed.x + " x " + bed.y + " x " + bed.z + ")";
+  }
+
+  function blockGeom(bed) {
+    var Nx = 13, W = bed.x - MARGIN;
+    var H = Math.min(bed.y - MARGIN, W);
+    var Ny = H / W >= 12 / 13 ? 13 : 11;
+    if (H / W < 10 / 13) W = Math.round(H * 13 / 10);
+    return { Nx: Nx, Ny: Ny, W: W, H: H };
+  }
+
+  function derive(series, bed, depth) {
+    if (series === "deep") {
+      var pitch = Math.floor((bed.x - MARGIN) / 7);
+      return { N: 7, pitch: pitch, length: Math.min(bed.y - MARGIN, bed.z - MARGIN), dmax: depth,
+               fin: 1.2, edge: 0.8, floor: 1.6, back: 2.0, cap: 1.2, chamfer: pitch < 30 ? 3 : 4,
+               bed: bedLabel("deep", bed) };
+    }
+    var g = blockGeom(bed);
+    return { Nx: g.Nx, Ny: g.Ny, W: g.W, H: g.H, hmax: depth, base: 3.0, bed: bedLabel("blocks", bed) };
+  }
+
+  function limits(series, bed) {
+    if (series === "deep") {
+      var max = bed.y - MARGIN - 2.0;
+      var pitch = Math.floor((bed.x - MARGIN) / 7);
+      return { depthMin: 40, depthMax: max, depthDefault: Math.min(4 * pitch, max) };     // matched tile: unit depth = pitch
+    }
+    var g = blockGeom(bed);
+    var hmax = Math.min(bed.z - MARGIN - 3.0, 4 * Math.min(g.W / g.Nx, g.H / g.Ny));
+    return { depthMin: 20, depthMax: hmax, depthDefault: Math.min(g.Ny === 13 ? 48 : 60, Math.floor(hmax)) };
+  }
+
+  /* wall order / shifts of the set for these params: deep by pitch, blocks by Ny */
+  function tileSet(series, p) {
+    if (series === "deep") {
+      var kd = p.pitch < 30 ? "S" : "L";
+      return { key: kd, count: 7, rooms: LAYOUTS.deep[kd].room_left_to_right };
+    }
+    var kb = p.Ny === 13 ? "S" : "L";
+    return { key: kb, count: LAYOUTS.blocks[kb].shifts.length, shifts: LAYOUTS.blocks[kb].shifts, grids: LAYOUTS.blocks[kb].grids };
+  }
+
+  // ------------------------------------------------------------------ walls, wall band, print estimate (contract v2)
+  /* the walls the user can pick, smallest first: tile 1 alone, then every wall width of the chosen order with 1-3 rows (deep)
+     or every grid of the chosen layout (blocks); grid = rows top to bottom, tile numbers left to right as seen from the room */
+  function wallOptions(series, p) {
+    var set = tileSet(series, p), out = [{ id: "1x1", cols: 1, rows: 1, tiles: 1, grid: [[1]] }];
+    function add(grid) {
+      var cols = grid[0].length, rows = grid.length;
+      out.push({ id: cols + "x" + rows, cols: cols, rows: rows, tiles: cols * rows, grid: grid.map(function (r) { return r.slice(); }) });
+    }
+    if (series === "deep") {
+      Object.keys(set.rooms).map(Number).sort(function (a, b) { return a - b; }).forEach(function (w) {
+        for (var rows = 1; rows <= 3; rows++) {
+          var grid = [];
+          for (var r = 0; r < rows; r++) grid.push(set.rooms[String(w)].slice());
+          add(grid);
+        }
+      });
+    } else {
+      Object.keys(set.grids).forEach(function (nm) { add(set.grids[nm]); });
+    }
+    return out.sort(function (a, b) { return a.tiles - b.tiles || a.cols - b.cols; });
+  }
+
+  /* band of a wall: the top is the width of a well / block, the bottom is tied to the width of the wall (c / width), never below f0 */
+  function wallBand(series, p, cols, rows) {
+    var b = series === "deep" ? deepBand(p) : blockBand(p);
+    var d = series === "deep" ? deepDims(p) : blockDims(p);
+    var width = cols * d[0], height = rows * d[1];
+    return { low: Math.max(b.f0, C / (width / 1000)), high: b.f_width, wallWidthMm: width, wallHeightMm: height };
+  }
+
+  /* quantities of a tile in print orientation (Z up = print height) */
+  function features(m) {
+    var mesh = m.getMesh(), np = mesh.numProp, vp = mesh.vertProperties, tv = mesh.triVerts;
+    var mn = [Infinity, Infinity, Infinity], mx = [-Infinity, -Infinity, -Infinity], i, a;
+    for (i = 0; i < vp.length; i += np) for (a = 0; a < 3; a++) { var v = vp[i + a]; if (v < mn[a]) mn[a] = v; if (v > mx[a]) mx[a] = v; }
+    var area = 0;
+    for (i = 0; i < tv.length; i += 3) {
+      var o = tv[i] * np, q = tv[i + 1] * np, r = tv[i + 2] * np;
+      var ux = vp[q] - vp[o], uy = vp[q + 1] - vp[o + 1], uz = vp[q + 2] - vp[o + 2];
+      var wx = vp[r] - vp[o], wy = vp[r + 1] - vp[o + 1], wz = vp[r + 2] - vp[o + 2];
+      area += 0.5 * Math.sqrt(Math.pow(uy * wz - uz * wy, 2) + Math.pow(uz * wx - ux * wz, 2) + Math.pow(ux * wy - uy * wx, 2));
+    }
+    return { area_cm2: area / 100, volume_cm3: m.volume() / 1000, height_mm: mx[2] - mn[2], footprint_cm2: (mx[0] - mn[0]) * (mx[1] - mn[1]) / 100 };
+  }
+
+  /* calibrated on 44 Bambu P1S slices (scripts/calibration/estimate.json): grams and minutes per series, feature -> coefficient */
+  var ESTIMATE = {"deep":{"grams":{"area_cm2":0.023414710934069945,"volume_cm3":0.6986245896132087,"height_mm":0.2137639828876546},"minutes":{"volume_cm3":0.9508102021692924,"height_mm":0.9396016672184687}},"blocks":{"grams":{"area_cm2":0.09108693539262146,"volume_cm3":0.010876976616926236,"footprint_cm2":0.119568700135907},"minutes":{"area_cm2":0.14513697975114204,"footprint_cm2":0.10188506058056518,"const":35.685669738162346}}};
+
+  function estimate(series, f) {
+    var E = ESTIMATE[series], out = {};
+    ["grams", "minutes"].forEach(function (q) {
+      var s = 0, co = E[q];
+      for (var k in co) if (Object.prototype.hasOwnProperty.call(co, k)) s += co[k] * (k === "const" ? 1 : (typeof f[k] === "number" ? f[k] : 0));
+      out[q] = s;
+    });
+    return out;
+  }
+
+  // ------------------------------------------------------------------ geometry (diffuser.py)
+  function rect(x0, y0, x1, y1) {
+    return [[x0, y0], [x1, y0], [x1, y1], [x0, y1]];
+  }
+
+  /* 7-segment digit with an up arrow, polygons in a 2D frame (u right, v up) centred at (cx, cy) */
+  function labelPolys(digit, cx, cy, h, w, s) {
+    h = h === undefined ? 24.0 : h; w = w === undefined ? 13.0 : w; s = s === undefined ? 3.0 : s;
+    var seg = { a: [0, h - s, w, h], d: [0, 0, w, s], g: [0, h / 2 - s / 2, w, h / 2 + s / 2],
+                f: [0, h / 2, s, h], e: [0, 0, s, h / 2], b: [w - s, h / 2, w, h], c: [w - s, 0, w, h / 2] };
+    var x0 = cx - w / 2, y0 = cy - (h + 10) / 2;
+    var polys = SEGMENTS[digit].split("").map(function (k) {
+      var q = seg[k];
+      return rect(x0 + q[0], y0 + q[1], x0 + q[2], y0 + q[3]);
+    });
+    var ay = y0 + h + 4;                                  // arrow 4 mm above the digit, 10 wide, 6 tall
+    polys.push([[cx - 5, ay], [cx + 5, ay], [cx, ay + 6]]);
+    return polys;
+  }
+
+  /* manifold-3d takes points as {x, y} objects (an array built in another realm, e.g. a node:vm context, is not an Array
+     for its `instanceof` checks), and vectors as plain numbers */
+  function asPoints(polys) {
+    return polys.map(function (poly) { return poly.map(function (q) { return { x: q[0], y: q[1] }; }); });
+  }
+
+  /* every Manifold / CrossSection made on the way is registered and freed; only the returned solid survives */
+  function scope() {
+    var own = [];
+    return {
+      k: function (x) { own.push(x); return x; },
+      free: function () { while (own.length) { var o = own.pop(); try { o.delete(); } catch (e) { /* already freed */ } } }
+    };
+  }
+
+  function deepTile(p, tile) {
+    var S = scope(), k = S.k;
+    try {
+      var CS = M.CrossSection, MF = M.Manifold;
+      var N = p.N, pitch = p.pitch, Lw = p.length;
+      var fin = p.fin, edge = p.edge, floor = p.floor, back = p.back;
+      var dims = deepDims(p), W = dims[0], T = dims[2];
+      var d = deepDepths(p, tile);
+      var dmax = p.dmax;
+
+      var cs = function (polys) { return k(new CS(asPoints(polys), "Positive")); };
+      var wellX = function (n) {          // inner faces of the walls around well n
+        var xl = n * pitch + (n === 0 ? edge : fin / 2);
+        var xr = (n + 1) * pitch - (n === N - 1 ? edge : fin / 2);
+        return [xl, xr];
+      };
+
+      var polys = [rect(0, 0, W, back), rect(0, 0, edge, T), rect(W - edge, 0, W, T)];
+      for (var j = 1; j < N; j++) polys.push(rect(j * pitch - fin / 2, 0, j * pitch + fin / 2, T));
+      for (var n = 0; n < N; n++) {
+        if (d[n] < dmax) polys.push(rect(n * pitch, 0, (n + 1) * pitch, T - d[n]));
+        if (d[n] > 0) {                                   // 45 degree chamfers in both bottom corners of the well
+          var wx = wellX(n), xl = wx[0], xr = wx[1], yf = T - d[n], c = p.chamfer;
+          polys.push([[xl, yf], [xl + c, yf], [xl, yf + c]]);
+          polys.push([[xr, yf], [xr, yf + c], [xr - c, yf]]);
+        }
+      }
+      var body = k(cs(polys).extrude(Lw));
+
+      var chambers = [];
+      for (var q = 0; q < N; q++) {
+        var y0 = back, y1 = T - d[q] - floor;
+        if (d[q] >= dmax || y1 - y0 < 4) continue;
+        var w2 = wellX(q), cxl = w2[0], cxr = w2[1];
+        var cf = (cxr - cxl) / 2;
+        var z0 = p.cap, z1 = Lw - p.cap;                  // ridge roof: two 45 degree slopes meet, nothing to bridge
+        var prof = [[cxl, z0], [cxr, z0], [cxr, z1 - cf], [(cxl + cxr) / 2, z1], [cxl, z1 - cf]];
+        // profile in the (x, z) plane, extruded along y: frame (u, v, w) -> rotate X 90 -> (u, -w, v) -> shift y
+        chambers.push(k(k(k(cs([prof]).extrude(y1 - y0)).rotate(90, 0, 0)).translate(0, y1, 0)));
+      }
+      var lab = k(k(k(cs(labelPolys(tile, W / 2, Lw / 2)).extrude(LABEL_DEPTH + 0.1)).rotate(90, 0, 0)).translate(0, LABEL_DEPTH, 0));
+      var cut = k(MF.union(chambers.concat([lab])));
+      return body.subtract(cut);
+    } finally {
+      S.free();
+    }
+  }
+
+  function blockTile(p, tile, kk, ll) {
+    var S = scope(), k = S.k;
+    try {
+      var CS = M.CrossSection, MF = M.Manifold;
+      var Nx = p.Nx, Ny = p.Ny, W = p.W, H = p.H, base = p.base;
+      var px = W / Nx, py = H / Ny;
+      var h = blockHeights(p, kk, ll);
+      var cs = function (polys) { return k(new CS(asPoints(polys), "Positive")); };
+      // No two solids may touch along a plane (coplanar unions leave zero-volume sheets in the STL): cells of equal
+      // height are merged in 2D first, every region grows by EPS so neighbours overlap, the base and the regions start
+      // below/inside each other, and one clip box cuts the exact outline at the end.
+      var eps = 0.01;
+      var parts = [k(k(MF.cube({ x: W + 2, y: H + 2, z: base + 1 })).translate(-1, -1, -1))];
+      var seen = {}, levels = [];
+      for (var m = 0; m < Ny; m++)
+        for (var n = 0; n < Nx; n++) {
+          var v = h[m][n];
+          if (v > 1e-6) { var rv = Math.round(v * 1e6) / 1e6; if (!seen[rv]) { seen[rv] = true; levels.push(rv); } }
+        }
+      levels.sort(function (a, b) { return a - b; });
+      levels.forEach(function (lv) {
+        var cells = [];
+        for (var mm = 0; mm < Ny; mm++)
+          for (var nn = 0; nn < Nx; nn++)
+            if (Math.abs(h[mm][nn] - lv) < 1e-6) cells.push(rect(nn * px, mm * py, (nn + 1) * px, (mm + 1) * py));
+        parts.push(k(k(k(cs(cells).offset(eps, "Miter", 2.0)).extrude(base + lv - 1)).translate(0, 0, 1)));
+      });
+      var body = k(MF.union(parts)).intersect(k(MF.cube({ x: W, y: H, z: base + p.hmax + 1 })));
+      // label in the bed face, seen from behind (viewer below, up = +Y): u -> -x, mirrored
+      var lp = labelPolys(tile, W / 2, H / 2).map(function (poly) {
+        return poly.map(function (uv) { return [W - uv[0], uv[1]]; }).reverse();
+      });
+      var lab = k(k(cs(lp).extrude(LABEL_DEPTH + 0.1)).translate(0, 0, -0.1));
+      var solid = body.subtract(lab);
+      body.delete();
+      return solid;
+    } finally {
+      S.free();
+    }
+  }
+
+  return {
+    PRESETS: PRESETS, LAYOUTS: LAYOUTS, BEDS: BEDS, MARGIN: MARGIN,
+    residues: residues, shifted: shifted, deepShift: deepShift, deepDepths: deepDepths,
+    phaseFraction: phaseFraction, phaseMax: phaseMax, blockHeights: blockHeights,
+    deepBand: deepBand, blockBand: blockBand, deepDims: deepDims, blockDims: blockDims,
+    deepTile: deepTile, blockTile: blockTile, name: name, derive: derive, limits: limits,
+    tileSet: tileSet, labelPolys: labelPolys, fmtG: fmtG,
+    wallOptions: wallOptions, wallBand: wallBand, features: features, ESTIMATE: ESTIMATE, estimate: estimate
+  };
+}
+</script>
+
+<!-- ===================================================================== APP: UI, preview, STL / ZIP -->
+<script type="module">
+const $ = (id) => document.getElementById(id);
+const CDN_MANIFOLD = "https://cdn.jsdelivr.net/npm/manifold-3d@3.5.3/+esm";
+
+let D = createDiffuser(null);            // pure functions work before the geometry engine has loaded
+let M = null;                            // manifold module, once loaded
+let T3 = null, OrbitControls = null;     // three.js, once loaded
+const g = (v) => D.fmtG(v);
+const r1 = (v) => +v.toFixed(1);
+const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+
+/* ------------------------------------------------------------------ errors in the page, never only in the console */
+function showError(msg) {
+  const el = $("err");
+  el.textContent = msg;
+  el.hidden = false;
+}
+function clearError() { $("err").hidden = true; }
+window.addEventListener("error", (e) => showError("Something went wrong: " + (e.message || "unknown error")));
+window.addEventListener("unhandledrejection", (e) => showError("Something went wrong: " + ((e.reason && e.reason.message) || e.reason || "unknown error")));
+const setStatus = (t) => { $("status").textContent = t; };
+
+/* ------------------------------------------------------------------ state */
+const state = { series: "deep", bed: "a1mini", cx: 250, cy: 210, cz: 220, depth: 100, tile: 1, wall: "" };
+
+/* ------------------------------------------------------------------ preview colour: the filament colours of the stage 1 renders (tools/render.py) */
+const FILAMENTS = [
+  { id: "sand", name: "Matte sand", hex: "#D8D0C0", rough: 0.85 },
+  { id: "terracotta", name: "Matte terracotta", hex: "#B15533", rough: 0.85 },
+  { id: "silver", name: "Glossy silver", hex: "#B8BBBC", rough: 0.35 },
+  { id: "ice", name: "Glossy ice", hex: "#A9C8E0", rough: 0.35 }
+];
+const DEFAULT_COLOUR = { deep: { S: "sand", L: "terracotta" }, blocks: { S: "silver", L: "ice" } };   // as in the renders
+const colour = { id: "sand", hex: "#D8D0C0", rough: 0.85, chosen: false, custom: "#5E7FA8" };
+const lsGet = (k) => { try { return localStorage.getItem(k); } catch (e) { return null; } };
+const lsSet = (k, v) => { try { localStorage.setItem(k, v); } catch (e) { /* storage can be blocked */ } };
+function parseHex(s) {
+  const m = /^#?([0-9a-f]{3}|[0-9a-f]{6})$/i.exec(String(s).trim());
+  if (!m) return null;
+  const h = m[1].length === 3 ? m[1].split("").map((c) => c + c).join("") : m[1];
+  return "#" + h.toUpperCase();
+}
+function buildSwatches() {
+  const saved = parseHex(lsGet("diffuser-gen-custom") || "");
+  if (saved) colour.custom = saved;
+  $("mats").innerHTML = FILAMENTS.map((f) => `<button type="button" class="chip" data-col="${f.id}" style="background:${f.hex}" aria-label="${esc(f.name)}" title="${esc(f.name)}" aria-pressed="false"><span>${esc(f.name)}</span></button>`).join("")
+    + `<div class="custom"><label class="chip cust" id="chipCust" title="Pick your own colour"><input type="color" id="colPick" aria-label="Custom colour" value="${colour.custom.toLowerCase()}"><span>Custom</span></label>`
+    + `<input class="hex" id="hexIn" type="text" maxlength="7" spellcheck="false" autocomplete="off" placeholder="#RRGGBB" aria-label="Custom colour as hex" value="${colour.custom}"></div>`;
+  $("mats").addEventListener("click", (e) => {
+    const b = e.target.closest("button[data-col]");
+    if (!b) return;
+    colour.chosen = true;
+    applyColour(b.dataset.col);
+  });
+  const setCustom = (hex) => { colour.custom = hex; colour.chosen = true; lsSet("diffuser-gen-custom", hex); applyColour("custom"); };
+  $("colPick").addEventListener("input", (e) => setCustom(parseHex(e.target.value) || colour.custom));
+  const hx = $("hexIn");
+  hx.addEventListener("input", () => {
+    const v = parseHex(hx.value);
+    hx.classList.toggle("bad", !v && hx.value.trim() !== "");
+    if (v) setCustom(v);
+  });
+  hx.addEventListener("change", () => { hx.value = colour.custom; hx.classList.remove("bad"); });
+  applyColour(colour.id);
+}
+function applyColour(id) {
+  const f = FILAMENTS.find((x) => x.id === id);
+  colour.id = id;
+  colour.hex = f ? f.hex : colour.custom;
+  colour.rough = f ? f.rough : 0.6;
+  document.querySelectorAll("#mats .chip[data-col]").forEach((b) => {
+    const on = b.dataset.col === id;
+    b.classList.toggle("on", on);
+    b.setAttribute("aria-pressed", String(on));
+  });
+  $("chipCust").classList.toggle("on", id === "custom");
+  $("chipCust").style.background = colour.custom;
+  const pick = $("colPick"), hx = $("hexIn");
+  if (pick.value.toLowerCase() !== colour.custom.toLowerCase()) pick.value = colour.custom.toLowerCase();
+  if (document.activeElement !== hx) { hx.value = colour.custom; hx.classList.remove("bad"); }
+  applyMaterial();
+}
+/* until the user picks a swatch, the default of the series and wall order is used, as in the stage 1 renders */
+function syncColour(set) {
+  if (colour.chosen) return;
+  const id = DEFAULT_COLOUR[state.series][set.key];
+  if (id !== colour.id) applyColour(id);
+}
+
+function bedNow() {
+  if (state.bed === "custom") return { name: "Custom", x: state.cx, y: state.cy, z: state.cz };
+  return D.BEDS.find((b) => b.key === state.bed);
+}
+function resolve() {
+  const bed = bedNow();
+  const lim = D.limits(state.series, bed);
+  state.depth = clamp(Math.round(state.depth), lim.depthMin, Math.floor(lim.depthMax));
+  const p = D.derive(state.series, bed, state.depth);
+  const set = D.tileSet(state.series, p);
+  const walls = D.wallOptions(state.series, p);
+  let wall = walls.find((w) => w.id === state.wall);
+  if (!wall) { wall = walls[1] || walls[0]; state.wall = wall.id; }                // default: the smallest real wall
+  const tilesIn = [...new Set(wall.grid.flat())].sort((a, b) => a - b);
+  if (!tilesIn.includes(state.tile)) state.tile = tilesIn[0];
+  return { bed, lim, p, set, walls, wall, tilesIn };
+}
+function resetDepth() {
+  state.depth = D.limits(state.series, bedNow()).depthDefault;
+}
+
+const wallHead = (w) => w.tiles === 1 ? "1 tile" : w.rows === 1 ? `${w.tiles} tiles` : `${w.cols} x ${w.rows}`;
+
+/* ------------------------------------------------------------------ controls */
+function buildStaticControls() {
+  buildSwatches();
+  const beds = $("beds");
+  beds.innerHTML = D.BEDS.map((b) => `<button type="button" class="key" data-bed="${b.key}" aria-pressed="false"><b>${esc(b.short)}</b><small>${b.x} x ${b.y} x ${b.z} mm</small></button>`).join("")
+    + `<button type="button" class="key" data-bed="custom" aria-pressed="false"><b>Custom</b><small>your own bed</small></button>`;
+  beds.addEventListener("click", (e) => {
+    const b = e.target.closest("button[data-bed]");
+    if (!b) return;
+    if (b.dataset.bed === "custom") {
+      const cur = bedNow();
+      state.cx = cur.x; state.cy = cur.y; state.cz = cur.z;
+    }
+    state.bed = b.dataset.bed;
+    resetDepth();
+    update();
+  });
+  $("series").addEventListener("click", (e) => {
+    const b = e.target.closest("button[data-series]");
+    if (!b || b.dataset.series === state.series) return;
+    state.series = b.dataset.series;
+    state.tile = 1;
+    state.wall = "";
+    resetDepth();
+    update();
+  });
+  $("walls").addEventListener("click", (e) => {
+    const b = e.target.closest("button[data-wall]");
+    if (!b) return;
+    state.wall = b.dataset.wall;
+    update();
+  });
+  $("tiles").addEventListener("click", (e) => {
+    const b = e.target.closest("button[data-tile]");
+    if (!b) return;
+    state.tile = +b.dataset.tile;
+    update();
+  });
+  $("depth").addEventListener("input", () => { state.depth = +$("depth").value; update(); });
+  const xyz = ["bx", "by_", "bz"].map($);
+  xyz.forEach((inp) => inp.addEventListener("input", () => {
+    const v = xyz.map((i) => i.valueAsNumber);
+    if (v.some((n) => !(n >= 100 && n <= 600) || !Number.isInteger(n))) return;      // wait for a valid value
+    if (state.bed !== "custom" || v[0] !== state.cx || v[1] !== state.cy || v[2] !== state.cz) {
+      state.bed = "custom"; state.cx = v[0]; state.cy = v[1]; state.cz = v[2];
+      update();
+    }
+  }));
+  $("bStl").addEventListener("click", downloadTile);
+  $("bZip").addEventListener("click", downloadSet);
+  $("bReset").addEventListener("click", () => fitView(true));
+}
+
+function syncControls(R) {
+  const { bed, lim, p, set, walls, wall, tilesIn } = R;
+  document.querySelectorAll("button[data-series]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.series === state.series)));
+  document.querySelectorAll("button[data-bed]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.bed === state.bed)));
+  [["bx", bed.x], ["by_", bed.y], ["bz", bed.z]].forEach(([id, v]) => { const el = $(id); if (document.activeElement !== el) el.value = v; });
+  const depth = $("depth");
+  depth.min = lim.depthMin; depth.max = Math.floor(lim.depthMax); depth.value = state.depth;
+  $("depthOut").textContent = state.depth + " mm";
+  $("dMin").textContent = lim.depthMin + " mm";
+  $("dMax").textContent = Math.floor(lim.depthMax) + " mm";
+
+  /* wall chooser: tile count and wall size in cm on every chip */
+  const wallsEl = $("walls");
+  const wkey = state.series + walls.map((w) => { const wb = D.wallBand(state.series, p, w.cols, w.rows); return w.id + ":" + Math.round(wb.wallWidthMm) + "x" + Math.round(wb.wallHeightMm); }).join(",");
+  if (wallsEl.dataset.key !== wkey) {
+    wallsEl.dataset.key = wkey;
+    /* up to 7 columns fit one chart row; more (a wide bed gives 10 deep walls) wrap into two equal rows, each with its own legend */
+    const per = walls.length <= 7 ? walls.length : Math.ceil(walls.length / 2);
+    const cols = walls.map((w) => {
+      const wb = D.wallBand(state.series, p, w.cols, w.rows);
+      const L = levelOf(state.series, p, w);
+      const head = wallHead(w);
+      const size = `${Math.round(wb.wallWidthMm / 10)}x${Math.round(wb.wallHeightMm / 10)}`;
+      return `<button type="button" class="key wk l${L}" data-wall="${w.id}" aria-pressed="false" data-head="${esc(head)}" data-size="${size}" data-level="${L}" aria-label="${esc(head)}, wall ${size.replace("x", " by ")} cm, ${esc(LEVELS[L].label)}">`
+        + `<span class="wc">${faceSvg(L)}<i class="wbar"></i></span><b class="wn">${esc(head)}</b><span class="ws">${size}</span></button>`;
+    });
+    const leg = `<div class="wleg" aria-hidden="true"><span class="wc"></span><span class="wn"></span><span class="ws">cm</span></div>`;
+    let html = "";
+    for (let i = 0; i < cols.length; i += per) html += `<div class="wrow" style="--n:${per}">${leg}${cols.slice(i, i + per).join("")}</div>`;
+    wallsEl.innerHTML = html;
+  }
+  wallsEl.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.wall === wall.id)));
+  $("wallOut").textContent = `${wall.tiles} ${wall.tiles === 1 ? "tile" : "tiles"}`;
+
+  const tiles = $("tiles");
+  const tkey = tilesIn.join(",");
+  if (tiles.dataset.key !== tkey) {
+    tiles.dataset.key = tkey;
+    tiles.style.gridTemplateColumns = `repeat(${tilesIn.length},1fr)`;
+    tiles.innerHTML = tilesIn.map((t) => `<button type="button" data-tile="${t}" aria-pressed="false" aria-label="Tile ${t}">${t}</button>`).join("");
+  }
+  tiles.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", String(+b.dataset.tile === state.tile)));
+  $("tileOut").textContent = `tile ${state.tile} of ${tilesIn.length}`;
+  $("bStl").textContent = `Download tile ${state.tile} only (STL)`;
+  $("getNote").textContent = wall.tiles === 1
+    ? "ZIP: the STL of tile 1, the wall plan and a README."
+    : `ZIP: ${tilesIn.length} STL files (one per tile number), the wall plan and a README with how many of each to print.`;
+
+  const deep = state.series === "deep";
+  const dm = deep ? D.deepDims(p) : D.blockDims(p);
+  const size = `${g(dm[0])} x ${g(dm[1])} x ${g(dm[2])}`;
+  const count = deep ? String(p.N) : `${p.Nx} x ${p.Ny}`;
+  const rows = [["Tile size (W x H x D)", `${size} mm`], [deep ? "Wells" : "Blocks", count]];
+  if (deep) {
+    const depths = D.deepDepths(p, state.tile).slice().reverse().map((v) => g(r1(v)));
+    rows.push(["Well width", `${g(r1(p.pitch - p.fin))} mm`], ["Well depths (mm)", depths.join(" ")], ["Prints", "standing on its end"]);
+  } else {
+    rows.push(["Block width", `${g(r1(p.W / p.Nx))} x ${g(r1(p.H / p.Ny))} mm`], ["Prints", "lying on its back"]);
+  }
+  $("derived").innerHTML = rows.map(([a, b]) => `<dt>${esc(a)}</dt><dd>${esc(b)}</dd>`).join("");
+  $("nameplate").innerHTML = `${deep ? "Deep" : "Blocks"} series<small>Tile ${state.tile}, wall of ${wall.tiles} ${wall.tiles === 1 ? "tile" : "tiles"}, ${esc(bed.name)}, depth ${state.depth} mm</small>`;
+  syncColour(set);
+}
+
+/* ------------------------------------------------------------------ band */
+function fmtHz(f) {
+  const r = Math.round(f / 10) * 10;
+  if (r < 1000) return r + " Hz";
+  return +(f / 1000).toFixed(1) + " kHz";
+}
+const FLO = Math.log10(100), FHI = Math.log10(20000);
+const fpos = (f) => clamp((Math.log10(f) - FLO) / (FHI - FLO) * 100, 0, 100);
+
+function bandOf(p) {
+  return state.series === "deep" ? D.deepBand(p) : D.blockBand(p);
+}
+
+function renderBand(R) {
+  const b = bandOf(R.p);
+  const deep = state.series === "deep";
+  const lo = fpos(b.f0), hi = fpos(b.f_width);
+  $("band").innerHTML = `
+    <div class="lab">Frequency band</div>
+    <p class="big">Design band about <em>${esc(fmtHz(b.f0))}</em> to <em>${esc(fmtHz(b.f_width))}</em></p>
+    <div class="bar" role="img" aria-label="Design band from ${esc(fmtHz(b.f0))} to ${esc(fmtHz(b.f_width))} on a frequency axis from 100 Hz to 20 kHz">
+      <i style="left:${lo.toFixed(2)}%;width:${Math.max(0.5, hi - lo).toFixed(2)}%"></i>
+      <b class="first" style="left:0" data-l="100 Hz"></b><b style="left:${fpos(1000).toFixed(2)}%" data-l="1 kHz"></b><b style="left:${fpos(10000).toFixed(2)}%" data-l="10 kHz"></b>
+    </div>
+    ${deep ? `<p class="note">Around ${esc(fmtHz(b.f_flat))} (7 x the design frequency) the tile reflects like a flat panel.</p>` : ""}
+    <p class="note fine">This is a calculated design band, not a measurement.</p>
+    <div class="thiswall"><div class="lab">This wall</div><p class="lead">${esc(wallRange(R, b))}</p></div>`;
+}
+/* what the chosen wall scatters: the range of its width, and what a wider wall would add */
+function wallRange(R, b) {
+  const wb = D.wallBand(state.series, R.p, R.wall.cols, R.wall.rows);
+  let first = `Scatters from about ${fmtHz(wb.low)} to ${fmtHz(wb.high)}.`;
+  if (wb.low > b.f0 + 1e-9) first += ` A wider wall reaches lower: from ${Math.ceil(343 / b.f0 * 100)} cm wide it covers the design band from about ${fmtHz(b.f0)}.`;
+  return first;
+}
+
+/* how much sense a wall makes, by its width: the four levels of round 3 (1 tile / < 60 cm / 60-120 cm / from 120 cm).
+   Qualitative placement guidance, not a measurement. Shared by every prototype, so they compare layout, not wording. */
+const LEVELS = [
+  { label: "Just to try", text: "One tile to try fit, finish and colour. Too small to change how a room sounds." },
+  { label: "Some effect", text: "A small patch: it scatters one spot, mostly in the upper part of the band." },
+  { label: "Makes sense", text: "Wide enough to treat one first-reflection point, or the wall behind one listening seat." },
+  { label: "Great", text: "Covers the reflection area behind or beside one listening position." }
+];
+function levelOf(series, p, wall) {
+  const widthCm = D.wallBand(series, p, wall.cols, wall.rows).wallWidthMm / 10;
+  return wall.tiles === 1 ? 0 : widthCm < 60 ? 1 : widthCm < 120 ? 2 : 3;
+}
+/* face for a level: 0 sad, 1 flat, 2 smile, 3 big smile; drawn in currentColor */
+const MOUTHS = [
+  `<path d="M8 17 Q12 13.4 16 17" fill="none"/>`,
+  `<path d="M8.5 15.5 H15.5" fill="none"/>`,
+  `<path d="M8 14.6 Q12 18.4 16 14.6" fill="none"/>`,
+  `<path d="M7.6 13.6 H16.4 Q16.2 19.2 12 19.2 Q7.8 19.2 7.6 13.6 Z" fill="currentColor" stroke-linejoin="round"/>`
+];
+function faceSvg(level, cls = "face") {
+  return `<svg class="${cls}" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true" focusable="false">`
+    + `<circle cx="12" cy="12" r="10.2" fill="none"/><circle cx="8.6" cy="9.6" r="1.25" fill="currentColor" stroke="none"/><circle cx="15.4" cy="9.6" r="1.25" fill="currentColor" stroke="none"/>`
+    + MOUTHS[level] + `</svg>`;
+}
+/* icons for print time (clock) and filament (spool), drawn in currentColor */
+const ICON_CLOCK = `<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9.6"/><path d="M12 6.6 V12 L15.6 14.2"/></svg>`;
+const ICON_SPOOL = `<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9.6"/><circle cx="12" cy="12" r="6.2" stroke-width="1"/><circle cx="12" cy="12" r="2.4"/><path d="M12 2.4 H22.4"/></svg>`;
+
+/* ------------------------------------------------------------------ wall plan (port of design/plan.py, as seen from the room) */
+const PLC = { bg: "#22252A", ink: "#F3F4F6", sky: "#7CB7FF", muted: "#A4A5A8" };   // Printables: Graphite, text, Sky; muted = text 62 % over Graphite
+const r3 = (v) => +v.toFixed(3);
+function shade(v) {
+  const gr = 0.86 - 0.62 * v;
+  const c = Math.round(gr * 255);
+  return `rgb(${c},${c},${Math.min(255, Math.round((gr + 0.02) * 255))})`;
+}
+const NS = 'vector-effect="non-scaling-stroke"';
+
+function labelSvg(cx, cy, tile, H) {
+  const r = 0.17 * H, sw = 0.012 * H, hw = 0.06 * H, hl = 0.05 * H;
+  const base = cy - (r + 0.03 * H), tip = base - 0.1 * H;
+  const pts = [[cx - sw / 2, base], [cx - sw / 2, tip + hl], [cx - hw / 2, tip + hl], [cx, tip], [cx + hw / 2, tip + hl], [cx + sw / 2, tip + hl], [cx + sw / 2, base]]
+    .map(([x, y]) => `${r3(x)},${r3(y)}`).join(" ");
+  return `<circle cx="${r3(cx)}" cy="${r3(cy)}" r="${r3(r)}" fill="${PLC.bg}" stroke="${PLC.sky}" stroke-width="1.5" ${NS}/>`
+    + `<text x="${r3(cx)}" y="${r3(cy)}" dy=".35em" font-size="${r3(0.2 * H)}" text-anchor="middle" fill="${PLC.ink}" font-family="Geom, 'Segoe UI', Arial, sans-serif">${tile}</text>`
+    + `<polygon points="${pts}" fill="${PLC.sky}"/>`;
+}
+
+function deepTileSvg(x0, y0, p, tile, hl) {
+  const W = p.N * p.pitch, L = p.length;
+  let s = `<g data-tile="${tile}">`;
+  D.deepDepths(p, tile).forEach((d, n) => {
+    const x = x0 + (p.N - 1 - n) * p.pitch;                  // front view: STL X runs right to left
+    s += `<rect x="${r3(x)}" y="${r3(y0)}" width="${r3(p.pitch)}" height="${r3(L)}" fill="${shade(d / p.dmax)}" stroke="${PLC.bg}" stroke-width=".7" ${NS}/>`;
+  });
+  s += `<rect x="${r3(x0)}" y="${r3(y0)}" width="${r3(W)}" height="${r3(L)}" fill="none" stroke="${PLC.ink}" stroke-width="1.2" ${NS}/>`;
+  s += labelSvg(x0 + W / 2, y0 + L / 2, tile, L);
+  if (hl) s += `<rect class="tilehi" x="${r3(x0)}" y="${r3(y0)}" width="${r3(W)}" height="${r3(L)}" ${NS}/>`;
+  return s + "</g>";
+}
+
+function blockTileSvg(x0, y0, p, tile, kl, hl) {
+  const px = p.W / p.Nx, py = p.H / p.Ny;
+  const h = D.blockHeights(p, kl[0], kl[1]);
+  const byLevel = new Map();
+  for (let m = 0; m < p.Ny; m++)
+    for (let n = 0; n < p.Nx; n++) {
+      const lv = Math.round(h[m][n] * 1e6) / 1e6;
+      const y = y0 + (p.Ny - 1 - m) * py;                  // row m = 0 is the bottom of the tile on the wall
+      byLevel.set(lv, (byLevel.get(lv) || "") + `M${r3(x0 + n * px)} ${r3(y)}h${r3(px)}v${r3(py)}h${r3(-px)}z`);
+    }
+  let s = `<g data-tile="${tile}">`;
+  for (const [lv, d] of byLevel) s += `<path d="${d}" fill="${shade(1 - lv / p.hmax)}" stroke="${PLC.bg}" stroke-width=".5" ${NS}/>`;
+  s += `<rect x="${r3(x0)}" y="${r3(y0)}" width="${r3(p.W)}" height="${r3(p.H)}" fill="none" stroke="${PLC.ink}" stroke-width="1.2" ${NS}/>`;
+  s += labelSvg(x0 + p.W / 2, y0 + p.H / 2, tile, p.H);
+  if (hl) s += `<rect class="tilehi" x="${r3(x0)}" y="${r3(y0)}" width="${r3(p.W)}" height="${r3(p.H)}" ${NS}/>`;
+  return s + "</g>";
+}
+
+const dimsStr = (series, p) => (series === "deep" ? D.deepDims(p) : D.blockDims(p)).map(g).join("x");
+
+/* the rows of the plan: title, caption lines and the tile drawing (without captions) */
+/* how many of each tile number the wall needs: [[tile, quantity], ...] */
+function quantities(wall) {
+  const q = new Map();
+  wall.grid.flat().forEach((t) => q.set(t, (q.get(t) || 0) + 1));
+  return [...q.entries()].sort((a, b) => a[0] - b[0]);
+}
+function printList(wall) {
+  const q = quantities(wall);
+  if (q.every(([, n]) => n === q[0][1])) return q[0][1] === 1 ? `Print one of each tile: ${q.map(([t]) => t).join(" ")}.` : `Print ${q[0][1]} of each tile: ${q.map(([t]) => t).join(" ")}.`;
+  return "Print: " + q.map(([t, n]) => `tile ${t} x ${n}`).join(", ") + ".";
+}
+
+/* the plan of the selected wall: one drawing, tiles in the order of wall.grid as seen from the room */
+function planModel(series, p, set, hl, wall) {
+  const deep = series === "deep";
+  const tw = deep ? p.N * p.pitch : p.W, th = deep ? p.length : p.H;
+  let inner = "";
+  wall.grid.forEach((row, r) => row.forEach((t, c) => {
+    inner += deep ? deepTileSvg(c * tw, r * th, p, t, hl) : blockTileSvg(c * tw, r * th, p, t, set.shifts[t - 1], hl);
+  }));
+  const size = `${g(r1(wall.cols * tw / 10))} x ${g(r1(wall.rows * th / 10))} cm`;
+  const head = wall.tiles === 1 ? "1 tile" : `${wall.tiles} tiles, ${wall.cols} x ${wall.rows}`;
+  const lines = [wall.grid.map((row) => row.join("  ")).join("  /  ")]
+    .map((s) => "Seen from the room, left to right, top to bottom: " + s + ".");
+  lines.push(printList(wall));
+  return { kind: series, rows: [{ title: `${deep ? "Deep" : "Blocks"} (${dimsStr(series, p)} mm per tile), ${head}: ${size}`, lines, inner, w: wall.cols * tw, h: wall.rows * th }],
+    notes: [deep ? "Wells vertical. Number and arrow are on the back: arrow up." : "Number and arrow are on the back: arrow up."] };
+}
+
+let planKey = "";
+function renderPlan(R) {
+  const { p, set, wall } = R;
+  const key = [state.series, p.pitch, p.length, p.W, p.H, p.Nx, p.Ny, set.key, wall.id].join("|");
+  if (key !== planKey) {
+    planKey = key;
+    const m = planModel(state.series, p, set, true, wall);
+    $("planBody").innerHTML = `<p class="about">${m.notes.map(esc).join(" ")}</p>` + m.rows.map((row) =>
+      `<figure class="prow"><figcaption>${esc(row.title)}</figcaption><svg viewBox="0 0 ${r3(row.w)} ${r3(row.h)}" role="img" aria-label="${esc(row.title)}" xmlns="http://www.w3.org/2000/svg">${row.inner}</svg>`
+      + row.lines.map((l) => `<p>${esc(l)}</p>`).join("") + `</figure>`).join("");
+  }
+  document.querySelectorAll("#planBody g[data-tile]").forEach((el) => el.classList.toggle("sel", +el.dataset.tile === state.tile));
+}
+
+/* standalone plan for the ZIP: one SVG with titles and captions */
+function planDocument(series, p, set, wall) {
+  const m = planModel(series, p, set, false, wall);
+  const mg = 24, FT = 15, FS = 10.5;
+  const fam = `font-family="Geom, 'Segoe UI', Arial, sans-serif"`;
+  let y = mg, body = "";
+  const wMax = Math.max(...m.rows.map((r) => r.w));
+  m.rows.forEach((row) => {
+    body += `<text x="${mg}" y="${r3(y + FT)}" font-size="${FT}" fill="${PLC.ink}" ${fam}>${esc(row.title)}</text>`;
+    y += FT + 12;
+    body += `<g transform="translate(${mg} ${r3(y)})">${row.inner}</g>`;
+    y += row.h + FS + 8;
+    row.lines.forEach((l) => { body += `<text x="${mg}" y="${r3(y)}" font-size="${FS}" fill="${PLC.muted}" ${fam}>${esc(l)}</text>`; y += FS + 5; });
+    y += 18;
+  });
+  m.notes.forEach((l) => { body += `<text x="${mg}" y="${r3(y)}" font-size="${FS}" fill="${PLC.muted}" ${fam}>${esc(l)}</text>`; y += FS + 5; });
+  y += mg - 5;
+  const w = wMax + 2 * mg;
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${r3(w)} ${r3(y)}" width="1600" height="${Math.round(1600 * y / w)}">`
+    + `<title>Soundblooms diffuser wall plan, seen from the room</title><rect width="100%" height="100%" fill="${PLC.bg}"/>${body}</svg>\n`;
+}
+
+/* ------------------------------------------------------------------ geometry -> mesh */
+function extractMesh(m) {
+  const mesh = m.getMesh();
+  const np = mesh.numProp, vp = mesh.vertProperties, nv = vp.length / np;
+  const pos = new Float32Array(nv * 3);
+  for (let i = 0; i < nv; i++) { pos[3 * i] = vp[i * np]; pos[3 * i + 1] = vp[i * np + 1]; pos[3 * i + 2] = vp[i * np + 2]; }
+  return { pos, idx: Uint32Array.from(mesh.triVerts), volume: m.volume() };
+}
+
+/* features of every tile built so far (the print estimate needs them for each tile of the wall) */
+const featCache = new Map();
+const featKey = (series, p, tile) => JSON.stringify([series, p, tile]);
+function buildMesh(series, p, set, tile, meshToo = true) {
+  let m = null;
+  try {
+    m = series === "deep" ? D.deepTile(p, tile) : D.blockTile(p, tile, set.shifts[tile - 1][0], set.shifts[tile - 1][1]);
+    if (m.isEmpty()) throw new Error("the geometry came out empty for these settings");
+    const feats = D.features(m);
+    if (featCache.size > 300) featCache.clear();
+    featCache.set(featKey(series, p, tile), feats);
+    return meshToo ? { ...extractMesh(m), feats } : { feats };
+  } finally {
+    if (m) m.delete();
+  }
+}
+
+function stlBytes(mesh) {
+  const { pos, idx } = mesh, nt = idx.length / 3;
+  const buf = new ArrayBuffer(84 + nt * 50), dv = new DataView(buf);
+  const head = "Soundblooms diffuser generator";
+  for (let i = 0; i < head.length; i++) dv.setUint8(i, head.charCodeAt(i));
+  dv.setUint32(80, nt, true);
+  let o = 84;
+  for (let i = 0; i < nt; i++) {
+    const a = idx[3 * i] * 3, b = idx[3 * i + 1] * 3, c = idx[3 * i + 2] * 3;
+    const ax = pos[a], ay = pos[a + 1], az = pos[a + 2], bx = pos[b], by = pos[b + 1], bz = pos[b + 2], cx = pos[c], cy = pos[c + 1], cz = pos[c + 2];
+    const ux = bx - ax, uy = by - ay, uz = bz - az, vx = cx - ax, vy = cy - ay, vz = cz - az;
+    let nx = uy * vz - uz * vy, ny = uz * vx - ux * vz, nz = ux * vy - uy * vx;
+    const l = Math.hypot(nx, ny, nz) || 1;
+    nx /= l; ny /= l; nz /= l;
+    for (const v of [nx, ny, nz, ax, ay, az, bx, by, bz, cx, cy, cz]) { dv.setFloat32(o, v, true); o += 4; }
+    dv.setUint16(o, 0, true); o += 2;
+  }
+  return new Uint8Array(buf);
+}
+
+/* ------------------------------------------------------------------ ZIP (store only, CRC32) */
+const CRC_TABLE = (() => {
+  const t = new Uint32Array(256);
+  for (let n = 0; n < 256; n++) { let c = n; for (let k = 0; k < 8; k++) c = c & 1 ? 0xEDB88320 ^ (c >>> 1) : c >>> 1; t[n] = c >>> 0; }
+  return t;
+})();
+function crc32(u8) {
+  let c = 0xFFFFFFFF;
+  for (let i = 0; i < u8.length; i++) c = CRC_TABLE[(c ^ u8[i]) & 0xFF] ^ (c >>> 8);
+  return (c ^ 0xFFFFFFFF) >>> 0;
+}
+function makeZip(files) {                       // files: [{name, data: Uint8Array}]
+  const enc = new TextEncoder(), now = new Date();
+  const dosTime = (now.getHours() << 11) | (now.getMinutes() << 5) | (now.getSeconds() >> 1);
+  const dosDate = ((now.getFullYear() - 1980) << 9) | ((now.getMonth() + 1) << 5) | now.getDate();
+  const parts = [], central = [];
+  let offset = 0;
+  for (const f of files) {
+    const nm = enc.encode(f.name), crc = crc32(f.data), size = f.data.length;
+    const lh = new Uint8Array(30 + nm.length), lv = new DataView(lh.buffer);
+    lv.setUint32(0, 0x04034b50, true); lv.setUint16(4, 20, true); lv.setUint16(6, 0x0800, true); lv.setUint16(8, 0, true);
+    lv.setUint16(10, dosTime, true); lv.setUint16(12, dosDate, true); lv.setUint32(14, crc, true);
+    lv.setUint32(18, size, true); lv.setUint32(22, size, true); lv.setUint16(26, nm.length, true); lv.setUint16(28, 0, true);
+    lh.set(nm, 30);
+    const ch = new Uint8Array(46 + nm.length), cv = new DataView(ch.buffer);
+    cv.setUint32(0, 0x02014b50, true); cv.setUint16(4, 20, true); cv.setUint16(6, 20, true); cv.setUint16(8, 0x0800, true); cv.setUint16(10, 0, true);
+    cv.setUint16(12, dosTime, true); cv.setUint16(14, dosDate, true); cv.setUint32(16, crc, true);
+    cv.setUint32(20, size, true); cv.setUint32(24, size, true); cv.setUint16(28, nm.length, true);
+    cv.setUint32(42, offset, true);
+    ch.set(nm, 46);
+    parts.push(lh, f.data); central.push(ch);
+    offset += lh.length + size;
+  }
+  const cdSize = central.reduce((s, c) => s + c.length, 0);
+  const end = new Uint8Array(22), ev = new DataView(end.buffer);
+  ev.setUint32(0, 0x06054b50, true); ev.setUint16(8, files.length, true); ev.setUint16(10, files.length, true);
+  ev.setUint32(12, cdSize, true); ev.setUint32(16, offset, true);
+  const all = [...parts, ...central, end];
+  const out = new Uint8Array(all.reduce((s, a) => s + a.length, 0));
+  let o = 0;
+  for (const a of all) { out.set(a, o); o += a.length; }
+  return out;
+}
+
+function saveFile(fileName, bytesOrText, type) {
+  const blob = new Blob([bytesOrText], { type });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = fileName;
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 4000);
+}
+
+/* ------------------------------------------------------------------ README.txt of the set */
+/* print time and filament, as shown on the page: rounded because the estimate is approximate */
+function fmtTileTime(min) {
+  const m = Math.max(5, Math.round(min / 5) * 5), h = Math.floor(m / 60), r = m % 60;
+  return h ? (r ? `${h} h ${r} min` : `${h} h`) : `${r} min`;
+}
+function fmtWallTime(min) { return `${Math.max(1, Math.round(min / 60))} h`; }
+function fmtTileGrams(gr) { return gr < 1000 ? `${Math.max(5, Math.round(gr / 5) * 5)} g` : `${(gr / 1000).toFixed(1)} kg`; }
+function fmtWallGrams(gr) { return gr < 1000 ? `${Math.max(10, Math.round(gr / 10) * 10)} g` : `${(gr / 1000).toFixed(1)} kg`; }
+const ESTIMATE_NOTE = "Approximate, Bambu P1S with the profiles in the ZIP; A1 mini similar, MK4 / Core One slower.";
+
+/* estimates of the tiles of a wall from the cached features: {per: Map tile -> {grams, minutes}, wall: {grams, minutes}} or null while a tile is missing */
+function wallEstimates(series, p, wall) {
+  const per = new Map(), tot = { grams: 0, minutes: 0 };
+  for (const [t] of quantities(wall)) {
+    const f = featCache.get(featKey(series, p, t));
+    if (!f) return null;
+    per.set(t, D.estimate(series, f));
+  }
+  for (const t of wall.grid.flat()) { tot.grams += per.get(t).grams; tot.minutes += per.get(t).minutes; }
+  return { per, wall: tot };
+}
+
+function readmeText(series, bed, p, set, wall, est) {
+  const b = bandOf(p), deep = series === "deep";
+  const dm = deep ? D.deepDims(p) : D.blockDims(p);
+  const wb = D.wallBand(series, p, wall.cols, wall.rows);
+  const q = quantities(wall);
+  const L = [];
+  L.push(deep ? "Soundblooms acoustic diffuser - deep series (1D quadratic residue diffuser, N = 7)" : "Soundblooms acoustic diffuser - block series (2D quadratic residue diffuser)");
+  L.push("Made with the Soundblooms Diffuser Generator - https://soundblooms.com", "");
+  L.push(`Printer bed: ${p.bed}`);
+  L.push(`Tile size (W x H x D): ${dm.map(g).join(" x ")} mm`);
+  L.push(deep ? `Depth (deepest well): ${g(p.dmax)} mm, well pitch ${g(p.pitch)} mm, well width ${g(r1(p.pitch - p.fin))} mm`
+              : `Depth (tallest block): ${g(p.hmax)} mm, base ${g(p.base)} mm, ${p.Nx} x ${p.Ny} blocks of ${g(r1(p.W / p.Nx))} x ${g(r1(p.H / p.Ny))} mm`);
+  L.push(`Wall: ${wall.tiles} ${wall.tiles === 1 ? "tile" : "tiles"}${wall.tiles === 1 ? "" : `, ${wall.cols} x ${wall.rows}`}, about ${g(r1(wb.wallWidthMm / 10))} x ${g(r1(wb.wallHeightMm / 10))} cm`);
+  L.push(`Files: one STL per tile number (${q.length} ${q.length === 1 ? "file" : "files"}), every tile has its number and an up arrow sunk into the back`, "");
+  L.push("How many to print");
+  if (q.every(([, n]) => n === q[0][1])) L.push(`  ${q[0][1] === 1 ? "One" : q[0][1]} of each ${q.length === 1 ? "tile" : `of the ${q.length} tiles`}.`);
+  q.forEach(([t, n]) => L.push(`  ${D.name(series, p, t)}.stl: ${n}`));
+  L.push("", "Design band (calculated, not measured)");
+  L.push(`  About ${fmtHz(b.f0)} to ${fmtHz(b.f_width)}.`);
+  L.push("This wall (calculated, not measured)");
+  L.push(`  Scatters from about ${fmtHz(wb.low)} to ${fmtHz(wb.high)}.`);
+  L.push("  Placement guidance, not a measurement. Diffusers work best a little away from you; very close to your ears they help less.", "");
+  L.push("Print estimate");
+  if (est) {
+    q.forEach(([t]) => L.push(`  Tile ${t}: about ${fmtTileTime(est.per.get(t).minutes)}, ${fmtTileGrams(est.per.get(t).grams)}`));
+    L.push(`  Wall (${wall.tiles} ${wall.tiles === 1 ? "tile" : "tiles"}): about ${fmtWallTime(est.wall.minutes)}, ${fmtWallGrams(est.wall.grams)}`);
+  }
+  L.push(`  ${ESTIMATE_NOTE}`, "");
+  L.push("Wall plan: see wall-plan.svg (seen from the room, numbers and order of the tiles).", "");
+  L.push("Printing");
+  L.push(deep ? "  Print each tile standing on its end, wells vertical, no supports. Tested profile: 0.28 mm layers, 4 walls, gyroid 10 % infill (Bambu Lab P1S, 0.4 mm nozzle, PLA)."
+              : "  Print each tile lying on its back, no supports. Tested profile: 0.20 mm layers, 2 walls, lightning 15 % infill (Bambu Lab P1S, 0.4 mm nozzle, PLA).");
+  L.push("  Mounting: the back is flat; removable picture-hanging adhesive strips work on a clean, painted, dry wall.");
+  return L.join("\n") + "\n";
+}
+
+/* ------------------------------------------------------------------ preview (three.js) */
+let renderer = null, scene = null, camera = null, controls = null, meshObj = null, edgeObj = null, fitKey = "";
+function initThree() {
+  const view = $("view");
+  try {
+    renderer = new T3.WebGLRenderer({ antialias: true });
+  } catch (e) {
+    $("viewNone").textContent = "3D preview unavailable (WebGL is not enabled in this browser). The downloads still work.";
+    renderer = null;
+    return;
+  }
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.setClearColor(0x22252A, 1);                  // the page Graphite, flat
+  view.innerHTML = "";
+  view.appendChild(renderer.domElement);
+  scene = new T3.Scene();
+  camera = new T3.PerspectiveCamera(35, 1, 1, 5000);
+  camera.up.set(0, 0, 1);
+  scene.add(new T3.HemisphereLight(0xffffff, 0x3a3d42, 1.0));
+  const key = new T3.DirectionalLight(0xffffff, 1.6);
+  key.position.set(0.4, 0.6, 1);
+  camera.add(key, key.target);
+  key.target.position.set(0, 0, -1);
+  scene.add(camera);
+  controls = new OrbitControls(camera, renderer.domElement);
+  controls.addEventListener("change", render);
+  new ResizeObserver(resizeView).observe(view);
+  resizeView();
+}
+function resizeView() {
+  if (!renderer) return;
+  const view = $("view"), w = view.clientWidth, h = view.clientHeight;
+  if (!w || !h) return;
+  renderer.setSize(w, h, false);
+  camera.aspect = w / h;
+  camera.updateProjectionMatrix();
+  render();
+}
+function render() { if (renderer) renderer.render(scene, camera); }
+
+function showMesh(mesh) {
+  if (!renderer) return;
+  if (meshObj) { scene.remove(meshObj, edgeObj); meshObj.geometry.dispose(); meshObj.material.dispose(); edgeObj.geometry.dispose(); edgeObj.material.dispose(); }
+  const geo = new T3.BufferGeometry();
+  geo.setAttribute("position", new T3.BufferAttribute(mesh.pos, 3));
+  geo.setIndex(new T3.BufferAttribute(mesh.idx, 1));
+  geo.computeBoundingBox(); geo.computeBoundingSphere();
+  meshObj = new T3.Mesh(geo, new T3.MeshStandardMaterial({ color: colour.hex, roughness: colour.rough, metalness: 0, flatShading: true, polygonOffset: true, polygonOffsetFactor: 1, polygonOffsetUnits: 1 }));
+  edgeObj = new T3.LineSegments(new T3.EdgesGeometry(geo, 30), new T3.LineBasicMaterial({ color: new T3.Color(colour.hex).multiplyScalar(0.4) }));
+  scene.add(meshObj, edgeObj);
+  const key = state.series + "|" + state.bed + "|" + [state.cx, state.cy, state.cz].join(",");
+  fitView(key !== fitKey);
+  fitKey = key;
+}
+function applyMaterial() {
+  if (!renderer || !meshObj) return;
+  meshObj.material.color.set(colour.hex);
+  meshObj.material.roughness = colour.rough;
+  edgeObj.material.color.set(colour.hex).multiplyScalar(0.4);
+  render();
+}
+function fitView(force) {
+  if (!renderer || !meshObj) return;
+  const sph = meshObj.geometry.boundingSphere, box = meshObj.geometry.boundingBox;
+  const center = box.getCenter(new T3.Vector3());
+  if (!force) { controls.target.copy(center); controls.update(); render(); return; }
+  const aspect = camera.aspect || 1;
+  let dist = sph.radius / Math.sin((camera.fov / 2) * Math.PI / 180) * 1.08;
+  if (aspect < 1) dist /= aspect;
+  const dir = (state.series === "deep" ? new T3.Vector3(0.45, 1, 0.55) : new T3.Vector3(0.25, -0.75, 1.05)).normalize();
+  camera.position.copy(center).addScaledVector(dir, dist);
+  camera.near = dist / 100; camera.far = dist * 20;
+  camera.updateProjectionMatrix();
+  controls.target.copy(center);
+  controls.update();
+  render();
+}
+
+/* ------------------------------------------------------------------ build / update loop */
+let current = null;       // {key, mesh} of the tile on screen
+let buildTimer = 0, buildSeq = 0, busy = false;
+const meshKey = (R) => JSON.stringify([state.series, R.p, state.tile]);
+
+/* print estimate of the chosen wall and of the tile on screen, from the calibrated model in the core: the "Your wall" card and the download band */
+let estSeq = 0;
+function renderDash(R) {
+  const wall = R.wall, L = levelOf(state.series, R.p, wall);
+  const wb = D.wallBand(state.series, R.p, wall.cols, wall.rows);
+  const e = wallEstimates(state.series, R.p, wall);
+  const ro = (icon, v) => `<div class="ro">${icon}<span><small>about</small>${esc(v)}</span></div>`;
+  const wait = `<div class="ro wait">Estimating print time and filament...</div>`;
+  $("dash").innerHTML = `<div class="dash-row">`
+    + `<div class="dc"><div class="lab">Your wall</div><div class="val">${wall.tiles}<small class="after">${wall.tiles === 1 ? "tile" : "tiles"}</small></div><div class="sub">${Math.round(wb.wallWidthMm / 10)} x ${Math.round(wb.wallHeightMm / 10)} cm</div></div>`
+    + `<div class="dc"><div class="lab">How much sense</div><div class="sense">${faceSvg(L)}<span class="name">${esc(LEVELS[L].label)}</span></div></div>`
+    + `<div class="dc"><div class="lab">Print time, whole wall</div>${e ? ro(ICON_CLOCK, fmtWallTime(e.wall.minutes)) : wait}</div>`
+    + `<div class="dc"><div class="lab">Filament, whole wall</div>${e ? ro(ICON_SPOOL, fmtWallGrams(e.wall.grams)) : wait}</div>`
+    + `</div><div class="dash-notes">`
+    + `<p class="effect">${esc(LEVELS[L].text)}</p>`
+    + (state.series === "blocks" ? `<p class="note">Block tiles work on upper mids and treble only.</p>` : "")
+    + `<p class="note">${esc(ESTIMATE_NOTE)}</p></div>`;
+}
+function renderGet(R) {
+  const e = wallEstimates(state.series, R.p, R.wall);
+  $("estNote").textContent = ESTIMATE_NOTE;
+  $("getWallT").textContent = R.wall.tiles === 1 ? "Whole wall: 1 tile" : `Whole wall: ${R.wall.tiles} tiles`;
+  $("getTileT").textContent = `Tile ${state.tile} on screen`;
+  if (!e) {
+    const wait = `<span class="ro wait">Estimating print time and filament...</span>`;
+    $("estWall").innerHTML = wait;
+    $("estTile").innerHTML = wait;
+    return;
+  }
+  const t = e.per.get(state.tile);
+  const ro = (icon, v) => `<span class="ro">${icon}<span><small>about</small>${esc(v)}</span></span>`;
+  $("estWall").innerHTML = ro(ICON_CLOCK, fmtWallTime(e.wall.minutes)) + ro(ICON_SPOOL, fmtWallGrams(e.wall.grams));
+  $("estTile").innerHTML = ro(ICON_CLOCK, fmtTileTime(t.minutes)) + ro(ICON_SPOOL, fmtTileGrams(t.grams));
+}
+function renderEst(R) { renderDash(R); renderGet(R); }
+/* features of the tiles of the chosen wall only (the chart no longer shows a cost per option) */
+async function refreshEstimates(R, seq) {
+  const tok = estSeq;
+  if (featCache.size > 250) featCache.clear();                       // never let buildMesh clear it half way through
+  renderEst(R);
+  for (const [t] of quantities(R.wall)) {
+    if (featCache.has(featKey(state.series, R.p, t))) continue;
+    await sleep(10);
+    if (tok !== estSeq || seq !== buildSeq) return;
+    buildMesh(state.series, R.p, R.set, t, false);
+  }
+  if (tok === estSeq) renderEst(R);
+}
+
+function update() {
+  const R = resolve();
+  estSeq++;
+  syncControls(R);
+  renderBand(R);
+  renderPlan(R);
+  renderEst(R);
+  if (current && current.key !== meshKey(R)) $("bStl").disabled = true;
+  if (!M) return;
+  clearTimeout(buildTimer);
+  setStatus("Building geometry...");
+  buildTimer = setTimeout(buildCurrent, 140);
+}
+
+async function buildCurrent() {
+  const seq = ++buildSeq;
+  const R = resolve();
+  try {
+    await sleep(15);
+    const t0 = performance.now();
+    const mesh = buildMesh(state.series, R.p, R.set, state.tile);
+    if (seq !== buildSeq) return;
+    current = { key: meshKey(R), mesh, R: { p: R.p, set: R.set }, tile: state.tile, series: state.series };
+    clearError();
+    showMesh(mesh);
+    $("bStl").disabled = false;
+    $("bZip").disabled = false;
+    setStatus(`Ready: ${(mesh.idx.length / 3).toLocaleString("en-US")} triangles, ${(mesh.volume / 1000).toFixed(1)} cm3, built in ${Math.round(performance.now() - t0)} ms.`);
+    refreshEstimates(R, seq).catch((e) => showError("Could not estimate the print: " + (e.message || e)));
+  } catch (e) {
+    if (seq !== buildSeq) return;
+    current = null;
+    $("bStl").disabled = true;
+    setStatus("Could not build this tile.");
+    showError("Could not build the geometry: " + (e.message || e));
+  }
+}
+
+function downloadTile() {
+  if (!current) return;
+  const nm = D.name(current.series, current.R.p, current.tile);
+  saveFile(nm + ".stl", stlBytes(current.mesh), "model/stl");
+  setStatus(`Saved ${nm}.stl`);
+}
+
+async function downloadSet() {
+  if (busy || !M) return;
+  busy = true;
+  const btns = [$("bStl"), $("bZip")];
+  btns.forEach((b) => { b.disabled = true; });
+  const R = resolve(), series = state.series;
+  try {
+    const files = [];
+    const q = quantities(R.wall);                                  // one STL per distinct tile number of the selected wall
+    const folder = D.name(series, R.p, 1).replace(/-tile1$/, "") + (R.wall.tiles === 1 ? "-1-tile" : `-wall-${R.wall.cols}x${R.wall.rows}`);
+    for (let i = 0; i < q.length; i++) {
+      const t = q[i][0];
+      setStatus(`Building tile ${t} (${i + 1} of ${q.length})...`);
+      await sleep(20);
+      const mesh = t === state.tile && current && current.key === meshKey(R) ? current.mesh : buildMesh(series, R.p, R.set, t);
+      files.push({ name: `${folder}/${D.name(series, R.p, t)}.stl`, data: stlBytes(mesh) });
+    }
+    setStatus("Packing the ZIP...");
+    await sleep(20);
+    const enc = new TextEncoder();
+    files.push({ name: `${folder}/wall-plan.svg`, data: enc.encode(planDocument(series, R.p, R.set, R.wall)) });
+    files.push({ name: `${folder}/README.txt`, data: enc.encode(readmeText(series, R.bed, R.p, R.set, R.wall, wallEstimates(series, R.p, R.wall))) });
+    const zip = makeZip(files);
+    saveFile(folder + ".zip", zip, "application/zip");
+    setStatus(`Saved ${folder}.zip (${q.length} STL ${q.length === 1 ? "file" : "files"}, wall plan, README).`);
+  } catch (e) {
+    setStatus("Could not build the set.");
+    showError("Could not build the set: " + (e.message || e));
+  } finally {
+    busy = false;
+    $("bZip").disabled = !M;
+    $("bStl").disabled = !(current && current.key === meshKey(resolve()));
+  }
+}
+
+/* ------------------------------------------------------------------ boot */
+async function boot() {
+  buildStaticControls();
+  resetDepth();
+  update();
+  setStatus("Loading the geometry engine...");
+  const loadManifold = (async () => {
+    const mod = await import(CDN_MANIFOLD);
+    const m = await mod.default();
+    m.setup();
+    M = m;
+    D = createDiffuser(m);
+  })();
+  const loadThree = (async () => {
+    T3 = await import("three");
+    OrbitControls = (await import("three/addons/controls/OrbitControls.js")).OrbitControls;
+    initThree();
+  })();
+  const [a, b] = await Promise.allSettled([loadManifold, loadThree]);
+  if (b.status === "rejected") {
+    $("viewNone").textContent = "The 3D preview could not be loaded (three.js from the CDN). The downloads still work.";
+    showError("Could not load three.js from the CDN: " + (b.reason && b.reason.message || b.reason) + ". Check your connection and reload.");
+  }
+  if (a.status === "rejected") {
+    setStatus("The geometry engine did not load.");
+    showError("Could not load the geometry engine (manifold-3d from the CDN): " + (a.reason && a.reason.message || a.reason) + ". Check your connection and reload.");
+    return;
+  }
+  update();
+}
+boot();
+</script>
+
+<script>
+/* The Soundblooms wordmark loop, ported 1:1 from the "header" variant of soundblooms.com
+   (its Wordmark component: settle 9-15 s, drift 10-18 s into a 13-22 degree tilt, annoyed eyes,
+   eyes push the band straight with a soft bounce, blink, happy arcs for 2 s, blink, repeat).
+   Timings and easing curves are the same as there. The loop does not run under prefers-reduced-motion. */
+(function () {
+  "use strict";
+  var EASE_SETTLE = "cubic-bezier(0.22, 1, 0.36, 1)";
+  var EASE_DRIFT = "cubic-bezier(0.45, 0.05, 0.55, 0.95)";
+  var EASE_BOUNCE = "linear(0, 0.45 16%, 0.83 32%, 1.05 52%, 0.985 66%, 1.018 80%, 0.997 90%, 1)";
+  var mq = window.matchMedia ? window.matchMedia("(prefers-reduced-motion: reduce)") : null;
+  var marks = Array.prototype.slice.call(document.querySelectorAll(".sb-face"));
+  if (!marks.length) return;
+
+  function Face(face) {
+    this.band = face.querySelector(".sb-band");
+    this.eyes = face.querySelector(".sb-eyes");
+    this.timers = [];
+  }
+  Face.prototype.setBand = function (rot, ms, ease) {
+    this.band.style.transition = "transform " + ms + "ms " + ease;
+    this.band.style.transform = "translate(-50%, 0) rotate(" + rot + "deg)";
+  };
+  Face.prototype.setEyes = function (mood) { this.eyes.setAttribute("data-eyes", mood); };
+  Face.prototype.stop = function () {
+    this.timers.forEach(clearTimeout);
+    this.timers = [];
+    this.band.style.transition = "none";
+    this.band.style.transform = "translate(-50%, 0)";
+    this.setEyes("calm");
+  };
+  Face.prototype.run = function () {
+    var self = this;
+    var push = function (ms, fn) { self.timers.push(setTimeout(fn, ms)); };
+    self.timers.forEach(clearTimeout);
+    self.timers = [];
+    var settle = 9000 + Math.random() * 6000;
+    var driftMs = 10000 + Math.random() * 8000;
+    var crooked = (Math.random() < 0.5 ? -1 : 1) * (13 + Math.random() * 9);
+    push(settle, function () { self.setBand(crooked, driftMs, EASE_DRIFT); });
+    push(settle + driftMs - 2300, function () { self.setEyes("annoyed"); });
+    var fixAt = settle + driftMs + 350;
+    push(fixAt, function () { self.setEyes("fixing"); });
+    push(fixAt + 560, function () { self.setBand(0, 1300, EASE_BOUNCE); });
+    var blink1At = fixAt + 1050;
+    push(blink1At, function () { self.setEyes("blink"); });
+    var happyAt = blink1At + 600;
+    push(happyAt, function () { self.setEyes("happy"); });
+    var blink2At = happyAt + 2000;
+    push(blink2At, function () { self.setEyes("blink"); });
+    push(blink2At + 600, function () { self.setEyes("calm"); self.run(); });
+  };
+
+  var faces = marks.map(function (m) { return new Face(m); });
+  function apply() {
+    var reduced = !mq || mq.matches;
+    faces.forEach(function (f) { if (reduced) f.stop(); else f.run(); });
+  }
+  apply();
+  if (mq && mq.addEventListener) mq.addEventListener("change", apply);
+})();
+</script>
+</body>
+</html>

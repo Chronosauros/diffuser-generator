@@ -1,0 +1,62 @@
+[
+  {
+    "id": "deep-a",
+    "note": "deep, pitch 28, shorter tile, dmax 80, tile 3",
+    "series": "deep",
+    "tile": 3,
+    "params": {"N": 7, "pitch": 28.0, "length": 160.0, "dmax": 80.0, "fin": 1.2, "edge": 0.8, "floor": 1.6, "back": 2.0, "cap": 1.2, "chamfer": 3.0, "bed": "case deep-a"}
+  },
+  {
+    "id": "deep-b",
+    "note": "deep, wide wells pitch 32, long, dmax 120, chamfer 4, tile 6",
+    "series": "deep",
+    "tile": 6,
+    "params": {"N": 7, "pitch": 32.0, "length": 190.0, "dmax": 120.0, "fin": 1.2, "edge": 0.8, "floor": 1.6, "back": 2.0, "cap": 1.2, "chamfer": 4.0, "bed": "case deep-b"}
+  },
+  {
+    "id": "deep-c",
+    "note": "deep, every wall/floor/cap field changed, tile 2",
+    "series": "deep",
+    "tile": 2,
+    "params": {"N": 7, "pitch": 30.0, "length": 120.0, "dmax": 60.0, "fin": 1.6, "edge": 1.0, "floor": 2.0, "back": 2.4, "cap": 1.6, "chamfer": 3.5, "bed": "case deep-c"}
+  },
+  {
+    "id": "deep-d",
+    "note": "deep, narrow wells pitch 22, short and shallow (dmax 40, lower limit of the slider), tile 7",
+    "series": "deep",
+    "tile": 7,
+    "params": {"N": 7, "pitch": 22.0, "length": 100.0, "dmax": 40.0, "fin": 1.2, "edge": 0.8, "floor": 1.6, "back": 2.0, "cap": 1.2, "chamfer": 3.0, "bed": "case deep-d"}
+  },
+  {
+    "id": "blocks-a",
+    "note": "blocks 13x13 square, 150 x 150, hmax 36, shift 4,9, tile 1",
+    "series": "blocks",
+    "tile": 1,
+    "shift": [4, 9],
+    "params": {"Nx": 13, "Ny": 13, "W": 150.0, "H": 150.0, "hmax": 36.0, "base": 3.0, "bed": "case blocks-a"}
+  },
+  {
+    "id": "blocks-b",
+    "note": "blocks 13x13 with W != H (210 x 190), hmax 55, shift 2,7, tile 5",
+    "series": "blocks",
+    "tile": 5,
+    "shift": [2, 7],
+    "params": {"Nx": 13, "Ny": 13, "W": 210.0, "H": 190.0, "hmax": 55.0, "base": 3.0, "bed": "case blocks-b"}
+  },
+  {
+    "id": "blocks-c",
+    "note": "blocks 13x11, 230 x 190, hmax 45, base 4, shift 6,10, tile 8",
+    "series": "blocks",
+    "tile": 8,
+    "shift": [6, 10],
+    "params": {"Nx": 13, "Ny": 11, "W": 230.0, "H": 190.0, "hmax": 45.0, "base": 4.0, "bed": "case blocks-c"}
+  },
+  {
+    "id": "blocks-d",
+    "note": "blocks 13x11, 200 x 170, low relief hmax 30, shift 0,0, tile 9",
+    "series": "blocks",
+    "tile": 9,
+    "shift": [0, 0],
+    "params": {"Nx": 13, "Ny": 11, "W": 200.0, "H": 170.0, "hmax": 30.0, "base": 3.0, "bed": "case blocks-d"}
+  }
+]

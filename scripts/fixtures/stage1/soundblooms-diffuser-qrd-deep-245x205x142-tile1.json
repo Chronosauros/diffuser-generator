@@ -1,0 +1,102 @@
+{
+ "series": "deep",
+ "size": "L",
+ "tile": 1,
+ "shift": 4,
+ "sequence": [
+  2,
+  4,
+  1,
+  0,
+  1,
+  4,
+  2
+ ],
+ "depths": [
+  70.0,
+  140.0,
+  35.0,
+  0.0,
+  35.0,
+  140.0,
+  70.0
+ ],
+ "dims_whd": [
+  245.0,
+  205.0,
+  142.0
+ ],
+ "stl_axes": "X = width across wells, Y = depth from wall, Z = along wells",
+ "stl_extent_xyz": [
+  245.0,
+  142.0,
+  205.0
+ ],
+ "front_plane_y": 142.0,
+ "wells": [
+  {
+   "n": 0,
+   "x_center": 17.6,
+   "floor_y": 72.0
+  },
+  {
+   "n": 1,
+   "x_center": 52.5,
+   "floor_y": 2.0
+  },
+  {
+   "n": 2,
+   "x_center": 87.5,
+   "floor_y": 107.0
+  },
+  {
+   "n": 3,
+   "x_center": 122.5,
+   "floor_y": 142.0
+  },
+  {
+   "n": 4,
+   "x_center": 157.5,
+   "floor_y": 107.0
+  },
+  {
+   "n": 5,
+   "x_center": 192.5,
+   "floor_y": 2.0
+  },
+  {
+   "n": 6,
+   "x_center": 227.4,
+   "floor_y": 72.0
+  }
+ ],
+ "band": {
+  "f0": 700.0,
+  "f_width": 5073.964497041421,
+  "f_flat": 4900.0,
+  "f_high": 4900.0,
+  "well_width": 33.8,
+  "period": 245.0,
+  "f_period": 1400.0,
+  "lambda0": 490.0,
+  "unit_depth": 35.0
+ },
+ "bed": "Prusa MK4 (250 x 210 x 220), Core One, Bambu P1S/X1",
+ "params": {
+  "N": 7,
+  "pitch": 35.0,
+  "length": 205.0,
+  "dmax": 140.0,
+  "fin": 1.2,
+  "edge": 0.8,
+  "floor": 1.6,
+  "back": 2.0,
+  "cap": 1.2,
+  "chamfer": 4.0,
+  "bed": "Prusa MK4 (250 x 210 x 220), Core One, Bambu P1S/X1"
+ },
+ "upside_down_is_tile": 1,
+ "file": "soundblooms-diffuser-qrd-deep-245x205x142-tile1.stl",
+ "volume_cm3": 604.19,
+ "triangles": 284
+}

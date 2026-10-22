@@ -1,0 +1,516 @@
+{
+ "deep": {
+  "n": 23,
+  "grams": {
+   "formula": "0.0234147*area_cm2 + 0.698625*volume_cm3 + 0.213764*height_mm",
+   "heldout_mean_pct": 0.74,
+   "heldout_max_pct": 2.23,
+   "per_group": {
+    "stage1-L": {
+     "n": 7,
+     "mean": 1.06,
+     "max": 1.37
+    },
+    "stage1-S": {
+     "n": 7,
+     "mean": 0.26,
+     "max": 0.3
+    },
+    "v2-a1": {
+     "n": 3,
+     "mean": 1.12,
+     "max": 2.23
+    },
+    "v2-mk4": {
+     "n": 3,
+     "mean": 0.73,
+     "max": 1.42
+    },
+    "v2-p1s": {
+     "n": 3,
+     "mean": 0.75,
+     "max": 1.43
+    }
+   },
+   "train_mean_pct": 0.43,
+   "train_max_pct": 1.16,
+   "best_candidates": [
+    {
+     "features": [
+      "area_cm2",
+      "volume_cm3",
+      "height_mm",
+      "const"
+     ],
+     "heldout_mean": 0.74,
+     "heldout_max": 1.55
+    },
+    {
+     "features": [
+      "area_cm2",
+      "volume_cm3",
+      "height_mm"
+     ],
+     "heldout_mean": 0.74,
+     "heldout_max": 2.23
+    },
+    {
+     "features": [
+      "area_cm2",
+      "volume_cm3",
+      "height_mm",
+      "footprint_cm2",
+      "const"
+     ],
+     "heldout_mean": 0.99,
+     "heldout_max": 1.9
+    },
+    {
+     "features": [
+      "area_cm2",
+      "volume_cm3",
+      "const"
+     ],
+     "heldout_mean": 1.25,
+     "heldout_max": 3.33
+    },
+    {
+     "features": [
+      "volume_cm3",
+      "height_mm"
+     ],
+     "heldout_mean": 1.56,
+     "heldout_max": 3.79
+    },
+    {
+     "features": [
+      "volume_cm3",
+      "height_mm",
+      "const"
+     ],
+     "heldout_mean": 1.69,
+     "heldout_max": 4.21
+    },
+    {
+     "features": [
+      "volume_cm3",
+      "height_mm",
+      "footprint_cm2"
+     ],
+     "heldout_mean": 1.81,
+     "heldout_max": 4.0
+    },
+    {
+     "features": [
+      "area_cm2",
+      "height_mm",
+      "footprint_cm2",
+      "const"
+     ],
+     "heldout_mean": 1.84,
+     "heldout_max": 4.52
+    }
+   ]
+  },
+  "minutes": {
+   "formula": "0.95081*volume_cm3 + 0.939602*height_mm",
+   "heldout_mean_pct": 1.58,
+   "heldout_max_pct": 4.03,
+   "per_group": {
+    "stage1-L": {
+     "n": 7,
+     "mean": 1.07,
+     "max": 2.65
+    },
+    "stage1-S": {
+     "n": 7,
+     "mean": 2.03,
+     "max": 3.18
+    },
+    "v2-a1": {
+     "n": 3,
+     "mean": 0.65,
+     "max": 0.78
+    },
+    "v2-mk4": {
+     "n": 3,
+     "mean": 2.5,
+     "max": 4.03
+    },
+    "v2-p1s": {
+     "n": 3,
+     "mean": 1.72,
+     "max": 3.21
+    }
+   },
+   "train_mean_pct": 1.21,
+   "train_max_pct": 3.73,
+   "best_candidates": [
+    {
+     "features": [
+      "volume_cm3",
+      "height_mm"
+     ],
+     "heldout_mean": 1.58,
+     "heldout_max": 4.03
+    },
+    {
+     "features": [
+      "volume_cm3",
+      "height_mm",
+      "const"
+     ],
+     "heldout_mean": 1.85,
+     "heldout_max": 3.6
+    },
+    {
+     "features": [
+      "volume_cm3",
+      "const"
+     ],
+     "heldout_mean": 2.42,
+     "heldout_max": 9.85
+    },
+    {
+     "features": [
+      "height_mm",
+      "footprint_cm2",
+      "const"
+     ],
+     "heldout_mean": 2.8,
+     "heldout_max": 6.46
+    },
+    {
+     "features": [
+      "height_mm",
+      "footprint_cm2"
+     ],
+     "heldout_mean": 4.11,
+     "heldout_max": 14.75
+    },
+    {
+     "features": [
+      "area_cm2",
+      "height_mm",
+      "const"
+     ],
+     "heldout_mean": 4.67,
+     "heldout_max": 8.56
+    },
+    {
+     "features": [
+      "area_cm2"
+     ],
+     "heldout_mean": 4.76,
+     "heldout_max": 17.86
+    },
+    {
+     "features": [
+      "area_cm2",
+      "const"
+     ],
+     "heldout_mean": 4.95,
+     "heldout_max": 12.73
+    }
+   ]
+  }
+ },
+ "blocks": {
+  "n": 21,
+  "grams": {
+   "formula": "0.0910869*area_cm2 + 0.010877*volume_cm3 + 0.119569*footprint_cm2",
+   "heldout_mean_pct": 0.35,
+   "heldout_max_pct": 0.88,
+   "per_group": {
+    "stage1-L": {
+     "n": 6,
+     "mean": 0.55,
+     "max": 0.88
+    },
+    "stage1-S": {
+     "n": 9,
+     "mean": 0.15,
+     "max": 0.41
+    },
+    "v2-a1": {
+     "n": 2,
+     "mean": 0.46,
+     "max": 0.52
+    },
+    "v2-mk4": {
+     "n": 2,
+     "mean": 0.21,
+     "max": 0.31
+    },
+    "v2-p1s": {
+     "n": 2,
+     "mean": 0.67,
+     "max": 0.83
+    }
+   },
+   "train_mean_pct": 0.2,
+   "train_max_pct": 0.76,
+   "best_candidates": [
+    {
+     "features": [
+      "area_cm2",
+      "volume_cm3",
+      "height_mm",
+      "footprint_cm2"
+     ],
+     "heldout_mean": 0.22,
+     "heldout_max": 0.55
+    },
+    {
+     "features": [
+      "area_cm2",
+      "volume_cm3",
+      "footprint_cm2",
+      "const"
+     ],
+     "heldout_mean": 0.23,
+     "heldout_max": 0.56
+    },
+    {
+     "features": [
+      "area_cm2",
+      "volume_cm3",
+      "height_mm",
+      "footprint_cm2",
+      "const"
+     ],
+     "heldout_mean": 0.27,
+     "heldout_max": 1.32
+    },
+    {
+     "features": [
+      "area_cm2",
+      "volume_cm3",
+      "footprint_cm2"
+     ],
+     "heldout_mean": 0.35,
+     "heldout_max": 0.88
+    },
+    {
+     "features": [
+      "area_cm2",
+      "height_mm",
+      "footprint_cm2",
+      "const"
+     ],
+     "heldout_mean": 0.82,
+     "heldout_max": 2.91
+    },
+    {
+     "features": [
+      "area_cm2",
+      "footprint_cm2",
+      "const"
+     ],
+     "heldout_mean": 0.96,
+     "heldout_max": 2.07
+    },
+    {
+     "features": [
+      "area_cm2",
+      "volume_cm3",
+      "const"
+     ],
+     "heldout_mean": 1.26,
+     "heldout_max": 4.03
+    },
+    {
+     "features": [
+      "area_cm2",
+      "footprint_cm2"
+     ],
+     "heldout_mean": 1.5,
+     "heldout_max": 2.31
+    }
+   ]
+  },
+  "minutes": {
+   "formula": "0.145137*area_cm2 + 0.101885*footprint_cm2 + 35.6857",
+   "heldout_mean_pct": 0.81,
+   "heldout_max_pct": 2.49,
+   "per_group": {
+    "stage1-L": {
+     "n": 6,
+     "mean": 0.6,
+     "max": 1.27
+    },
+    "stage1-S": {
+     "n": 9,
+     "mean": 0.7,
+     "max": 2.2
+    },
+    "v2-a1": {
+     "n": 2,
+     "mean": 1.34,
+     "max": 2.28
+    },
+    "v2-mk4": {
+     "n": 2,
+     "mean": 0.43,
+     "max": 0.6
+    },
+    "v2-p1s": {
+     "n": 2,
+     "mean": 1.76,
+     "max": 2.49
+    }
+   },
+   "train_mean_pct": 0.52,
+   "train_max_pct": 1.72,
+   "best_candidates": [
+    {
+     "features": [
+      "area_cm2",
+      "height_mm",
+      "footprint_cm2",
+      "const"
+     ],
+     "heldout_mean": 0.7,
+     "heldout_max": 2.61
+    },
+    {
+     "features": [
+      "area_cm2",
+      "footprint_cm2",
+      "const"
+     ],
+     "heldout_mean": 0.81,
+     "heldout_max": 2.49
+    },
+    {
+     "features": [
+      "area_cm2",
+      "volume_cm3",
+      "const"
+     ],
+     "heldout_mean": 0.92,
+     "heldout_max": 2.99
+    },
+    {
+     "features": [
+      "area_cm2",
+      "volume_cm3",
+      "footprint_cm2",
+      "const"
+     ],
+     "heldout_mean": 1.1,
+     "heldout_max": 3.07
+    },
+    {
+     "features": [
+      "area_cm2",
+      "const"
+     ],
+     "heldout_mean": 1.36,
+     "heldout_max": 3.87
+    },
+    {
+     "features": [
+      "area_cm2",
+      "height_mm",
+      "footprint_cm2"
+     ],
+     "heldout_mean": 1.62,
+     "heldout_max": 3.85
+    },
+    {
+     "features": [
+      "area_cm2",
+      "height_mm"
+     ],
+     "heldout_mean": 1.63,
+     "heldout_max": 7.38
+    },
+    {
+     "features": [
+      "height_mm",
+      "footprint_cm2"
+     ],
+     "heldout_mean": 2.51,
+     "heldout_max": 6.81
+    }
+   ]
+  }
+ },
+ "sanity_1_5x": {
+  "deep": {
+   "features": {
+    "p1s": {
+     "area_cm2": 7063.263938028016,
+     "volume_cm3": 604.7611738788873,
+     "height_mm": 231.0,
+     "footprint_cm2": 309.54,
+     "dims": [
+      231.0,
+      231.0,
+      134.0
+     ]
+    },
+    "p1s_x1.5": {
+     "area_cm2": 17073.724852112406,
+     "volume_cm3": 1599.0383751195557,
+     "height_mm": 359.0,
+     "footprint_cm2": 735.42,
+     "dims": [
+      357.0,
+      359.0,
+      206.0
+     ]
+    }
+   },
+   "estimate": {
+    "p1s": {
+     "grams": 637.2647903221548,
+     "minutes": 792.0610791273897
+    },
+    "p1s_x1.5": {
+     "grams": 1593.6451304303978,
+     "minutes": 1857.6989992553117
+    }
+   },
+   "ok": true
+  },
+  "blocks": {
+   "features": {
+    "p1s": {
+     "area_cm2": 2346.1163488234424,
+     "volume_cm3": 1540.1924853951912,
+     "height_mm": 51.0,
+     "footprint_cm2": 533.61,
+     "dims": [
+      231.0,
+      231.0,
+      51.0
+     ]
+    },
+    "p1s_x1.5": {
+     "area_cm2": 4565.045596259965,
+     "volume_cm3": 3719.1936763350745,
+     "height_mm": 51.0,
+     "footprint_cm2": 1288.81,
+     "dims": [
+      359.0,
+      359.0,
+      51.0
+     ]
+    }
+   },
+   "estimate": {
+    "p1s": {
+     "grams": 294.25624001758416,
+     "minutes": 430.56079792756896
+    },
+    "p1s_x1.5": {
+     "grams": 610.3709323643774,
+     "minutes": 829.5530849324232
+    }
+   },
+   "ok": true
+  }
+ }
+}

@@ -1,0 +1,7 @@
+{
+  "name": "soundblooms-diffuser-generator",
+  "private": true,
+  "type": "module",
+  "scripts": { "test": "node --test scripts/*.test.mjs" },
+  "devDependencies": { "manifold-3d": "3.5.3" }
+}

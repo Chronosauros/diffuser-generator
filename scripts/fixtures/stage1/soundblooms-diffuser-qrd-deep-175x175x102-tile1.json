@@ -1,0 +1,102 @@
+{
+ "series": "deep",
+ "size": "S",
+ "tile": 1,
+ "shift": 4,
+ "sequence": [
+  2,
+  4,
+  1,
+  0,
+  1,
+  4,
+  2
+ ],
+ "depths": [
+  50.0,
+  100.0,
+  25.0,
+  0.0,
+  25.0,
+  100.0,
+  50.0
+ ],
+ "dims_whd": [
+  175.0,
+  175.0,
+  102.0
+ ],
+ "stl_axes": "X = width across wells, Y = depth from wall, Z = along wells",
+ "stl_extent_xyz": [
+  175.0,
+  102.0,
+  175.0
+ ],
+ "front_plane_y": 102.0,
+ "wells": [
+  {
+   "n": 0,
+   "x_center": 12.6,
+   "floor_y": 52.0
+  },
+  {
+   "n": 1,
+   "x_center": 37.5,
+   "floor_y": 2.0
+  },
+  {
+   "n": 2,
+   "x_center": 62.5,
+   "floor_y": 77.0
+  },
+  {
+   "n": 3,
+   "x_center": 87.5,
+   "floor_y": 102.0
+  },
+  {
+   "n": 4,
+   "x_center": 112.5,
+   "floor_y": 77.0
+  },
+  {
+   "n": 5,
+   "x_center": 137.5,
+   "floor_y": 2.0
+  },
+  {
+   "n": 6,
+   "x_center": 162.4,
+   "floor_y": 52.0
+  }
+ ],
+ "band": {
+  "f0": 980.0000000000001,
+  "f_width": 7205.882352941176,
+  "f_flat": 6860.000000000001,
+  "f_high": 6860.000000000001,
+  "well_width": 23.8,
+  "period": 175.0,
+  "f_period": 1960.0000000000002,
+  "lambda0": 350.0,
+  "unit_depth": 25.0
+ },
+ "bed": "Bambu Lab A1 mini (180 x 180 x 180)",
+ "params": {
+  "N": 7,
+  "pitch": 25.0,
+  "length": 175.0,
+  "dmax": 100.0,
+  "fin": 1.2,
+  "edge": 0.8,
+  "floor": 1.6,
+  "back": 2.0,
+  "cap": 1.2,
+  "chamfer": 3.0,
+  "bed": "Bambu Lab A1 mini (180 x 180 x 180)"
+ },
+ "upside_down_is_tile": 1,
+ "file": "soundblooms-diffuser-qrd-deep-175x175x102-tile1.stl",
+ "volume_cm3": 325.56,
+ "triangles": 284
+}
