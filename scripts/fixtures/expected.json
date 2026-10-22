@@ -3763,6 +3763,70 @@
    "triangles": 294,
    "manifold_status": "Error.NoError"
   },
+  "deep-e": {
+   "band": {
+    "f0": 742.4242424242424,
+    "f_width": 5461.783439490447,
+    "f_flat": 5196.969696969697,
+    "f_high": 5196.969696969697,
+    "well_width": 31.4,
+    "period": 231.0,
+    "f_period": 1484.8484848484848,
+    "lambda0": 462.0,
+    "unit_depth": 33.0
+   },
+   "dims": [
+    231.0,
+    231.0,
+    134.0
+   ],
+   "name": "soundblooms-diffuser-qrd-deep-231x231x134-tile3",
+   "depths": [
+    33.0,
+    0.0,
+    33.0,
+    132.0,
+    66.0,
+    66.0,
+    132.0
+   ],
+   "file": "deep-e.stl",
+   "volume_cm3": 745.14,
+   "triangles": 318,
+   "manifold_status": "Error.NoError"
+  },
+  "deep-f": {
+   "band": {
+    "f0": 427.9475982532751,
+    "f_width": 5678.807947019868,
+    "f_flat": 2995.633187772926,
+    "f_high": 2995.633187772926,
+    "well_width": 30.2,
+    "period": 231.0,
+    "f_period": 1484.8484848484848,
+    "lambda0": 801.5,
+    "unit_depth": 57.25
+   },
+   "dims": [
+    231.0,
+    231.0,
+    231.0
+   ],
+   "name": "soundblooms-diffuser-qrd-deep-231x231x231-tile5",
+   "depths": [
+    57.25,
+    229.0,
+    114.5,
+    114.5,
+    229.0,
+    57.25,
+    0.0
+   ],
+   "file": "deep-f.stl",
+   "volume_cm3": 1666.34,
+   "triangles": 318,
+   "manifold_status": "Error.NoError"
+  },
   "blocks-a": {
    "band": {
     "f0": 4397.435897435898,

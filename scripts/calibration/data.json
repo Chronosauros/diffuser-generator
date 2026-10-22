@@ -27,7 +27,8 @@
   },
   "minutes": 473.917,
   "grams": 359.95,
-  "slice_seconds": 2.8
+  "slice_seconds": 2.8,
+  "in_fit": false
  },
  {
   "id": "soundblooms-diffuser-qrd-deep-175x175x102-tile2",
@@ -57,7 +58,8 @@
   },
   "minutes": 467.35,
   "grams": 358.66,
-  "slice_seconds": 2.7
+  "slice_seconds": 2.7,
+  "in_fit": false
  },
  {
   "id": "soundblooms-diffuser-qrd-deep-175x175x102-tile3",
@@ -87,7 +89,8 @@
   },
   "minutes": 464.967,
   "grams": 358.73,
-  "slice_seconds": 2.8
+  "slice_seconds": 2.8,
+  "in_fit": false
  },
  {
   "id": "soundblooms-diffuser-qrd-deep-175x175x102-tile4",
@@ -117,7 +120,8 @@
   },
   "minutes": 468.183,
   "grams": 360.51,
-  "slice_seconds": 3.3
+  "slice_seconds": 3.3,
+  "in_fit": false
  },
  {
   "id": "soundblooms-diffuser-qrd-deep-175x175x102-tile5",
@@ -147,7 +151,8 @@
   },
   "minutes": 478.6,
   "grams": 360.5,
-  "slice_seconds": 2.8
+  "slice_seconds": 2.8,
+  "in_fit": false
  },
  {
   "id": "soundblooms-diffuser-qrd-deep-175x175x102-tile6",
@@ -177,7 +182,8 @@
   },
   "minutes": 467.117,
   "grams": 358.69,
-  "slice_seconds": 2.8
+  "slice_seconds": 2.8,
+  "in_fit": false
  },
  {
   "id": "soundblooms-diffuser-qrd-deep-175x175x102-tile7",
@@ -207,7 +213,8 @@
   },
   "minutes": 463.95,
   "grams": 358.7,
-  "slice_seconds": 2.7
+  "slice_seconds": 2.7,
+  "in_fit": false
  },
  {
   "id": "soundblooms-diffuser-qrd-deep-245x205x142-tile1",
@@ -237,7 +244,8 @@
   },
   "minutes": 772.033,
   "grams": 622.64,
-  "slice_seconds": 4.4
+  "slice_seconds": 4.4,
+  "in_fit": false
  },
  {
   "id": "soundblooms-diffuser-qrd-deep-245x205x142-tile2",
@@ -267,7 +275,8 @@
   },
   "minutes": 763.05,
   "grams": 620.07,
-  "slice_seconds": 4.5
+  "slice_seconds": 4.5,
+  "in_fit": false
  },
  {
   "id": "soundblooms-diffuser-qrd-deep-245x205x142-tile3",
@@ -297,7 +306,8 @@
   },
   "minutes": 763.367,
   "grams": 620.25,
-  "slice_seconds": 4.4
+  "slice_seconds": 4.4,
+  "in_fit": false
  },
  {
   "id": "soundblooms-diffuser-qrd-deep-245x205x142-tile4",
@@ -327,7 +337,8 @@
   },
   "minutes": 771.183,
   "grams": 624.27,
-  "slice_seconds": 4.1
+  "slice_seconds": 4.1,
+  "in_fit": false
  },
  {
   "id": "soundblooms-diffuser-qrd-deep-245x205x142-tile5",
@@ -357,7 +368,8 @@
   },
   "minutes": 765.2,
   "grams": 624.27,
-  "slice_seconds": 4.9
+  "slice_seconds": 4.9,
+  "in_fit": false
  },
  {
   "id": "soundblooms-diffuser-qrd-deep-245x205x142-tile6",
@@ -387,7 +399,8 @@
   },
   "minutes": 759.433,
   "grams": 620.23,
-  "slice_seconds": 4.9
+  "slice_seconds": 4.9,
+  "in_fit": false
  },
  {
   "id": "soundblooms-diffuser-qrd-deep-245x205x142-tile7",
@@ -417,7 +430,8 @@
   },
   "minutes": 752.217,
   "grams": 620.13,
-  "slice_seconds": 4.7
+  "slice_seconds": 4.7,
+  "in_fit": false
  },
  {
   "id": "soundblooms-diffuser-qrd-blocks-175x175x51-tile1",
@@ -843,7 +857,8 @@
    "gcode_nonzero": 0,
    "gcode_m106_p3": 2
   },
-  "warnings": []
+  "warnings": [],
+  "in_fit": false
  },
  {
   "id": "soundblooms-diffuser-qrd-deep-154x155x62-tile4",
@@ -879,7 +894,8 @@
    "gcode_nonzero": 0,
    "gcode_m106_p3": 2
   },
-  "warnings": []
+  "warnings": [],
+  "in_fit": false
  },
  {
   "id": "soundblooms-diffuser-qrd-deep-154x155x122-tile6",
@@ -915,7 +931,8 @@
    "gcode_nonzero": 0,
    "gcode_m106_p3": 2
   },
-  "warnings": []
+  "warnings": [],
+  "in_fit": false
  },
  {
   "id": "soundblooms-diffuser-qrd-deep-224x185x130-tile1",
@@ -951,7 +968,8 @@
    "gcode_nonzero": 0,
    "gcode_m106_p3": 2
   },
-  "warnings": []
+  "warnings": [],
+  "in_fit": false
  },
  {
   "id": "soundblooms-diffuser-qrd-deep-224x185x82-tile4",
@@ -987,7 +1005,8 @@
    "gcode_nonzero": 0,
    "gcode_m106_p3": 2
   },
-  "warnings": []
+  "warnings": [],
+  "in_fit": false
  },
  {
   "id": "soundblooms-diffuser-qrd-deep-224x185x172-tile6",
@@ -1023,7 +1042,8 @@
    "gcode_nonzero": 0,
    "gcode_m106_p3": 2
   },
-  "warnings": []
+  "warnings": [],
+  "in_fit": false
  },
  {
   "id": "soundblooms-diffuser-qrd-deep-231x231x134-tile1",
@@ -1059,7 +1079,8 @@
    "gcode_nonzero": 0,
    "gcode_m106_p3": 2
   },
-  "warnings": []
+  "warnings": [],
+  "in_fit": false
  },
  {
   "id": "soundblooms-diffuser-qrd-deep-231x231x82-tile4",
@@ -1095,7 +1116,8 @@
    "gcode_nonzero": 0,
    "gcode_m106_p3": 2
   },
-  "warnings": []
+  "warnings": [],
+  "in_fit": false
  },
  {
   "id": "soundblooms-diffuser-qrd-deep-231x231x202-tile6",
@@ -1131,7 +1153,8 @@
    "gcode_nonzero": 0,
    "gcode_m106_p3": 2
   },
-  "warnings": []
+  "warnings": [],
+  "in_fit": false
  },
  {
   "id": "soundblooms-diffuser-qrd-blocks-155x155x50-tile1",
@@ -1318,6 +1341,780 @@
   "minutes": 495.333,
   "grams": 345.69,
   "slice_seconds": 4.8,
+  "chamber_fan": {
+   "preset_nonzero": 0,
+   "gcode_nonzero": 0,
+   "gcode_m106_p3": 2
+  },
+  "warnings": []
+ },
+ {
+  "id": "soundblooms-diffuser-qrd-deep-154x155x90-tile1",
+  "source": "v3",
+  "group": "v3-a1",
+  "series": "deep",
+  "tile": 1,
+  "depth": 88.0,
+  "params": {
+   "N": 7,
+   "pitch": 22.0,
+   "length": 155.0,
+   "dmax": 88.0,
+   "fin": 1.6,
+   "edge": 2.0,
+   "floor": 1.6,
+   "back": 2.0,
+   "cap": 1.2,
+   "chamfer": 3.0,
+   "bed": "Bambu Lab A1 mini (180 x 180 x 180)"
+  },
+  "features": {
+   "area_cm2": 3128.320760827565,
+   "volume_cm3": 310.92258738093125,
+   "height_mm": 155.0,
+   "footprint_cm2": 138.6
+  },
+  "minutes": 448.217,
+  "grams": 356.2,
+  "slice_seconds": 3.6
+ },
+ {
+  "id": "soundblooms-diffuser-qrd-deep-154x155x90-tile2",
+  "source": "v3",
+  "group": "v3-a1",
+  "series": "deep",
+  "tile": 2,
+  "depth": 88.0,
+  "params": {
+   "N": 7,
+   "pitch": 22.0,
+   "length": 155.0,
+   "dmax": 88.0,
+   "fin": 1.6,
+   "edge": 2.0,
+   "floor": 1.6,
+   "back": 2.0,
+   "cap": 1.2,
+   "chamfer": 3.0,
+   "bed": "Bambu Lab A1 mini (180 x 180 x 180)"
+  },
+  "features": {
+   "area_cm2": 3133.7611280437454,
+   "volume_cm3": 311.81001037877587,
+   "height_mm": 155.0,
+   "footprint_cm2": 138.6
+  },
+  "minutes": 438.15,
+  "grams": 356.35,
+  "slice_seconds": 2.9
+ },
+ {
+  "id": "soundblooms-diffuser-qrd-deep-154x155x90-tile3",
+  "source": "v3",
+  "group": "v3-a1",
+  "series": "deep",
+  "tile": 3,
+  "depth": 88.0,
+  "params": {
+   "N": 7,
+   "pitch": 22.0,
+   "length": 155.0,
+   "dmax": 88.0,
+   "fin": 1.6,
+   "edge": 2.0,
+   "floor": 1.6,
+   "back": 2.0,
+   "cap": 1.2,
+   "chamfer": 3.0,
+   "bed": "Bambu Lab A1 mini (180 x 180 x 180)"
+  },
+  "features": {
+   "area_cm2": 3132.8598022062492,
+   "volume_cm3": 311.4852954129915,
+   "height_mm": 155.0,
+   "footprint_cm2": 138.6
+  },
+  "minutes": 437.433,
+  "grams": 356.07,
+  "slice_seconds": 3.1
+ },
+ {
+  "id": "soundblooms-diffuser-qrd-deep-154x155x90-tile4",
+  "source": "v3",
+  "group": "v3-a1",
+  "series": "deep",
+  "tile": 4,
+  "depth": 88.0,
+  "params": {
+   "N": 7,
+   "pitch": 22.0,
+   "length": 155.0,
+   "dmax": 88.0,
+   "fin": 1.6,
+   "edge": 2.0,
+   "floor": 1.6,
+   "back": 2.0,
+   "cap": 1.2,
+   "chamfer": 3.0,
+   "bed": "Bambu Lab A1 mini (180 x 180 x 180)"
+  },
+  "features": {
+   "area_cm2": 3125.780734320517,
+   "volume_cm3": 309.92383910819916,
+   "height_mm": 155.0,
+   "footprint_cm2": 138.6
+  },
+  "minutes": 436.35,
+  "grams": 355.71,
+  "slice_seconds": 2.8
+ },
+ {
+  "id": "soundblooms-diffuser-qrd-deep-154x155x90-tile5",
+  "source": "v3",
+  "group": "v3-a1",
+  "series": "deep",
+  "tile": 5,
+  "depth": 88.0,
+  "params": {
+   "N": 7,
+   "pitch": 22.0,
+   "length": 155.0,
+   "dmax": 88.0,
+   "fin": 1.6,
+   "edge": 2.0,
+   "floor": 1.6,
+   "back": 2.0,
+   "cap": 1.2,
+   "chamfer": 3.0,
+   "bed": "Bambu Lab A1 mini (180 x 180 x 180)"
+  },
+  "features": {
+   "area_cm2": 3125.856707616848,
+   "volume_cm3": 309.91243508581425,
+   "height_mm": 155.0,
+   "footprint_cm2": 138.6
+  },
+  "minutes": 438.85,
+  "grams": 355.73,
+  "slice_seconds": 2.9
+ },
+ {
+  "id": "soundblooms-diffuser-qrd-deep-154x155x90-tile6",
+  "source": "v3",
+  "group": "v3-a1",
+  "series": "deep",
+  "tile": 6,
+  "depth": 88.0,
+  "params": {
+   "N": 7,
+   "pitch": 22.0,
+   "length": 155.0,
+   "dmax": 88.0,
+   "fin": 1.6,
+   "edge": 2.0,
+   "floor": 1.6,
+   "back": 2.0,
+   "cap": 1.2,
+   "chamfer": 3.0,
+   "bed": "Bambu Lab A1 mini (180 x 180 x 180)"
+  },
+  "features": {
+   "area_cm2": 3132.8957661457134,
+   "volume_cm3": 311.4762895508912,
+   "height_mm": 155.0,
+   "footprint_cm2": 138.6
+  },
+  "minutes": 437.233,
+  "grams": 356.06,
+  "slice_seconds": 2.9
+ },
+ {
+  "id": "soundblooms-diffuser-qrd-deep-154x155x90-tile7",
+  "source": "v3",
+  "group": "v3-a1",
+  "series": "deep",
+  "tile": 7,
+  "depth": 88.0,
+  "params": {
+   "N": 7,
+   "pitch": 22.0,
+   "length": 155.0,
+   "dmax": 88.0,
+   "fin": 1.6,
+   "edge": 2.0,
+   "floor": 1.6,
+   "back": 2.0,
+   "cap": 1.2,
+   "chamfer": 3.0,
+   "bed": "Bambu Lab A1 mini (180 x 180 x 180)"
+  },
+  "features": {
+   "area_cm2": 3133.60111723711,
+   "volume_cm3": 311.8340069259948,
+   "height_mm": 155.0,
+   "footprint_cm2": 138.6
+  },
+  "minutes": 439.083,
+  "grams": 356.38,
+  "slice_seconds": 2.9
+ },
+ {
+  "id": "soundblooms-diffuser-qrd-deep-224x185x130-tile1",
+  "source": "v3",
+  "group": "v3-mk4",
+  "series": "deep",
+  "tile": 1,
+  "depth": 128.0,
+  "params": {
+   "N": 7,
+   "pitch": 32.0,
+   "length": 185.0,
+   "dmax": 128.0,
+   "fin": 1.6,
+   "edge": 2.0,
+   "floor": 1.6,
+   "back": 2.0,
+   "cap": 1.2,
+   "chamfer": 4.0,
+   "bed": "Prusa MK4 / Core One (250 x 210 x 220)"
+  },
+  "features": {
+   "area_cm2": 5548.586277046116,
+   "volume_cm3": 598.0984788512653,
+   "height_mm": 185.0,
+   "footprint_cm2": 291.2
+  },
+  "minutes": 737.567,
+  "grams": 646.16,
+  "slice_seconds": 3.7
+ },
+ {
+  "id": "soundblooms-diffuser-qrd-deep-224x185x130-tile2",
+  "source": "v3",
+  "group": "v3-mk4",
+  "series": "deep",
+  "tile": 2,
+  "depth": 128.0,
+  "params": {
+   "N": 7,
+   "pitch": 32.0,
+   "length": 185.0,
+   "dmax": 128.0,
+   "fin": 1.6,
+   "edge": 2.0,
+   "floor": 1.6,
+   "back": 2.0,
+   "cap": 1.2,
+   "chamfer": 4.0,
+   "bed": "Prusa MK4 / Core One (250 x 210 x 220)"
+  },
+  "features": {
+   "area_cm2": 5555.44605982522,
+   "volume_cm3": 599.7130970212299,
+   "height_mm": 185.0,
+   "footprint_cm2": 291.2
+  },
+  "minutes": 728.467,
+  "grams": 645.92,
+  "slice_seconds": 3.7
+ },
+ {
+  "id": "soundblooms-diffuser-qrd-deep-224x185x130-tile3",
+  "source": "v3",
+  "group": "v3-mk4",
+  "series": "deep",
+  "tile": 3,
+  "depth": 128.0,
+  "params": {
+   "N": 7,
+   "pitch": 32.0,
+   "length": 185.0,
+   "dmax": 128.0,
+   "fin": 1.6,
+   "edge": 2.0,
+   "floor": 1.6,
+   "back": 2.0,
+   "cap": 1.2,
+   "chamfer": 4.0,
+   "bed": "Prusa MK4 / Core One (250 x 210 x 220)"
+  },
+  "features": {
+   "area_cm2": 5554.135039617837,
+   "volume_cm3": 599.0487895419895,
+   "height_mm": 185.0,
+   "footprint_cm2": 291.2
+  },
+  "minutes": 727.55,
+  "grams": 645.44,
+  "slice_seconds": 3.8
+ },
+ {
+  "id": "soundblooms-diffuser-qrd-deep-224x185x130-tile4",
+  "source": "v3",
+  "group": "v3-mk4",
+  "series": "deep",
+  "tile": 4,
+  "depth": 128.0,
+  "params": {
+   "N": 7,
+   "pitch": 32.0,
+   "length": 185.0,
+   "dmax": 128.0,
+   "fin": 1.6,
+   "edge": 2.0,
+   "floor": 1.6,
+   "back": 2.0,
+   "cap": 1.2,
+   "chamfer": 4.0,
+   "bed": "Prusa MK4 / Core One (250 x 210 x 220)"
+  },
+  "features": {
+   "area_cm2": 5544.817171563042,
+   "volume_cm3": 596.0809455156335,
+   "height_mm": 185.0,
+   "footprint_cm2": 291.2
+  },
+  "minutes": 729.417,
+  "grams": 645.61,
+  "slice_seconds": 3.9
+ },
+ {
+  "id": "soundblooms-diffuser-qrd-deep-224x185x130-tile5",
+  "source": "v3",
+  "group": "v3-mk4",
+  "series": "deep",
+  "tile": 5,
+  "depth": 128.0,
+  "params": {
+   "N": 7,
+   "pitch": 32.0,
+   "length": 185.0,
+   "dmax": 128.0,
+   "fin": 1.6,
+   "edge": 2.0,
+   "floor": 1.6,
+   "back": 2.0,
+   "cap": 1.2,
+   "chamfer": 4.0,
+   "bed": "Prusa MK4 / Core One (250 x 210 x 220)"
+  },
+  "features": {
+   "area_cm2": 5544.893113392743,
+   "volume_cm3": 596.0695348709324,
+   "height_mm": 185.0,
+   "footprint_cm2": 291.2
+  },
+  "minutes": 727.117,
+  "grams": 645.59,
+  "slice_seconds": 3.7
+ },
+ {
+  "id": "soundblooms-diffuser-qrd-deep-224x185x130-tile6",
+  "source": "v3",
+  "group": "v3-mk4",
+  "series": "deep",
+  "tile": 6,
+  "depth": 128.0,
+  "params": {
+   "N": 7,
+   "pitch": 32.0,
+   "length": 185.0,
+   "dmax": 128.0,
+   "fin": 1.6,
+   "edge": 2.0,
+   "floor": 1.6,
+   "back": 2.0,
+   "cap": 1.2,
+   "chamfer": 4.0,
+   "bed": "Prusa MK4 / Core One (250 x 210 x 220)"
+  },
+  "features": {
+   "area_cm2": 5554.170994671304,
+   "volume_cm3": 599.0397800368423,
+   "height_mm": 185.0,
+   "footprint_cm2": 291.2
+  },
+  "minutes": 726.917,
+  "grams": 645.41,
+  "slice_seconds": 3.9
+ },
+ {
+  "id": "soundblooms-diffuser-qrd-deep-224x185x130-tile7",
+  "source": "v3",
+  "group": "v3-mk4",
+  "series": "deep",
+  "tile": 7,
+  "depth": 128.0,
+  "params": {
+   "N": 7,
+   "pitch": 32.0,
+   "length": 185.0,
+   "dmax": 128.0,
+   "fin": 1.6,
+   "edge": 2.0,
+   "floor": 1.6,
+   "back": 2.0,
+   "cap": 1.2,
+   "chamfer": 4.0,
+   "bed": "Prusa MK4 / Core One (250 x 210 x 220)"
+  },
+  "features": {
+   "area_cm2": 5555.28607309297,
+   "volume_cm3": 599.737098018292,
+   "height_mm": 185.0,
+   "footprint_cm2": 291.2
+  },
+  "minutes": 723.15,
+  "grams": 645.97,
+  "slice_seconds": 3.8
+ },
+ {
+  "id": "soundblooms-diffuser-qrd-deep-231x231x134-tile1",
+  "source": "v3",
+  "group": "v3-p1s",
+  "series": "deep",
+  "tile": 1,
+  "depth": 132.0,
+  "params": {
+   "N": 7,
+   "pitch": 33.0,
+   "length": 231.0,
+   "dmax": 132.0,
+   "fin": 1.6,
+   "edge": 2.0,
+   "floor": 1.6,
+   "back": 2.0,
+   "cap": 1.2,
+   "chamfer": 4.0,
+   "bed": "Bambu Lab P1S / X1 (256 x 256 x 256)"
+  },
+  "features": {
+   "area_cm2": 7048.166647126317,
+   "volume_cm3": 744.0580995365192,
+   "height_mm": 231.0,
+   "footprint_cm2": 309.54
+  },
+  "minutes": 912.433,
+  "grams": 811.55,
+  "slice_seconds": 4.5
+ },
+ {
+  "id": "soundblooms-diffuser-qrd-deep-231x231x134-tile2",
+  "source": "v3",
+  "group": "v3-p1s",
+  "series": "deep",
+  "tile": 2,
+  "depth": 132.0,
+  "params": {
+   "N": 7,
+   "pitch": 33.0,
+   "length": 231.0,
+   "dmax": 132.0,
+   "fin": 1.6,
+   "edge": 2.0,
+   "floor": 1.6,
+   "back": 2.0,
+   "cap": 1.2,
+   "chamfer": 4.0,
+   "bed": "Bambu Lab P1S / X1 (256 x 256 x 256)"
+  },
+  "features": {
+   "area_cm2": 7056.200341529448,
+   "volume_cm3": 745.8411920552397,
+   "height_mm": 231.0,
+   "footprint_cm2": 309.54
+  },
+  "minutes": 901.867,
+  "grams": 811.33,
+  "slice_seconds": 4.5
+ },
+ {
+  "id": "soundblooms-diffuser-qrd-deep-231x231x134-tile3",
+  "source": "v3",
+  "group": "v3-p1s",
+  "series": "deep",
+  "tile": 3,
+  "depth": 132.0,
+  "params": {
+   "N": 7,
+   "pitch": 33.0,
+   "length": 231.0,
+   "dmax": 132.0,
+   "fin": 1.6,
+   "edge": 2.0,
+   "floor": 1.6,
+   "back": 2.0,
+   "cap": 1.2,
+   "chamfer": 4.0,
+   "bed": "Bambu Lab P1S / X1 (256 x 256 x 256)"
+  },
+  "features": {
+   "area_cm2": 7054.848347921274,
+   "volume_cm3": 745.1363260187334,
+   "height_mm": 231.0,
+   "footprint_cm2": 309.54
+  },
+  "minutes": 896.767,
+  "grams": 810.76,
+  "slice_seconds": 5.0
+ },
+ {
+  "id": "soundblooms-diffuser-qrd-deep-231x231x134-tile4",
+  "source": "v3",
+  "group": "v3-p1s",
+  "series": "deep",
+  "tile": 4,
+  "depth": 132.0,
+  "params": {
+   "N": 7,
+   "pitch": 33.0,
+   "length": 231.0,
+   "dmax": 132.0,
+   "fin": 1.6,
+   "edge": 2.0,
+   "floor": 1.6,
+   "back": 2.0,
+   "cap": 1.2,
+   "chamfer": 4.0,
+   "bed": "Bambu Lab P1S / X1 (256 x 256 x 256)"
+  },
+  "features": {
+   "area_cm2": 7044.274607507948,
+   "volume_cm3": 741.918882719464,
+   "height_mm": 231.0,
+   "footprint_cm2": 309.54
+  },
+  "minutes": 903.583,
+  "grams": 810.92,
+  "slice_seconds": 4.4
+ },
+ {
+  "id": "soundblooms-diffuser-qrd-deep-231x231x134-tile5",
+  "source": "v3",
+  "group": "v3-p1s",
+  "series": "deep",
+  "tile": 5,
+  "depth": 132.0,
+  "params": {
+   "N": 7,
+   "pitch": 33.0,
+   "length": 231.0,
+   "dmax": 132.0,
+   "fin": 1.6,
+   "edge": 2.0,
+   "floor": 1.6,
+   "back": 2.0,
+   "cap": 1.2,
+   "chamfer": 4.0,
+   "bed": "Bambu Lab P1S / X1 (256 x 256 x 256)"
+  },
+  "features": {
+   "area_cm2": 7044.350572104619,
+   "volume_cm3": 741.9074762484195,
+   "height_mm": 231.0,
+   "footprint_cm2": 309.54
+  },
+  "minutes": 899.967,
+  "grams": 810.9,
+  "slice_seconds": 4.6
+ },
+ {
+  "id": "soundblooms-diffuser-qrd-deep-231x231x134-tile6",
+  "source": "v3",
+  "group": "v3-p1s",
+  "series": "deep",
+  "tile": 6,
+  "depth": 132.0,
+  "params": {
+   "N": 7,
+   "pitch": 33.0,
+   "length": 231.0,
+   "dmax": 132.0,
+   "fin": 1.6,
+   "edge": 2.0,
+   "floor": 1.6,
+   "back": 2.0,
+   "cap": 1.2,
+   "chamfer": 4.0,
+   "bed": "Bambu Lab P1S / X1 (256 x 256 x 256)"
+  },
+  "features": {
+   "area_cm2": 7054.884310256145,
+   "volume_cm3": 745.1273165687132,
+   "height_mm": 231.0,
+   "footprint_cm2": 309.54
+  },
+  "minutes": 906.417,
+  "grams": 810.74,
+  "slice_seconds": 4.5
+ },
+ {
+  "id": "soundblooms-diffuser-qrd-deep-231x231x134-tile7",
+  "source": "v3",
+  "group": "v3-p1s",
+  "series": "deep",
+  "tile": 7,
+  "depth": 132.0,
+  "params": {
+   "N": 7,
+   "pitch": 33.0,
+   "length": 231.0,
+   "dmax": 132.0,
+   "fin": 1.6,
+   "edge": 2.0,
+   "floor": 1.6,
+   "back": 2.0,
+   "cap": 1.2,
+   "chamfer": 4.0,
+   "bed": "Bambu Lab P1S / X1 (256 x 256 x 256)"
+  },
+  "features": {
+   "area_cm2": 7056.040362954336,
+   "volume_cm3": 745.8651946195687,
+   "height_mm": 231.0,
+   "footprint_cm2": 309.54
+  },
+  "minutes": 894.083,
+  "grams": 811.35,
+  "slice_seconds": 4.5
+ },
+ {
+  "id": "soundblooms-diffuser-qrd-deep-231x231x231-tile5",
+  "source": "v3-new",
+  "group": "v3-p1s",
+  "series": "deep",
+  "tile": 5,
+  "depth": 229.0,
+  "params": {
+   "N": 7,
+   "pitch": 33.0,
+   "length": 231.0,
+   "dmax": 229.0,
+   "fin": 2.8,
+   "edge": 3.5,
+   "floor": 1.6,
+   "back": 2.0,
+   "cap": 1.2,
+   "chamfer": 4.0,
+   "bed": "custom 256 x 256 x 256"
+  },
+  "features": {
+   "area_cm2": 10964.981184635528,
+   "volume_cm3": 1666.340405067332,
+   "height_mm": 231.0,
+   "footprint_cm2": 533.61
+  },
+  "minutes": 1701.117,
+  "grams": 1830.49,
+  "slice_seconds": 5.4,
+  "chamber_fan": {
+   "preset_nonzero": 0,
+   "gcode_nonzero": 0,
+   "gcode_m106_p3": 2
+  },
+  "warnings": []
+ },
+ {
+  "id": "soundblooms-diffuser-qrd-deep-231x231x62-tile4",
+  "source": "v3-new",
+  "group": "v3-p1s",
+  "series": "deep",
+  "tile": 4,
+  "depth": 60.0,
+  "params": {
+   "N": 7,
+   "pitch": 33.0,
+   "length": 231.0,
+   "dmax": 60.0,
+   "fin": 1.6,
+   "edge": 2.0,
+   "floor": 1.6,
+   "back": 2.0,
+   "cap": 1.2,
+   "chamfer": 4.0,
+   "bed": "custom 256 x 256 x 256"
+  },
+  "features": {
+   "area_cm2": 4110.668996965566,
+   "volume_cm3": 437.3083606449094,
+   "height_mm": 231.0,
+   "footprint_cm2": 143.22
+  },
+  "minutes": 625.583,
+  "grams": 489.13,
+  "slice_seconds": 4.0,
+  "chamber_fan": {
+   "preset_nonzero": 0,
+   "gcode_nonzero": 0,
+   "gcode_m106_p3": 2
+  },
+  "warnings": []
+ },
+ {
+  "id": "soundblooms-diffuser-qrd-deep-154x155x155-tile6",
+  "source": "v3-new",
+  "group": "v3-a1",
+  "series": "deep",
+  "tile": 6,
+  "depth": 153.0,
+  "params": {
+   "N": 7,
+   "pitch": 22.0,
+   "length": 155.0,
+   "dmax": 153.0,
+   "fin": 1.9,
+   "edge": 2.4,
+   "floor": 1.6,
+   "back": 2.0,
+   "cap": 1.2,
+   "chamfer": 3.0,
+   "bed": "custom 180 x 180 x 180"
+  },
+  "features": {
+   "area_cm2": 4904.649511363783,
+   "volume_cm3": 541.5132083014872,
+   "height_mm": 155.0,
+   "footprint_cm2": 238.7
+  },
+  "minutes": 672.033,
+  "grams": 621.0,
+  "slice_seconds": 3.0,
+  "chamber_fan": {
+   "preset_nonzero": 0,
+   "gcode_nonzero": 0,
+   "gcode_m106_p3": 2
+  },
+  "warnings": []
+ },
+ {
+  "id": "soundblooms-diffuser-qrd-deep-224x185x92-tile2",
+  "source": "v3-new",
+  "group": "v3-mk4",
+  "series": "deep",
+  "tile": 2,
+  "depth": 90.0,
+  "params": {
+   "N": 7,
+   "pitch": 32.0,
+   "length": 185.0,
+   "dmax": 90.0,
+   "fin": 1.6,
+   "edge": 2.0,
+   "floor": 1.6,
+   "back": 2.0,
+   "cap": 1.2,
+   "chamfer": 4.0,
+   "bed": "custom 250 x 210 x 220"
+  },
+  "features": {
+   "area_cm2": 4289.429040305098,
+   "volume_cm3": 464.0673404571514,
+   "height_mm": 185.0,
+   "footprint_cm2": 206.08
+  },
+  "minutes": 604.367,
+  "grams": 505.21,
+  "slice_seconds": 3.5,
   "chamber_fan": {
    "preset_nonzero": 0,
    "gcode_nonzero": 0,

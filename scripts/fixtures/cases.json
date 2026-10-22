@@ -28,6 +28,20 @@
     "params": {"N": 7, "pitch": 22.0, "length": 100.0, "dmax": 40.0, "fin": 1.2, "edge": 0.8, "floor": 1.6, "back": 2.0, "cap": 1.2, "chamfer": 3.0, "bed": "case deep-d"}
   },
   {
+    "id": "deep-e",
+    "note": "deep rule v3, P1S default: pitch 33, length 231, dmax 132, fin 1.6 edge 2.0, tile 3",
+    "series": "deep",
+    "tile": 3,
+    "params": {"N": 7, "pitch": 33.0, "length": 231.0, "dmax": 132.0, "fin": 1.6, "edge": 2.0, "floor": 1.6, "back": 2.0, "cap": 1.2, "chamfer": 4.0, "bed": "case deep-e"}
+  },
+  {
+    "id": "deep-f",
+    "note": "deep rule v3, P1S at the maximum depth: pitch 33, length 231, dmax 229, fin 2.8 edge 3.5, tile 5",
+    "series": "deep",
+    "tile": 5,
+    "params": {"N": 7, "pitch": 33.0, "length": 231.0, "dmax": 229.0, "fin": 2.8, "edge": 3.5, "floor": 1.6, "back": 2.0, "cap": 1.2, "chamfer": 4.0, "bed": "case deep-f"}
+  },
+  {
     "id": "blocks-a",
     "note": "blocks 13x13 square, 150 x 150, hmax 36, shift 4,9, tile 1",
     "series": "blocks",

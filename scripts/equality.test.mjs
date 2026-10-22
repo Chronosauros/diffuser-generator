@@ -508,7 +508,8 @@ const MARGIN = 25;                         // v2: 25 mm on every bed axis
 function expectDerive(series, bed, depth) {
   if (series === 'deep') {
     const pitch = Math.floor((bed.x - MARGIN) / 7);
-    return { N: 7, pitch, length: Math.min(bed.y - MARGIN, bed.z - MARGIN), dmax: depth, fin: 1.2, edge: 0.8, floor: 1.6, back: 2.0, cap: 1.2, chamfer: pitch < 30 ? 3 : 4 };
+    const up01 = (v) => Math.ceil(v * 10 - 1e-9) / 10;      // rule v3: thickness grows with the depth
+    return { N: 7, pitch, length: Math.min(bed.y - MARGIN, bed.z - MARGIN), dmax: depth, fin: Math.max(1.6, up01(depth / 82.5)), edge: Math.max(2.0, up01(depth / 66)), floor: 1.6, back: 2.0, cap: 1.2, chamfer: pitch < 30 ? 3 : 4 };
   }
   let W = bed.x - MARGIN;
   const H = Math.min(bed.y - MARGIN, W);
@@ -553,6 +554,33 @@ describe('core: derive and limits (v2, margin 25 mm)', () => {
       eq(`blocks ${bn} depthMax`, lim.depthMax, max);
       eq(`blocks ${bn} depthDefault`, lim.depthDefault, def);
       eq(`blocks ${bn} depthMin`, lim.depthMin, 20);
+    }
+    rep.done();
+  });
+
+  it('rule v3: fin and edge of the deep series, hard-coded numbers from the Python canon (qrd.derive, rule 3)', () => {
+    const c = needCore();
+    const rep = new Report('v3 fin / edge');
+    const eq = (label, got, want) => rep.check(label, typeof got === 'number' && Math.abs(got - want) <= 1e-9, `got ${got}, want ${want}`);
+    // [depth, fin, edge]: defaults of the three beds, 132 = exact multiple of 66 (edge stays 2.0), the first depth above it,
+    // the maximum depth of each bed, and 330 = exact multiple of both divisors (4.0 / 5.0)
+    const table = [[40, 1.6, 2.0], [88, 1.6, 2.0], [128, 1.6, 2.0], [132, 1.6, 2.0], [132.5, 1.7, 2.1], [153, 1.9, 2.4], [165, 2.0, 2.5],
+      [165.1, 2.1, 2.6], [183, 2.3, 2.8], [229, 2.8, 3.5], [330, 4.0, 5.0], [330.1, 4.1, 5.1]];
+    for (const [d, fin, edge] of table) {
+      const p = plain(c.derive('deep', BEDS.p1s, d));
+      eq(`depth ${d} fin`, p.fin, fin); eq(`depth ${d} edge`, p.edge, edge);
+    }
+    for (const [bn, bed, max, fin, edge] of [['A1 mini', BEDS.a1mini, 153, 1.9, 2.4], ['MK4', BEDS.mk4, 183, 2.3, 2.8], ['P1S', BEDS.p1s, 229, 2.8, 3.5]]) {
+      const lim = plain(c.limits('deep', bed)), p = plain(c.derive('deep', bed, lim.depthMax));
+      eq(`${bn} depthMax`, lim.depthMax, max); eq(`${bn} fin at depthMax`, p.fin, fin); eq(`${bn} edge at depthMax`, p.edge, edge);
+      const pd = plain(c.derive('deep', bed, lim.depthDefault));
+      eq(`${bn} fin at default depth`, pd.fin, 1.6); eq(`${bn} edge at default depth`, pd.edge, 2.0);
+    }
+    for (let d = 40; d <= 573; d++) {                      // every integer depth the slider allows on a 600 mm custom bed
+      const p = plain(c.derive('deep', BEDS.custom, d));
+      if (p.fin < 1.6 || p.edge < 2.0 || p.fin * 82.5 < d - 1e-6 || p.edge * 66 < d - 1e-6 || p.fin > Math.max(1.6, d / 82.5 + 0.1) + 1e-9 || p.edge > Math.max(2.0, d / 66 + 0.1) + 1e-9) {
+        rep.check(`depth ${d} bounds`, false, `fin ${p.fin}, edge ${p.edge}`);
+      }
     }
     rep.done();
   });
@@ -825,7 +853,7 @@ const applyCoef = (coef, feats) => Object.entries(coef).reduce((s, [k, v]) => s 
 /** data.json: array of rows {id, series, features, grams, minutes, ...} (calibration agent). */
 function calibRows(data) {
   const rows = Array.isArray(data) ? data : (data.rows || data.data || data.samples || data.measurements || data.tiles || []);
-  return rows.map((r) => ({
+  return rows.filter((r) => r.in_fit !== false).map((r) => ({       // in_fit false: deep rule v1/v2 rows kept as a record, not fitted
     id: r.id ?? r.name ?? r.file ?? '?', series: r.series,
     feats: r.features ?? Object.fromEntries(FEATURE_KEYS.filter((k) => k in r).map((k) => [k, r[k]])),
     grams: r.grams ?? r.grams_measured ?? r.measured?.grams ?? r.g,

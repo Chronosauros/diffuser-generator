@@ -1,0 +1,102 @@
+{
+ "series": "deep",
+ "size": "_case_deep_f",
+ "tile": 5,
+ "shift": 1,
+ "sequence": [
+  1,
+  4,
+  2,
+  2,
+  4,
+  1,
+  0
+ ],
+ "depths": [
+  57.25,
+  229.0,
+  114.5,
+  114.5,
+  229.0,
+  57.25,
+  0.0
+ ],
+ "dims_whd": [
+  231.0,
+  231.0,
+  231.0
+ ],
+ "stl_axes": "X = width across wells, Y = depth from wall, Z = along wells",
+ "stl_extent_xyz": [
+  231.0,
+  231.0,
+  231.0
+ ],
+ "front_plane_y": 231.0,
+ "wells": [
+  {
+   "n": 0,
+   "x_center": 17.55,
+   "floor_y": 173.75
+  },
+  {
+   "n": 1,
+   "x_center": 49.5,
+   "floor_y": 2.0
+  },
+  {
+   "n": 2,
+   "x_center": 82.5,
+   "floor_y": 116.5
+  },
+  {
+   "n": 3,
+   "x_center": 115.5,
+   "floor_y": 116.5
+  },
+  {
+   "n": 4,
+   "x_center": 148.5,
+   "floor_y": 2.0
+  },
+  {
+   "n": 5,
+   "x_center": 181.5,
+   "floor_y": 173.75
+  },
+  {
+   "n": 6,
+   "x_center": 213.45,
+   "floor_y": 231.0
+  }
+ ],
+ "band": {
+  "f0": 427.9475982532751,
+  "f_width": 5678.807947019868,
+  "f_flat": 2995.633187772926,
+  "f_high": 2995.633187772926,
+  "well_width": 30.2,
+  "period": 231.0,
+  "f_period": 1484.8484848484848,
+  "lambda0": 801.5,
+  "unit_depth": 57.25
+ },
+ "bed": "case deep-f",
+ "params": {
+  "N": 7,
+  "pitch": 33.0,
+  "length": 231.0,
+  "dmax": 229.0,
+  "fin": 2.8,
+  "edge": 3.5,
+  "floor": 1.6,
+  "back": 2.0,
+  "cap": 1.2,
+  "chamfer": 4.0,
+  "bed": "case deep-f"
+ },
+ "upside_down_is_tile": 4,
+ "file": "deep-f.stl",
+ "volume_cm3": 1666.34,
+ "triangles": 318
+}

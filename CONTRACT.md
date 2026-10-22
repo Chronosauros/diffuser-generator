@@ -37,13 +37,13 @@ kept in a private design project; its output for the 29 stage 1 tiles is committ
 | `deepTile(params, tile)` | returns a `M.Manifold` equal to `diffuser.deep_tile` for those params (label included) |
 | `blockTile(params, tile, k, l)` | returns a `M.Manifold` equal to `diffuser.block_tile` (label included) |
 | `name(series, params, tile)` | file stem exactly like `qrd.name` (`soundblooms-diffuser-qrd-deep-175x175x102-tile1`) |
-| `derive(series, bed, depth)` | params object for a bed `{x, y, z}` in mm and a depth in mm (rule below) |
+| `derive(series, bed, depth)` | params object for a bed `{x, y, z}` in mm and a depth in mm (rule v3 below) |
 | `limits(series, bed)` | `{depthMin, depthMax, depthDefault}` for the slider |
 
 `params` always has the field names of the Python dicts: deep `N, pitch, length, dmax, fin, edge, floor, back, cap,
 chamfer, bed`; blocks `Nx, Ny, W, H, hmax, base, bed`. The caller frees Manifold objects with `.delete()`.
 
-## derive - rule v2, N is fixed
+## derive - rule v3 (deep wall thickness grows with depth), N is fixed
 
 Tiles at the full bed size are unrealistic and tend to lift off the bed, so the margin is **M = 25 mm on every bed
 axis**: every tile is at least 20 mm smaller than its stage 1 size. `PRESETS` stay the stage 1 dicts (the geometry canon
@@ -52,12 +52,19 @@ Bambu Lab A1 mini 180 x 180 x 180, Prusa MK4 / Core One 250 x 210 x 220, Bambu L
 256 x 256 x 256, Custom (x, y, z).
 
 Deep (printed standing: width W on bed X, depth T on bed Y, length along the wells on bed Z):
-`N = 7`; `pitch = floor((x - M) / 7)` whole mm; `fin 1.2, edge 0.8, floor 1.6, back 2.0, cap 1.2` fixed;
+`N = 7`; `pitch = floor((x - M) / 7)` whole mm; `floor 1.6, back 2.0, cap 1.2` fixed;
+`fin = max(1.6, ceil01(dmax / 82.5))`, `edge = max(2.0, ceil01(dmax / 66))` where `ceil01(x)` rounds up to 0.1 mm
+(`Math.ceil(x * 10 - 1e-9) / 10`, identical to the Python canon, the epsilon keeps an exact multiple from jumping up);
 `chamfer = pitch < 30 ? 3 : 4`; `length = min(y - M, z - M)`; `dmax = depth`.
+Why: a tile printed standing up to 231 mm tall swayed with 1.2 mm fins and 0.8 mm edge walls, so the walls get thicker
+with the depth and stay as stiff on a deeper tile. Rule v2 (fin 1.2, edge 0.8 fixed) was the first public version; rule
+v3 changes only these two numbers of the deep series (blocks and everything else are as in v2).
 Limits: `dmax` from 40 to `y - M - back`; default = `min(4 * pitch, max)` (the "matched" tile:
 unit depth = pitch, one tile = half the design wavelength).
 Results: A1 mini pitch 22, tile 154 x 155, max 153, default 88; MK4 pitch 32, 224 x 185, max 183, default 128;
-P1S pitch 33, 231 x 231, max 229, default 132.
+P1S pitch 33, 231 x 231, max 229, default 132. At the three default depths (and at every depth up to 132 mm)
+fin 1.6 and edge 2.0; at the maximum depth of each bed fin / edge are A1 mini (153 mm) 1.9 / 2.4, MK4 (183 mm)
+2.3 / 2.8, P1S (229 mm) 2.8 / 3.5.
 
 Blocks (printed lying on the back: W on bed X, H on bed Y, height on bed Z):
 `Nx = 13`; `W = x - M`; `H = min(y - M, W)`; `Ny = H / W >= 12/13 ? 13 : 11`; when `H / W < 10/13`, reduce `W` to
@@ -88,7 +95,7 @@ Tile sets: deep wall order = `LAYOUTS.deep.S` when `pitch < 30`, else `LAYOUTS.d
 | `wallBand(series, params, cols, rows)` | `{low, high, wallWidthMm, wallHeightMm}`: `high = band.f_width`, `wallWidthMm = cols * tile width` (deep: W; blocks: W), `low = max(band.f0, 343 / (wallWidthMm / 1000))` in Hz. Below c / wall width a wall scatters little, so the low end is tied to wall width, never to f0 alone. |
 | `features(manifold)` | `{area_cm2, volume_cm3, height_mm, footprint_cm2}` of a tile in print orientation (STL as built: Z up = print height; footprint = bbox X x Y). |
 | `ESTIMATE` | coefficients from `scripts/calibration/estimate.json` (written by `scripts/calibration/calibrate.py`): `{deep: {grams: {...}, minutes: {...}}, blocks: {...}}`, each a map feature name (`area_cm2`, `volume_cm3`, `height_mm`, `footprint_cm2`, `const`) -> number. |
-| `estimate(series, feats)` | `{grams, minutes}` = sum of coefficient x feature (+ const) per series, over the keys present in `ESTIMATE` only (a missing key counts as 0; the fit picked different features per series). Bambu P1S, 0.4 nozzle, Bambu PLA Basic, the stage 1 process profiles; shown in the UI as approximate. |
+| `estimate(series, feats)` | `{grams, minutes}` = sum of coefficient x feature (+ const) per series, over the keys present in `ESTIMATE` only (a missing key counts as 0; the fit picked different features per series). Bambu P1S, 0.4 nozzle, Bambu PLA Basic, the stage 1 process profiles; shown in the UI as approximate. The deep coefficients are fitted on the 25 rule v3 slices (default depth of each bed plus four other depths up to the maximum), because with thicker walls the mass per volume of a deep tile changed (rule v2 coefficients were 9 % low); the older thin-wall deep rows stay in `data.json` with `in_fit: false`. |
 
 ## Equality ("the same STL")
 
