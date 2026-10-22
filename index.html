@@ -479,7 +479,7 @@ function createDiffuser(M) {
 
   var C = 343.0;                 // speed of sound, m/s at 20 C
   var LABEL_DEPTH = 0.4;
-  var MARGIN = 25;               // mm kept free on every bed axis: a tile at the full bed size would lift off the bed (rule v2)
+  var MARGIN = 25;               // mm kept free on every bed axis: a tile at the full bed size would lift off the bed (rules v2, v3)
   var SEGMENTS = { 1: "bc", 2: "abged", 3: "abgcd", 4: "fgbc", 5: "afgcd", 6: "afgecd", 7: "abc", 8: "abcdefg", 9: "abcdfg" };
 
   var PRESETS = {
@@ -608,11 +608,17 @@ function createDiffuser(M) {
     return { Nx: Nx, Ny: Ny, W: W, H: H };
   }
 
+  /* round up to 0.1 mm; the epsilon keeps an exact multiple (e.g. 2.0) from jumping to 2.1 (qrd.ceil01) */
+  function ceil01(v) {
+    return Math.ceil(v * 10 - 1e-9) / 10;
+  }
+
   function derive(series, bed, depth) {
     if (series === "deep") {
       var pitch = Math.floor((bed.x - MARGIN) / 7);
       return { N: 7, pitch: pitch, length: Math.min(bed.y - MARGIN, bed.z - MARGIN), dmax: depth,
-               fin: 1.2, edge: 0.8, floor: 1.6, back: 2.0, cap: 1.2, chamfer: pitch < 30 ? 3 : 4,
+               fin: Math.max(1.6, ceil01(depth / 82.5)), edge: Math.max(2.0, ceil01(depth / 66)),
+               floor: 1.6, back: 2.0, cap: 1.2, chamfer: pitch < 30 ? 3 : 4,
                bed: bedLabel("deep", bed) };
     }
     var g = blockGeom(bed);
@@ -686,8 +692,8 @@ function createDiffuser(M) {
     return { area_cm2: area / 100, volume_cm3: m.volume() / 1000, height_mm: mx[2] - mn[2], footprint_cm2: (mx[0] - mn[0]) * (mx[1] - mn[1]) / 100 };
   }
 
-  /* calibrated on 44 Bambu P1S slices (scripts/calibration/estimate.json): grams and minutes per series, feature -> coefficient */
-  var ESTIMATE = {"deep":{"grams":{"area_cm2":0.023414710934069945,"volume_cm3":0.6986245896132087,"height_mm":0.2137639828876546},"minutes":{"volume_cm3":0.9508102021692924,"height_mm":0.9396016672184687}},"blocks":{"grams":{"area_cm2":0.09108693539262146,"volume_cm3":0.010876976616926236,"footprint_cm2":0.119568700135907},"minutes":{"area_cm2":0.14513697975114204,"footprint_cm2":0.10188506058056518,"const":35.685669738162346}}};
+  /* calibrated on 25 deep (rule v3) + 21 blocks Bambu P1S slices (scripts/calibration/estimate.json): grams and minutes per series, feature -> coefficient */
+  var ESTIMATE = {"deep":{"grams":{"volume_cm3":1.0288330802266845,"height_mm":0.20850298995506447},"minutes":{"volume_cm3":0.8920481257015352,"height_mm":1.0442876190748283}},"blocks":{"grams":{"area_cm2":0.09108693539262146,"volume_cm3":0.010876976616926236,"footprint_cm2":0.119568700135907},"minutes":{"area_cm2":0.14513697975114204,"footprint_cm2":0.10188506058056518,"const":35.685669738162346}}};
 
   function estimate(series, f) {
     var E = ESTIMATE[series], out = {};

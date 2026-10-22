@@ -1,216 +1,187 @@
 {
  "deep": {
-  "n": 23,
+  "n": 25,
   "grams": {
-   "formula": "0.0234147*area_cm2 + 0.698625*volume_cm3 + 0.213764*height_mm",
-   "heldout_mean_pct": 0.74,
-   "heldout_max_pct": 2.23,
+   "formula": "1.02883*volume_cm3 + 0.208503*height_mm",
+   "heldout_mean_pct": 2.49,
+   "heldout_max_pct": 5.55,
    "per_group": {
-    "stage1-L": {
-     "n": 7,
-     "mean": 1.06,
-     "max": 1.37
+    "v3-a1": {
+     "n": 8,
+     "mean": 4.23,
+     "max": 5.33
     },
-    "stage1-S": {
-     "n": 7,
-     "mean": 0.26,
-     "max": 0.3
+    "v3-mk4": {
+     "n": 8,
+     "mean": 2.31,
+     "max": 2.79
     },
-    "v2-a1": {
-     "n": 3,
-     "mean": 1.12,
-     "max": 2.23
-    },
-    "v2-mk4": {
-     "n": 3,
-     "mean": 0.73,
-     "max": 1.42
-    },
-    "v2-p1s": {
-     "n": 3,
-     "mean": 0.75,
-     "max": 1.43
+    "v3-p1s": {
+     "n": 9,
+     "mean": 1.11,
+     "max": 5.55
     }
    },
-   "train_mean_pct": 0.43,
-   "train_max_pct": 1.16,
-   "best_candidates": [
-    {
-     "features": [
-      "area_cm2",
-      "volume_cm3",
-      "height_mm",
-      "const"
-     ],
-     "heldout_mean": 0.74,
-     "heldout_max": 1.55
-    },
-    {
-     "features": [
-      "area_cm2",
-      "volume_cm3",
-      "height_mm"
-     ],
-     "heldout_mean": 0.74,
-     "heldout_max": 2.23
-    },
-    {
-     "features": [
-      "area_cm2",
-      "volume_cm3",
-      "height_mm",
-      "footprint_cm2",
-      "const"
-     ],
-     "heldout_mean": 0.99,
-     "heldout_max": 1.9
-    },
-    {
-     "features": [
-      "area_cm2",
-      "volume_cm3",
-      "const"
-     ],
-     "heldout_mean": 1.25,
-     "heldout_max": 3.33
-    },
-    {
-     "features": [
-      "volume_cm3",
-      "height_mm"
-     ],
-     "heldout_mean": 1.56,
-     "heldout_max": 3.79
-    },
-    {
-     "features": [
-      "volume_cm3",
-      "height_mm",
-      "const"
-     ],
-     "heldout_mean": 1.69,
-     "heldout_max": 4.21
-    },
-    {
-     "features": [
-      "volume_cm3",
-      "height_mm",
-      "footprint_cm2"
-     ],
-     "heldout_mean": 1.81,
-     "heldout_max": 4.0
-    },
-    {
-     "features": [
-      "area_cm2",
-      "height_mm",
-      "footprint_cm2",
-      "const"
-     ],
-     "heldout_mean": 1.84,
-     "heldout_max": 4.52
-    }
-   ]
-  },
-  "minutes": {
-   "formula": "0.95081*volume_cm3 + 0.939602*height_mm",
-   "heldout_mean_pct": 1.58,
-   "heldout_max_pct": 4.03,
-   "per_group": {
-    "stage1-L": {
-     "n": 7,
-     "mean": 1.07,
-     "max": 2.65
-    },
-    "stage1-S": {
-     "n": 7,
-     "mean": 2.03,
-     "max": 3.18
-    },
-    "v2-a1": {
-     "n": 3,
-     "mean": 0.65,
-     "max": 0.78
-    },
-    "v2-mk4": {
-     "n": 3,
-     "mean": 2.5,
-     "max": 4.03
-    },
-    "v2-p1s": {
-     "n": 3,
-     "mean": 1.72,
-     "max": 3.21
-    }
-   },
-   "train_mean_pct": 1.21,
-   "train_max_pct": 3.73,
+   "train_mean_pct": 1.26,
+   "train_max_pct": 5.08,
    "best_candidates": [
     {
      "features": [
       "volume_cm3",
       "height_mm"
      ],
-     "heldout_mean": 1.58,
-     "heldout_max": 4.03
-    },
-    {
-     "features": [
-      "volume_cm3",
-      "height_mm",
-      "const"
-     ],
-     "heldout_mean": 1.85,
-     "heldout_max": 3.6
-    },
-    {
-     "features": [
-      "volume_cm3",
-      "const"
-     ],
-     "heldout_mean": 2.42,
-     "heldout_max": 9.85
-    },
-    {
-     "features": [
-      "height_mm",
-      "footprint_cm2",
-      "const"
-     ],
-     "heldout_mean": 2.8,
-     "heldout_max": 6.46
-    },
-    {
-     "features": [
-      "height_mm",
-      "footprint_cm2"
-     ],
-     "heldout_mean": 4.11,
-     "heldout_max": 14.75
-    },
-    {
-     "features": [
-      "area_cm2",
-      "height_mm",
-      "const"
-     ],
-     "heldout_mean": 4.67,
-     "heldout_max": 8.56
+     "heldout_mean": 2.49,
+     "heldout_max": 5.55
     },
     {
      "features": [
       "area_cm2"
      ],
-     "heldout_mean": 4.76,
-     "heldout_max": 17.86
+     "heldout_mean": 2.87,
+     "heldout_max": 30.65
+    },
+    {
+     "features": [
+      "volume_cm3",
+      "const"
+     ],
+     "heldout_mean": 3.07,
+     "heldout_max": 5.15
+    },
+    {
+     "features": [
+      "volume_cm3"
+     ],
+     "heldout_mean": 3.29,
+     "heldout_max": 5.26
+    },
+    {
+     "features": [
+      "area_cm2",
+      "volume_cm3"
+     ],
+     "heldout_mean": 3.74,
+     "heldout_max": 16.72
     },
     {
      "features": [
       "area_cm2",
       "const"
      ],
-     "heldout_mean": 4.95,
-     "heldout_max": 12.73
+     "heldout_mean": 4.82,
+     "heldout_max": 28.34
+    },
+    {
+     "features": [
+      "area_cm2",
+      "footprint_cm2"
+     ],
+     "heldout_mean": 5.43,
+     "heldout_max": 30.57
+    },
+    {
+     "features": [
+      "footprint_cm2"
+     ],
+     "heldout_mean": 12.27,
+     "heldout_max": 30.48
+    }
+   ]
+  },
+  "minutes": {
+   "formula": "0.892048*volume_cm3 + 1.04429*height_mm",
+   "heldout_mean_pct": 0.96,
+   "heldout_max_pct": 4.29,
+   "per_group": {
+    "v3-a1": {
+     "n": 8,
+     "mean": 1.08,
+     "max": 4.29
+    },
+    "v3-mk4": {
+     "n": 8,
+     "mean": 0.5,
+     "max": 1.57
+    },
+    "v3-p1s": {
+     "n": 9,
+     "mean": 1.27,
+     "max": 3.29
+    }
+   },
+   "train_mean_pct": 0.75,
+   "train_max_pct": 4.03,
+   "best_candidates": [
+    {
+     "features": [
+      "area_cm2",
+      "volume_cm3",
+      "height_mm"
+     ],
+     "heldout_mean": 0.95,
+     "heldout_max": 4.9
+    },
+    {
+     "features": [
+      "volume_cm3",
+      "height_mm"
+     ],
+     "heldout_mean": 0.96,
+     "heldout_max": 4.29
+    },
+    {
+     "features": [
+      "volume_cm3",
+      "height_mm",
+      "footprint_cm2",
+      "const"
+     ],
+     "heldout_mean": 1.54,
+     "heldout_max": 12.17
+    },
+    {
+     "features": [
+      "volume_cm3",
+      "height_mm",
+      "const"
+     ],
+     "heldout_mean": 1.75,
+     "heldout_max": 6.99
+    },
+    {
+     "features": [
+      "area_cm2",
+      "volume_cm3",
+      "height_mm",
+      "const"
+     ],
+     "heldout_mean": 2.35,
+     "heldout_max": 14.69
+    },
+    {
+     "features": [
+      "area_cm2",
+      "const"
+     ],
+     "heldout_mean": 2.64,
+     "heldout_max": 18.45
+    },
+    {
+     "features": [
+      "area_cm2",
+      "height_mm",
+      "const"
+     ],
+     "heldout_mean": 2.69,
+     "heldout_max": 18.56
+    },
+    {
+     "features": [
+      "area_cm2",
+      "height_mm"
+     ],
+     "heldout_mean": 2.86,
+     "heldout_max": 18.81
     }
    ]
   }
@@ -441,8 +412,8 @@
   "deep": {
    "features": {
     "p1s": {
-     "area_cm2": 7063.263938028016,
-     "volume_cm3": 604.7611738788873,
+     "area_cm2": 7048.166647126317,
+     "volume_cm3": 744.0580995365192,
      "height_mm": 231.0,
      "footprint_cm2": 309.54,
      "dims": [
@@ -452,8 +423,8 @@
      ]
     },
     "p1s_x1.5": {
-     "area_cm2": 17073.724852112406,
-     "volume_cm3": 1599.0383751195557,
+     "area_cm2": 17016.218381616465,
+     "volume_cm3": 2468.142526687361,
      "height_mm": 359.0,
      "footprint_cm2": 735.42,
      "dims": [
@@ -465,12 +436,12 @@
    },
    "estimate": {
     "p1s": {
-     "grams": 637.2647903221548,
-     "minutes": 792.0610791273897
+     "grams": 813.6757770933899,
+     "minutes": 904.9660731108836
     },
     "p1s_x1.5": {
-     "grams": 1593.6451304303978,
-     "minutes": 1857.6989992553117
+     "grams": 2614.1592515640978,
+     "minutes": 2576.6011701435755
     }
    },
    "ok": true

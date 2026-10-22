@@ -8,7 +8,8 @@ clean checkout. `npm test` does not use it; the test only reads data.json and es
     python scripts/calibration/calibrate.py <project-folder> --reslice   rebuild every row: stage 1 slices + new slices, then fit
     (or set DIFFUSER_PROJECT=<project-folder>; DIFFUSER_CALIB=<folder> sets where slices and fit-report.json are written)
 
-<project-folder> holds design/ (qrd.py, diffuser.py, out/), tools/slice.py and archive/stage1-full-bed/print/.
+<project-folder> holds design/ (qrd.py, diffuser.py, out/, out-v3/), print/ (slices of the v3 set), tools/slice.py and
+archive/stage1-full-bed/print/.
 
 Data (data.json, one row per tile): params, features (CONTRACT.md: area_cm2, volume_cm3, height_mm, footprint_cm2 of the
 tile in print orientation), sliced minutes and grams. Rows:
@@ -16,10 +17,16 @@ tile in print orientation), sliced minutes and grams. Rows:
   - NEW tiles at the derive-rule v2 sizes (beds A1 mini 180x180x180, MK4 250x210x220, P1S 256x256x256; default depth
     plus other depths): STL from the Python canon (params from the rule v2 derive, the same way as scripts/reference.py),
     sliced one at a time with the same presets as the slicer wrapper (P1S 0.4, Textured PEI, Bambu PLA Basic,
-    "Diffuser deep 0.28" / "Diffuser blocks 0.20", no supports, chamber fan 0).
+    "Diffuser deep 0.28" / "Diffuser blocks 0.20", no supports, chamber fan 0);
+  - rule v3 deep tiles (walls grow with the depth, CONTRACT.md): the 21 slices of the v3 set (design/out-v3 + print/
+    of the project, read only) and 4 new slices at other depths (see PLAN_V3). A data.json from before v3 gets these
+    rows added on the next run; nothing else is sliced again.
+
+Deep rows of rule v1 / v2 (stage 1, v2 slices) carry "in_fit": false: kept as a record, not fitted (the generator
+makes rule v3 tiles only). The deep fit uses the 25 v3 rows, held-out groups = the three beds.
 
 Fit per series: weighted least squares (weights 1/y, i.e. relative error), non-negative feature coefficients, feature
-subset chosen by the error on HELD-OUT groups (leave one group out: stage 1 S, stage 1 L, v2 A1 mini, v2 MK4, v2 P1S):
+subset chosen by the error on HELD-OUT groups (leave one group out: stage 1 S, stage 1 L, v2 A1 mini, v2 MK4, v2 P1S, v3 A1 mini, v3 MK4, v3 P1S):
 the simplest subset within 0.15 percentage points of the best held-out mean error. Writes estimate.json (ESTIMATE shape of
 CONTRACT.md) and the fit report to the calibration output folder.
 """
@@ -28,6 +35,7 @@ from __future__ import annotations
 import importlib.util
 import itertools
 import json
+import math
 import os
 import re
 import subprocess
@@ -79,7 +87,12 @@ ALL = FEATS + ("const",)
 
 
 # ---------------------------------------------------------------- derive rule v2 (CONTRACT.md)
-def derive(series: str, bed: tuple, depth=None) -> dict:
+def ceil01(v: float) -> float:
+    return math.ceil(v * 10 - 1e-9) / 10             # round up to 0.1 mm (CONTRACT.md)
+
+
+def derive(series: str, bed: tuple, depth=None, rule: int = 3) -> dict:
+    """Rule v2 (deep fin 1.2 / edge 0.8) for the v2 rows, rule v3 (fin / edge grow with the depth) by default."""
     x, y, z = bed
     label = f"custom {x} x {y} x {z}"
     if series == "deep":
@@ -88,7 +101,8 @@ def derive(series: str, bed: tuple, depth=None) -> dict:
         back = 2.0
         hi = y - M - back
         d = min(4 * pitch, hi) if depth is None else depth
-        return dict(N=7, pitch=pitch, length=float(length), dmax=float(d), fin=1.2, edge=0.8, floor=1.6, back=back,
+        fin, edge = (1.2, 0.8) if rule == 2 else (max(1.6, ceil01(d / 82.5)), max(2.0, ceil01(d / 66)))
+        return dict(N=7, pitch=pitch, length=float(length), dmax=float(d), fin=fin, edge=edge, floor=1.6, back=back,
                     cap=1.2, chamfer=3.0 if pitch < 30 else 4.0, bed=label)
     W = x - M
     H = min(y - M, W)
@@ -193,7 +207,7 @@ def new_rows(reslice_log: list) -> list[dict]:
     try:
         for series, bed, depth, tile in PLAN:
             label, x, y, z = BEDS[bed]
-            params = derive(series, (x, y, z), depth)
+            params = derive(series, (x, y, z), depth, rule=2)
             d = params["dmax" if series == "deep" else "hmax"]
             solid, info, stem = build(series, params, tile, f"{series}_{bed}_{d:g}")
             saved = diffuser.save(solid, info, stem)
@@ -211,6 +225,53 @@ def new_rows(reslice_log: list) -> list[dict]:
     finally:
         new = bambu_pids() - before                  # only processes this run started; the owner's windows stay
         for pid in new:
+            subprocess.run(["taskkill", "/PID", pid, "/F", "/T"], capture_output=True)
+    return rows
+
+
+# ---------------------------------------------------------------- rule v3 rows (deep walls grow with the depth)
+# 21 existing slices of the v3 set (design/out-v3 STL + print/*.slice.json of the project, read only: nothing is sliced
+# for them) and 4 NEW deep slices at other depths (the maximum depth of the P1S, a shallow P1S tile, the maximum depth of
+# the A1 mini and a shallow MK4 tile), because the v3 set only has the default depth of each bed and the wall thickness
+# changes with the depth.
+BED_OF_SIZE = {"A1mini": "a1", "MK4": "mk4", "P1S": "p1s"}
+PLAN_V3 = [("p1s", 229, 5), ("p1s", 60, 4), ("a1", 153, 6), ("mk4", 90, 2)]
+
+
+def v3_existing_rows() -> list[dict]:
+    rows = []
+    for sl_path in sorted((DIFF / "print").glob("soundblooms-diffuser-qrd-deep-*.slice.json")):
+        sl = json.loads(sl_path.read_text(encoding="utf-8"))
+        stl = DESIGN / "out-v3" / (sl["stem"] + ".stl")
+        info = json.loads(stl.with_suffix(".json").read_text(encoding="utf-8"))
+        rows.append(dict(id=sl["stem"], source="v3", group=f"v3-{BED_OF_SIZE[sl['size']]}", series="deep", tile=sl["tile"],
+                         depth=info["params"]["dmax"], params=info["params"], features=features_of_mesh(trimesh.load(stl, process=False)),
+                         minutes=round(sl["seconds"] / 60, 3), grams=sl["grams"], slice_seconds=sl.get("slice_seconds")))
+    return rows
+
+
+def v3_new_rows(reslice_log: list) -> list[dict]:
+    sp = load_slicer()
+    CALIB.mkdir(parents=True, exist_ok=True)
+    before = bambu_pids()
+    rows = []
+    try:
+        for bed, depth, tile in PLAN_V3:
+            label, x, y, z = BEDS[bed]
+            params = derive("deep", (x, y, z), float(depth), rule=3)
+            solid, info, stem = build("deep", params, tile, f"deep_{bed}_{depth:g}")
+            saved = diffuser.save(solid, info, stem)
+            stl = diffuser.OUT / saved["file"]
+            feats = features_of_mesh(trimesh.load(stl, process=False))
+            rec = slice_new(sp, stl, "deep", stem)
+            print(f"{stem}: {rec['hm']} {rec['grams']} g (fin {params['fin']}, edge {params['edge']}, slice {rec['wall_seconds']} s)", flush=True)
+            reslice_log.append(rec["wall_seconds"])
+            rows.append(dict(id=stem, source="v3-new", group=f"v3-{bed}", series="deep", tile=tile, depth=float(depth), params=params,
+                             features=feats, minutes=round(rec["seconds"] / 60, 3), grams=rec["grams"],
+                             slice_seconds=rec["slice_seconds"], chamber_fan=rec["fan"], warnings=rec.get("warnings", [])))
+            solid.delete() if hasattr(solid, "delete") else None
+    finally:
+        for pid in bambu_pids() - before:
             subprocess.run(["taskkill", "/PID", pid, "/F", "/T"], capture_output=True)
     return rows
 
@@ -265,10 +326,19 @@ def choose(rows, target, gain=0.15):
     return pick, results
 
 
+def mark_legacy(rows):
+    """Deep tiles of rule v1 / v2 (fin 1.2, edge 0.8: stage 1 and the v2 slices) stay in data.json as a record but are not
+    fitted: the generator makes rule v3 tiles only, and thin walls print with a different mass per volume."""
+    for r in rows:
+        if r["series"] == "deep" and not r["source"].startswith("v3"):
+            r["in_fit"] = False
+    return rows
+
+
 def fit(rows):
     out, report = {}, {}
     for series in ("deep", "blocks"):
-        rs = [r for r in rows if r["series"] == series]
+        rs = [r for r in rows if r["series"] == series and r.get("in_fit", True)]
         out[series], report[series] = {}, dict(n=len(rs))
         for target in ("grams", "minutes"):
             (mean, mx, names, coef, per), allm = choose(rs, target)
@@ -310,11 +380,18 @@ def main(argv):
     if DATA.exists() and not reslice:
         rows = json.loads(DATA.read_text(encoding="utf-8"))
         print(f"{DATA.name} exists: {len(rows)} rows, no slicing (--reslice rebuilds it)")
+        if not any(r["source"].startswith("v3") for r in rows):          # data.json from before rule v3: add the v3 rows
+            t0 = time.time()
+            rows = rows + v3_existing_rows() + v3_new_rows(log)
+            DATA.write_text(json.dumps(rows, indent=1, ensure_ascii=False), encoding="utf-8")
+            print(f"added the v3 rows ({len(log)} sliced in {time.time() - t0:.0f} s wall), wrote {DATA}")
     else:
         t0 = time.time()
-        rows = stage1_rows() + new_rows(log)
+        rows = stage1_rows() + new_rows(log) + v3_existing_rows() + v3_new_rows(log)
         DATA.write_text(json.dumps(rows, indent=1, ensure_ascii=False), encoding="utf-8")
         print(f"sliced {len(log)} new tiles in {time.time() - t0:.0f} s wall, wrote {DATA}")
+    mark_legacy(rows)
+    DATA.write_text(json.dumps(rows, indent=1, ensure_ascii=False), encoding="utf-8")
     est, report = fit(rows)
     ESTIMATE.write_text(json.dumps(est, indent=1), encoding="utf-8")
     report["sanity_1_5x"] = sanity(est, rows)
