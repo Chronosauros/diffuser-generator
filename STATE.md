@@ -1,7 +1,8 @@
 # Current state
 
-The generator is accepted and ready to publish as a static GitHub Pages site (main branch, repository root).
-`npm test` passes 161 of 161 equality and contract tests.
+Live at https://chronosauros.github.io/diffuser-generator/ (GitHub Pages, main branch, repository root). Open source
+since 24.10.2026: GPL-3.0, the Python reference in `reference/`, the maths in `docs/how-it-works.md`, Discussions on.
+`npm test` passes 170 of 170.
 
-Next result: publish the repository and check the page at https://chronosauros.github.io/diffuser-generator/ in a real
-browser (3D preview, wall choice, STL and ZIP download), which `npm test` does not cover.
+Next result: answer the review from r/acoustics (issues and discussions) and move any fixes into `reference/` and the
+core of `index.html` together.

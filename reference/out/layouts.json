@@ -1,0 +1,242 @@
+{
+  "model": "Model (T. J. Cox, P. D'Antonio, \"Acoustic Absorbers and Diffusers\", 3rd ed., chapter on prediction models):\nFourier / Fraunhofer far field of a plane surface with a position-dependent reflection factor R(x).\n    Deep tiles (wells with fins, 1D): R = exp(-2 i k d) per well (plane wave down the well and back), fins R = 1.\n        p(theta) = sum_e w_e sinc(k w_e s / 2) exp(i k x_e s) R_e,   s = sin(theta) + sin(psi)\n    Block tiles (2D, no fins): each square is a flat facet at height h, Kirchhoff phase exp(i k h (cos theta + cos psi)),\n        p = sum_c px py sinc(k px u / 2) sinc(k py v / 2) exp(i k (x_c u + y_c v)) exp(i k h_c (cos theta + cos psi))\nDiffusion coefficient (AES-4id-2001 / ISO 17497-2): d = [(sum E)^2 - sum E^2] / [(n - 1) sum E^2] over receivers with\nequal weight (1D: semicircle every 5 degrees, 37 receivers; 2D: 400 equal-area points on the hemisphere), E averaged\nover the frequencies of a third-octave band. Normalised against a flat plate of the same size:\nd_n = (d - d_flat) / (1 - d_flat), per incidence, then averaged over incidences 0, +-30, +-60 degrees.\nIt is a prediction model for comparing layouts with each other, not a measurement: no number from it goes into a\npublic text.",
+  "deep": {
+    "S": {
+      "order": [
+        6,
+        3,
+        5,
+        4,
+        2,
+        7,
+        1
+      ],
+      "walls": {
+        "4": [
+          6,
+          3,
+          5,
+          4
+        ],
+        "7": [
+          6,
+          3,
+          5,
+          4,
+          2,
+          7,
+          1
+        ]
+      },
+      "room_left_to_right": {
+        "4": [
+          4,
+          5,
+          3,
+          6
+        ],
+        "7": [
+          1,
+          7,
+          2,
+          4,
+          5,
+          3,
+          6
+        ]
+      }
+    },
+    "L": {
+      "order": [
+        6,
+        3,
+        4,
+        2,
+        5,
+        7,
+        1
+      ],
+      "walls": {
+        "3": [
+          6,
+          3,
+          4
+        ],
+        "5": [
+          6,
+          3,
+          4,
+          2,
+          5
+        ],
+        "7": [
+          6,
+          3,
+          4,
+          2,
+          5,
+          7,
+          1
+        ]
+      },
+      "room_left_to_right": {
+        "3": [
+          4,
+          3,
+          6
+        ],
+        "5": [
+          5,
+          2,
+          4,
+          3,
+          6
+        ],
+        "7": [
+          1,
+          7,
+          5,
+          2,
+          4,
+          3,
+          6
+        ]
+      }
+    }
+  },
+  "blocks": {
+    "S": {
+      "shifts": [
+        [
+          12,
+          12
+        ],
+        [
+          3,
+          9
+        ],
+        [
+          5,
+          5
+        ],
+        [
+          11,
+          1
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          7,
+          0
+        ],
+        [
+          10,
+          10
+        ],
+        [
+          5,
+          11
+        ],
+        [
+          6,
+          8
+        ]
+      ],
+      "grids": {
+        "2x2": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "2x3": [
+          [
+            1,
+            2,
+            5
+          ],
+          [
+            3,
+            4,
+            6
+          ]
+        ],
+        "3x3": [
+          [
+            1,
+            2,
+            5
+          ],
+          [
+            3,
+            4,
+            6
+          ],
+          [
+            7,
+            8,
+            9
+          ]
+        ]
+      }
+    },
+    "L": {
+      "shifts": [
+        [
+          11,
+          8
+        ],
+        [
+          9,
+          3
+        ],
+        [
+          3,
+          7
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "grids": {
+        "2x2": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "2x3": [
+          [
+            1,
+            2,
+            5
+          ],
+          [
+            3,
+            4,
+            6
+          ]
+        ]
+      }
+    }
+  }
+}
