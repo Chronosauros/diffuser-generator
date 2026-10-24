@@ -188,8 +188,10 @@ These are the parts I am least sure about:
 5. Can 1.6 mm PLA fins, about 20 to 31 mm wide wells and closed air chambers under 1.6 mm floors add absorption or
    resonances that the model does not see?
 6. Is the Fourier model good enough to choose the orders, or should that be done with BEM? (Partly answered: in the
-   2D BEM check the chosen orders beat copies of one tile in every range from f0 up; whether they are the best of the
-   5040 orders was not checked.)
+   2D BEM check the chosen orders beat copies of one tile in every range from f0 up. Ranking all 210 orders of a
+   3-tile P1S / X1 wall, the Fourier model's best order is 22nd of 108 mirror pairs in BEM, and the two rankings
+   correlate at 0.68: good for ruling out bad orders, not for picking the best. The 5- and 7-tile walls were not
+   ranked.)
 
 ## References
 

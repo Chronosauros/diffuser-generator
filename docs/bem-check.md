@@ -26,6 +26,9 @@ figure are in [`checks/bem/`](../checks/bem/), so anyone can rerun it or point o
   7 tiles between f0 and 2 f0, overestimates d_n of 3-5 tiles there (P1S, 3 tiles: 0.78 against 0.48), overestimates
   by 0.1-0.2 between 2 f0 and 7 f0 (by 0.22-0.36 at normal incidence) and underestimates above 7 f0 at oblique
   incidence.
+- Ranking all 210 orders of a 3-tile P1S / X1 wall: the published order `6 3 4` is first in the Fourier model and 22nd
+  of 108 mirror pairs in BEM (d_n 0.41, the BEM best `5 6 2` reaches 0.45). The two rankings correlate moderately
+  (Spearman 0.68). The Fourier model is good at ruling out bad orders, not at picking the best one.
 
 What changed in the generator because of this: the lower end of a deep wall's band. A deep wall narrower than 3.5
 design wavelengths (fewer than 7 tiles at the default depth) now starts at √2 · f0 instead of f0, never below
@@ -204,7 +207,8 @@ It agrees on:
 - The ranking. The order picked by the optimiser beats copies of one tile in BEM between f0 and 2 f0, between 2 f0 and
   7 f0 and above 7 f0, for every wall and both printers (for example P1S, 7 tiles, f0 - 2 f0: 0.45 against 0.13); in
   the 7 f0 band both are a flat panel. So the Fourier model picked an order that is also better than copies in the
-  physical model. Whether it is the best of the 5040 orders is not checked here.
+  physical model. For the 3-tile P1S wall it is in the top fifth of all orders in BEM, but not the best (next
+  section).
 - The 7 f0 band: d_n 0.01-0.06 for every wall in both models. This is the flat-plate frequency, and the band ends there.
 - Below c / wall width, and between c / wall width and f0 for walls of 5-7 tiles: almost zero in both.
 - 7-tile walls between f0 and 2 f0: nearly the same means (P1S 0.45 / 0.44, A1 mini 0.47 / 0.48), band by band within
@@ -243,10 +247,49 @@ Not from c / wall width, but from about f0, and only for wider walls.
 That is where the generator's √2 · f0 start for deep walls narrower than 3.5 design wavelengths comes from: √2 · f0 is
 1050 Hz on the P1S / X1 and 1575 Hz on the A1 mini, next to the 1000 Hz and 1600 Hz bands found here.
 
+## Is the published order the best one? Every order of a 3-tile P1S / X1 wall
+
+[`checks/bem/order_ranking.py`](../checks/bem/order_ranking.py) scores all 7 · 6 · 5 = 210 orders of three P1S / X1
+tiles with the optimiser's own score: mean d_n over the incidences 0, ±30 and ±60° and the third-octave bands from f0
+to below 7 f0 (800 Hz - 4 kHz), 3 frequencies per band, against the flat box of the same width. A tile turned upside
+down is tile 9 - t (tile 1 stays), so the order a b c in a mirror is m(c) m(b) m(a), the same wall mirrored, with the
+same score; BEM ran one order of every mirror pair (108 pairs) plus both sides of three pairs, which agree to five
+decimals. The Fourier model ran all 210. About 8 minutes in 8 processes. Summary: `checks/bem/out/ranking-P1S-3.json`,
+band energies of every BEM run: `checks/bem/out/ranking-P1S-3-bem.jsonl`.
+
+| | BEM | Fourier |
+|---|---|---|
+| Score of all orders (min / median / max) | 0.26 / 0.39 / 0.45 | 0.42 / 0.54 / 0.66 |
+| Published order `6 3 4` (mirror `5 6 3`) | 0.41, rank 22 of 108 | 0.66, rank 1 |
+| Best order | `5 6 2` (mirror `7 3 4`), 0.45 | `6 3 4`, 0.66 |
+| BEM best in the Fourier ranking | rank 6 (0.61) | |
+| Between f0 and 2 f0 only (800-1250 Hz): published order | 0.43, rank 28 | 0.77, rank 1 (next best 0.66) |
+| Between f0 and 2 f0 only: best order | `2 1 4` (mirror `5 1 7`), 0.54 | `6 3 4`, 0.77 |
+
+- The rankings agree moderately: Spearman rank correlation 0.68 (Kendall 0.49) over the whole score, 0.52 between f0
+  and 2 f0. Only 2 of the BEM top 10 are in the Fourier top 10. Both models put the same orders at the bottom
+  (`1 2 3`, `3 4 5` and `2 1 7` are the last three in BEM and between 101st and 107th in the Fourier model).
+- The published order is a good one: in the top fifth in BEM, 0.15 above the worst order and 0.04 below the best.
+  It is not the best, and the reason is visible in the right half of the figure: between f0 and 2 f0 the Fourier model
+  rates it far above every other order (0.77, the next one 0.66), while BEM puts it 28th. The optimiser picked the order
+  where the Fourier model is most wrong in the range where it is least reliable.
+- The difference to the BEM best (0.04 in d_n) is ten times the mesh error of the solver (0.004) but small against what
+  a rigid 2D model leaves out (losses, the finite tile length).
+- What it means for the generator: the Fourier model is fine for ruling out bad orders and a poor judge among the good
+  ones. A better order would come from BEM, for example on a Fourier shortlist. The 5- and 7-tile walls were not ranked
+  (2520 and 5040 orders at about 1.5 and 2.5 minutes each in one process, so about 4 and 14 hours in 8 processes even
+  with mirror pairs merged), and changing the order would renumber every published wall plan, so nothing in the
+  generator changes because of this.
+
+![All orders of a 3-tile P1S wall, BEM against Fourier](../checks/bem/out/fig-P1S-3-ranking.png)
+
+Each dot is one order and its mirror image; orange the published order, the black ring the best order in BEM for the
+score of that panel.
+
 ## Still open
 
-- Is the published order the best one, or only better than copies? A BEM search over orders was not run (a 3-tile P1S
-  wall takes about a minute per order in BEM).
+- The best order of the 5- and 7-tile walls in BEM (a shortlist from the Fourier model, then BEM), and whether the
+  difference is worth renumbering the walls.
 - Block tiles were not simulated (they need 3D BEM).
 - A measurement is still the only proof. What to look for: the specular reflection of a wall in the published order
   dropping from about f0, no such drop for copies at normal incidence, the specular reflection coming back at 7 f0
@@ -262,6 +305,7 @@ python checks/bem/validate.py     # solver checks, about 5 minutes -> checks/bem
 python checks/bem/sweep.py        # the BEM runs, about 11 minutes with 8 processes -> checks/bem/out/raw/*.npz
 python checks/bem/analysis.py     # diffusion coefficients and figures -> checks/bem/out/results.json, fig-*.png
 python checks/bem/tables.py       # the tables of this page
+python checks/bem/order_ranking.py   # all orders of a 3-tile P1S wall, about 8 minutes -> checks/bem/out/ranking-P1S-3.*
 ```
 
 `sweep.py` skips configurations that already have a raw file, so delete `checks/bem/out/raw/` to run everything again.
