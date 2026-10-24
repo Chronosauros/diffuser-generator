@@ -1,37 +1,66 @@
-# Soundblooms Diffuser Generator
+# Diffuser Generator
 
-Browser generator of the Soundblooms acoustic diffuser tiles (deep 1D QRD and block 2D QRD). Use it online at
-https://chronosauros.github.io/diffuser-generator/
+A free browser tool that makes printable acoustic diffuser tiles (quadratic residue diffusers) sized to your 3D
+printer. Pick a series, a wall and your printer bed, check each tile in 3D and download print-ready STL files.
 
-One HTML file, `index.html`, opens from disk or any static host. Pick a series, how many tiles (the wall; a column
-chart with faces compares how much sense each wall option makes), a printer bed (tiles stay 25 mm inside the bed on
-every axis) and a depth. The page shows each tile of the wall in 3D, a summary of the chosen wall (size, how much
-sense it makes, approximate print time and filament weight, calibrated on Bambu P1S slices), the calculated frequency
-band, what you are about to print (the whole wall and the tile on screen, each with its time and filament) and the
-wall plan, and downloads print-ready binary STL files (the chosen wall as a ZIP with one STL per tile number, the wall
-plan SVG and a README.txt with the quantity of each tile, or the tile on screen alone).
+Use it online: https://chronosauros.github.io/diffuser-generator/
 
-The geometry core is the `<script id="diffuser-core">` section: a 1:1 port of the Python reference implementation of
-the tile geometry, plus the bed/depth rules in `CONTRACT.md`. It has no DOM and runs in `node:vm` as well as in the
-browser. The page loads manifold-3d 3.5.3 and three.js 0.160.0 from the jsDelivr CDN, so it needs a connection the
-first time.
+The generator was built with AI assistance and the tiles have not been measured. The maths follows Cox and D'Antonio,
+but I would like people who know acoustics to check it. If you see a mistake or a better way, open an issue or start a
+discussion.
+
+## What it does
+
+- Two series: deep tiles (1D QRD, N = 7, wells with fins) and block tiles (2D QRD, 13 x 13 or 13 x 11, shallow).
+- Sizes every tile from the printer bed, with 25 mm to spare on every axis. Presets for the Bambu Lab A1 mini, Prusa
+  MK4 / Core One and Bambu Lab P1S / X1, or any custom bed.
+- Numbered tiles in a set order, so a wall grows without moving the tiles that are already up.
+- Shows the calculated design band, a rough print time and filament estimate, and the wall plan.
+- Downloads the whole wall as a ZIP (one STL per tile number, the wall plan as SVG and a README with quantities) or a
+  single tile.
+
+One HTML file, `index.html`, that opens from disk or any static host. It loads manifold-3d 3.5.3 and three.js 0.160.0
+from the jsDelivr CDN, so it needs a connection the first time.
+
+## How it works
+
+The maths, the sizing rules, the wall orders and the open questions are written up in
+[docs/how-it-works.md](docs/how-it-works.md). In short:
+
+- deep tiles: well depths d_n = s_n · λ0 / (2N) with s_n = n² mod 7, design frequency f0 = c · s_max / (2N · d_max),
+  upper limit c / (2w); one tile is one period and the seven tiles are the seven cyclic shifts of the sequence;
+- block tiles: phase frac(s_n / Nx + s_m / Ny) turned into block heights;
+- wall orders: picked with the Fourier far-field model and the AES-4id diffusion coefficient, used only to compare
+  layouts with each other.
+
+## Repository layout
+
+- `index.html` - the whole app. Its geometry core, `<script id="diffuser-core">`, has no DOM and also runs in Node.
+- `reference/` - the Python reference implementation: formulas, tile geometry, the far-field model and the layout
+  optimiser. The generator is a port of it.
+- `scripts/` - the equality tests, the fixtures made by the Python code, and the data behind the print estimate.
+- `docs/how-it-works.md` - the maths and the design rules.
+- `CONTRACT.md` - what the JavaScript core must match.
 
 ## Development
 
-With Node.js 18 or newer, `npm install` and `npm test` run the equality tests (`scripts/`): the JS core against the
-Python reference STL files for all 29 reference tiles (`scripts/fixtures/stage1/`) and for random parameter sets
-(`scripts/fixtures/`). They do not cover real browser rendering.
+With Node.js 18 or newer, `npm install` and `npm test` run the equality tests: the JavaScript tiles against the Python
+reference STL files for all 29 reference tiles and for random parameter sets (heights within 0.01 mm, bounding box
+within 0.01 mm, volume within 0.1 %, one closed shell). They do not cover real browser rendering.
 
-The Python reference implementation itself is not part of this repository. `scripts/reference.py` regenerates the
-fixtures from it and takes the folder that holds it as an argument (`python scripts/reference.py <design-folder>`, or
-the `DIFFUSER_DESIGN` environment variable); it is not needed for `npm test`. `scripts/calibration/` holds the data and
-the fit behind the print time and filament estimate; `calibrate.py` there documents how it was made and needs the same
-private project.
+To change the geometry, change `reference/` and the core in `index.html` together, regenerate the fixtures with
+`python scripts/reference.py` and run `npm test`. Python setup: [reference/README.md](reference/README.md). The print
+time and filament fit in `scripts/calibration/` was made from Bambu Studio slices; `calibrate.py` documents how, but
+needs the slicer setup it was made with.
+
+Contributions: [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Licence
 
-The generator and the diffuser tiles it makes are licensed under Creative Commons Attribution-NonCommercial-ShareAlike
-4.0 International (CC BY-NC-SA 4.0): https://creativecommons.org/licenses/by-nc-sa/4.0/
+The generator and the Python reference are licensed under the GNU General Public License v3.0 ([LICENSE](LICENSE)).
+You may use, change and share them, also commercially, as long as anything you distribute that is based on them stays
+under GPL-3.0 with its source. The ready-made tile files published on Printables have their own licence, CC BY-NC-SA
+4.0, stated on the model page. The embedded Geom font is under the SIL Open Font License 1.1.
 
 ## Credits
 

@@ -1,11 +1,11 @@
 """Reference side of the equality test: runs the Python canon of the tile geometry on the fixture cases.
 
-    python scripts/reference.py <design-folder>
+    python scripts/reference.py [<design-folder>]
     DIFFUSER_DESIGN=<design-folder> python scripts/reference.py
 
-The Python canon (qrd.py, diffuser.py and out/layouts.json) lives in a private design project and is not part of this
-repository. This script only regenerates scripts/fixtures/ (binary STL, JSON sidecars and expected.json) from it; it is
-not needed for `npm test`, which uses the committed fixtures. <design-folder> is the folder that holds qrd.py and
+The Python canon (qrd.py, diffuser.py and out/layouts.json) is in reference/ in this repository, which is the default
+<design-folder>. This script only regenerates scripts/fixtures/ (binary STL, JSON sidecars and expected.json) from it;
+it is not needed for `npm test`, which uses the committed fixtures. <design-folder> is the folder that holds qrd.py and
 diffuser.py, with out/layouts.json inside. It is imported, never edited, and nothing is written there.
 
 Reads scripts/fixtures/cases.json, injects each params dict into qrd.DEEP / qrd.BLOCKS under a temporary key, runs
@@ -26,12 +26,12 @@ sys.dont_write_bytecode = True                       # keep the design folder fr
 HERE = Path(__file__).resolve().parent
 FIX = HERE / "fixtures"
 _design_arg = sys.argv[1] if len(sys.argv) > 1 else os.environ.get("DIFFUSER_DESIGN", "")
-DESIGN = Path(_design_arg).resolve() if _design_arg else None
-if (DESIGN is None or not (DESIGN / "qrd.py").is_file() or not (DESIGN / "diffuser.py").is_file()
+DESIGN = Path(_design_arg).resolve() if _design_arg else HERE.parent / "reference"
+if (not (DESIGN / "qrd.py").is_file() or not (DESIGN / "diffuser.py").is_file()
         or not (DESIGN / "out" / "layouts.json").is_file()):
     sys.exit("reference.py needs the Python canon of the tile geometry (a design folder with qrd.py, diffuser.py and "
-             "out/layouts.json), which is not part of this repository.\n"
-             "Usage: python scripts/reference.py <design-folder>   or set DIFFUSER_DESIGN. "
+             "out/layouts.json, by default reference/ in this repository).\n"
+             "Usage: python scripts/reference.py [<design-folder>]   or set DIFFUSER_DESIGN. "
              "`npm test` does not need it.")
 sys.path.insert(0, str(DESIGN))
 

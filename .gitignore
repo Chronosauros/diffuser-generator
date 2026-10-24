@@ -2,3 +2,5 @@ node_modules/
 scripts/calibration/out/
 __pycache__/
 *.pyc
+reference/out-v2/
+reference/out-v3/

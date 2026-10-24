@@ -1,7 +1,7 @@
 # Generator contract
 
 The browser generator is `index.html`. The geometry it ports is the Python canon of stage 1 (`qrd.py`, `diffuser.py`),
-kept in a private design project; its output for the 29 stage 1 tiles is committed as test fixtures in
+in `reference/`; its output for the 29 stage 1 tiles is committed as test fixtures in
 `scripts/fixtures/stage1/` (STL, JSON sidecars and a trimmed `layouts.json` with the wall layouts).
 
 ## Files
@@ -10,7 +10,7 @@ kept in a private design project; its output for the 29 stage 1 tiles is committ
 - `package.json` - `npm test` = `node --test scripts/*.test.mjs`; devDependency `manifold-3d` pinned to **3.5.3**
   (installed by `npm install`). The browser loads the same version: `https://cdn.jsdelivr.net/npm/manifold-3d@3.5.3/+esm`.
   Python canon runs manifold3d 3.5.2.
-- `scripts/` - the equality test, `reference.py` (regenerates `fixtures/` from the private Python canon, not needed for
+- `scripts/` - the equality test, `reference.py` (regenerates `fixtures/` from the Python canon in `reference/`, not needed for
   `npm test`), `fixtures/` and `calibration/` (data and fit of the print time / filament estimate).
 
 ## Core section of index.html
