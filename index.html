@@ -280,8 +280,8 @@ section.gal{margin-top:clamp(44px,7vh,80px)}
 
 footer{margin-top:clamp(44px,7vh,72px);padding-top:18px;font-size:13.5px;line-height:1.55;color:var(--ghost);max-width:78ch}
 footer p{margin:0 0 10px}
-footer a,.credit a,.getbar .note a{color:var(--ink);text-decoration:underline;text-underline-offset:.15em;text-decoration-thickness:1px}
-footer a:hover,.credit a:hover,.getbar .note a:hover{color:var(--acc)}
+footer a,.credit a,.getbar .note a,.note.fine a{color:var(--ink);text-decoration:underline;text-underline-offset:.15em;text-decoration-thickness:1px}
+footer a:hover,.credit a:hover,.getbar .note a:hover,.note.fine a:hover{color:var(--acc)}
 footer .footer-icons{margin:0 0 0 -11px}
 footer .footer-icons a{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;color:var(--ghost);text-decoration:none}
 footer .footer-icons a:hover{color:var(--acc)}
@@ -1111,9 +1111,13 @@ function renderBand(R) {
       <b class="first" style="left:0" data-l="100 Hz"></b><b style="left:${fpos(1000).toFixed(2)}%" data-l="1 kHz"></b><b style="left:${fpos(10000).toFixed(2)}%" data-l="10 kHz"></b>
     </div>
     <p class="note">${esc(bandSource(state.series, R.p, b))}</p>
-    <p class="note fine">Design intent, calculated from the shape of the tile, not a measurement.</p>
+    <p class="note fine">${state.series === "deep"
+      ? `Design intent, calculated from the shape of the tile and checked with a 2D simulation (<a href="${BEM_CHECK_URL}" target="_blank" rel="noopener">BEM check</a>), not a measurement.`
+      : "Design intent, calculated from the shape of the tile, not a measurement."}</p>
     <div class="thiswall"><div class="lab">This wall</div><p class="lead">${esc(wallRange(R, b))}</p></div>`;
 }
+/* the 2D BEM check of the default deep walls (docs/bem-check.md), linked next to the design band */
+const BEM_CHECK_URL = "https://github.com/Chronosauros/diffuser-generator/blob/main/docs/bem-check.md";
 /* where the two ends of the design band come from: the deepest well (tallest block) sets the bottom, the well (block) width or
    the flat-plate frequency the top */
 function bandSource(series, p, b) {
@@ -1429,6 +1433,7 @@ function readmeText(series, bed, p, set, wall, est) {
   L.push(`  About ${fmtHz(b.f0)} to ${fmtHz(b.f_high)}. ${bandSource(series, p, b)}`);
   L.push("This wall (calculated, not measured)");
   L.push(`  Scatters from about ${fmtHz(wb.low)} to ${fmtHz(wb.high)}.`);
+  if (deep) L.push(`  2D simulation (BEM) of the default deep walls, with the code and the data: ${BEM_CHECK_URL}`);
   L.push("  Placement guidance, not a measurement. Diffusers work best a little away from you; very close to your ears they help less.", "");
   L.push("Print estimate");
   if (est) {
