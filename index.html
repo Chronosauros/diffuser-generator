@@ -671,13 +671,24 @@ function createDiffuser(M) {
     return out.sort(function (a, b) { return a.tiles - b.tiles || a.cols - b.cols; });
   }
 
+  /* a deep wall scatters from f0 only once it is this many design wavelengths wide (7 tiles at the default depth); a narrower
+     deep wall starts about half an octave above f0 (2D BEM check of the default walls, 25.10.2026) */
+  var DEEP_FULL_WAVELENGTHS = 3.5;
+
   /* band of a wall: the top is f_high (deep: the well width or the flat-plate frequency N * f0, whichever is lower; blocks: the
-     block width), the bottom is tied to the width of the wall (c / width), never below f0 */
+     block width), the bottom is tied to the width of the wall (c / width), never below f0, and for a deep wall narrower than
+     DEEP_FULL_WAVELENGTHS design wavelengths never below sqrt(2) * f0 */
   function wallBand(series, p, cols, rows) {
     var b = series === "deep" ? deepBand(p) : blockBand(p);
     var d = series === "deep" ? deepDims(p) : blockDims(p);
     var width = cols * d[0], height = rows * d[1];
-    return { low: Math.max(b.f0, C / (width / 1000)), high: b.f_high, wallWidthMm: width, wallHeightMm: height };
+    var start = series === "deep" && width < deepFullWidth(p) - 1e-6 ? Math.SQRT2 * b.f0 : b.f0;
+    return { low: Math.max(start, C / (width / 1000)), high: b.f_high, wallWidthMm: width, wallHeightMm: height };
+  }
+
+  /* width in mm from which a deep wall covers the design band from f0 */
+  function deepFullWidth(p) {
+    return DEEP_FULL_WAVELENGTHS * deepBand(p).lambda0;
   }
 
   /* quantities of a tile in print orientation (Z up = print height) */
@@ -839,7 +850,7 @@ function createDiffuser(M) {
     deepBand: deepBand, blockBand: blockBand, deepDims: deepDims, blockDims: blockDims,
     deepTile: deepTile, blockTile: blockTile, name: name, derive: derive, limits: limits,
     tileSet: tileSet, labelPolys: labelPolys, fmtG: fmtG,
-    wallOptions: wallOptions, wallBand: wallBand, features: features, ESTIMATE: ESTIMATE, estimate: estimate
+    wallOptions: wallOptions, wallBand: wallBand, deepFullWidth: deepFullWidth, features: features, ESTIMATE: ESTIMATE, estimate: estimate
   };
 }
 </script>
@@ -1116,7 +1127,14 @@ function bandSource(series, p, b) {
 function wallRange(R, b) {
   const wb = D.wallBand(state.series, R.p, R.wall.cols, R.wall.rows);
   let first = `Scatters from about ${fmtHz(wb.low)} to ${fmtHz(wb.high)}.`;
-  if (wb.low > b.f0 + 1e-9) first += ` A wider wall reaches lower: from ${Math.ceil(343 / b.f0 * 100)} cm wide it covers the design band from about ${fmtHz(b.f0)}.`;
+  if (wb.low > b.f0 + 1e-9) {
+    if (state.series === "deep") {
+      const full = D.deepFullWidth(R.p), tiles = Math.ceil(full / D.deepDims(R.p)[0] - 1e-6);
+      first += ` A wider wall reaches lower: from about ${Math.ceil(full / 10)} cm wide (${tiles} tiles across) it covers the design band from about ${fmtHz(b.f0)}.`;
+    } else {
+      first += ` A wider wall reaches lower: from ${Math.ceil(343 / b.f0 * 100)} cm wide it covers the design band from about ${fmtHz(b.f0)}.`;
+    }
+  }
   return first;
 }
 
