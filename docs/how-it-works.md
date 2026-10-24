@@ -2,6 +2,8 @@
 
 This page describes the maths and the design rules behind the generator, so that anyone can check them. Every number
 here is calculated from formulas. Nothing has been measured: the tiles have not been tested in a room or to ISO 17497-2.
+A 2D boundary element (BEM) simulation of the deep tiles is in [bem-check.md](bem-check.md), and checks of the core
+against published recipes and of the Fourier model against theory are in [checks/](../checks/).
 
 The generator, the reference implementation and this page were written with AI assistance (Claude). The formulas come
 from T. J. Cox and P. D'Antonio, *Acoustic Absorbers and Diffusers: Theory, Design and Application*, 3rd ed., CRC Press,
@@ -63,7 +65,7 @@ wavelengths wide (7 tiles at the default depth) start = f0; a narrower deep wall
 higher. That rule comes from a 2D boundary element (BEM) check of the default walls on 25.10.2026: walls of 3 to 5 tiles
 only started to scatter about half an octave above f0, a single tile from c / tile width (2 · f0), and 7 tiles from f0.
 Block walls keep max(f0, c / wall width); the BEM check did not cover them. f0 is not a hard edge, and above N · f0 a
-deep tile diffuses again outside the design theory.
+deep tile diffuses again outside the design theory. The BEM runs, figures and tables are in [bem-check.md](bem-check.md).
 
 Until 24.10.2026 the top of the band was f_w, which put it above the flat-plate frequency (P1S / X1: 5.46 kHz instead of
 5.20 kHz). Thanks to the review on r/acoustics for pushing on "design intent, not a spec".
@@ -141,7 +143,11 @@ The orders come from a far-field prediction model from Cox and D'Antonio, chapte
   a wall can grow without moving tiles. For the deep series the third-octave band around N · f0 is left out of the score.
 
 This model is only used to compare layouts with each other. It is known to be weakest at low frequencies, at oblique
-angles and near the edges of small walls, so I do not quote any diffusion coefficient from it.
+angles and near the edges of small walls, so its diffusion coefficients are not results. The 2D BEM check
+([bem-check.md](bem-check.md)) puts both models side by side for the deep walls: the orders picked here beat copies of
+one tile in BEM as well, but the Fourier numbers are mostly too high by 0.1-0.3 (7-tile walls between f0 and 2 f0 are the
+exception), and below 2 f0 the
+Fourier model says a single tile diffuses when BEM says it reflects like a flat panel.
 
 ## Construction details that may matter acoustically
 
@@ -173,14 +179,17 @@ These are the parts I am least sure about:
 1. Is N = 7 a sensible choice under a print-depth limit, or would a larger prime (11, 13) with shallower steps work
    better on these widths?
 2. Are cyclic shifts of one sequence a valid way to break periodicity, compared with the usual modulation by two
-   different base shapes?
+   different base shapes? (Partly answered: in the 2D BEM check a wall of cyclic shifts diffuses between f0 and 2 f0,
+   where copies of one tile reflect like a flat panel. Modulation by two base shapes was not simulated.)
 3. The flat-plate frequency N · f0 sits just below f_w because of the matched sizing rule. Should the rule move it,
    or is that the normal compromise?
 4. Is c / wall width a fair lower limit for a small wall, or too optimistic? (Partly answered: for deep walls a 2D BEM
    check found it too optimistic below 7 tiles, so the generator now starts those walls half an octave above f0.)
 5. Can 1.6 mm PLA fins, about 20 to 31 mm wide wells and closed air chambers under 1.6 mm floors add absorption or
    resonances that the model does not see?
-6. Is the Fourier model good enough to choose the orders, or should that be done with BEM?
+6. Is the Fourier model good enough to choose the orders, or should that be done with BEM? (Partly answered: in the
+   2D BEM check the chosen orders beat copies of one tile in every range from f0 up; whether they are the best of the
+   5040 orders was not checked.)
 
 ## References
 
@@ -190,3 +199,5 @@ These are the parts I am least sure about:
 - ISO 17497-2:2012, Acoustics: sound-scattering properties of surfaces, part 2: measurement of the directional
   diffusion coefficient in a free field.
 - T. J. Cox, "A brief history of room acoustic diffusers", Acoustics Today.
+- T. J. Cox, J. A. S. Angus, P. D'Antonio, "The performance of Schroeder diffusers: a wide band BEM investigation",
+  Proc. IOA 25(5), 2003 (the standard N = 7 QRD used in the checks).

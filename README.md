@@ -32,7 +32,9 @@ The maths, the sizing rules, the wall orders and the open questions are written 
   upper limit c / (2w); one tile is one period and the seven tiles are the seven cyclic shifts of the sequence;
 - block tiles: phase frac(s_n / Nx + s_m / Ny) turned into block heights;
 - wall orders: picked with the Fourier far-field model and the AES-4id diffusion coefficient, used only to compare
-  layouts with each other.
+  layouts with each other;
+- a 2D boundary element (BEM) simulation of the deep tiles and walls checks that model and sets the low end of the
+  wall band: [docs/bem-check.md](docs/bem-check.md). It is a simulation, not a measurement.
 
 ## Repository layout
 
@@ -40,7 +42,9 @@ The maths, the sizing rules, the wall orders and the open questions are written 
 - `reference/` - the Python reference implementation: formulas, tile geometry, the far-field model and the layout
   optimiser. The generator is a port of it.
 - `scripts/` - the equality tests, the fixtures made by the Python code, and the data behind the print estimate.
-- `docs/how-it-works.md` - the maths and the design rules.
+- `checks/` - independent checks: published recipes through the core, the Fourier model against theory, and the 2D
+  BEM simulation with its code, raw data and figures ([checks/README.md](checks/README.md)).
+- `docs/how-it-works.md` - the maths and the design rules; `docs/bem-check.md` - the BEM results.
 - `CONTRACT.md` - what the JavaScript core must match.
 
 ## Development
