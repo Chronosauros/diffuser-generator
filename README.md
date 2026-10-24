@@ -15,7 +15,8 @@ discussion.
 - Sizes every tile from the printer bed, with 25 mm to spare on every axis. Presets for the Bambu Lab A1 mini, Prusa
   MK4 / Core One and Bambu Lab P1S / X1, or any custom bed.
 - Numbered tiles in a set order, so a wall grows without moving the tiles that are already up.
-- Shows the calculated design band, a rough print time and filament estimate, and the wall plan.
+- Shows the design band (design intent, calculated, not measured), a rough print time and filament estimate, and the
+  wall plan.
 - Downloads the whole wall as a ZIP (one STL per tile number, the wall plan as SVG and a README with quantities) or a
   single tile.
 
@@ -67,7 +68,7 @@ under GPL-3.0 with its source. The ready-made tile files published on Printables
 Set in Geom, copyright 2022 The Geom Project Authors (https://github.com/ThanosPoulakidas/Geom), SIL Open Font License
 1.1 (https://openfontlicense.org); the font is embedded in `index.html`. Geometry with
 [manifold-3d](https://github.com/elalish/manifold), preview with [three.js](https://threejs.org). Formulas after
-T. J. Cox and P. D'Antonio, *Acoustic Absorbers and Diffusers*, 3rd ed., CRC Press, 2016. The frequency band is a
-calculated design band, not a measurement.
+T. J. Cox and P. D'Antonio, *Acoustic Absorbers and Diffusers*, 3rd ed., CRC Press, 2016. The frequency band is
+design intent, calculated from the shape of the tiles, not a measurement.
 
 Made by [Soundblooms](https://soundblooms.com).
