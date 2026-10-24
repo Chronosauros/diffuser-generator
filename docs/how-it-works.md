@@ -45,7 +45,7 @@ with a margin of 25 mm on every axis:
 
 Because of that rule, f0 = c / (14 · pitch) and the flat-plate frequency N · f0 = c / (2 · pitch). The well width w is
 the pitch minus a fin, so N · f0 always falls just below f_w = c / (2w). At the default depth the flat-plate frequency
-is at the top end of the band.
+is the top end of the band.
 
 | Printer | Tile (mm) | Pitch | Interior well | d_max | f0 | N · f0 | f_w |
 |---|---|---|---|---|---|---|---|
@@ -55,10 +55,15 @@ is at the top end of the band.
 
 ### Band shown by the generator
 
-The generator shows a design band from f0 to f_w for one tile. For a wall it ties the lower end to the wall width as
-well: low = max(f0, c / wall width). For walls of three tiles or more c / wall width is already below f0, so the
-lower end is f0. The flat-plate frequency is noted inside the band. f0 is not a hard edge: a diffuser keeps some
-effect below it and loses some above f_w.
+The generator shows a design band for one tile from f0, set by the deepest well, to the lower of f_w and the
+flat-plate frequency N · f0 (at the default depth that is N · f0; a shallow tile from the depth slider can push N · f0
+above f_w). It says which well sets each end and calls the band design intent, calculated, not measured. For a wall it
+ties the lower end to the wall width as well: low = max(f0, c / wall width). For walls of three tiles or more c / wall
+width is already below f0, so the lower end is f0. f0 is not a hard edge: a diffuser keeps some effect below it, and
+above N · f0 it diffuses again outside the design theory.
+
+Until 24.10.2026 the top of the band was f_w, which put it above the flat-plate frequency (P1S / X1: 5.46 kHz instead of
+5.20 kHz). Thanks to the review on r/acoustics for pushing on "design intent, not a spec".
 
 ## Seven tiles: cyclic shifts of one sequence
 

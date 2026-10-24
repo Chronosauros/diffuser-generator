@@ -793,7 +793,7 @@ describe('core v2: wallBand', () => {
       const height = rows * s.dims[1];                    // deep: length along the wells; blocks: H (assumption, not in the contract)
       const rep = new Report(`wallBand(${id}, ${cols}, ${rows})`);
       const eq = (k, want) => rep.check(k, typeof got[k] === 'number' && near(got[k], want, 1e-9), `got ${got[k]}, want ${want}`);
-      eq('high', s.band.f_width);
+      eq('high', s.band.f_high);
       eq('low', Math.max(s.band.f0, SPEED / (width / 1000)));
       eq('wallWidthMm', width);
       eq('wallHeightMm', height);
