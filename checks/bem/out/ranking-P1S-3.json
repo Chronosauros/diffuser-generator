@@ -1,0 +1,2032 @@
+{
+ "method": "Every order of a 3-tile P1S / X1 deep wall in BEM and in the Fourier model, ranked by the optimiser's score.\n\n    python checks/bem/order_ranking.py [--workers 8]\n\nScore as in layout.deep_layouts: mean d_n over the incidences 0, +-30, +-60 degrees and the third-octave bands from f0\nto below N f0 (800 Hz - 4 kHz on the P1S / X1), 3 frequencies per band, 37 receivers, d_n against the flat reference of\nthe same width (BEM: rigid box W x T; Fourier: its own flat strip). There are 7 * 6 * 5 = 210 orders. Turning a tile\nupside down gives tile 9 - t (tile 1 stays), so the order a b c seen in a mirror is m(c) m(b) m(a): the same wall\nmirrored, with the same score over symmetric incidences and receivers. BEM runs one order of every mirror pair (and both\norders of two pairs, to check that); the Fourier model runs all 210.\nBand energies per order go to out/ranking-P1S-3-bem.jsonl as they come (a stopped run resumes), the summary to\nout/ranking-P1S-3.json and the figure to out/fig-P1S-3-ranking.png.",
+ "size": "P1S",
+ "columns": 3,
+ "bands_hz": [
+  800,
+  1000,
+  1250,
+  1600,
+  2000,
+  2500,
+  3150,
+  4000
+ ],
+ "low_bands_hz": [
+  800,
+  1000,
+  1250
+ ],
+ "incidences": [
+  0.0,
+  30.0,
+  -30.0,
+  60.0,
+  -60.0
+ ],
+ "published": [
+  6,
+  3,
+  4
+ ],
+ "pairs": 108,
+ "mirror_check": [
+  {
+   "order": [
+    1,
+    2,
+    3
+   ],
+   "mirror": [
+    6,
+    7,
+    1
+   ],
+   "score": 0.28443,
+   "score_mirror": 0.28443
+  },
+  {
+   "order": [
+    5,
+    6,
+    3
+   ],
+   "mirror": [
+    6,
+    3,
+    4
+   ],
+   "score": 0.41077,
+   "score_mirror": 0.41077
+  },
+  {
+   "order": [
+    7,
+    4,
+    2
+   ],
+   "mirror": [
+    7,
+    5,
+    2
+   ],
+   "score": 0.37009,
+   "score_mirror": 0.37009
+  }
+ ],
+ "spearman_rank": 0.6848247544466356,
+ "kendall_tau": 0.49048113534094845,
+ "spearman_rank_f0_2f0": 0.5169910543313613,
+ "kendall_tau_f0_2f0": 0.3541017653167186,
+ "published_rank_bem": 22.0,
+ "published_rank_fourier": 1.0,
+ "published_rank_bem_f0_2f0": 28.0,
+ "published_rank_fourier_f0_2f0": 1.0,
+ "top10_overlap": 2,
+ "pairs_table": [
+  {
+   "order": [
+    5,
+    6,
+    2
+   ],
+   "mirror": [
+    7,
+    3,
+    4
+   ],
+   "bem": 0.4492,
+   "fourier": 0.6087,
+   "bem_f0_2f0": 0.4968,
+   "fourier_f0_2f0": 0.6083,
+   "rank_bem": 1.0,
+   "rank_fourier": 6.0
+  },
+  {
+   "order": [
+    1,
+    6,
+    2
+   ],
+   "mirror": [
+    7,
+    3,
+    1
+   ],
+   "bem": 0.4401,
+   "fourier": 0.5729,
+   "bem_f0_2f0": 0.4712,
+   "fourier_f0_2f0": 0.5454,
+   "rank_bem": 2.0,
+   "rank_fourier": 20.0
+  },
+  {
+   "order": [
+    2,
+    1,
+    4
+   ],
+   "mirror": [
+    5,
+    1,
+    7
+   ],
+   "bem": 0.4375,
+   "fourier": 0.5504,
+   "bem_f0_2f0": 0.5407,
+   "fourier_f0_2f0": 0.5636,
+   "rank_bem": 3.0,
+   "rank_fourier": 38.0
+  },
+  {
+   "order": [
+    7,
+    3,
+    2
+   ],
+   "mirror": [
+    7,
+    6,
+    2
+   ],
+   "bem": 0.4298,
+   "fourier": 0.5654,
+   "bem_f0_2f0": 0.479,
+   "fourier_f0_2f0": 0.5784,
+   "rank_bem": 4.0,
+   "rank_fourier": 26.0
+  },
+  {
+   "order": [
+    4,
+    2,
+    5
+   ],
+   "mirror": [
+    4,
+    7,
+    5
+   ],
+   "bem": 0.4291,
+   "fourier": 0.5578,
+   "bem_f0_2f0": 0.457,
+   "fourier_f0_2f0": 0.5646,
+   "rank_bem": 5.0,
+   "rank_fourier": 31.0
+  },
+  {
+   "order": [
+    4,
+    5,
+    2
+   ],
+   "mirror": [
+    7,
+    4,
+    5
+   ],
+   "bem": 0.4259,
+   "fourier": 0.594,
+   "bem_f0_2f0": 0.4571,
+   "fourier_f0_2f0": 0.6135,
+   "rank_bem": 6.0,
+   "rank_fourier": 15.0
+  },
+  {
+   "order": [
+    4,
+    6,
+    2
+   ],
+   "mirror": [
+    7,
+    3,
+    5
+   ],
+   "bem": 0.4243,
+   "fourier": 0.5565,
+   "bem_f0_2f0": 0.4338,
+   "fourier_f0_2f0": 0.5525,
+   "rank_bem": 7.0,
+   "rank_fourier": 32.0
+  },
+  {
+   "order": [
+    6,
+    2,
+    3
+   ],
+   "mirror": [
+    6,
+    7,
+    3
+   ],
+   "bem": 0.4231,
+   "fourier": 0.5821,
+   "bem_f0_2f0": 0.4667,
+   "fourier_f0_2f0": 0.5947,
+   "rank_bem": 8.0,
+   "rank_fourier": 17.0
+  },
+  {
+   "order": [
+    4,
+    5,
+    3
+   ],
+   "mirror": [
+    6,
+    4,
+    5
+   ],
+   "bem": 0.4217,
+   "fourier": 0.6189,
+   "bem_f0_2f0": 0.418,
+   "fourier_f0_2f0": 0.6497,
+   "rank_bem": 9.0,
+   "rank_fourier": 4.0
+  },
+  {
+   "order": [
+    3,
+    7,
+    2
+   ],
+   "mirror": [
+    7,
+    2,
+    6
+   ],
+   "bem": 0.4208,
+   "fourier": 0.5629,
+   "bem_f0_2f0": 0.448,
+   "fourier_f0_2f0": 0.5313,
+   "rank_bem": 10.0,
+   "rank_fourier": 29.0
+  },
+  {
+   "order": [
+    2,
+    1,
+    3
+   ],
+   "mirror": [
+    6,
+    1,
+    7
+   ],
+   "bem": 0.42,
+   "fourier": 0.5563,
+   "bem_f0_2f0": 0.4938,
+   "fourier_f0_2f0": 0.559,
+   "rank_bem": 11.0,
+   "rank_fourier": 33.0
+  },
+  {
+   "order": [
+    1,
+    7,
+    3
+   ],
+   "mirror": [
+    6,
+    2,
+    1
+   ],
+   "bem": 0.418,
+   "fourier": 0.5976,
+   "bem_f0_2f0": 0.4483,
+   "fourier_f0_2f0": 0.6387,
+   "rank_bem": 12.0,
+   "rank_fourier": 13.0
+  },
+  {
+   "order": [
+    2,
+    6,
+    5
+   ],
+   "mirror": [
+    4,
+    3,
+    7
+   ],
+   "bem": 0.4168,
+   "fourier": 0.5678,
+   "bem_f0_2f0": 0.427,
+   "fourier_f0_2f0": 0.5512,
+   "rank_bem": 13.0,
+   "rank_fourier": 25.0
+  },
+  {
+   "order": [
+    1,
+    4,
+    2
+   ],
+   "mirror": [
+    7,
+    5,
+    1
+   ],
+   "bem": 0.4157,
+   "fourier": 0.5208,
+   "bem_f0_2f0": 0.4164,
+   "fourier_f0_2f0": 0.5077,
+   "rank_bem": 14.0,
+   "rank_fourier": 61.0
+  },
+  {
+   "order": [
+    2,
+    4,
+    7
+   ],
+   "mirror": [
+    2,
+    5,
+    7
+   ],
+   "bem": 0.4153,
+   "fourier": 0.5522,
+   "bem_f0_2f0": 0.454,
+   "fourier_f0_2f0": 0.6112,
+   "rank_bem": 15.0,
+   "rank_fourier": 36.0
+  },
+  {
+   "order": [
+    5,
+    7,
+    3
+   ],
+   "mirror": [
+    6,
+    2,
+    4
+   ],
+   "bem": 0.414,
+   "fourier": 0.5403,
+   "bem_f0_2f0": 0.4364,
+   "fourier_f0_2f0": 0.5553,
+   "rank_bem": 16.0,
+   "rank_fourier": 48.0
+  },
+  {
+   "order": [
+    3,
+    1,
+    4
+   ],
+   "mirror": [
+    5,
+    1,
+    6
+   ],
+   "bem": 0.4124,
+   "fourier": 0.5489,
+   "bem_f0_2f0": 0.4244,
+   "fourier_f0_2f0": 0.5153,
+   "rank_bem": 17.0,
+   "rank_fourier": 43.0
+  },
+  {
+   "order": [
+    1,
+    2,
+    7
+   ],
+   "mirror": [
+    2,
+    7,
+    1
+   ],
+   "bem": 0.412,
+   "fourier": 0.6078,
+   "bem_f0_2f0": 0.4575,
+   "fourier_f0_2f0": 0.6444,
+   "rank_bem": 18.0,
+   "rank_fourier": 7.0
+  },
+  {
+   "order": [
+    2,
+    4,
+    6
+   ],
+   "mirror": [
+    3,
+    5,
+    7
+   ],
+   "bem": 0.4119,
+   "fourier": 0.5032,
+   "bem_f0_2f0": 0.4678,
+   "fourier_f0_2f0": 0.5316,
+   "rank_bem": 19.0,
+   "rank_fourier": 80.0
+  },
+  {
+   "order": [
+    5,
+    3,
+    4
+   ],
+   "mirror": [
+    5,
+    6,
+    4
+   ],
+   "bem": 0.4116,
+   "fourier": 0.5848,
+   "bem_f0_2f0": 0.4512,
+   "fourier_f0_2f0": 0.5902,
+   "rank_bem": 20.0,
+   "rank_fourier": 16.0
+  },
+  {
+   "order": [
+    3,
+    5,
+    2
+   ],
+   "mirror": [
+    7,
+    4,
+    6
+   ],
+   "bem": 0.4115,
+   "fourier": 0.5706,
+   "bem_f0_2f0": 0.4365,
+   "fourier_f0_2f0": 0.5402,
+   "rank_bem": 21.0,
+   "rank_fourier": 21.0
+  },
+  {
+   "order": [
+    5,
+    6,
+    3
+   ],
+   "mirror": [
+    6,
+    3,
+    4
+   ],
+   "bem": 0.4108,
+   "fourier": 0.6561,
+   "bem_f0_2f0": 0.4314,
+   "fourier_f0_2f0": 0.7696,
+   "rank_bem": 22.0,
+   "rank_fourier": 1.0
+  },
+  {
+   "order": [
+    3,
+    6,
+    5
+   ],
+   "mirror": [
+    4,
+    3,
+    6
+   ],
+   "bem": 0.4087,
+   "fourier": 0.5991,
+   "bem_f0_2f0": 0.396,
+   "fourier_f0_2f0": 0.6313,
+   "rank_bem": 23.0,
+   "rank_fourier": 11.0
+  },
+  {
+   "order": [
+    1,
+    3,
+    7
+   ],
+   "mirror": [
+    2,
+    6,
+    1
+   ],
+   "bem": 0.4084,
+   "fourier": 0.6308,
+   "bem_f0_2f0": 0.3983,
+   "fourier_f0_2f0": 0.628,
+   "rank_bem": 24.0,
+   "rank_fourier": 2.0
+  },
+  {
+   "order": [
+    2,
+    1,
+    5
+   ],
+   "mirror": [
+    4,
+    1,
+    7
+   ],
+   "bem": 0.4084,
+   "fourier": 0.5253,
+   "bem_f0_2f0": 0.4539,
+   "fourier_f0_2f0": 0.4878,
+   "rank_bem": 25.0,
+   "rank_fourier": 59.0
+  },
+  {
+   "order": [
+    2,
+    4,
+    3
+   ],
+   "mirror": [
+    6,
+    5,
+    7
+   ],
+   "bem": 0.4075,
+   "fourier": 0.5357,
+   "bem_f0_2f0": 0.4192,
+   "fourier_f0_2f0": 0.5352,
+   "rank_bem": 26.0,
+   "rank_fourier": 55.0
+  },
+  {
+   "order": [
+    6,
+    5,
+    2
+   ],
+   "mirror": [
+    7,
+    4,
+    3
+   ],
+   "bem": 0.4072,
+   "fourier": 0.5526,
+   "bem_f0_2f0": 0.4102,
+   "fourier_f0_2f0": 0.5631,
+   "rank_bem": 27.0,
+   "rank_fourier": 35.0
+  },
+  {
+   "order": [
+    5,
+    4,
+    2
+   ],
+   "mirror": [
+    7,
+    5,
+    4
+   ],
+   "bem": 0.4062,
+   "fourier": 0.5138,
+   "bem_f0_2f0": 0.4009,
+   "fourier_f0_2f0": 0.4816,
+   "rank_bem": 28.0,
+   "rank_fourier": 68.0
+  },
+  {
+   "order": [
+    1,
+    7,
+    4
+   ],
+   "mirror": [
+    5,
+    2,
+    1
+   ],
+   "bem": 0.4058,
+   "fourier": 0.5689,
+   "bem_f0_2f0": 0.4185,
+   "fourier_f0_2f0": 0.5586,
+   "rank_bem": 29.0,
+   "rank_fourier": 24.0
+  },
+  {
+   "order": [
+    3,
+    4,
+    2
+   ],
+   "mirror": [
+    7,
+    5,
+    6
+   ],
+   "bem": 0.4051,
+   "fourier": 0.5339,
+   "bem_f0_2f0": 0.4138,
+   "fourier_f0_2f0": 0.5098,
+   "rank_bem": 30.0,
+   "rank_fourier": 56.0
+  },
+  {
+   "order": [
+    1,
+    7,
+    2
+   ],
+   "mirror": [
+    7,
+    2,
+    1
+   ],
+   "bem": 0.4046,
+   "fourier": 0.5979,
+   "bem_f0_2f0": 0.4121,
+   "fourier_f0_2f0": 0.607,
+   "rank_bem": 31.0,
+   "rank_fourier": 12.0
+  },
+  {
+   "order": [
+    1,
+    5,
+    7
+   ],
+   "mirror": [
+    2,
+    4,
+    1
+   ],
+   "bem": 0.4024,
+   "fourier": 0.5276,
+   "bem_f0_2f0": 0.4212,
+   "fourier_f0_2f0": 0.5467,
+   "rank_bem": 32.0,
+   "rank_fourier": 58.0
+  },
+  {
+   "order": [
+    2,
+    3,
+    5
+   ],
+   "mirror": [
+    4,
+    6,
+    7
+   ],
+   "bem": 0.4023,
+   "fourier": 0.5068,
+   "bem_f0_2f0": 0.4523,
+   "fourier_f0_2f0": 0.4967,
+   "rank_bem": 33.0,
+   "rank_fourier": 79.0
+  },
+  {
+   "order": [
+    6,
+    7,
+    2
+   ],
+   "mirror": [
+    7,
+    2,
+    3
+   ],
+   "bem": 0.4006,
+   "fourier": 0.607,
+   "bem_f0_2f0": 0.477,
+   "fourier_f0_2f0": 0.6204,
+   "rank_bem": 34.0,
+   "rank_fourier": 8.0
+  },
+  {
+   "order": [
+    2,
+    7,
+    4
+   ],
+   "mirror": [
+    5,
+    2,
+    7
+   ],
+   "bem": 0.4002,
+   "fourier": 0.5517,
+   "bem_f0_2f0": 0.4121,
+   "fourier_f0_2f0": 0.5626,
+   "rank_bem": 35.0,
+   "rank_fourier": 37.0
+  },
+  {
+   "order": [
+    4,
+    7,
+    2
+   ],
+   "mirror": [
+    7,
+    2,
+    5
+   ],
+   "bem": 0.4001,
+   "fourier": 0.5502,
+   "bem_f0_2f0": 0.4252,
+   "fourier_f0_2f0": 0.5541,
+   "rank_bem": 36.0,
+   "rank_fourier": 40.0
+  },
+  {
+   "order": [
+    1,
+    2,
+    5
+   ],
+   "mirror": [
+    4,
+    7,
+    1
+   ],
+   "bem": 0.3986,
+   "fourier": 0.5529,
+   "bem_f0_2f0": 0.4448,
+   "fourier_f0_2f0": 0.5559,
+   "rank_bem": 37.0,
+   "rank_fourier": 34.0
+  },
+  {
+   "order": [
+    2,
+    3,
+    6
+   ],
+   "mirror": [
+    3,
+    6,
+    7
+   ],
+   "bem": 0.3984,
+   "fourier": 0.6164,
+   "bem_f0_2f0": 0.4419,
+   "fourier_f0_2f0": 0.6452,
+   "rank_bem": 38.0,
+   "rank_fourier": 5.0
+  },
+  {
+   "order": [
+    2,
+    3,
+    7
+   ],
+   "mirror": [
+    2,
+    6,
+    7
+   ],
+   "bem": 0.3982,
+   "fourier": 0.6,
+   "bem_f0_2f0": 0.4055,
+   "fourier_f0_2f0": 0.6259,
+   "rank_bem": 39.0,
+   "rank_fourier": 10.0
+  },
+  {
+   "order": [
+    4,
+    6,
+    3
+   ],
+   "mirror": [
+    6,
+    3,
+    5
+   ],
+   "bem": 0.3981,
+   "fourier": 0.6284,
+   "bem_f0_2f0": 0.3892,
+   "fourier_f0_2f0": 0.6595,
+   "rank_bem": 40.0,
+   "rank_fourier": 3.0
+  },
+  {
+   "order": [
+    3,
+    1,
+    5
+   ],
+   "mirror": [
+    4,
+    1,
+    6
+   ],
+   "bem": 0.3977,
+   "fourier": 0.4972,
+   "bem_f0_2f0": 0.4072,
+   "fourier_f0_2f0": 0.4117,
+   "rank_bem": 41.0,
+   "rank_fourier": 86.0
+  },
+  {
+   "order": [
+    2,
+    7,
+    3
+   ],
+   "mirror": [
+    6,
+    2,
+    7
+   ],
+   "bem": 0.3974,
+   "fourier": 0.5502,
+   "bem_f0_2f0": 0.4129,
+   "fourier_f0_2f0": 0.5788,
+   "rank_bem": 42.0,
+   "rank_fourier": 39.0
+  },
+  {
+   "order": [
+    4,
+    3,
+    5
+   ],
+   "mirror": [
+    4,
+    6,
+    5
+   ],
+   "bem": 0.3971,
+   "fourier": 0.5359,
+   "bem_f0_2f0": 0.4112,
+   "fourier_f0_2f0": 0.5468,
+   "rank_bem": 43.0,
+   "rank_fourier": 54.0
+  },
+  {
+   "order": [
+    1,
+    6,
+    3
+   ],
+   "mirror": [
+    6,
+    3,
+    1
+   ],
+   "bem": 0.3964,
+   "fourier": 0.5475,
+   "bem_f0_2f0": 0.3971,
+   "fourier_f0_2f0": 0.5881,
+   "rank_bem": 44.0,
+   "rank_fourier": 46.0
+  },
+  {
+   "order": [
+    4,
+    7,
+    3
+   ],
+   "mirror": [
+    6,
+    2,
+    5
+   ],
+   "bem": 0.3961,
+   "fourier": 0.5374,
+   "bem_f0_2f0": 0.4005,
+   "fourier_f0_2f0": 0.5472,
+   "rank_bem": 45.0,
+   "rank_fourier": 51.0
+  },
+  {
+   "order": [
+    1,
+    4,
+    3
+   ],
+   "mirror": [
+    6,
+    5,
+    1
+   ],
+   "bem": 0.3959,
+   "fourier": 0.5652,
+   "bem_f0_2f0": 0.3481,
+   "fourier_f0_2f0": 0.58,
+   "rank_bem": 46.0,
+   "rank_fourier": 27.0
+  },
+  {
+   "order": [
+    6,
+    3,
+    2
+   ],
+   "mirror": [
+    7,
+    6,
+    3
+   ],
+   "bem": 0.3955,
+   "fourier": 0.5799,
+   "bem_f0_2f0": 0.3869,
+   "fourier_f0_2f0": 0.6235,
+   "rank_bem": 47.0,
+   "rank_fourier": 18.0
+  },
+  {
+   "order": [
+    4,
+    1,
+    2
+   ],
+   "mirror": [
+    7,
+    1,
+    5
+   ],
+   "bem": 0.3946,
+   "fourier": 0.5483,
+   "bem_f0_2f0": 0.4504,
+   "fourier_f0_2f0": 0.5389,
+   "rank_bem": 48.0,
+   "rank_fourier": 45.0
+  },
+  {
+   "order": [
+    2,
+    5,
+    6
+   ],
+   "mirror": [
+    3,
+    4,
+    7
+   ],
+   "bem": 0.3941,
+   "fourier": 0.5693,
+   "bem_f0_2f0": 0.3713,
+   "fourier_f0_2f0": 0.5783,
+   "rank_bem": 49.0,
+   "rank_fourier": 23.0
+  },
+  {
+   "order": [
+    1,
+    6,
+    4
+   ],
+   "mirror": [
+    5,
+    3,
+    1
+   ],
+   "bem": 0.3936,
+   "fourier": 0.4992,
+   "bem_f0_2f0": 0.4387,
+   "fourier_f0_2f0": 0.4891,
+   "rank_bem": 50.0,
+   "rank_fourier": 84.0
+  },
+  {
+   "order": [
+    1,
+    6,
+    5
+   ],
+   "mirror": [
+    4,
+    3,
+    1
+   ],
+   "bem": 0.3936,
+   "fourier": 0.499,
+   "bem_f0_2f0": 0.3719,
+   "fourier_f0_2f0": 0.4455,
+   "rank_bem": 51.0,
+   "rank_fourier": 85.0
+  },
+  {
+   "order": [
+    2,
+    4,
+    5
+   ],
+   "mirror": [
+    4,
+    5,
+    7
+   ],
+   "bem": 0.3934,
+   "fourier": 0.4764,
+   "bem_f0_2f0": 0.3767,
+   "fourier_f0_2f0": 0.4261,
+   "rank_bem": 52.0,
+   "rank_fourier": 93.0
+  },
+  {
+   "order": [
+    2,
+    7,
+    5
+   ],
+   "mirror": [
+    4,
+    2,
+    7
+   ],
+   "bem": 0.3917,
+   "fourier": 0.5095,
+   "bem_f0_2f0": 0.3949,
+   "fourier_f0_2f0": 0.526,
+   "rank_bem": 53.0,
+   "rank_fourier": 76.0
+  },
+  {
+   "order": [
+    3,
+    2,
+    5
+   ],
+   "mirror": [
+    4,
+    7,
+    6
+   ],
+   "bem": 0.3914,
+   "fourier": 0.5489,
+   "bem_f0_2f0": 0.3919,
+   "fourier_f0_2f0": 0.5496,
+   "rank_bem": 54.0,
+   "rank_fourier": 44.0
+  },
+  {
+   "order": [
+    4,
+    2,
+    3
+   ],
+   "mirror": [
+    6,
+    7,
+    5
+   ],
+   "bem": 0.391,
+   "fourier": 0.5123,
+   "bem_f0_2f0": 0.4362,
+   "fourier_f0_2f0": 0.5274,
+   "rank_bem": 55.0,
+   "rank_fourier": 71.0
+  },
+  {
+   "order": [
+    3,
+    7,
+    5
+   ],
+   "mirror": [
+    4,
+    2,
+    6
+   ],
+   "bem": 0.3895,
+   "fourier": 0.5114,
+   "bem_f0_2f0": 0.3801,
+   "fourier_f0_2f0": 0.4704,
+   "rank_bem": 56.0,
+   "rank_fourier": 72.0
+  },
+  {
+   "order": [
+    1,
+    4,
+    6
+   ],
+   "mirror": [
+    3,
+    5,
+    1
+   ],
+   "bem": 0.388,
+   "fourier": 0.513,
+   "bem_f0_2f0": 0.3801,
+   "fourier_f0_2f0": 0.4904,
+   "rank_bem": 57.0,
+   "rank_fourier": 69.0
+  },
+  {
+   "order": [
+    5,
+    2,
+    4
+   ],
+   "mirror": [
+    5,
+    7,
+    4
+   ],
+   "bem": 0.3858,
+   "fourier": 0.5624,
+   "bem_f0_2f0": 0.4328,
+   "fourier_f0_2f0": 0.6067,
+   "rank_bem": 58.0,
+   "rank_fourier": 30.0
+  },
+  {
+   "order": [
+    6,
+    4,
+    3
+   ],
+   "mirror": [
+    6,
+    5,
+    3
+   ],
+   "bem": 0.3853,
+   "fourier": 0.5101,
+   "bem_f0_2f0": 0.4064,
+   "fourier_f0_2f0": 0.5522,
+   "rank_bem": 59.0,
+   "rank_fourier": 75.0
+  },
+  {
+   "order": [
+    5,
+    7,
+    2
+   ],
+   "mirror": [
+    7,
+    2,
+    4
+   ],
+   "bem": 0.385,
+   "fourier": 0.5207,
+   "bem_f0_2f0": 0.4235,
+   "fourier_f0_2f0": 0.5469,
+   "rank_bem": 60.0,
+   "rank_fourier": 62.0
+  },
+  {
+   "order": [
+    3,
+    7,
+    4
+   ],
+   "mirror": [
+    5,
+    2,
+    6
+   ],
+   "bem": 0.3828,
+   "fourier": 0.5086,
+   "bem_f0_2f0": 0.394,
+   "fourier_f0_2f0": 0.4676,
+   "rank_bem": 61.0,
+   "rank_fourier": 78.0
+  },
+  {
+   "order": [
+    3,
+    2,
+    4
+   ],
+   "mirror": [
+    5,
+    7,
+    6
+   ],
+   "bem": 0.3822,
+   "fourier": 0.4917,
+   "bem_f0_2f0": 0.4153,
+   "fourier_f0_2f0": 0.48,
+   "rank_bem": 62.0,
+   "rank_fourier": 88.0
+  },
+  {
+   "order": [
+    1,
+    7,
+    5
+   ],
+   "mirror": [
+    4,
+    2,
+    1
+   ],
+   "bem": 0.3814,
+   "fourier": 0.479,
+   "bem_f0_2f0": 0.3743,
+   "fourier_f0_2f0": 0.4182,
+   "rank_bem": 63.0,
+   "rank_fourier": 91.0
+  },
+  {
+   "order": [
+    1,
+    2,
+    6
+   ],
+   "mirror": [
+    3,
+    7,
+    1
+   ],
+   "bem": 0.381,
+   "fourier": 0.6023,
+   "bem_f0_2f0": 0.3729,
+   "fourier_f0_2f0": 0.6355,
+   "rank_bem": 64.0,
+   "rank_fourier": 9.0
+  },
+  {
+   "order": [
+    1,
+    4,
+    5
+   ],
+   "mirror": [
+    4,
+    5,
+    1
+   ],
+   "bem": 0.3804,
+   "fourier": 0.5001,
+   "bem_f0_2f0": 0.3417,
+   "fourier_f0_2f0": 0.4461,
+   "rank_bem": 65.0,
+   "rank_fourier": 83.0
+  },
+  {
+   "order": [
+    3,
+    1,
+    2
+   ],
+   "mirror": [
+    7,
+    1,
+    6
+   ],
+   "bem": 0.3797,
+   "fourier": 0.5243,
+   "bem_f0_2f0": 0.3912,
+   "fourier_f0_2f0": 0.5077,
+   "rank_bem": 66.0,
+   "rank_fourier": 60.0
+  },
+  {
+   "order": [
+    1,
+    5,
+    4
+   ],
+   "mirror": [
+    5,
+    4,
+    1
+   ],
+   "bem": 0.3794,
+   "fourier": 0.5495,
+   "bem_f0_2f0": 0.3942,
+   "fourier_f0_2f0": 0.5208,
+   "rank_bem": 67.0,
+   "rank_fourier": 41.0
+  },
+  {
+   "order": [
+    1,
+    4,
+    7
+   ],
+   "mirror": [
+    2,
+    5,
+    1
+   ],
+   "bem": 0.3784,
+   "fourier": 0.4762,
+   "bem_f0_2f0": 0.4018,
+   "fourier_f0_2f0": 0.4547,
+   "rank_bem": 68.0,
+   "rank_fourier": 94.0
+  },
+  {
+   "order": [
+    5,
+    2,
+    3
+   ],
+   "mirror": [
+    6,
+    7,
+    4
+   ],
+   "bem": 0.3776,
+   "fourier": 0.5736,
+   "bem_f0_2f0": 0.4288,
+   "fourier_f0_2f0": 0.6401,
+   "rank_bem": 69.0,
+   "rank_fourier": 19.0
+  },
+  {
+   "order": [
+    5,
+    1,
+    2
+   ],
+   "mirror": [
+    7,
+    1,
+    4
+   ],
+   "bem": 0.3766,
+   "fourier": 0.5189,
+   "bem_f0_2f0": 0.3992,
+   "fourier_f0_2f0": 0.4905,
+   "rank_bem": 70.0,
+   "rank_fourier": 64.0
+  },
+  {
+   "order": [
+    2,
+    6,
+    4
+   ],
+   "mirror": [
+    5,
+    3,
+    7
+   ],
+   "bem": 0.3762,
+   "fourier": 0.5336,
+   "bem_f0_2f0": 0.3918,
+   "fourier_f0_2f0": 0.5288,
+   "rank_bem": 71.0,
+   "rank_fourier": 57.0
+  },
+  {
+   "order": [
+    2,
+    5,
+    4
+   ],
+   "mirror": [
+    5,
+    4,
+    7
+   ],
+   "bem": 0.3746,
+   "fourier": 0.5491,
+   "bem_f0_2f0": 0.4259,
+   "fourier_f0_2f0": 0.5847,
+   "rank_bem": 72.0,
+   "rank_fourier": 42.0
+  },
+  {
+   "order": [
+    2,
+    5,
+    3
+   ],
+   "mirror": [
+    6,
+    4,
+    7
+   ],
+   "bem": 0.3731,
+   "fourier": 0.5701,
+   "bem_f0_2f0": 0.3652,
+   "fourier_f0_2f0": 0.5576,
+   "rank_bem": 73.0,
+   "rank_fourier": 22.0
+  },
+  {
+   "order": [
+    1,
+    3,
+    2
+   ],
+   "mirror": [
+    7,
+    6,
+    1
+   ],
+   "bem": 0.372,
+   "fourier": 0.5373,
+   "bem_f0_2f0": 0.3447,
+   "fourier_f0_2f0": 0.5229,
+   "rank_bem": 74.0,
+   "rank_fourier": 52.0
+  },
+  {
+   "order": [
+    7,
+    4,
+    2
+   ],
+   "mirror": [
+    7,
+    5,
+    2
+   ],
+   "bem": 0.3701,
+   "fourier": 0.516,
+   "bem_f0_2f0": 0.3195,
+   "fourier_f0_2f0": 0.4986,
+   "rank_bem": 75.0,
+   "rank_fourier": 65.0
+  },
+  {
+   "order": [
+    4,
+    1,
+    5
+   ],
+   "mirror": [
+    4,
+    1,
+    5
+   ],
+   "bem": 0.3684,
+   "fourier": 0.503,
+   "bem_f0_2f0": 0.4121,
+   "fourier_f0_2f0": 0.4164,
+   "rank_bem": 76.0,
+   "rank_fourier": 81.0
+  },
+  {
+   "order": [
+    1,
+    3,
+    6
+   ],
+   "mirror": [
+    3,
+    6,
+    1
+   ],
+   "bem": 0.3676,
+   "fourier": 0.5941,
+   "bem_f0_2f0": 0.3521,
+   "fourier_f0_2f0": 0.6073,
+   "rank_bem": 77.0,
+   "rank_fourier": 14.0
+  },
+  {
+   "order": [
+    5,
+    3,
+    2
+   ],
+   "mirror": [
+    7,
+    6,
+    4
+   ],
+   "bem": 0.3668,
+   "fourier": 0.4932,
+   "bem_f0_2f0": 0.3774,
+   "fourier_f0_2f0": 0.4877,
+   "rank_bem": 78.0,
+   "rank_fourier": 87.0
+  },
+  {
+   "order": [
+    1,
+    5,
+    2
+   ],
+   "mirror": [
+    7,
+    4,
+    1
+   ],
+   "bem": 0.3648,
+   "fourier": 0.4855,
+   "bem_f0_2f0": 0.3858,
+   "fourier_f0_2f0": 0.4261,
+   "rank_bem": 79.0,
+   "rank_fourier": 90.0
+  },
+  {
+   "order": [
+    1,
+    6,
+    7
+   ],
+   "mirror": [
+    2,
+    3,
+    1
+   ],
+   "bem": 0.364,
+   "fourier": 0.5149,
+   "bem_f0_2f0": 0.3573,
+   "fourier_f0_2f0": 0.5428,
+   "rank_bem": 80.0,
+   "rank_fourier": 67.0
+  },
+  {
+   "order": [
+    1,
+    5,
+    6
+   ],
+   "mirror": [
+    3,
+    4,
+    1
+   ],
+   "bem": 0.3618,
+   "fourier": 0.5196,
+   "bem_f0_2f0": 0.3427,
+   "fourier_f0_2f0": 0.5266,
+   "rank_bem": 81.0,
+   "rank_fourier": 63.0
+  },
+  {
+   "order": [
+    3,
+    4,
+    6
+   ],
+   "mirror": [
+    3,
+    5,
+    6
+   ],
+   "bem": 0.3611,
+   "fourier": 0.5086,
+   "bem_f0_2f0": 0.2908,
+   "fourier_f0_2f0": 0.5079,
+   "rank_bem": 82.0,
+   "rank_fourier": 77.0
+  },
+  {
+   "order": [
+    4,
+    1,
+    3
+   ],
+   "mirror": [
+    6,
+    1,
+    5
+   ],
+   "bem": 0.3604,
+   "fourier": 0.5402,
+   "bem_f0_2f0": 0.3598,
+   "fourier_f0_2f0": 0.5542,
+   "rank_bem": 83.0,
+   "rank_fourier": 49.0
+  },
+  {
+   "order": [
+    3,
+    6,
+    4
+   ],
+   "mirror": [
+    5,
+    3,
+    6
+   ],
+   "bem": 0.3593,
+   "fourier": 0.5648,
+   "bem_f0_2f0": 0.362,
+   "fourier_f0_2f0": 0.5483,
+   "rank_bem": 84.0,
+   "rank_fourier": 28.0
+  },
+  {
+   "order": [
+    3,
+    5,
+    4
+   ],
+   "mirror": [
+    5,
+    4,
+    6
+   ],
+   "bem": 0.3592,
+   "fourier": 0.5368,
+   "bem_f0_2f0": 0.3617,
+   "fourier_f0_2f0": 0.5448,
+   "rank_bem": 85.0,
+   "rank_fourier": 53.0
+  },
+  {
+   "order": [
+    5,
+    4,
+    3
+   ],
+   "mirror": [
+    6,
+    5,
+    4
+   ],
+   "bem": 0.3555,
+   "fourier": 0.4668,
+   "bem_f0_2f0": 0.3732,
+   "fourier_f0_2f0": 0.4809,
+   "rank_bem": 86.0,
+   "rank_fourier": 96.0
+  },
+  {
+   "order": [
+    1,
+    5,
+    3
+   ],
+   "mirror": [
+    6,
+    4,
+    1
+   ],
+   "bem": 0.3539,
+   "fourier": 0.5395,
+   "bem_f0_2f0": 0.3444,
+   "fourier_f0_2f0": 0.5276,
+   "rank_bem": 87.0,
+   "rank_fourier": 50.0
+  },
+  {
+   "order": [
+    3,
+    6,
+    2
+   ],
+   "mirror": [
+    7,
+    3,
+    6
+   ],
+   "bem": 0.3537,
+   "fourier": 0.5109,
+   "bem_f0_2f0": 0.3607,
+   "fourier_f0_2f0": 0.493,
+   "rank_bem": 88.0,
+   "rank_fourier": 73.0
+  },
+  {
+   "order": [
+    3,
+    1,
+    6
+   ],
+   "mirror": [
+    3,
+    1,
+    6
+   ],
+   "bem": 0.3524,
+   "fourier": 0.4276,
+   "bem_f0_2f0": 0.3963,
+   "fourier_f0_2f0": 0.3877,
+   "rank_bem": 89.0,
+   "rank_fourier": 104.0
+  },
+  {
+   "order": [
+    6,
+    1,
+    2
+   ],
+   "mirror": [
+    7,
+    1,
+    3
+   ],
+   "bem": 0.3512,
+   "fourier": 0.5406,
+   "bem_f0_2f0": 0.3727,
+   "fourier_f0_2f0": 0.5503,
+   "rank_bem": 90.0,
+   "rank_fourier": 47.0
+  },
+  {
+   "order": [
+    2,
+    1,
+    6
+   ],
+   "mirror": [
+    3,
+    1,
+    7
+   ],
+   "bem": 0.3502,
+   "fourier": 0.4757,
+   "bem_f0_2f0": 0.3489,
+   "fourier_f0_2f0": 0.4373,
+   "rank_bem": 91.0,
+   "rank_fourier": 95.0
+  },
+  {
+   "order": [
+    6,
+    4,
+    2
+   ],
+   "mirror": [
+    7,
+    5,
+    3
+   ],
+   "bem": 0.3496,
+   "fourier": 0.4778,
+   "bem_f0_2f0": 0.3731,
+   "fourier_f0_2f0": 0.5067,
+   "rank_bem": 92.0,
+   "rank_fourier": 92.0
+  },
+  {
+   "order": [
+    1,
+    2,
+    4
+   ],
+   "mirror": [
+    5,
+    7,
+    1
+   ],
+   "bem": 0.3461,
+   "fourier": 0.4397,
+   "bem_f0_2f0": 0.3307,
+   "fourier_f0_2f0": 0.3428,
+   "rank_bem": 93.0,
+   "rank_fourier": 102.0
+  },
+  {
+   "order": [
+    2,
+    6,
+    3
+   ],
+   "mirror": [
+    6,
+    3,
+    7
+   ],
+   "bem": 0.3445,
+   "fourier": 0.4881,
+   "bem_f0_2f0": 0.3179,
+   "fourier_f0_2f0": 0.5142,
+   "rank_bem": 94.0,
+   "rank_fourier": 89.0
+  },
+  {
+   "order": [
+    3,
+    2,
+    6
+   ],
+   "mirror": [
+    3,
+    7,
+    6
+   ],
+   "bem": 0.3364,
+   "fourier": 0.5102,
+   "bem_f0_2f0": 0.288,
+   "fourier_f0_2f0": 0.4746,
+   "rank_bem": 95.0,
+   "rank_fourier": 74.0
+  },
+  {
+   "order": [
+    2,
+    3,
+    4
+   ],
+   "mirror": [
+    5,
+    6,
+    7
+   ],
+   "bem": 0.3356,
+   "fourier": 0.4185,
+   "bem_f0_2f0": 0.3636,
+   "fourier_f0_2f0": 0.393,
+   "rank_bem": 96.0,
+   "rank_fourier": 108.0
+  },
+  {
+   "order": [
+    4,
+    3,
+    2
+   ],
+   "mirror": [
+    7,
+    6,
+    5
+   ],
+   "bem": 0.3348,
+   "fourier": 0.4347,
+   "bem_f0_2f0": 0.3079,
+   "fourier_f0_2f0": 0.4154,
+   "rank_bem": 97.0,
+   "rank_fourier": 103.0
+  },
+  {
+   "order": [
+    7,
+    1,
+    2
+   ],
+   "mirror": [
+    7,
+    1,
+    2
+   ],
+   "bem": 0.3334,
+   "fourier": 0.4555,
+   "bem_f0_2f0": 0.4467,
+   "fourier_f0_2f0": 0.4798,
+   "rank_bem": 98.0,
+   "rank_fourier": 99.0
+  },
+  {
+   "order": [
+    2,
+    7,
+    6
+   ],
+   "mirror": [
+    3,
+    2,
+    7
+   ],
+   "bem": 0.332,
+   "fourier": 0.5127,
+   "bem_f0_2f0": 0.2958,
+   "fourier_f0_2f0": 0.509,
+   "rank_bem": 99.0,
+   "rank_fourier": 70.0
+  },
+  {
+   "order": [
+    5,
+    1,
+    3
+   ],
+   "mirror": [
+    6,
+    1,
+    4
+   ],
+   "bem": 0.331,
+   "fourier": 0.5012,
+   "bem_f0_2f0": 0.2684,
+   "fourier_f0_2f0": 0.4794,
+   "rank_bem": 100.0,
+   "rank_fourier": 82.0
+  },
+  {
+   "order": [
+    1,
+    3,
+    5
+   ],
+   "mirror": [
+    4,
+    6,
+    1
+   ],
+   "bem": 0.3274,
+   "fourier": 0.4555,
+   "bem_f0_2f0": 0.2772,
+   "fourier_f0_2f0": 0.4401,
+   "rank_bem": 101.0,
+   "rank_fourier": 98.0
+  },
+  {
+   "order": [
+    6,
+    1,
+    3
+   ],
+   "mirror": [
+    6,
+    1,
+    3
+   ],
+   "bem": 0.3106,
+   "fourier": 0.5154,
+   "bem_f0_2f0": 0.2451,
+   "fourier_f0_2f0": 0.5263,
+   "rank_bem": 102.0,
+   "rank_fourier": 66.0
+  },
+  {
+   "order": [
+    5,
+    1,
+    4
+   ],
+   "mirror": [
+    5,
+    1,
+    4
+   ],
+   "bem": 0.3103,
+   "fourier": 0.4556,
+   "bem_f0_2f0": 0.2823,
+   "fourier_f0_2f0": 0.4312,
+   "rank_bem": 103.0,
+   "rank_fourier": 97.0
+  },
+  {
+   "order": [
+    1,
+    7,
+    6
+   ],
+   "mirror": [
+    3,
+    2,
+    1
+   ],
+   "bem": 0.2962,
+   "fourier": 0.4225,
+   "bem_f0_2f0": 0.2694,
+   "fourier_f0_2f0": 0.3859,
+   "rank_bem": 104.0,
+   "rank_fourier": 106.0
+  },
+  {
+   "order": [
+    1,
+    3,
+    4
+   ],
+   "mirror": [
+    5,
+    6,
+    1
+   ],
+   "bem": 0.2957,
+   "fourier": 0.4422,
+   "bem_f0_2f0": 0.1997,
+   "fourier_f0_2f0": 0.3902,
+   "rank_bem": 105.0,
+   "rank_fourier": 100.0
+  },
+  {
+   "order": [
+    3,
+    4,
+    5
+   ],
+   "mirror": [
+    4,
+    5,
+    6
+   ],
+   "bem": 0.2897,
+   "fourier": 0.4233,
+   "bem_f0_2f0": 0.1857,
+   "fourier_f0_2f0": 0.3683,
+   "rank_bem": 106.0,
+   "rank_fourier": 105.0
+  },
+  {
+   "order": [
+    1,
+    2,
+    3
+   ],
+   "mirror": [
+    6,
+    7,
+    1
+   ],
+   "bem": 0.2844,
+   "fourier": 0.4212,
+   "bem_f0_2f0": 0.2872,
+   "fourier_f0_2f0": 0.4343,
+   "rank_bem": 107.0,
+   "rank_fourier": 107.0
+  },
+  {
+   "order": [
+    2,
+    1,
+    7
+   ],
+   "mirror": [
+    2,
+    1,
+    7
+   ],
+   "bem": 0.2618,
+   "fourier": 0.4407,
+   "bem_f0_2f0": 0.2243,
+   "fourier_f0_2f0": 0.4555,
+   "rank_bem": 108.0,
+   "rank_fourier": 101.0
+  }
+ ]
+}
