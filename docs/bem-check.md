@@ -107,7 +107,7 @@ f0 490 Hz, depth unit 50 mm (wells 0 50 200 100 100 200 50 mm), wells 75 mm, per
 obliquity factor). Lobes at grazing (|sin θ| > 0.95) are left out.
 
 | Frequency | Lobes | Spread of \|R_q\|², BEM | Spread, Fourier | Specular share, BEM / Fourier |
-|---|---|---|---|---|---|
+|---|---|---|---|---|
 | f0 = 490 Hz | specular only (λ0 = 700 mm > period) | - | - | 100 % / 100 % |
 | 2 f0 = 980 Hz | 3 | 3.7 dB | 0.4 dB | 18 % / 34 % |
 | 3 f0 = 1470 Hz | 5 | 3.1 dB | 1.3 dB | 24 % / 23 % |
