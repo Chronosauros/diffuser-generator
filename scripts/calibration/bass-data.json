@@ -1,0 +1,302 @@
+[
+ {
+  "id": "qwr-f107.2-block",
+  "source": "v1",
+  "group": "f107.2",
+  "kind": "block",
+  "mode_hz": 107.2,
+  "features": {
+   "area_cm2": 7526.505985361487,
+   "volume_cm3": 468.78894647849864,
+   "height_mm": 240.0,
+   "footprint_cm2": 123.83999633789062
+  },
+  "minutes": 662.1,
+  "grams": 557.73
+ },
+ {
+  "id": "qwr-f042.9-block",
+  "source": "v1",
+  "group": "f42.9",
+  "kind": "block",
+  "mode_hz": 42.9,
+  "features": {
+   "area_cm2": 5873.731455899052,
+   "volume_cm3": 354.8100978139076,
+   "height_mm": 120.0,
+   "footprint_cm2": 148.31999816894532
+  },
+  "minutes": 503.8,
+  "grams": 424.67
+ },
+ {
+  "id": "qwr-f042.9-inserts-plate",
+  "source": "v1",
+  "group": "f42.9",
+  "kind": "plate",
+  "mode_hz": 42.9,
+  "features": {
+   "area_cm2": 787.5918974062998,
+   "volume_cm3": 169.10508468548463,
+   "height_mm": 87.11248779296875,
+   "footprint_cm2": 104.72
+  },
+  "minutes": 110.933,
+  "grams": 103.76
+ },
+ {
+  "id": "qwr-f053.6-block",
+  "source": "v1",
+  "group": "f53.6",
+  "kind": "block",
+  "mode_hz": 53.6,
+  "features": {
+   "area_cm2": 4889.030613319019,
+   "volume_cm3": 295.2459741508451,
+   "height_mm": 120.0,
+   "footprint_cm2": 122.4
+  },
+  "minutes": 415.867,
+  "grams": 353.36
+ },
+ {
+  "id": "qwr-f053.6-inserts-plate",
+  "source": "v1",
+  "group": "f53.6",
+  "kind": "plate",
+  "mode_hz": 53.6,
+  "features": {
+   "area_cm2": 1243.8808017345652,
+   "volume_cm3": 273.8474266517805,
+   "height_mm": 102.8279800415039,
+   "footprint_cm2": 148.03600181579588
+  },
+  "minutes": 173.5,
+  "grams": 165.5
+ },
+ {
+  "id": "qwr-f066.0-block",
+  "source": "v1",
+  "group": "f66.0",
+  "kind": "block",
+  "mode_hz": 66.0,
+  "features": {
+   "area_cm2": 7615.699601210409,
+   "volume_cm3": 471.3636813165587,
+   "height_mm": 240.0,
+   "footprint_cm2": 96.4800018310547
+  },
+  "minutes": 663.55,
+  "grams": 558.64
+ },
+ {
+  "id": "qwr-f066.0-inserts-plate",
+  "source": "v1",
+  "group": "f66.0",
+  "kind": "plate",
+  "mode_hz": 66.0,
+  "features": {
+   "area_cm2": 1097.6953699175565,
+   "volume_cm3": 235.45137730836294,
+   "height_mm": 86.05487823486328,
+   "footprint_cm2": 148.03600181579588
+  },
+  "minutes": 153.933,
+  "grams": 144.59
+ },
+ {
+  "id": "qwr-f085.8-block",
+  "source": "v1",
+  "group": "f85.8",
+  "kind": "block",
+  "mode_hz": 85.8,
+  "features": {
+   "area_cm2": 6337.325126187521,
+   "volume_cm3": 391.94476974940795,
+   "height_mm": 240.0,
+   "footprint_cm2": 79.2
+  },
+  "minutes": 548.567,
+  "grams": 464.59
+ },
+ {
+  "id": "qwr-f085.8-inserts-plate",
+  "source": "v1",
+  "group": "f85.8",
+  "kind": "plate",
+  "mode_hz": 85.8,
+  "features": {
+   "area_cm2": 950.7541268622895,
+   "volume_cm3": 196.85680794130135,
+   "height_mm": 69.19547271728516,
+   "footprint_cm2": 148.03600181579588
+  },
+  "minutes": 133.583,
+  "grams": 123.53
+ },
+ {
+  "id": "qwr-f107.2-inserts-plate",
+  "source": "v1",
+  "group": "f107.2",
+  "kind": "plate",
+  "mode_hz": 107.2,
+  "features": {
+   "area_cm2": 852.2632871242723,
+   "volume_cm3": 170.98788761026094,
+   "height_mm": 57.8953857421875,
+   "footprint_cm2": 148.03600181579588
+  },
+  "minutes": 122.233,
+  "grams": 109.25
+ },
+ {
+  "id": "qwr2-m100-f042.9-w6-block",
+  "source": "v2",
+  "group": "f42.9",
+  "kind": "block",
+  "mode_hz": 42.9,
+  "features": {
+   "area_cm2": 5873.731446469119,
+   "volume_cm3": 354.8101005055583,
+   "height_mm": 120.0,
+   "footprint_cm2": 148.31999816894532
+  },
+  "minutes": 504.517,
+  "grams": 424.67
+ },
+ {
+  "id": "qwr2-m100-f042.9-w6-inserts-plate",
+  "source": "v2",
+  "group": "f42.9",
+  "kind": "plate",
+  "mode_hz": 42.9,
+  "features": {
+   "area_cm2": 1952.4261913221892,
+   "volume_cm3": 429.7423740501402,
+   "height_mm": 102.83293914794922,
+   "footprint_cm2": 234.6679963684082
+  },
+  "minutes": 270.0,
+  "grams": 259.84
+ },
+ {
+  "id": "qwr2-m010-f053.6-w8-block",
+  "source": "v2",
+  "group": "f53.6",
+  "kind": "block",
+  "mode_hz": 53.6,
+  "features": {
+   "area_cm2": 5089.958596883395,
+   "volume_cm3": 307.26136804321237,
+   "height_mm": 120.0,
+   "footprint_cm2": 156.0
+  },
+  "minutes": 441.517,
+  "grams": 368.02
+ },
+ {
+  "id": "qwr2-m010-f053.6-w8-inserts-plate",
+  "source": "v2",
+  "group": "f53.6",
+  "kind": "plate",
+  "mode_hz": 53.6,
+  "features": {
+   "area_cm2": 1795.7562446054435,
+   "volume_cm3": 496.20732922502003,
+   "height_mm": 85.96306610107422,
+   "footprint_cm2": 260.8479963684082
+  },
+  "minutes": 257.617,
+  "grams": 238.2
+ },
+ {
+  "id": "qwr2-m110-f068.7-w8-block",
+  "source": "v2",
+  "group": "f68.7",
+  "kind": "block",
+  "mode_hz": 68.7,
+  "features": {
+   "area_cm2": 7878.64358393746,
+   "volume_cm3": 490.24502588882393,
+   "height_mm": 240.0,
+   "footprint_cm2": 122.88000183105468
+  },
+  "minutes": 696.233,
+  "grams": 580.24
+ },
+ {
+  "id": "qwr2-m110-f068.7-w8-inserts-plate",
+  "source": "v2",
+  "group": "f68.7",
+  "kind": "plate",
+  "mode_hz": 68.7,
+  "features": {
+   "area_cm2": 1572.2646681649394,
+   "volume_cm3": 417.44674463189506,
+   "height_mm": 69.87838745117188,
+   "footprint_cm2": 260.8479963684082
+  },
+  "minutes": 226.7,
+  "grams": 205.82
+ },
+ {
+  "id": "qwr2-m111-f095.2-w6-block",
+  "source": "v2",
+  "group": "f95.2",
+  "kind": "block",
+  "mode_hz": 95.2,
+  "features": {
+   "area_cm2": 5698.137881163029,
+   "volume_cm3": 352.23542079070955,
+   "height_mm": 240.0,
+   "footprint_cm2": 70.55999908447265
+  },
+  "minutes": 497.483,
+  "grams": 417.54
+ },
+ {
+  "id": "qwr2-m111-f095.2-w6-inserts-plate",
+  "source": "v2",
+  "group": "f95.2",
+  "kind": "plate",
+  "mode_hz": 95.2,
+  "features": {
+   "area_cm2": 1277.5767068125579,
+   "volume_cm3": 252.49109130664567,
+   "height_mm": 53.46875,
+   "footprint_cm2": 234.6679963684082
+  },
+  "minutes": 182.483,
+  "grams": 162.66
+ },
+ {
+  "id": "qwr2-m020-f107.2-w8-block",
+  "source": "v2",
+  "group": "f107.2",
+  "kind": "block",
+  "mode_hz": 107.2,
+  "features": {
+   "area_cm2": 7760.698026932151,
+   "volume_cm3": 486.8119329242675,
+   "height_mm": 240.0,
+   "footprint_cm2": 157.43999633789062
+  },
+  "minutes": 680.2,
+  "grams": 578.88
+ },
+ {
+  "id": "qwr2-m020-f107.2-w8-inserts-plate",
+  "source": "v2",
+  "group": "f107.2",
+  "kind": "plate",
+  "mode_hz": 107.2,
+  "features": {
+   "area_cm2": 1285.0001820227935,
+   "volume_cm3": 316.2119689207592,
+   "height_mm": 49.20460891723633,
+   "footprint_cm2": 260.8479963684082
+  },
+  "minutes": 190.033,
+  "grams": 164.71
+ }
+]

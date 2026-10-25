@@ -19,6 +19,10 @@ discussion.
   wall plan.
 - Downloads the whole wall as a ZIP (one STL per tile number, the wall plan as SVG and a README with quantities) or a
   single tile.
+- A second tab, Bass traps: enter any rectangular room, pick one of its modes up to 120 Hz and get printable blocks of
+  folded quarter-wave resonator cells (6 mm slot) tuned to it, with the calculated effect on the decay of that mode,
+  the best place in the room and a ZIP with the blocks, the end caps and a print plan. Calculated, not measured:
+  [docs/bass-traps.md](docs/bass-traps.md) says what the model does and where it stops.
 
 One HTML file, `index.html`, that opens from disk or any static host. It loads manifold-3d 3.5.3 and three.js 0.160.0
 from the jsDelivr CDN, so it needs a connection the first time.
@@ -38,13 +42,15 @@ The maths, the sizing rules, the wall orders and the open questions are written 
 
 ## Repository layout
 
-- `index.html` - the whole app. Its geometry core, `<script id="diffuser-core">`, has no DOM and also runs in Node.
+- `index.html` - the whole app. Its geometry core, `<script id="diffuser-core">`, and the bass trap cores,
+  `<script id="bass-physics">` and `<script id="bass-geometry">`, have no DOM and also run in Node.
 - `reference/` - the Python reference implementation: formulas, tile geometry, the far-field model and the layout
   optimiser. The generator is a port of it.
 - `scripts/` - the equality tests, the fixtures made by the Python code, and the data behind the print estimate.
 - `checks/` - independent checks: published recipes through the core, the Fourier model against theory, and the 2D
   BEM simulation with its code, raw data and figures ([checks/README.md](checks/README.md)).
-- `docs/how-it-works.md` - the maths and the design rules; `docs/bem-check.md` - the BEM results.
+- `docs/how-it-works.md` - the maths and the design rules; `docs/bem-check.md` - the BEM results;
+  `docs/bass-traps.md` - the bass trap model, its numbers and its limits.
 - `CONTRACT.md` - what the JavaScript core must match.
 
 ## Development

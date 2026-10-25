@@ -2,3 +2,5 @@ numpy
 trimesh
 manifold3d==3.5.2
 matplotlib
+# bass traps (bass_room.py, bass_cell.py): numpy only; build123d only for the STL export (bass_cell.export_set)
+build123d
