@@ -98,10 +98,12 @@ move:
 
 | Printer | 3 tiles | 4 tiles | 5 tiles | 7 tiles |
 |---|---|---|---|---|
-| A1 mini | - | 4 5 3 6 | - | 1 7 2 4 5 3 6 |
-| MK4 / Core One, P1S / X1 | 4 3 6 | - | 5 2 4 3 6 | 1 7 5 2 4 3 6 |
+| A1 mini | - | 3 7 2 1 | - | 4 5 6 3 7 2 1 |
+| MK4 / Core One, P1S / X1 | 2 6 5 | - | 1 7 2 6 5 | 3 4 1 7 2 6 5 |
 
-More rows repeat the same row.
+More rows repeat the same row. These orders are in use since 25.10.2026; until then the walls were A1 mini 4 5 3 6 and
+1 7 2 4 5 3 6, the larger printers 4 3 6, 5 2 4 3 6 and 1 7 5 2 4 3 6 (why they changed: next sections and
+[bem-check.md](bem-check.md)).
 
 ## Block series: 2D quadratic residue diffuser
 
@@ -142,12 +144,17 @@ The orders come from a far-field prediction model from Cox and D'Antonio, chapte
 - The optimiser tries the orders and keeps the one with the best mean d_n over all wall sizes of a series together, so
   a wall can grow without moving tiles. For the deep series the third-octave band around N · f0 is left out of the score.
 
+This model picked the block shifts and, until 25.10.2026, the deep wall orders. The deep orders now come from the 2D
+BEM check ([bem-check.md](bem-check.md)): the same score and the same rule that a wall grows without moving tiles, but
+computed with a boundary element simulation on a shortlist of orders instead of the Fourier model on all of them. The
+Fourier model had picked deep orders that BEM rates good but not the best.
+
 This model is only used to compare layouts with each other. It is known to be weakest at low frequencies, at oblique
 angles and near the edges of small walls, so its diffusion coefficients are not results. The 2D BEM check
-([bem-check.md](bem-check.md)) puts both models side by side for the deep walls: the orders picked here beat copies of
-one tile in BEM as well, but the Fourier numbers are mostly too high by 0.1-0.3 (7-tile walls between f0 and 2 f0 are the
-exception), and below 2 f0 the
-Fourier model says a single tile diffuses when BEM says it reflects like a flat panel.
+([bem-check.md](bem-check.md)) puts both models side by side for the deep walls: the orders the Fourier model picked
+beat copies of one tile in BEM as well, but the Fourier numbers are mostly too high by 0.1-0.3 (7-tile walls between f0
+and 2 f0 are the exception), and below 2 f0 the Fourier model says a single tile diffuses when BEM says it reflects like
+a flat panel.
 
 ## Construction details that may matter acoustically
 
@@ -187,11 +194,12 @@ These are the parts I am least sure about:
    check found it too optimistic below 7 tiles, so the generator now starts those walls half an octave above f0.)
 5. Can 1.6 mm PLA fins, about 20 to 31 mm wide wells and closed air chambers under 1.6 mm floors add absorption or
    resonances that the model does not see?
-6. Is the Fourier model good enough to choose the orders, or should that be done with BEM? (Partly answered: in the
-   2D BEM check the chosen orders beat copies of one tile in every range from f0 up. Ranking all 210 orders of a
-   3-tile P1S / X1 wall, the Fourier model's best order is 22nd of 108 mirror pairs in BEM, and the two rankings
-   correlate at 0.68: good for ruling out bad orders, not for picking the best. A BEM search over the 3-, 5- and
-   7-tile walls together found an order better by 0.04, 0.03 and 0.006, too little to renumber the walls.)
+6. Is the Fourier model good enough to choose the orders, or should that be done with BEM? (Answered for the deep
+   walls, in a simulation: in the 2D BEM check the Fourier orders beat copies of one tile in every range from f0 up.
+   Ranking all 210 orders of a 3-tile P1S / X1 wall, the Fourier model's best order is 22nd of 108 mirror pairs in
+   BEM, and the two rankings correlate at 0.68: good for ruling out bad orders, not for picking the best. Since
+   25.10.2026 the deep walls use the best nested orders found in BEM, better in its score by 0.04, 0.03 and 0.006
+   (P1S / X1, 3, 5 and 7 tiles) and by 0.08 and 0.02 (A1 mini, 4 and 7 tiles). Only a measurement can confirm it.)
 
 ## References
 

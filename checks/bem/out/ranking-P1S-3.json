@@ -1,5 +1,5 @@
 {
- "method": "Every order of a 3-tile P1S / X1 deep wall in BEM and in the Fourier model, ranked by the optimiser's score.\n\n    python checks/bem/order_ranking.py [--workers 8]\n\nScore as in layout.deep_layouts: mean d_n over the incidences 0, +-30, +-60 degrees and the third-octave bands from f0\nto below N f0 (800 Hz - 4 kHz on the P1S / X1), 3 frequencies per band, 37 receivers, d_n against the flat reference of\nthe same width (BEM: rigid box W x T; Fourier: its own flat strip). There are 7 * 6 * 5 = 210 orders. Turning a tile\nupside down gives tile 9 - t (tile 1 stays), so the order a b c seen in a mirror is m(c) m(b) m(a): the same wall\nmirrored, with the same score over symmetric incidences and receivers. BEM runs one order of every mirror pair (and both\norders of two pairs, to check that); the Fourier model runs all 210.\nBand energies per order go to out/ranking-P1S-3-bem.jsonl as they come (a stopped run resumes), the summary to\nout/ranking-P1S-3.json and the figure to out/fig-P1S-3-ranking.png.",
+ "method": "Every order of a 3-tile P1S / X1 deep wall in BEM and in the Fourier model, ranked by the optimiser's score.\n\n    python checks/bem/order_ranking.py [--workers 8] [--cache-only]\n\nScore as in layout.deep_layouts: mean d_n over the incidences 0, +-30, +-60 degrees and the third-octave bands from f0\nto below N f0 (800 Hz - 4 kHz on the P1S / X1), 3 frequencies per band, 37 receivers, d_n against the flat reference of\nthe same width (BEM: rigid box W x T; Fourier: its own flat strip). There are 7 * 6 * 5 = 210 orders. Turning a tile\nupside down gives tile 9 - t (tile 1 stays), so the order a b c seen in a mirror is m(c) m(b) m(a): the same wall\nmirrored, with the same score over symmetric incidences and receivers. BEM runs one order of every mirror pair (and both\norders of two pairs, to check that); the Fourier model runs all 210.\nBand energies per order go to out/ranking-P1S-3-bem.jsonl as they come (a stopped run resumes), the summary to\nout/ranking-P1S-3.json and the figure to out/fig-P1S-3-ranking.png. With --cache-only nothing is simulated: the summary\nand the figure come from the band energies in that file, and the script stops if one is missing.\n\nThe first three tiles of two orders are marked: the order until 25.10.2026 (6 3 4 ...), which was the one in the\ngenerator when this ranking was made, and the current order (5 6 2 ...), which this ranking found (see order_nested.py\nand docs/bem-check.md). Both are frozen below, so the numbers do not change when layouts.json does.",
  "size": "P1S",
  "columns": 3,
  "bands_hz": [
@@ -24,10 +24,15 @@
   60.0,
   -60.0
  ],
- "published": [
+ "order_until_2026_10_25": [
   6,
   3,
   4
+ ],
+ "current_order": [
+  5,
+  6,
+  2
  ],
  "pairs": 108,
  "mirror_check": [
@@ -78,10 +83,14 @@
  "kendall_tau": 0.49048113534094845,
  "spearman_rank_f0_2f0": 0.5169910543313613,
  "kendall_tau_f0_2f0": 0.3541017653167186,
- "published_rank_bem": 22.0,
- "published_rank_fourier": 1.0,
- "published_rank_bem_f0_2f0": 28.0,
- "published_rank_fourier_f0_2f0": 1.0,
+ "old_rank_bem": 22.0,
+ "old_rank_fourier": 1.0,
+ "old_rank_bem_f0_2f0": 28.0,
+ "old_rank_fourier_f0_2f0": 1.0,
+ "current_rank_bem": 1.0,
+ "current_rank_fourier": 6.0,
+ "current_rank_bem_f0_2f0": 2.0,
+ "current_rank_fourier_f0_2f0": 16.0,
  "top10_overlap": 2,
  "pairs_table": [
   {

@@ -180,6 +180,8 @@ def check_convergence():
     b = geo.qrd.deep_band("P1S")
     cases = [("tile 1", geo.wall("P1S", [1]), f) for f in (b["f0"], 2 * b["f0"], 7 * b["f0"], 10000.0)]
     cases += [("flat box 1 tile", geo.flat("P1S", 1), f) for f in (b["f0"], 10000.0)]
+    # 6 3 4 2 5 7 1 is the wall order published until 25.10.2026. The mesh test does not depend on which order of the
+    # same 7 tiles it uses (the same tiles, the same geometry, the same element sizes), so it was not rerun for the new one.
     cases += [("wall 7", geo.wall("P1S", [6, 3, 4, 2, 5, 7, 1]), f) for f in (b["f0"], 10000.0)]
     for name, poly, f in cases:
             poly = geo.centre_x(poly)

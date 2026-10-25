@@ -497,8 +497,9 @@ function createDiffuser(M) {
     }
   };
 
-  /* wall orders and block shifts from the stage 1 layout search (design/out/layouts.json); nothing else is copied */
-  var LAYOUTS = {"deep":{"S":{"room_left_to_right":{"4":[4,5,3,6],"7":[1,7,2,4,5,3,6]}},"L":{"room_left_to_right":{"3":[4,3,6],"5":[5,2,4,3,6],"7":[1,7,5,2,4,3,6]}}},"blocks":{"S":{"shifts":[[12,12],[3,9],[5,5],[11,1],[1,4],[7,0],[10,10],[5,11],[6,8]],"grids":{"2x2":[[1,2],[3,4]],"2x3":[[1,2,5],[3,4,6]],"3x3":[[1,2,5],[3,4,6],[7,8,9]]}},"L":{"shifts":[[11,8],[9,3],[3,7],[4,0],[0,4],[3,5]],"grids":{"2x2":[[1,2],[3,4]],"2x3":[[1,2,5],[3,4,6]]}}}};
+  /* wall orders and block shifts from reference/out/layouts.json; nothing else is copied. Block shifts: stage 1 layout
+     search. Deep orders: the best nested orders of the 2D BEM ranking since 25.10.2026 (docs/bem-check.md) */
+  var LAYOUTS = {"deep":{"S":{"room_left_to_right":{"4":[3,7,2,1],"7":[4,5,6,3,7,2,1]}},"L":{"room_left_to_right":{"3":[2,6,5],"5":[1,7,2,6,5],"7":[3,4,1,7,2,6,5]}}},"blocks":{"S":{"shifts":[[12,12],[3,9],[5,5],[11,1],[1,4],[7,0],[10,10],[5,11],[6,8]],"grids":{"2x2":[[1,2],[3,4]],"2x3":[[1,2,5],[3,4,6]],"3x3":[[1,2,5],[3,4,6],[7,8,9]]}},"L":{"shifts":[[11,8],[9,3],[3,7],[4,0],[0,4],[3,5]],"grids":{"2x2":[[1,2],[3,4]],"2x3":[[1,2,5],[3,4,6]]}}}};
 
   /* beds offered by the page (extra member, not part of the stage 1 canon) */
   var BEDS = [

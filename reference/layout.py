@@ -24,6 +24,11 @@ Orders are in model (STL X) coordinates; seen from the room the STL X axis point
 in layouts.json is the reversed order. Walls grow without moving tiles that are already stuck on: deep S 4 -> 7
 columns, deep L 3 -> 5 -> 7 columns, blocks S 2x2 -> 2x3 -> 3x3, blocks L 2x2 -> 2x3. The optimiser maximises the
 mean d_n of all wall sizes of a series; the deep score leaves out the third-octave band around N*f0.
+
+Since 25.10.2026 the deep orders in out/layouts.json are not this optimiser's: they were replaced by the best nested
+orders of the 2D BEM ranking (S 1 2 7 3 6 5 4, L 5 6 2 7 1 4 3; checks/bem/order_nested.py, docs/bem-check.md), with
+the same score and the same growth rule. deep_layouts() and the stage 1 orders (S 6 3 5 4 2 7 1, L 6 3 4 2 5 7 1) stay
+here as history; the block shifts are still the stage 1 ones.
 """
 from __future__ import annotations
 

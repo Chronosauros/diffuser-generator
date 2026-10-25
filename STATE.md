@@ -11,6 +11,16 @@ an octave above f0. The checks are public in `checks/` (published recipes throug
 theory, the 2D BEM simulation with code, raw far fields and figures), written up in `docs/bem-check.md`, and the page
 links the BEM check next to the deep design band.
 
-Next result: open points of the BEM check (is the published wall order the best one or only better than copies;
-block tiles need 3D BEM), maybe an advanced mode with N, design frequency and well width as inputs; a measurement is
-still the only proof. Move any fixes into `reference/` and the core of `index.html` together.
+25.10.2026, owner's decision after the night research programme: the deep walls use the best nested orders of the BEM
+ranking (walls grow by prefix, tiles already on the wall never move). Series L (P1S / X1, MK4 / Core One)
+`5 6 2 7 1 4 3`, seen from the room 3 `2 6 5`, 5 `1 7 2 6 5`, 7 `3 4 1 7 2 6 5`; series S (A1 mini) `1 2 7 3 6 5 4`,
+room 4 `3 7 2 1`, 7 `4 5 6 3 7 2 1`. Until then L `6 3 4 2 5 7 1`, S `6 3 5 4 2 7 1`. Changed together:
+`reference/out/layouts.json`, the test fixture, LAYOUTS in `index.html`, `docs/how-it-works.md`, `docs/bem-check.md`
+and `checks/bem/` (new `order_walls.py` and `order_nested.py`, the five wall runs of the sweep redone for the new
+order, the old order frozen as a constant in the order scripts). The Printables set (model 1887298) and its wall
+plans still show the old order; that is the owner's call.
+
+Next result: owner's decisions on (a) the √2 · f0 band start of deep walls under 7 tiles, now cautious for the new
+order (BEM starts at about f0), and (b) the Printables set with the old order; block tiles need 3D BEM; maybe an
+advanced mode with N, design frequency and well width as inputs; a measurement is still the only proof. Move any fixes
+into `reference/` and the core of `index.html` together.
