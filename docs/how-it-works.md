@@ -190,8 +190,8 @@ These are the parts I am least sure about:
 6. Is the Fourier model good enough to choose the orders, or should that be done with BEM? (Partly answered: in the
    2D BEM check the chosen orders beat copies of one tile in every range from f0 up. Ranking all 210 orders of a
    3-tile P1S / X1 wall, the Fourier model's best order is 22nd of 108 mirror pairs in BEM, and the two rankings
-   correlate at 0.68: good for ruling out bad orders, not for picking the best. The 5- and 7-tile walls were not
-   ranked.)
+   correlate at 0.68: good for ruling out bad orders, not for picking the best. A BEM search over the 3-, 5- and
+   7-tile walls together found an order better by 0.04, 0.03 and 0.006, too little to renumber the walls.)
 
 ## References
 

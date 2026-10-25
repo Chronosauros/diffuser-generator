@@ -48,6 +48,7 @@ Fourier model. Write-up, tables and figures: [docs/bem-check.md](../docs/bem-che
 - `bem/validate.py` - solver checks (cylinder, interior resonance, Kirchhoff, standard QRD, mesh convergence);
 - `bem/sweep.py`, `bem/analysis.py`, `bem/tables.py` - the runs, the diffusion coefficients and figures, the tables;
 - `bem/order_ranking.py` - every order of a 3-tile P1S / X1 wall in BEM and in the Fourier model, ranked;
+- `bem/order_search.py` - a BEM search for a better 7-tile P1S / X1 order over the 3-, 5- and 7-tile walls together;
 - `bem/out/` - `validation.json`, `results.json`, `raw/*.npz` (far fields of every run) and the figures.
 
 `pip install -r checks/bem/requirements.txt` (numpy, scipy, matplotlib), then the commands in docs/bem-check.md.

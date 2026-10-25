@@ -29,6 +29,8 @@ figure are in [`checks/bem/`](../checks/bem/), so anyone can rerun it or point o
 - Ranking all 210 orders of a 3-tile P1S / X1 wall: the published order `6 3 4` is first in the Fourier model and 22nd
   of 108 mirror pairs in BEM (d_n 0.41, the BEM best `5 6 2` reaches 0.45). The two rankings correlate moderately
   (Spearman 0.68). The Fourier model is good at ruling out bad orders, not at picking the best one.
+- A BEM search over the 3-, 5- and 7-tile walls together found an order (`5 6 2 7 1 4 3`) that is better at every wall
+  size, by 0.04, 0.03 and 0.006. That is too little to renumber the published walls; the order stays.
 
 What changed in the generator because of this: the lower end of a deep wall's band. A deep wall narrower than 3.5
 design wavelengths (fewer than 7 tiles at the default depth) now starts at √2 · f0 instead of f0, never below
@@ -286,10 +288,58 @@ band energies of every BEM run: `checks/bem/out/ranking-P1S-3-bem.jsonl`.
 Each dot is one order and its mirror image; orange the published order, the black ring the best order in BEM for the
 score of that panel.
 
+## A better order for the 3-, 5- and 7-tile walls? (P1S / X1)
+
+A wall grows by prefix: 3 tiles are the first three of the order, 5 tiles the first five, 7 tiles all of it. So a
+different order has to be judged on all three walls at once, with the optimiser's joint score J = (S3 + S5 + S7) / 3.
+[`checks/bem/order_search.py`](../checks/bem/order_search.py) searched for a better 7-tile order in BEM:
+
+- The Fourier model scored all 5040 orders. On the v3 P1S / X1 geometry the published order `6 3 4 2 5 7 1` is 2nd
+  (it was optimised on the stage 1 size), next to `6 3 4 2 5 1 7`.
+- Round 1 ran a shortlist in BEM: the top 40 by a hybrid predictor (the exact BEM S3 of the 3-tile ranking plus Fourier
+  S5 and S7 mapped onto the BEM scale), the top 25 by the Fourier J, the published order and 16 random orders.
+- Round 2 tried every swap of two tiles in the 3 best orders. None was better than the best of round 1, so the search
+  stopped there.
+- 128 orders with all three walls in BEM, 226 new BEM runs, 70 minutes in 12 processes. Summary
+  `checks/bem/out/search-P1S.json`, band energies of every run `checks/bem/out/search-P1S-bem.jsonl`.
+
+| BEM, mean d_n | 3 tiles | 5 tiles | 7 tiles | joint J |
+|---|---|---|---|---|
+| Published `6 3 4 2 5 7 1` | 0.41 | 0.38 | 0.35 | 0.379 |
+| Best found `5 6 2 7 1 4 3` | 0.45 | 0.41 | 0.35 | 0.403 |
+| 16 random orders (min - max) | | | 0.29 - 0.35 | 0.27 - 0.38 |
+| Best 7-tile wall found (`4 6 2 1 7 3 5`) | 0.42 | 0.41 | 0.37 | 0.402 |
+
+| Best found against published, BEM | 3 tiles | 5 tiles | 7 tiles |
+|---|---|---|---|
+| f0 - 2 f0 (800-1250 Hz) | 0.50 / 0.43 | 0.52 / 0.41 | 0.45 / 0.44 |
+| 2 f0 - 7 f0 (1.6-4 kHz) | 0.42 / 0.40 | 0.34 / 0.36 | 0.30 / 0.29 |
+| Normal incidence | 0.44 / 0.38 | 0.39 / 0.35 | 0.31 / 0.28 |
+
+- The published order is good: better than 15 of the 16 random orders. The best order found is better at every wall
+  size, by 0.04 at 3 tiles, 0.03 at 5 tiles and 0.006 at 7 tiles (the solver's mesh error is 0.004). The gain is
+  between f0 and 2 f0; between 2 f0 and 7 f0 the 5-tile wall is a little worse.
+- For the 7-tile wall the order hardly matters: random orders score 0.29-0.35, the published one 0.35 and the best
+  7-tile wall found 0.37.
+- The Fourier model would not have found it: the best order is 83rd of 5040 there, and the best order of the Fourier
+  shortlist is 25th in BEM. Of the BEM top 5, two came from the hybrid shortlist, three from the swaps and none from
+  the Fourier shortlist. On the 16 random orders the Spearman rank correlation of Fourier and BEM is 0.82 for 5 tiles,
+  0.45 for 7 tiles and 0.66 for J (a small sample).
+
+For now the published order stays. The gain is 2-9 % of a predicted d_n, almost nothing for the 7-tile wall, and
+smaller than what a rigid 2D model leaves out. It was found for one geometry only (P1S / X1 at the default depth), while
+the same order also serves the MK4 / Core One and other depths. Renumbering would change the wall orders in the core of
+`index.html`, `reference/out/layouts.json` and the test fixtures, the table in how-it-works.md, every wall plan and the
+published model descriptions, and anyone who already built a wall from the old plan would have a different one. If the
+walls are renumbered one day, for example with a measured test, `5 6 2 7 1 4 3` is the candidate; the A1 mini order
+(4- and 7-tile walls) was not searched.
+
+![BEM search for a better P1S wall order](../checks/bem/out/fig-P1S-search.png)
+
 ## Still open
 
-- The best order of the 5- and 7-tile walls in BEM (a shortlist from the Fourier model, then BEM), and whether the
-  difference is worth renumbering the walls.
+- A measured comparison of the published order, a better BEM order and copies of one tile.
+- The A1 mini wall order (4 and 7 tiles) was not searched in BEM.
 - Block tiles were not simulated (they need 3D BEM).
 - A measurement is still the only proof. What to look for: the specular reflection of a wall in the published order
   dropping from about f0, no such drop for copies at normal incidence, the specular reflection coming back at 7 f0
@@ -306,6 +356,7 @@ python checks/bem/sweep.py        # the BEM runs, about 11 minutes with 8 proces
 python checks/bem/analysis.py     # diffusion coefficients and figures -> checks/bem/out/results.json, fig-*.png
 python checks/bem/tables.py       # the tables of this page
 python checks/bem/order_ranking.py   # all orders of a 3-tile P1S wall, about 8 minutes -> checks/bem/out/ranking-P1S-3.*
+python checks/bem/order_search.py    # better 7-tile P1S orders in BEM, about 70 minutes in 12 processes -> checks/bem/out/search-P1S.*
 ```
 
 `sweep.py` skips configurations that already have a raw file, so delete `checks/bem/out/raw/` to run everything again.
