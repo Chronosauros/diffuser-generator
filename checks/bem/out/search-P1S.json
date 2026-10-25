@@ -1,7 +1,7 @@
 {
- "method": "Search for a better 7-tile order of the P1S / X1 deep walls in BEM, starting from the Fourier model.\n\n    python checks/bem/order_search.py [--workers 12]\n\nThe walls grow by prefix (3 tiles = the first three of the order, 5 = the first five, 7 = all), so an order is judged\nby the optimiser's joint score J = (S3 + S5 + S7) / 3, each S the score of order_ranking.py (mean d_n over 0, +-30,\n+-60 degrees and the bands 800 Hz - 4 kHz, 3 frequencies per band) for that wall size. S3 in BEM is known for every\nprefix (order_ranking.py), so the search only runs 5- and 7-tile walls:\n\n1. The Fourier model scores all 5040 orders.\n2. Round 1 runs a shortlist in BEM: the top 40 by a hybrid predictor (exact BEM S3, Fourier S5 and S7 mapped onto\n   the BEM scale with the linear fit of the 3-tile ranking), the top 25 by the Fourier J, the published order,\n   and 16 uniformly random orders (the only unbiased estimate of how well the Fourier model ranks 5 and 7 tiles).\n3. Local search in BEM only: every swap of two tiles in the 3 best orders, then again from a new best.\n\nA wall and its mirror image (tile t upside down is 9 - t) score the same, so 5- and 7-tile runs are cached by mirror\nclass. Band energies (B, I, R) of every run, float32 in base64, go to out/search-P1S-bem.jsonl as they come (a stopped\nrun resumes), the summary to out/search-P1S.json, the figure to out/fig-P1S-search.png.",
+ "method": "Search for a better 7-tile order of the P1S / X1 deep walls in BEM, starting from the Fourier model.\n\n    python checks/bem/order_search.py [--workers 12] [--cache-only]\n\nThe walls grow by prefix (3 tiles = the first three of the order, 5 = the first five, 7 = all), so an order is judged\nby the optimiser's joint score J = (S3 + S5 + S7) / 3, each S the score of order_ranking.py (mean d_n over 0, +-30,\n+-60 degrees and the bands 800 Hz - 4 kHz, 3 frequencies per band) for that wall size. S3 in BEM is known for every\nprefix (order_ranking.py), so the search only runs 5- and 7-tile walls:\n\n1. The Fourier model scores all 5040 orders.\n2. Round 1 runs a shortlist in BEM: the top 40 by a hybrid predictor (exact BEM S3, Fourier S5 and S7 mapped onto\n   the BEM scale with the linear fit of the 3-tile ranking), the top 25 by the Fourier J, the order published until\n   25.10.2026 (OLD below), and 16 uniformly random orders (the only unbiased estimate of how well the Fourier model ranks 5 and 7 tiles).\n3. Local search in BEM only: every swap of two tiles in the 3 best orders, then again from a new best.\n\nA wall and its mirror image (tile t upside down is 9 - t) score the same, so 5- and 7-tile runs are cached by mirror\nclass. Band energies (B, I, R) of every run, float32 in base64, go to out/search-P1S-bem.jsonl as they come (a stopped\nrun resumes), the summary to out/search-P1S.json, the figure to out/fig-P1S-search.png. With --cache-only nothing is\nsimulated: the search is replayed from the cached band energies (it takes the same steps, since they are all in the\ncache) and the script stops if a run is missing.\n\nThe search was run against the order published until 25.10.2026 and found the order that is in the generator now\n(CURRENT); both are frozen below, so the numbers do not change when layouts.json does.",
  "size": "P1S",
- "published": [
+ "order_until_2026_10_25": [
   6,
   3,
   4,
@@ -9,6 +9,15 @@
   5,
   7,
   1
+ ],
+ "current_order": [
+  5,
+  6,
+  2,
+  7,
+  1,
+  4,
+  3
  ],
  "seconds": 4231,
  "bem_runs": 335,
@@ -70,7 +79,8 @@
  "spearman_evaluated": {
   "J": 0.5222830067753158
  },
- "published_bem_rank": 50,
+ "old_bem_rank": 50,
+ "current_bem_rank": 1,
  "best": [
   5,
   6,
@@ -88,7 +98,7 @@
   "swap round 2"
  ],
  "compare": {
-  "published": {
+  "old": {
    "order": [
     6,
     3,

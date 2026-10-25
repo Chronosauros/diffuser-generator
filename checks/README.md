@@ -49,6 +49,14 @@ Fourier model. Write-up, tables and figures: [docs/bem-check.md](../docs/bem-che
 - `bem/sweep.py`, `bem/analysis.py`, `bem/tables.py` - the runs, the diffusion coefficients and figures, the tables;
 - `bem/order_ranking.py` - every order of a 3-tile P1S / X1 wall in BEM and in the Fourier model, ranked;
 - `bem/order_search.py` - a BEM search for a better 7-tile P1S / X1 order over the 3-, 5- and 7-tile walls together;
-- `bem/out/` - `validation.json`, `results.json`, `raw/*.npz` (far fields of every run) and the figures.
+- `bem/order_walls.py` - per-wall BEM rankings: P1S / X1 5 and 7 tiles, A1 mini 4 and 7 tiles;
+- `bem/order_nested.py` - the best chains of nested walls from every cached BEM run, and a check of the orders in
+  `reference/out/layouts.json` (cached numbers and a fresh BEM run of the smallest wall of each class). These four
+  scripts were made against the wall order published until 25.10.2026 and keep it as a named constant, so their numbers
+  do not change when `layouts.json` does; each can rebuild its summary from the cached band energies without any BEM
+  (`--cache-only`, `--no-bem` for order_nested.py);
+- `bem/out/` - `validation.json`, `results.json`, `raw/*.npz` (far fields of every run), the band energies of the order
+  runs (`*-bem.jsonl`, 9 MB), their summaries (`ranking-P1S-3.json`, `search-P1S.json`, `walls.json`, `nested.json`) and
+  the figures.
 
 `pip install -r checks/bem/requirements.txt` (numpy, scipy, matplotlib), then the commands in docs/bem-check.md.

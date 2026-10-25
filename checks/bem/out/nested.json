@@ -1,0 +1,1823 @@
+{
+ "method": "Nested wall orders: which 7-tile order serves its smaller walls best, and does the generator use it?\n\n    python checks/bem/order_nested.py [--no-bem] [--workers 6]\n\nA deep wall grows when the owner adds tiles (P1S / X1 class L: 3 -> 5 -> 7 tiles, A1 mini class S: 4 -> 7), and tiles\nalready stuck on do not move, so the smaller walls are contiguous pieces of the larger one. This script ranks the chains\nof such walls from every BEM run in the repository (no new simulation for that part), by the optimiser's score\n(order_ranking.py: mean d_n over 0, +-30, +-60 degrees and the bands from f0 to below 7 f0, 3 frequencies per band)\naveraged over the wall sizes of the chain:\n\n- prefix chains: 3 tiles = the first three of the order, 5 = the first five, 7 = all (how the generator grows a wall\n  now: new tiles are added on one side, the wall order is the one in layouts.json);\n- window chains: the smaller wall is any contiguous window of the larger one (the wall grows on either side). Both\n  orientations of every order are tried (an order and its mirror image score the same as walls, but their windows differ).\n\nOnly chains whose walls were all run in BEM are ranked, so \"best\" means best among the orders BEM has seen: 145 of the\n2544 mirror classes of 7 P1S tiles and 56 of 2544 for the A1 mini (order_walls.py, order_search.py).\n\nThen it checks the orders in reference/out/layouts.json: the walls are prefixes of the order, room_left_to_right is their\nreverse (the room list is seen from the room, the model list is STL X, tile order[0] at x = 0), the cached score of every\nwall, and unless --no-bem a fresh BEM run of the smallest wall of each class built from room_left_to_right reversed back\ninto model order, next to the same tiles taken in room order without reversing (the direction mistake). The fresh run\nmust give the cached number. Summary: out/nested.json, figure out/fig-nested.png.",
+ "classes": {
+  "L": {
+   "size": "P1S",
+   "wall_sizes": [
+    3,
+    5,
+    7
+   ],
+   "orders_with_all_walls_in_bem": 145,
+   "chains_prefix": 135,
+   "chains_window": 138,
+   "old_prefix": {
+    "mean": 0.3789,
+    "scores": [
+     0.4108,
+     0.3789,
+     0.3472
+    ],
+    "chain": [
+     [
+      6,
+      3,
+      4
+     ],
+     [
+      6,
+      3,
+      4,
+      2,
+      5
+     ],
+     [
+      6,
+      3,
+      4,
+      2,
+      5,
+      7,
+      1
+     ]
+    ],
+    "offsets": [
+     0,
+     0,
+     0
+    ],
+    "rank": 58
+   },
+   "new_prefix": {
+    "mean": 0.4028,
+    "scores": [
+     0.4492,
+     0.4061,
+     0.3532
+    ],
+    "chain": [
+     [
+      5,
+      6,
+      2
+     ],
+     [
+      5,
+      6,
+      2,
+      7,
+      1
+     ],
+     [
+      5,
+      6,
+      2,
+      7,
+      1,
+      4,
+      3
+     ]
+    ],
+    "offsets": [
+     0,
+     0,
+     0
+    ],
+    "rank": 1
+   },
+   "top_prefix": [
+    {
+     "mean": 0.4028,
+     "scores": [
+      0.4492,
+      0.4061,
+      0.3532
+     ],
+     "chain": [
+      [
+       5,
+       6,
+       2
+      ],
+      [
+       5,
+       6,
+       2,
+       7,
+       1
+      ],
+      [
+       5,
+       6,
+       2,
+       7,
+       1,
+       4,
+       3
+      ]
+     ],
+     "offsets": [
+      0,
+      0,
+      0
+     ],
+     "rank": 1
+    },
+    {
+     "mean": 0.4021,
+     "scores": [
+      0.4243,
+      0.4103,
+      0.3716
+     ],
+     "chain": [
+      [
+       4,
+       6,
+       2
+      ],
+      [
+       4,
+       6,
+       2,
+       1,
+       7
+      ],
+      [
+       4,
+       6,
+       2,
+       1,
+       7,
+       3,
+       5
+      ]
+     ],
+     "offsets": [
+      0,
+      0,
+      0
+     ],
+     "rank": 2
+    },
+    {
+     "mean": 0.3996,
+     "scores": [
+      0.4401,
+      0.4,
+      0.3588
+     ],
+     "chain": [
+      [
+       1,
+       6,
+       2
+      ],
+      [
+       1,
+       6,
+       2,
+       5,
+       7
+      ],
+      [
+       1,
+       6,
+       2,
+       5,
+       7,
+       3,
+       4
+      ]
+     ],
+     "offsets": [
+      0,
+      0,
+      0
+     ],
+     "rank": 3
+    },
+    {
+     "mean": 0.3994,
+     "scores": [
+      0.4492,
+      0.3958,
+      0.3534
+     ],
+     "chain": [
+      [
+       5,
+       6,
+       2
+      ],
+      [
+       5,
+       6,
+       2,
+       1,
+       7
+      ],
+      [
+       5,
+       6,
+       2,
+       1,
+       7,
+       3,
+       4
+      ]
+     ],
+     "offsets": [
+      0,
+      0,
+      0
+     ],
+     "rank": 4
+    },
+    {
+     "mean": 0.398,
+     "scores": [
+      0.4492,
+      0.3859,
+      0.3589
+     ],
+     "chain": [
+      [
+       5,
+       6,
+       2
+      ],
+      [
+       5,
+       6,
+       2,
+       4,
+       1
+      ],
+      [
+       5,
+       6,
+       2,
+       4,
+       1,
+       7,
+       3
+      ]
+     ],
+     "offsets": [
+      0,
+      0,
+      0
+     ],
+     "rank": 5
+    },
+    {
+     "mean": 0.3977,
+     "scores": [
+      0.4492,
+      0.3962,
+      0.3478
+     ],
+     "chain": [
+      [
+       5,
+       6,
+       2
+      ],
+      [
+       5,
+       6,
+       2,
+       7,
+       4
+      ],
+      [
+       5,
+       6,
+       2,
+       7,
+       4,
+       3,
+       1
+      ]
+     ],
+     "offsets": [
+      0,
+      0,
+      0
+     ],
+     "rank": 6
+    },
+    {
+     "mean": 0.397,
+     "scores": [
+      0.4492,
+      0.388,
+      0.3539
+     ],
+     "chain": [
+      [
+       5,
+       6,
+       2
+      ],
+      [
+       5,
+       6,
+       2,
+       7,
+       3
+      ],
+      [
+       5,
+       6,
+       2,
+       7,
+       3,
+       4,
+       1
+      ]
+     ],
+     "offsets": [
+      0,
+      0,
+      0
+     ],
+     "rank": 7
+    },
+    {
+     "mean": 0.3963,
+     "scores": [
+      0.4492,
+      0.3962,
+      0.3436
+     ],
+     "chain": [
+      [
+       5,
+       6,
+       2
+      ],
+      [
+       5,
+       6,
+       2,
+       7,
+       4
+      ],
+      [
+       5,
+       6,
+       2,
+       7,
+       4,
+       1,
+       3
+      ]
+     ],
+     "offsets": [
+      0,
+      0,
+      0
+     ],
+     "rank": 8
+    },
+    {
+     "mean": 0.3961,
+     "scores": [
+      0.412,
+      0.4096,
+      0.3666
+     ],
+     "chain": [
+      [
+       1,
+       2,
+       7
+      ],
+      [
+       1,
+       2,
+       7,
+       6,
+       3
+      ],
+      [
+       1,
+       2,
+       7,
+       6,
+       3,
+       5,
+       4
+      ]
+     ],
+     "offsets": [
+      0,
+      0,
+      0
+     ],
+     "rank": 9
+    },
+    {
+     "mean": 0.3935,
+     "scores": [
+      0.4492,
+      0.3958,
+      0.3354
+     ],
+     "chain": [
+      [
+       5,
+       6,
+       2
+      ],
+      [
+       5,
+       6,
+       2,
+       1,
+       7
+      ],
+      [
+       5,
+       6,
+       2,
+       1,
+       7,
+       4,
+       3
+      ]
+     ],
+     "offsets": [
+      0,
+      0,
+      0
+     ],
+     "rank": 10
+    },
+    {
+     "mean": 0.3932,
+     "scores": [
+      0.4492,
+      0.3861,
+      0.3442
+     ],
+     "chain": [
+      [
+       5,
+       6,
+       2
+      ],
+      [
+       5,
+       6,
+       2,
+       4,
+       3
+      ],
+      [
+       5,
+       6,
+       2,
+       4,
+       3,
+       1,
+       7
+      ]
+     ],
+     "offsets": [
+      0,
+      0,
+      0
+     ],
+     "rank": 11
+    },
+    {
+     "mean": 0.3928,
+     "scores": [
+      0.412,
+      0.3945,
+      0.3719
+     ],
+     "chain": [
+      [
+       1,
+       2,
+       7
+      ],
+      [
+       1,
+       2,
+       7,
+       3,
+       6
+      ],
+      [
+       1,
+       2,
+       7,
+       3,
+       6,
+       5,
+       4
+      ]
+     ],
+     "offsets": [
+      0,
+      0,
+      0
+     ],
+     "rank": 12
+    }
+   ],
+   "top_window": [
+    {
+     "mean": 0.405,
+     "scores": [
+      0.4492,
+      0.4061,
+      0.3598
+     ],
+     "chain": [
+      [
+       7,
+       3,
+       4
+      ],
+      [
+       1,
+       2,
+       7,
+       3,
+       4
+      ],
+      [
+       1,
+       2,
+       7,
+       3,
+       4,
+       6,
+       5
+      ]
+     ],
+     "offsets": [
+      2,
+      0,
+      0
+     ],
+     "rank": 1
+    },
+    {
+     "mean": 0.4028,
+     "scores": [
+      0.4492,
+      0.4061,
+      0.3532
+     ],
+     "chain": [
+      [
+       5,
+       6,
+       2
+      ],
+      [
+       5,
+       6,
+       2,
+       7,
+       1
+      ],
+      [
+       5,
+       6,
+       2,
+       7,
+       1,
+       4,
+       3
+      ]
+     ],
+     "offsets": [
+      0,
+      0,
+      0
+     ],
+     "rank": 2
+    },
+    {
+     "mean": 0.4021,
+     "scores": [
+      0.4243,
+      0.4103,
+      0.3716
+     ],
+     "chain": [
+      [
+       4,
+       6,
+       2
+      ],
+      [
+       4,
+       6,
+       2,
+       1,
+       7
+      ],
+      [
+       4,
+       6,
+       2,
+       1,
+       7,
+       3,
+       5
+      ]
+     ],
+     "offsets": [
+      0,
+      0,
+      0
+     ],
+     "rank": 3
+    },
+    {
+     "mean": 0.3996,
+     "scores": [
+      0.4401,
+      0.4,
+      0.3588
+     ],
+     "chain": [
+      [
+       1,
+       6,
+       2
+      ],
+      [
+       1,
+       6,
+       2,
+       5,
+       7
+      ],
+      [
+       1,
+       6,
+       2,
+       5,
+       7,
+       3,
+       4
+      ]
+     ],
+     "offsets": [
+      0,
+      0,
+      0
+     ],
+     "rank": 4
+    },
+    {
+     "mean": 0.3995,
+     "scores": [
+      0.4115,
+      0.4209,
+      0.366
+     ],
+     "chain": [
+      [
+       7,
+       4,
+       6
+      ],
+      [
+       2,
+       7,
+       4,
+       6,
+       5
+      ],
+      [
+       1,
+       2,
+       7,
+       4,
+       6,
+       5,
+       3
+      ]
+     ],
+     "offsets": [
+      2,
+      1,
+      0
+     ],
+     "rank": 5
+    },
+    {
+     "mean": 0.3994,
+     "scores": [
+      0.4492,
+      0.3958,
+      0.3534
+     ],
+     "chain": [
+      [
+       5,
+       6,
+       2
+      ],
+      [
+       5,
+       6,
+       2,
+       1,
+       7
+      ],
+      [
+       5,
+       6,
+       2,
+       1,
+       7,
+       3,
+       4
+      ]
+     ],
+     "offsets": [
+      0,
+      0,
+      0
+     ],
+     "rank": 6
+    },
+    {
+     "mean": 0.398,
+     "scores": [
+      0.4492,
+      0.3859,
+      0.3589
+     ],
+     "chain": [
+      [
+       5,
+       6,
+       2
+      ],
+      [
+       5,
+       6,
+       2,
+       4,
+       1
+      ],
+      [
+       5,
+       6,
+       2,
+       4,
+       1,
+       7,
+       3
+      ]
+     ],
+     "offsets": [
+      0,
+      0,
+      0
+     ],
+     "rank": 7
+    },
+    {
+     "mean": 0.3977,
+     "scores": [
+      0.4492,
+      0.3962,
+      0.3478
+     ],
+     "chain": [
+      [
+       7,
+       3,
+       4
+      ],
+      [
+       5,
+       2,
+       7,
+       3,
+       4
+      ],
+      [
+       1,
+       6,
+       5,
+       2,
+       7,
+       3,
+       4
+      ]
+     ],
+     "offsets": [
+      4,
+      2,
+      0
+     ],
+     "rank": 8
+    },
+    {
+     "mean": 0.397,
+     "scores": [
+      0.4492,
+      0.388,
+      0.3539
+     ],
+     "chain": [
+      [
+       5,
+       6,
+       2
+      ],
+      [
+       5,
+       6,
+       2,
+       7,
+       3
+      ],
+      [
+       1,
+       5,
+       6,
+       2,
+       7,
+       3,
+       4
+      ]
+     ],
+     "offsets": [
+      1,
+      1,
+      0
+     ],
+     "rank": 9
+    },
+    {
+     "mean": 0.3964,
+     "scores": [
+      0.4243,
+      0.4161,
+      0.3488
+     ],
+     "chain": [
+      [
+       7,
+       3,
+       5
+      ],
+      [
+       1,
+       2,
+       7,
+       3,
+       5
+      ],
+      [
+       1,
+       2,
+       7,
+       3,
+       5,
+       6,
+       4
+      ]
+     ],
+     "offsets": [
+      2,
+      0,
+      0
+     ],
+     "rank": 10
+    },
+    {
+     "mean": 0.3963,
+     "scores": [
+      0.4492,
+      0.3962,
+      0.3436
+     ],
+     "chain": [
+      [
+       5,
+       6,
+       2
+      ],
+      [
+       5,
+       6,
+       2,
+       7,
+       4
+      ],
+      [
+       5,
+       6,
+       2,
+       7,
+       4,
+       1,
+       3
+      ]
+     ],
+     "offsets": [
+      0,
+      0,
+      0
+     ],
+     "rank": 11
+    },
+    {
+     "mean": 0.3961,
+     "scores": [
+      0.412,
+      0.4096,
+      0.3666
+     ],
+     "chain": [
+      [
+       1,
+       2,
+       7
+      ],
+      [
+       1,
+       2,
+       7,
+       6,
+       3
+      ],
+      [
+       1,
+       2,
+       7,
+       6,
+       3,
+       5,
+       4
+      ]
+     ],
+     "offsets": [
+      0,
+      0,
+      0
+     ],
+     "rank": 12
+    }
+   ],
+   "layouts_check": {
+    "order": [
+     5,
+     6,
+     2,
+     7,
+     1,
+     4,
+     3
+    ],
+    "walls_are_prefixes": true,
+    "room_is_reversed_walls": true,
+    "equals_new_order": true,
+    "cached_scores": {
+     "3": 0.4491836938447687,
+     "5": 0.40607462474434497,
+     "7": 0.35318742108914286
+    },
+    "smallest_wall": {
+     "tiles": 3,
+     "room_left_to_right": [
+      2,
+      6,
+      5
+     ],
+     "model_order": [
+      5,
+      6,
+      2
+     ],
+     "cached": 0.4491836938447687,
+     "cached_room_order_as_model": 0.41677285927661645,
+     "fresh": 0.4492,
+     "fresh_room_order_as_model": 0.4168
+    }
+   }
+  },
+  "S": {
+   "size": "A1mini",
+   "wall_sizes": [
+    4,
+    7
+   ],
+   "orders_with_all_walls_in_bem": 56,
+   "chains_prefix": 56,
+   "chains_window": 56,
+   "old_prefix": {
+    "mean": 0.3553,
+    "scores": [
+     0.3643,
+     0.3463
+    ],
+    "chain": [
+     [
+      6,
+      3,
+      5,
+      4
+     ],
+     [
+      6,
+      3,
+      5,
+      4,
+      2,
+      7,
+      1
+     ]
+    ],
+    "offsets": [
+     0,
+     0
+    ],
+    "rank": 8
+   },
+   "new_prefix": {
+    "mean": 0.4081,
+    "scores": [
+     0.449,
+     0.3672
+    ],
+    "chain": [
+     [
+      1,
+      2,
+      7,
+      3
+     ],
+     [
+      1,
+      2,
+      7,
+      3,
+      6,
+      5,
+      4
+     ]
+    ],
+    "offsets": [
+     0,
+     0
+    ],
+    "rank": 1
+   },
+   "top_prefix": [
+    {
+     "mean": 0.4081,
+     "scores": [
+      0.449,
+      0.3672
+     ],
+     "chain": [
+      [
+       1,
+       2,
+       7,
+       3
+      ],
+      [
+       1,
+       2,
+       7,
+       3,
+       6,
+       5,
+       4
+      ]
+     ],
+     "offsets": [
+      0,
+      0
+     ],
+     "rank": 1
+    },
+    {
+     "mean": 0.4025,
+     "scores": [
+      0.449,
+      0.356
+     ],
+     "chain": [
+      [
+       1,
+       2,
+       7,
+       3
+      ],
+      [
+       1,
+       2,
+       7,
+       3,
+       4,
+       6,
+       5
+      ]
+     ],
+     "offsets": [
+      0,
+      0
+     ],
+     "rank": 2
+    },
+    {
+     "mean": 0.4016,
+     "scores": [
+      0.449,
+      0.3541
+     ],
+     "chain": [
+      [
+       1,
+       2,
+       7,
+       3
+      ],
+      [
+       1,
+       2,
+       7,
+       3,
+       5,
+       6,
+       4
+      ]
+     ],
+     "offsets": [
+      0,
+      0
+     ],
+     "rank": 3
+    },
+    {
+     "mean": 0.3998,
+     "scores": [
+      0.4487,
+      0.3509
+     ],
+     "chain": [
+      [
+       1,
+       2,
+       7,
+       4
+      ],
+      [
+       1,
+       2,
+       7,
+       4,
+       6,
+       5,
+       3
+      ]
+     ],
+     "offsets": [
+      0,
+      0
+     ],
+     "rank": 4
+    },
+    {
+     "mean": 0.3983,
+     "scores": [
+      0.449,
+      0.3476
+     ],
+     "chain": [
+      [
+       6,
+       2,
+       7,
+       1
+      ],
+      [
+       6,
+       2,
+       7,
+       1,
+       5,
+       4,
+       3
+      ]
+     ],
+     "offsets": [
+      0,
+      0
+     ],
+     "rank": 5
+    },
+    {
+     "mean": 0.3977,
+     "scores": [
+      0.4487,
+      0.3467
+     ],
+     "chain": [
+      [
+       1,
+       2,
+       7,
+       4
+      ],
+      [
+       1,
+       2,
+       7,
+       4,
+       5,
+       6,
+       3
+      ]
+     ],
+     "offsets": [
+      0,
+      0
+     ],
+     "rank": 6
+    },
+    {
+     "mean": 0.3964,
+     "scores": [
+      0.449,
+      0.3437
+     ],
+     "chain": [
+      [
+       6,
+       2,
+       7,
+       1
+      ],
+      [
+       6,
+       2,
+       7,
+       1,
+       4,
+       5,
+       3
+      ]
+     ],
+     "offsets": [
+      0,
+      0
+     ],
+     "rank": 7
+    },
+    {
+     "mean": 0.3863,
+     "scores": [
+      0.4262,
+      0.3463
+     ],
+     "chain": [
+      [
+       1,
+       2,
+       7,
+       5
+      ],
+      [
+       1,
+       2,
+       7,
+       5,
+       4,
+       6,
+       3
+      ]
+     ],
+     "offsets": [
+      0,
+      0
+     ],
+     "rank": 8
+    },
+    {
+     "mean": 0.386,
+     "scores": [
+      0.4355,
+      0.3365
+     ],
+     "chain": [
+      [
+       7,
+       2,
+       1,
+       5
+      ],
+      [
+       7,
+       2,
+       1,
+       5,
+       6,
+       3,
+       4
+      ]
+     ],
+     "offsets": [
+      0,
+      0
+     ],
+     "rank": 9
+    },
+    {
+     "mean": 0.3858,
+     "scores": [
+      0.414,
+      0.3577
+     ],
+     "chain": [
+      [
+       4,
+       5,
+       2,
+       1
+      ],
+      [
+       4,
+       5,
+       2,
+       1,
+       7,
+       3,
+       6
+      ]
+     ],
+     "offsets": [
+      0,
+      0
+     ],
+     "rank": 10
+    },
+    {
+     "mean": 0.3853,
+     "scores": [
+      0.4208,
+      0.3499
+     ],
+     "chain": [
+      [
+       7,
+       2,
+       1,
+       6
+      ],
+      [
+       7,
+       2,
+       1,
+       6,
+       3,
+       4,
+       5
+      ]
+     ],
+     "offsets": [
+      0,
+      0
+     ],
+     "rank": 11
+    },
+    {
+     "mean": 0.3824,
+     "scores": [
+      0.4316,
+      0.3332
+     ],
+     "chain": [
+      [
+       3,
+       4,
+       2,
+       7
+      ],
+      [
+       3,
+       4,
+       2,
+       7,
+       6,
+       5,
+       1
+      ]
+     ],
+     "offsets": [
+      0,
+      0
+     ],
+     "rank": 12
+    }
+   ],
+   "top_window": [
+    {
+     "mean": 0.4081,
+     "scores": [
+      0.449,
+      0.3672
+     ],
+     "chain": [
+      [
+       1,
+       2,
+       7,
+       3
+      ],
+      [
+       1,
+       2,
+       7,
+       3,
+       6,
+       5,
+       4
+      ]
+     ],
+     "offsets": [
+      0,
+      0
+     ],
+     "rank": 1
+    },
+    {
+     "mean": 0.4052,
+     "scores": [
+      0.4544,
+      0.356
+     ],
+     "chain": [
+      [
+       2,
+       7,
+       3,
+       4
+      ],
+      [
+       1,
+       2,
+       7,
+       3,
+       4,
+       6,
+       5
+      ]
+     ],
+     "offsets": [
+      1,
+      0
+     ],
+     "rank": 2
+    },
+    {
+     "mean": 0.4016,
+     "scores": [
+      0.449,
+      0.3541
+     ],
+     "chain": [
+      [
+       1,
+       2,
+       7,
+       3
+      ],
+      [
+       1,
+       2,
+       7,
+       3,
+       5,
+       6,
+       4
+      ]
+     ],
+     "offsets": [
+      0,
+      0
+     ],
+     "rank": 3
+    },
+    {
+     "mean": 0.3998,
+     "scores": [
+      0.4487,
+      0.3509
+     ],
+     "chain": [
+      [
+       1,
+       2,
+       7,
+       4
+      ],
+      [
+       1,
+       2,
+       7,
+       4,
+       6,
+       5,
+       3
+      ]
+     ],
+     "offsets": [
+      0,
+      0
+     ],
+     "rank": 4
+    },
+    {
+     "mean": 0.3983,
+     "scores": [
+      0.449,
+      0.3476
+     ],
+     "chain": [
+      [
+       6,
+       2,
+       7,
+       1
+      ],
+      [
+       6,
+       2,
+       7,
+       1,
+       5,
+       4,
+       3
+      ]
+     ],
+     "offsets": [
+      0,
+      0
+     ],
+     "rank": 5
+    },
+    {
+     "mean": 0.3977,
+     "scores": [
+      0.4487,
+      0.3467
+     ],
+     "chain": [
+      [
+       1,
+       2,
+       7,
+       4
+      ],
+      [
+       1,
+       2,
+       7,
+       4,
+       5,
+       6,
+       3
+      ]
+     ],
+     "offsets": [
+      0,
+      0
+     ],
+     "rank": 6
+    },
+    {
+     "mean": 0.3964,
+     "scores": [
+      0.449,
+      0.3437
+     ],
+     "chain": [
+      [
+       6,
+       2,
+       7,
+       1
+      ],
+      [
+       6,
+       2,
+       7,
+       1,
+       4,
+       5,
+       3
+      ]
+     ],
+     "offsets": [
+      0,
+      0
+     ],
+     "rank": 7
+    },
+    {
+     "mean": 0.3863,
+     "scores": [
+      0.4262,
+      0.3463
+     ],
+     "chain": [
+      [
+       1,
+       2,
+       7,
+       5
+      ],
+      [
+       1,
+       2,
+       7,
+       5,
+       4,
+       6,
+       3
+      ]
+     ],
+     "offsets": [
+      0,
+      0
+     ],
+     "rank": 8
+    },
+    {
+     "mean": 0.386,
+     "scores": [
+      0.4355,
+      0.3365
+     ],
+     "chain": [
+      [
+       4,
+       1,
+       7,
+       2
+      ],
+      [
+       5,
+       6,
+       3,
+       4,
+       1,
+       7,
+       2
+      ]
+     ],
+     "offsets": [
+      3,
+      0
+     ],
+     "rank": 9
+    },
+    {
+     "mean": 0.3858,
+     "scores": [
+      0.414,
+      0.3577
+     ],
+     "chain": [
+      [
+       1,
+       7,
+       4,
+       5
+      ],
+      [
+       3,
+       6,
+       2,
+       1,
+       7,
+       4,
+       5
+      ]
+     ],
+     "offsets": [
+      3,
+      0
+     ],
+     "rank": 10
+    },
+    {
+     "mean": 0.3853,
+     "scores": [
+      0.4163,
+      0.3544
+     ],
+     "chain": [
+      [
+       7,
+       6,
+       3,
+       5
+      ],
+      [
+       1,
+       2,
+       7,
+       6,
+       3,
+       5,
+       4
+      ]
+     ],
+     "offsets": [
+      2,
+      0
+     ],
+     "rank": 11
+    },
+    {
+     "mean": 0.3853,
+     "scores": [
+      0.4208,
+      0.3499
+     ],
+     "chain": [
+      [
+       3,
+       1,
+       7,
+       2
+      ],
+      [
+       4,
+       5,
+       6,
+       3,
+       1,
+       7,
+       2
+      ]
+     ],
+     "offsets": [
+      3,
+      0
+     ],
+     "rank": 12
+    }
+   ],
+   "layouts_check": {
+    "order": [
+     1,
+     2,
+     7,
+     3,
+     6,
+     5,
+     4
+    ],
+    "walls_are_prefixes": true,
+    "room_is_reversed_walls": true,
+    "equals_new_order": true,
+    "cached_scores": {
+     "4": 0.4490009790331032,
+     "7": 0.36715105437937934
+    },
+    "smallest_wall": {
+     "tiles": 4,
+     "room_left_to_right": [
+      3,
+      7,
+      2,
+      1
+     ],
+     "model_order": [
+      1,
+      2,
+      7,
+      3
+     ],
+     "cached": 0.4490009790331032,
+     "cached_room_order_as_model": 0.40917634176483203,
+     "fresh": 0.449,
+     "fresh_room_order_as_model": 0.4092
+    }
+   }
+  }
+ }
+}

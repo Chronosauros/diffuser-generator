@@ -1,6 +1,6 @@
 """Every order of a 3-tile P1S / X1 deep wall in BEM and in the Fourier model, ranked by the optimiser's score.
 
-    python checks/bem/order_ranking.py [--workers 8]
+    python checks/bem/order_ranking.py [--workers 8] [--cache-only]
 
 Score as in layout.deep_layouts: mean d_n over the incidences 0, +-30, +-60 degrees and the third-octave bands from f0
 to below N f0 (800 Hz - 4 kHz on the P1S / X1), 3 frequencies per band, 37 receivers, d_n against the flat reference of
@@ -9,7 +9,12 @@ upside down gives tile 9 - t (tile 1 stays), so the order a b c seen in a mirror
 mirrored, with the same score over symmetric incidences and receivers. BEM runs one order of every mirror pair (and both
 orders of two pairs, to check that); the Fourier model runs all 210.
 Band energies per order go to out/ranking-P1S-3-bem.jsonl as they come (a stopped run resumes), the summary to
-out/ranking-P1S-3.json and the figure to out/fig-P1S-3-ranking.png.
+out/ranking-P1S-3.json and the figure to out/fig-P1S-3-ranking.png. With --cache-only nothing is simulated: the summary
+and the figure come from the band energies in that file, and the script stops if one is missing.
+
+The first three tiles of two orders are marked: the order until 25.10.2026 (6 3 4 ...), which was the one in the
+generator when this ranking was made, and the current order (5 6 2 ...), which this ranking found (see order_nested.py
+and docs/bem-check.md). Both are frozen below, so the numbers do not change when layouts.json does.
 """
 from __future__ import annotations
 
@@ -40,7 +45,11 @@ PER_BAND = 3
 INC = [0.0, 30.0, -30.0, 60.0, -60.0]
 TH = np.arange(-90, 90.01, 5.0)
 JSONL = OUT / "ranking-P1S-3-bem.jsonl"
-PUBLISHED = tuple(json.loads((geo.REF / "out" / "layouts.json").read_text(encoding="utf-8"))["deep"]["L"]["walls"]["3"])
+# The 3-tile wall of the deep L series (P1S / X1, MK4 / Core One) in model (STL X) order. OLD is the order published until
+# 25.10.2026 (the first three of 6 3 4 2 5 7 1), CURRENT the one in reference/out/layouts.json since then (5 6 2 7 1 4 3).
+# Frozen on purpose: this ranking was made for the old order, and reading layouts.json would change its numbers.
+OLD = (6, 3, 4)
+CURRENT = (5, 6, 2)
 DEADLINE_S = 3 * 3600
 
 
@@ -84,7 +93,7 @@ def task(order):
     return order, band_energy(np.stack(rows)).astype(np.float64)
 
 
-def run_bem(workers):
+def run_bem(workers, cache_only=False):
     done = {}
     if JSONL.exists():
         for line in JSONL.read_text(encoding="utf-8").splitlines():
@@ -92,9 +101,10 @@ def run_bem(workers):
             done[r["order"] if r["order"] == "flat" else tuple(r["order"])] = np.array(r["E"])
     reps = sorted({canonical(o) for o in itertools.permutations(range(1, 8), NCOL)})
     extra = [mirror(reps[0]), mirror(reps[-1])]                 # both sides of two pairs: the mirror check
-    if PUBLISHED not in reps:
-        extra.append(PUBLISHED)
+    extra += [o for o in (OLD, CURRENT) if o not in reps]
     todo = [o for o in ["flat"] + reps + extra if o not in done]
+    if cache_only and todo:
+        raise SystemExit(f"--cache-only: {len(todo)} runs are not in {JSONL.name}, first {todo[0]}")
     print(f"BEM: {len(todo)} runs to do ({len(done)} done), {len(freqs())} frequencies each, {workers} workers", flush=True)
     t0 = time.time()
     pool = get_context("spawn").Pool(workers)
@@ -145,9 +155,10 @@ def kendall(a, b):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--workers", type=int, default=8)
+    ap.add_argument("--cache-only", action="store_true", help="no BEM: summary and figure from the cached band energies")
     a = ap.parse_args()
     OUT.mkdir(parents=True, exist_ok=True)
-    bem = run_bem(a.workers)
+    bem = run_bem(a.workers, a.cache_only)
     four = run_fourier()
     bnd = bands()
     b = geo.qrd.deep_band(SIZE)
@@ -169,15 +180,17 @@ def main():
     rb_low, rf_low = ranks(sb_low[ip]), ranks(sf_low[ip])
     spearman = float(np.corrcoef(rb, rf)[0, 1])
     spearman_low = float(np.corrcoef(rb_low, rf_low)[0, 1])
-    pub = pair.index(canonical(PUBLISHED))
+    pub, cur = pair.index(canonical(OLD)), pair.index(canonical(CURRENT))
     top = lambda r, k: {pair[i] for i in np.argsort(r)[:k]}
     res = dict(
         method=__doc__.strip(), size=SIZE, columns=NCOL, bands_hz=bnd, low_bands_hz=[bnd[i] for i in low], incidences=INC,
-        published=list(PUBLISHED), pairs=len(pair), mirror_check=mirror_check,
+        order_until_2026_10_25=list(OLD), current_order=list(CURRENT), pairs=len(pair), mirror_check=mirror_check,
         spearman_rank=spearman, kendall_tau=kendall(sb[ip], sf[ip]),
         spearman_rank_f0_2f0=spearman_low, kendall_tau_f0_2f0=kendall(sb_low[ip], sf_low[ip]),
-        published_rank_bem=float(rb[pub]), published_rank_fourier=float(rf[pub]),
-        published_rank_bem_f0_2f0=float(rb_low[pub]), published_rank_fourier_f0_2f0=float(rf_low[pub]),
+        old_rank_bem=float(rb[pub]), old_rank_fourier=float(rf[pub]),
+        old_rank_bem_f0_2f0=float(rb_low[pub]), old_rank_fourier_f0_2f0=float(rf_low[pub]),
+        current_rank_bem=float(rb[cur]), current_rank_fourier=float(rf[cur]),
+        current_rank_bem_f0_2f0=float(rb_low[cur]), current_rank_fourier_f0_2f0=float(rf_low[cur]),
         top10_overlap=len(top(rb, 10) & top(rf, 10)),
         pairs_table=[dict(order=list(pair[j]), mirror=list(mirror(pair[j])), bem=round(float(sb[ip][j]), 4),
                           fourier=round(float(sf[ip][j]), 4), bem_f0_2f0=round(float(sb_low[ip][j]), 4),
@@ -187,14 +200,14 @@ def main():
     (OUT / "ranking-P1S-3.json").write_text(json.dumps(res, indent=1), encoding="utf-8")
     figure(res)
     print(json.dumps({k: res[k] for k in ("pairs", "spearman_rank", "kendall_tau", "spearman_rank_f0_2f0",
-                                         "published_rank_bem", "published_rank_fourier", "top10_overlap")}))
+                                         "old_rank_bem", "old_rank_fourier", "current_rank_bem", "top10_overlap")}))
 
 
 def figure(res):
     import style
     from style import plt
     rows = res["pairs_table"]
-    pub = res["published"]
+    pub, cur = res["order_until_2026_10_25"], res["current_order"]
     fig, axs = plt.subplots(1, 2, figsize=(13.5, 6))
     for ax, kb, kf, title in ((axs[0], "bem", "fourier", "800 Hz - 4 kHz (the optimiser's score)"),
                               (axs[1], "bem_f0_2f0", "fourier_f0_2f0", "f0 - 2 f0 only (800 - 1250 Hz)")):
@@ -202,14 +215,16 @@ def figure(res):
         ax.scatter(x, y, s=22, color=style.BLUE, alpha=0.55, lw=0, label="one order and its mirror image")
         best = int(np.argmax(y))
         ip = [i for i, r in enumerate(rows) if pub in (r["order"], r["mirror"])][0]
-        ax.scatter([x[ip]], [y[ip]], s=90, color=style.ORANGE, zorder=3, label="published order")
-        ax.scatter([x[best]], [y[best]], s=90, facecolor="none", edgecolor=style.INK, lw=1.6, zorder=3,
+        ic = [i for i, r in enumerate(rows) if cur in (r["order"], r["mirror"])][0]
+        ax.scatter([x[ip]], [y[ip]], s=90, color=style.ORANGE, zorder=3, label="order until 25.10.2026")
+        ax.scatter([x[ic]], [y[ic]], s=90, color=style.AQUA, edgecolor=style.INK, lw=1.2, zorder=4, label="current order")
+        ax.scatter([x[best]], [y[best]], s=170, facecolor="none", edgecolor=style.INK, lw=1.6, zorder=3,
                    label="best in BEM for this score")
         ax.annotate(" ".join(map(str, pub)), (x[ip], y[ip]), xytext=(0, -16), textcoords="offset points", ha="center",
                     fontsize=11, color=style.INK)
         bo = rows[best]
         ax.annotate(f"{' '.join(map(str, bo['order']))} / {' '.join(map(str, bo['mirror']))}", (x[best], y[best]),
-                    xytext=(0, 10), textcoords="offset points", ha="center", fontsize=11, color=style.INK)
+                    xytext=(0, 12), textcoords="offset points", ha="center", fontsize=11, color=style.INK)
         lo, hi = min(x.min(), y.min()) - 0.02, max(x.max(), y.max()) + 0.02
         ax.plot([lo, hi], [lo, hi], color=style.FLAT, lw=1, ls=(0, (2, 2)), zorder=0)
         ax.set_xlim(lo, hi); ax.set_ylim(lo, hi); ax.set_aspect("equal")
