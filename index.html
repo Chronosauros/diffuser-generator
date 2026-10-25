@@ -672,8 +672,9 @@ function createDiffuser(M) {
     return out.sort(function (a, b) { return a.tiles - b.tiles || a.cols - b.cols; });
   }
 
-  /* a deep wall scatters from f0 only once it is this many design wavelengths wide (7 tiles at the default depth); a narrower
-     deep wall starts about half an octave above f0 (2D BEM check of the default walls, 25.10.2026) */
+  /* a deep wall is shown from f0 only once it is this many design wavelengths wide (7 tiles at the default depth); a narrower
+     deep wall starts half an octave above f0 (2D BEM check of the tile order until 25.10.2026, kept as a cautious start for
+     the current order, which BEM has diffusing from about f0) */
   var DEEP_FULL_WAVELENGTHS = 3.5;
 
   /* band of a wall: the top is f_high (deep: the well width or the flat-plate frequency N * f0, whichever is lower; blocks: the

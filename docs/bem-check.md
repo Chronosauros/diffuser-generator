@@ -46,8 +46,9 @@ end of a deep wall's band. A deep wall narrower than 3.5 design wavelengths (few
 starts at √2 · f0 instead of f0, never below c / wall width (commit `ac8c5f2`, see "Band shown by the generator" in
 [how-it-works.md](how-it-works.md)). A single tile starts at c / tile width = 2 f0, as before. The top of the band at
 the flat-plate frequency 7 f0 (commit `2278725`) is what BEM shows as well. The √2 · f0 start was set with the order
-until 25.10.2026; for the current order BEM starts diffusing earlier (see "Do the cyclic shifts make a wall diffuse"
-below) and the rule has not been changed.
+until 25.10.2026. For the current order BEM starts diffusing earlier, at about f0 (see "Do the cyclic shifts make a wall
+diffuse" below); the generator keeps √2 · f0 on purpose as a cautious start, a third of an octave (P1S / X1) to two
+thirds of an octave (A1 mini) above where BEM starts.
 
 ![P1S / X1 walls: d_n against the band, BEM and Fourier](../checks/bem/out/fig-P1S-summary.png)
 
@@ -282,8 +283,10 @@ The generator's √2 · f0 start for deep walls narrower than 3.5 design wavelen
 was 1050 Hz and 1575 Hz next to the 1000 Hz and 1600 Hz bands found for the order until 25.10.2026. With the current
 order the small walls reach d_n 0.3 one third of an octave (P1S) to two thirds of an octave (A1 mini) earlier, about
 where f0 is, so the √2 · f0 start is now on the cautious side. The 7-tile A1 mini wall moved the other way, by one
-band, to the 1250 Hz band, whose lower edge (1114 Hz) is f0 itself. The rule in the generator was not changed with the
-order.
+band, to the 1250 Hz band, whose lower edge (1114 Hz) is f0 itself. The generator keeps the √2 · f0 start on purpose
+(25.10.2026): this is a 2D simulation at the default depth, not a measurement, and a start on the cautious side of it
+is the safer claim. Starting every deep wall of several tiles at f0, with c / wall width as the lower limit, would
+match this BEM data for the walls it covers; that is left for a measurement to settle.
 
 ## Every order of a 3-tile P1S / X1 wall
 
@@ -476,8 +479,9 @@ What this does not show:
 - A measured comparison of the current order, the order until 25.10.2026 and copies of one tile.
 - The 5- and 7-tile orders were searched in BEM only partly (2-10 % of the classes), and the local swaps of the A1 mini
   candidate were not run. A search of more orders, or a different growth rule for the walls, may find better ones.
-- The band start of the generator (√2 · f0 for deep walls narrower than 3.5 design wavelengths) was fitted to the order
-  until 25.10.2026; for the current order BEM starts earlier (see above) and the rule is unchanged.
+- Whether deep walls of 3 to 5 tiles really diffuse from about f0, as BEM shows for the current order. Until a
+  measurement says so, the generator keeps the cautious √2 · f0 start for deep walls narrower than 3.5 design
+  wavelengths, fitted to the order until 25.10.2026.
 - Block tiles were not simulated (they need 3D BEM).
 - A measurement is still the only proof. What to look for: the specular reflection of a wall in the current order
   dropping from about f0, no such drop for copies at normal incidence, the specular reflection coming back at 7 f0
