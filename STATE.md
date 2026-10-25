@@ -20,7 +20,10 @@ and `checks/bem/` (new `order_walls.py` and `order_nested.py`, the five wall run
 order, the old order frozen as a constant in the order scripts). The Printables set (model 1887298) and its wall
 plans still show the old order; that is the owner's call.
 
-Next result: owner's decisions on (a) the √2 · f0 band start of deep walls under 7 tiles, now cautious for the new
-order (BEM starts at about f0), and (b) the Printables set with the old order; block tiles need 3D BEM; maybe an
+25.10.2026, owner's decision: the √2 · f0 band start of deep walls under 7 tiles stays as a cautious start for the new
+order, although BEM has those walls diffusing from about f0 (P1S 3 and 5 tiles from the 800 Hz band, A1 mini 4 tiles
+from 1000 Hz). Only the docs, the contract and the code comments say so now; the rule and the page did not change.
+
+Next result: owner's decision on the Printables set with the old order; block tiles need 3D BEM; maybe an
 advanced mode with N, design frequency and well width as inputs; a measurement is still the only proof. Move any fixes
 into `reference/` and the core of `index.html` together.

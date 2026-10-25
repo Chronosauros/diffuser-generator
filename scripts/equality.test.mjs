@@ -794,7 +794,7 @@ describe('core v2: wallBand', () => {
       const rep = new Report(`wallBand(${id}, ${cols}, ${rows})`);
       const eq = (k, want) => rep.check(k, typeof got[k] === 'number' && near(got[k], want, 1e-9), `got ${got[k]}, want ${want}`);
       eq('high', s.band.f_high);
-      // deep walls narrower than 3.5 design wavelengths start half an octave above f0 (2D BEM check, 25.10.2026)
+      // deep walls narrower than 3.5 design wavelengths start half an octave above f0 (2D BEM check of the old order, kept as a cautious start)
       const start = s.series === 'deep' && width < 3.5 * s.band.lambda0 - 1e-6 ? Math.SQRT2 * s.band.f0 : s.band.f0;
       eq('low', Math.max(start, SPEED / (width / 1000)));
       eq('wallWidthMm', width);

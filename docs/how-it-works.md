@@ -62,9 +62,13 @@ flat-plate frequency N · f0 (at the default depth that is N · f0; a shallow ti
 above f_w). It says which well sets each end and calls the band design intent, calculated, not measured. For a wall it
 ties the lower end to the wall width as well: low = max(start, c / wall width). For a deep wall at least 3.5 design
 wavelengths wide (7 tiles at the default depth) start = f0; a narrower deep wall gets start = √2 · f0, half an octave
-higher. That rule comes from a 2D boundary element (BEM) check of the default walls on 25.10.2026: walls of 3 to 5 tiles
-only started to scatter about half an octave above f0, a single tile from c / tile width (2 · f0), and 7 tiles from f0.
-Block walls keep max(f0, c / wall width); the BEM check did not cover them. f0 is not a hard edge, and above N · f0 a
+higher. That rule comes from a 2D boundary element (BEM) check of the default walls on 25.10.2026, run with the tile
+order used until that day: walls of 3 to 5 tiles only started to scatter about half an octave above f0, a single tile
+from c / tile width (2 · f0), and 7 tiles from f0. With the current order, set the same day, the 3- to 5-tile walls
+start at about f0 in the same check (P1S / X1 from the 800 Hz band, A1 mini with 4 tiles from the 1000 Hz band), so
+√2 · f0 now sits a third of an octave (P1S / X1) to two thirds of an octave (A1 mini) above where BEM starts. The
+generator keeps it on purpose as a cautious start: the check is a 2D simulation at the default depth, not a
+measurement. Block walls keep max(f0, c / wall width); the BEM check did not cover them. f0 is not a hard edge, and above N · f0 a
 deep tile diffuses again outside the design theory. The BEM runs, figures and tables are in [bem-check.md](bem-check.md).
 
 Until 24.10.2026 the top of the band was f_w, which put it above the flat-plate frequency (P1S / X1: 5.46 kHz instead of
@@ -191,7 +195,8 @@ These are the parts I am least sure about:
 3. The flat-plate frequency N · f0 sits just below f_w because of the matched sizing rule. Should the rule move it,
    or is that the normal compromise?
 4. Is c / wall width a fair lower limit for a small wall, or too optimistic? (Partly answered: for deep walls a 2D BEM
-   check found it too optimistic below 7 tiles, so the generator now starts those walls half an octave above f0.)
+   check found it too optimistic: walls start to diffuse at about f0, not at c / wall width. The generator starts deep
+   walls under 7 tiles half an octave above f0, which is on the cautious side for the current tile order.)
 5. Can 1.6 mm PLA fins, about 20 to 31 mm wide wells and closed air chambers under 1.6 mm floors add absorption or
    resonances that the model does not see?
 6. Is the Fourier model good enough to choose the orders, or should that be done with BEM? (Answered for the deep
