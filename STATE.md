@@ -2,7 +2,7 @@
 
 Live at https://chronosauros.github.io/diffuser-generator/ (GitHub Pages, main branch, repository root). Open source
 since 24.10.2026: GPL-3.0, the Python reference in `reference/`, the maths in `docs/how-it-works.md`, Discussions on.
-`npm test` passes 170 of 170.
+`npm test` passes 307 of 307 (170 diffuser, 137 bass traps).
 
 24.10.2026, after the review on r/acoustics: the design band now ends at the lower of c / 2w and the flat-plate
 frequency N · f0, says which well sets each end and is called design intent, calculated, not measured. 25.10.2026, after
@@ -23,6 +23,15 @@ plans still show the old order; that is the owner's call.
 25.10.2026, owner's decision: the √2 · f0 band start of deep walls under 7 tiles stays as a cautious start for the new
 order, although BEM has those walls diffusing from about f0 (P1S 3 and 5 tiles from the 800 Hz band, A1 mini 4 tiles
 from 1000 Hz). Only the docs, the contract and the code comments say so now; the rule and the page did not change.
+
+25.10.2026, owner's decision: a Bass traps tab (layout "steps": Room, Pick a mode, Print; `#bass-traps`). Any
+rectangular room -> modes up to 120 Hz -> a trap of folded quarter-wave cells (6 mm slot only: with 8 mm the 3D FEM
+showed the effect reversing at half the modelled channel resistance) tuned 0.5 % above the mode, the single-mode model
+with radiation mass of the research package, verdict "Worth trying" from 1.25x faster decay with up to 8 cells (owner
+kept 8), ZIP with blocks, end caps and README; tuning inserts separately, only with a measurement. Cores
+`bass-physics` / `bass-geometry`, Python twin `reference/bass_room.py` / `bass_cell.py`, fixtures `scripts/fixtures/bass/`,
+`npm test` 307 of 307, `docs/bass-traps.md`. Texts checked by an independent review against the research package.
+Calculated, not measured. A Printables model for the bass traps is a separate step.
 
 Next result: owner's decision on the Printables set with the old order; block tiles need 3D BEM; maybe an
 advanced mode with N, design frequency and well width as inputs; a measurement is still the only proof. Move any fixes

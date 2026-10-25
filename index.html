@@ -312,6 +312,113 @@ footer .footer-icons a:hover{color:var(--acc)}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 
+/* top tabs: flat text tabs, a Sky underline on the one on screen (same language as the tile tabs) */
+.tabs{display:flex;gap:0;margin:0 0 clamp(20px,3vh,30px);box-shadow:inset 0 -1px 0 var(--rule)}
+.tabs button{appearance:none;border:0;border-radius:0;margin:0;cursor:pointer;background:none;box-shadow:inset 0 -2px 0 transparent;
+  color:var(--ghost);font:500 18px var(--sans);letter-spacing:-.01em;min-height:48px;padding:0 20px;transition:color .25s,box-shadow .25s}
+.tabs button:first-child{padding-left:0}
+.tabs button:hover{color:var(--ink)}
+.tabs button[aria-selected="true"]{color:var(--acc);box-shadow:inset 0 -2px 0 var(--acc)}
+.tabs button:focus-visible{outline:2px solid var(--ink);outline-offset:-4px}
+
+/* bass traps tab: three steps one under another, full width */
+.bass .credit{margin-top:0}
+.bt-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:0 0 4px}
+.bt-steps button{appearance:none;border:0;border-radius:0;margin:0;cursor:pointer;background:none;text-align:left;
+  color:var(--ghost);font:500 15px var(--sans);min-height:44px;padding:0 0 0;box-shadow:inset 0 -2px 0 rgba(var(--fg-rgb),.18);transition:color .25s,box-shadow .25s}
+.bt-steps button:hover{color:var(--ink)}
+.bt-steps button.on{color:var(--ink);box-shadow:inset 0 -2px 0 var(--acc)}
+.bt-steps button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.bt-sec{scroll-margin-top:16px}
+.bt-roomgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(20px,3vw,40px);align-items:start}
+.bt-dims{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.bt-dims label,.bt-lab{display:block;font-size:13px;color:var(--ghost);margin-bottom:4px}
+.bt-dims .num{height:52px;font-size:20px}
+.bt-alpha{grid-template-columns:repeat(3,minmax(0,1fr))}
+.bt-sec .err{margin:16px 0 0}
+.bt-sec .actions{margin-top:20px}
+.bt-sec .actions .btn.next{flex:0 1 260px}
+.bt-tablewrap{margin:0;overflow-x:auto}
+table.bt-modes{width:100%;border-collapse:collapse;font-size:16px;font-variant-numeric:tabular-nums}
+.bt-modes th{font-weight:500;font-size:13.5px;color:var(--ghost);text-align:left;padding:10px 12px;box-shadow:inset 0 -1px 0 var(--rule)}
+.bt-modes td{padding:0 12px;height:48px;box-shadow:inset 0 -1px 0 rgba(var(--fg-rgb),.1);vertical-align:middle}
+.bt-modes tbody tr{cursor:pointer;transition:background .2s}
+.bt-modes tbody tr:hover{background:rgba(var(--fg-rgb),.04)}
+.bt-modes tbody tr.sel{background:rgba(var(--shade-rgb),.28)}
+.bt-modes tbody tr.sel td.hz{box-shadow:inset 2px 0 0 var(--acc),inset 0 -1px 0 rgba(var(--fg-rgb),.1)}
+.bt-modes tbody tr.oor{cursor:default;color:var(--dim)}
+.bt-modes tbody tr.oor:hover{background:none}
+.bt-modes .hz{padding:0}
+.bt-pick{appearance:none;border:0;border-radius:0;background:none;margin:0;padding:0 12px;min-height:48px;width:100%;text-align:left;cursor:pointer;color:inherit;font:500 16px var(--sans);font-variant-numeric:tabular-nums}
+.bt-pick:disabled{cursor:default}
+.bt-pick:focus-visible{outline:2px solid var(--ink);outline-offset:-4px}
+.bt-modes tr.sel .bt-pick{color:var(--acc)}
+.bt-pick small,.bt-modes td small{display:block;font-size:12.5px;color:var(--ghost);line-height:1.25}
+.bt-modes tr.oor .bt-pick small,.bt-modes tr.oor td small{color:var(--dim)}
+.bt-modes .vcell{white-space:nowrap}
+.bt-modes tr.sel .vcell{color:var(--acc)}
+.vm{display:inline-block;width:12px;height:12px;margin-right:9px;vertical-align:-1px;box-shadow:inset 0 0 0 1.5px currentColor;background:none}
+.vm.worth{background:currentColor;color:var(--acc)}
+.vm.small{background:linear-gradient(to top,currentColor 50%,transparent 50%)}
+.bt-modes .wait{color:var(--dim)}
+.m-only{display:none!important}
+.bt-legend{margin-top:12px;font-size:13.5px;color:var(--ghost);max-width:90ch}
+.bt-legend p{margin:0 0 4px}
+.bt-two{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(20px,3vw,40px);align-items:start;margin-top:28px}
+.bt-stepper{display:grid;grid-template-columns:56px minmax(0,1fr) 56px;gap:8px}
+.bt-stepper .key{text-align:center;padding:0;font-size:24px;min-height:56px}
+.bt-stepper .num{height:56px;font-size:28px;text-align:center;-moz-appearance:textfield;appearance:textfield}
+.bt-stepper .num::-webkit-outer-spin-button,.bt-stepper .num::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.bt-stepper .key:disabled{opacity:.4;cursor:not-allowed}
+.bt-card,.bt-sum{margin-top:0;background:var(--well-bg);box-shadow:var(--well)}
+.bt-card .hrow{padding:16px 18px 0;margin-bottom:0}
+.bt-card .hrow h3{font-size:19px}
+.bt-stats{display:grid;grid-template-columns:repeat(var(--c,2),minmax(0,1fr))}
+.bt-stat{padding:14px 14px 16px 18px;min-width:0}
+.bt-stats.c3{--c:3}
+.bt-stats.c2 .bt-stat:nth-child(2n){box-shadow:inset 1px 0 0 var(--rule)}
+.bt-stats.c2 .bt-stat:nth-child(n+3){border-top:1px solid var(--rule)}
+.bt-stats.c3 .bt-stat+.bt-stat{box-shadow:inset 1px 0 0 var(--rule)}
+.bt-stat .val{font-size:clamp(20px,2vw,26px);margin-top:6px;overflow-wrap:anywhere}
+.bt-stat .val small{font-size:14px;margin:0 3px}
+.bt-stat .sub{font-size:14px;line-height:1.35;color:var(--ghost);margin-top:6px}
+.bt-notes{border-top:1px solid var(--rule);padding:12px 18px 16px}
+.bt-notes p{margin:0 0 8px;font-size:14px;line-height:1.45;color:var(--ghost)}
+.bt-notes p:last-child{margin-bottom:0}
+.bt-notes p.lead{font-size:15px;color:var(--ink)}
+.bt-notes a,.bass .note a,.bass .about a{color:var(--ink);text-decoration:underline;text-underline-offset:.15em;text-decoration-thickness:1px}
+.bt-notes a:hover,.bass .note a:hover,.bass .about a:hover{color:var(--acc)}
+.bt-wait{padding:18px;font-size:15px;color:var(--ghost)}
+.bt-view{height:clamp(280px,36vw,480px);margin-top:0}
+.bt-side{display:flex;flex-direction:column;gap:20px;min-width:0}
+.bt-side .btn{width:100%;flex:none}
+.bt-side .err{margin:0}
+.bt-side .err ul{margin:8px 0;padding-left:20px}
+.bt-side .err p{margin:0}
+.bt-btns{display:grid;gap:12px}
+.bt-btns .note{margin-top:-4px}
+.bt-sum .bt-stat .val{font-size:clamp(24px,2.4vw,32px)}
+.bt-sumnote{border-top:1px solid var(--rule);padding:10px 18px 14px;font-size:13.5px;line-height:1.45;color:var(--ghost)}
+.bt-sumnote p{margin:0 0 4px}
+.bass .bed-h{font-weight:500;font-size:19px;letter-spacing:-.012em;margin:0 0 4px}
+@media (max-width:960px){
+  .bt-roomgrid,.bt-two{grid-template-columns:1fr}
+  .bt-view{height:clamp(260px,64vw,440px)}
+}
+@media (max-width:600px){
+  .tabs button{font-size:17px;padding:0 14px}
+  .bt-steps button{font-size:14px}
+  .bt-modes th,.bt-modes td{padding-left:8px;padding-right:8px}
+  .bt-pick{padding:0 8px}
+  .bt-modes .hide-m{display:none}
+  .m-only{display:block!important}
+  .bt-modes td{height:56px}
+  .bt-pick{min-height:56px}
+  .bt-modes .vcell{white-space:normal}
+  .bt-stat{padding:12px 10px 14px 14px}
+  .bt-dims .num{font-size:18px;padding:0 8px}
+}
+
 /* "by soundblooms" lockup (soundblooms-mark skill, soundblooms.css) */
 .by{position:relative;display:inline-flex;align-items:baseline;gap:.4em;font-size:var(--by-fs,16px);white-space:nowrap;text-decoration:none;color:var(--by-ink,currentColor);flex:none}
 .by::after{content:"";position:absolute;top:50%;left:-6px;right:-6px;height:48px;transform:translateY(-50%)}
@@ -357,9 +464,16 @@ footer .footer-icons a:hover{color:var(--acc)}
       <a class="by" href="https://soundblooms.com/" rel="noopener" target="_blank" aria-label="by Soundblooms"><span class="by-word" aria-hidden="true">by</span><span class="sb-mark" aria-hidden="true">sound<span class="sb-face"><i class="sb-band"></i><span class="sb-eyes" data-eyes="calm"><i><svg class="sb-arc" viewBox="0 0 22 17" fill="none" aria-hidden="true"><path d="M3,13 Q11,2.6 19,13" stroke="currentColor" stroke-width="4.6" stroke-linecap="round"/></svg></i><i><svg class="sb-arc" viewBox="0 0 22 17" fill="none" aria-hidden="true"><path d="M3,13 Q11,2.6 19,13" stroke="currentColor" stroke-width="4.6" stroke-linecap="round"/></svg></i></span></span>blooms</span></a>
     </div>
   </header>
-  <p class="credit"><strong>Working diffusers, not wall art.</strong> Every well depth comes from the quadratic residue sequence n&sup2; mod N (Schroeder), so a tile spreads a reflection into many directions and arrival times instead of sending it back as one echo. They do not absorb sound and do nothing for bass, room modes or loudness. Deep tiles treat a room from about their design frequency up, once the wall is wide enough; block tiles are a shallow 2D diffuser for upper mids and treble. Formulas after T. J. Cox and P. D'Antonio, <cite>Acoustic Absorbers and Diffusers</cite>, 3rd ed., CRC Press, 2016. The band shown is design intent, calculated from the shape of the tiles, not a measurement. The ready-made tiles for the A1 mini, MK4 / Core One and P1S / X1 are also on <a href="https://www.printables.com/model/1887298-acoustic-diffuser-tiles-deep-and-blocks-sized-for" target="_blank" rel="noopener">Printables</a>.</p>
+
+  <div class="tabs" role="tablist" aria-label="Generator">
+    <button type="button" role="tab" id="tabDiff" aria-selected="true" aria-controls="paneDiff" data-tab="diff">Diffusers</button>
+    <button type="button" role="tab" id="tabBass" aria-selected="false" aria-controls="paneBass" data-tab="bass" tabindex="-1">Bass traps</button>
+  </div>
 
   <div id="err" class="err" role="alert" hidden></div>
+
+  <div id="paneDiff" role="tabpanel" aria-labelledby="tabDiff">
+  <p class="credit"><strong>Working diffusers, not wall art.</strong> Every well depth comes from the quadratic residue sequence n&sup2; mod N (Schroeder), so a tile spreads a reflection into many directions and arrival times instead of sending it back as one echo. They do not absorb sound and do nothing for bass, room modes or loudness; for a trap tuned to one room mode, see the <a href="#bass-traps" id="linkBass">Bass traps</a> tab. Deep tiles treat a room from about their design frequency up, once the wall is wide enough; block tiles are a shallow 2D diffuser for upper mids and treble. Formulas after T. J. Cox and P. D'Antonio, <cite>Acoustic Absorbers and Diffusers</cite>, 3rd ed., CRC Press, 2016. The band shown is design intent, calculated from the shape of the tiles, not a measurement. The ready-made tiles for the A1 mini, MK4 / Core One and P1S / X1 are also on <a href="https://www.printables.com/model/1887298-acoustic-diffuser-tiles-deep-and-blocks-sized-for" target="_blank" rel="noopener">Printables</a>.</p>
 
   <div class="grid">
     <section class="stage slab" aria-label="Preview and downloads">
@@ -459,6 +573,98 @@ footer .footer-icons a:hover{color:var(--acc)}
       <li><a href="https://www.routledge.com/Acoustic-Absorbers-and-Diffusers-Theory-Design-and-Application/Cox-DAntonio/p/book/9781498740999" target="_blank" rel="noopener">Acoustic Absorbers and Diffusers, 3rd ed. - Cox and D'Antonio, CRC Press</a><span>Deeper reading: the textbook these formulas come from.</span></li>
     </ul>
   </section>
+  </div>
+
+  <!-- ================================================================= BASS TRAPS tab -->
+  <div id="paneBass" class="bass" role="tabpanel" aria-labelledby="tabBass" hidden>
+    <p class="credit"><strong>A trap for one room mode.</strong> A folded quarter-wave resonator, printed in blocks of 120 x 120 mm cells, each one tuned to a single mode of your room. It is a narrow absorber: it shortens the ringing of that one mode and does nothing for the other modes, the treble or flutter echo. For broadband bass, porous or membrane traps in the corners do more per kilogram of material; this is a narrow tool for one ringing mode. Every number on this page is <strong>calculated, not measured</strong>: nobody has printed these cells and measured them in a room yet. If you try one, we would like to hear your before and after results in <a href="https://github.com/Chronosauros/diffuser-generator/discussions" target="_blank" rel="noopener">GitHub Discussions</a>.</p>
+
+    <div class="bt-steps" id="btSteps" role="group" aria-label="Steps">
+      <button type="button" class="on" data-step="btRoom">Room</button>
+      <button type="button" data-step="btModes">Pick a mode</button>
+      <button type="button" data-step="btPrint">Print</button>
+    </div>
+
+    <section class="gal bt-sec" id="btRoom" aria-labelledby="btRoomH">
+      <div class="gal-head"><h2 id="btRoomH">Room</h2><p>Your room decides which modes ring.</p></div>
+      <div class="bt-roomgrid">
+        <div class="bt-dims" role="group" aria-label="Room size in metres">
+          <div><label for="btL">Length (m)</label><input class="num" id="btL" type="number" inputmode="decimal" step="0.1" min="2" max="12" value="4.0"></div>
+          <div><label for="btW">Width (m)</label><input class="num" id="btW" type="number" inputmode="decimal" step="0.1" min="2" max="12" value="3.2"></div>
+          <div><label for="btH">Height (m)</label><input class="num" id="btH" type="number" inputmode="decimal" step="0.1" min="2" max="12" value="2.6"></div>
+        </div>
+        <div>
+          <div class="bt-lab" id="btWallsL">Walls</div>
+          <div class="keys bt-alpha" id="btAlpha" role="group" aria-labelledby="btWallsL">
+            <button type="button" class="key" data-alpha="0.05" aria-pressed="false"><b>Lively</b><small>α 0.05</small></button>
+            <button type="button" class="key" data-alpha="0.1" aria-pressed="true"><b>Medium</b><small>α 0.10</small></button>
+            <button type="button" class="key" data-alpha="0.2" aria-pressed="false"><b>Damped</b><small>α 0.20</small></button>
+          </div>
+          <p class="note">You rarely know this, and it matters: in the example room eight cells give about 1.5x faster decay with lively or medium walls, and about 1.05x with damped walls.</p>
+        </div>
+      </div>
+      <div id="btRoomErr" class="err" role="alert" hidden></div>
+      <div class="actions"><button type="button" class="btn ghost next" data-step="btModes">Next: pick a mode</button></div>
+    </section>
+
+    <section class="gal bt-sec" id="btModes" aria-labelledby="btModesH">
+      <div class="gal-head"><h2 id="btModesH">Pick a mode</h2><p id="btModesAside">Room modes up to 120 Hz</p></div>
+      <p class="about">Per cell, tangential and oblique modes trapped at a corner or an edge gain most (in the 3D simulation about 1.7x more per cell than an axial mode at 4 cells), but the model is less exact there.</p>
+      <div class="bt-tablewrap">
+        <table class="bt-modes" id="btTable">
+          <caption class="sr" style="position:absolute;left:-9999px">Room modes up to 120 Hz, with the calculated verdict for a trap tuned to each</caption>
+          <thead><tr><th scope="col">Frequency</th><th scope="col" class="hide-m">Indices</th><th scope="col" class="hide-m">Type</th><th scope="col">Decay now</th><th scope="col">Verdict</th><th scope="col" class="hide-m">Note</th></tr></thead>
+          <tbody id="btRows"></tbody>
+        </table>
+      </div>
+      <div class="bt-legend" id="btLegend"></div>
+      <div class="bt-two">
+        <div class="bt-cells">
+          <div class="hrow"><h3 id="btCellsH">Cells</h3><output id="btCellsFor"></output></div>
+          <div class="bt-stepper" role="group" aria-labelledby="btCellsH">
+            <button type="button" class="key" id="btMinus" aria-label="One cell fewer">-</button>
+            <input class="num" id="btN" type="number" inputmode="numeric" min="1" max="16" step="1" value="8" aria-label="Number of cells">
+            <button type="button" class="key" id="btPlus" aria-label="One cell more">+</button>
+          </div>
+          <div class="scale"><span>1 cell</span><span>16 cells</span></div>
+          <p class="note">One cell is 120 x 120 mm on the wall and 50 - 150 mm deep. More cells help less and less: the decay levels off at about 1.5-1.75x faster however many cells.</p>
+        </div>
+        <section class="bt-card" id="btCard" aria-label="What to expect" aria-live="polite"></section>
+      </div>
+      <div class="actions"><button type="button" class="btn ghost next" data-step="btPrint">Next: print</button></div>
+    </section>
+
+    <section class="gal bt-sec" id="btPrint" aria-labelledby="btPrintH">
+      <div class="gal-head"><h2 id="btPrintH">Print</h2><p id="btPrintAside"></p></div>
+      <div class="bt-two">
+        <div>
+          <div class="viewport bt-view" id="btView"><div class="none" id="btViewNone">Pick a mode to see one block.</div></div>
+          <div class="viewbar"><p class="note">One block. Drag to orbit, scroll to zoom, right-drag to pan.</p><button type="button" class="key small" id="btReset">Reset view</button></div>
+        </div>
+        <div class="bt-side">
+          <div class="bt-sum" id="btSum" aria-live="polite"></div>
+          <div>
+            <h3 class="bed-h" id="btBedL">Printer bed</h3>
+            <p class="about tight">5 mm kept free on every axis.</p>
+            <div class="keys" id="btBeds" role="group" aria-labelledby="btBedL"></div>
+            <div class="xyz">
+              <div><label for="btx">X (mm)</label><input class="num" id="btx" type="number" inputmode="numeric" min="100" max="600" step="1"></div>
+              <div><label for="bty">Y (mm)</label><input class="num" id="bty" type="number" inputmode="numeric" min="100" max="600" step="1"></div>
+              <div><label for="btz">Z (mm)</label><input class="num" id="btz" type="number" inputmode="numeric" min="100" max="600" step="1"></div>
+            </div>
+          </div>
+          <div id="btFit" class="err" role="alert" hidden></div>
+          <div class="bt-btns">
+            <button type="button" class="btn big" id="btZip" disabled>Download blocks (ZIP: STL + end caps)</button>
+            <p class="note" id="btZipNote">The ZIP holds the block STLs, the end-cap plate (one cap per cell, needed: it closes the channel) and a README with the print plan.</p>
+            <button type="button" class="btn ghost" id="btTune" disabled>Tuning inserts - only with a decay measurement</button>
+            <p class="note">Optional. Print them only if you can measure the decay before and after; without a measurement use the nominal end caps from the ZIP.</p>
+          </div>
+          <p class="status" id="btStatus" role="status" aria-live="polite"></p>
+        </div>
+      </div>
+    </section>
+  </div>
 
   <footer>
     <p>Part of Soundblooms - the home of everything I make: <a href="https://soundblooms.com" target="_blank" rel="noopener">https://soundblooms.com</a></p>
@@ -853,6 +1059,985 @@ function createDiffuser(M) {
     deepTile: deepTile, blockTile: blockTile, name: name, derive: derive, limits: limits,
     tileSet: tileSet, labelPolys: labelPolys, fmtG: fmtG,
     wallOptions: wallOptions, wallBand: wallBand, deepFullWidth: deepFullWidth, features: features, ESTIMATE: ESTIMATE, estimate: estimate
+  };
+}
+</script>
+
+<script id="bass-physics">
+/* Soundblooms bass traps, physics core. A 1:1 port of the research package of 25.10.2026 (reference/bass_room.py is the Python
+   twin): rigid-wall room modes, the QWR cell impedance at complex angular frequency (viscous-thermal slit, end correction),
+   the exact single-mode trap equation with the radiation mass of the patch, the seven anchors, flags, T60 before / after and the
+   drop of the resonance peak in dB. Also first_res / solve_L on the 30 - 520 Hz grid of 0.25 Hz, which the geometry core uses to
+   cut the channel. No DOM, no window, no fetch, no manifold. Calculated, not measured: see docs/bass-traps.md.
+   Lengths in mm unless a name ends in _m; frequencies in Hz; decay rates in 1/s (pressure amplitude); exp(+j w t). */
+function createBassPhysics() {
+  "use strict";
+
+  var C0 = 343.2, RHO0 = 1.204, MU = 1.81e-5, KTH = 0.0257, CP = 1005.0, GAM = 1.4, P0 = 101325.0;
+  var Z0 = RHO0 * C0, MM = 1e-3, CELL = 0.12, CELL_AREA = CELL * CELL, LN1000 = Math.log(1000.0);
+  var Y_CELL = 120.0;                 // cell face width, mm
+  var DETUNE_PCT = 0.5;               // f cell = f mode x 1.005
+  var SLOT_W = 6.0;                   // the only public slit width, mm
+  var N_LIST = [1, 2, 4, 8, 16];
+  var PEAK_POINTS = 3001, PEAK_LO = 0.85, PEAK_HI = 1.15;
+  var KIND = ["axial", "tangential", "oblique"];
+
+  // ------------------------------------------------------------------ complex helpers (numbers as [re, im])
+  function cmul(a, b) { return [a[0] * b[0] - a[1] * b[1], a[0] * b[1] + a[1] * b[0]]; }
+  function cdiv(a, b) {
+    var d = b[0] * b[0] + b[1] * b[1];
+    return [(a[0] * b[0] + a[1] * b[1]) / d, (a[1] * b[0] - a[0] * b[1]) / d];
+  }
+  function cadd(a, b) { return [a[0] + b[0], a[1] + b[1]]; }
+  function csub(a, b) { return [a[0] - b[0], a[1] - b[1]]; }
+  function cabs(a) { return Math.hypot(a[0], a[1]); }
+  function csqrt(a, b) {              // principal branch
+    var m = Math.hypot(a, b);
+    if (m === 0) return [0, 0];
+    var r = Math.sqrt((m + Math.abs(a)) / 2);
+    if (a >= 0) return [r, b / (2 * r)];
+    return [Math.abs(b) / (2 * r), b >= 0 ? r : -r];
+  }
+  function ctanh(x, y) {
+    if (x > 20) return [1, 0];
+    if (x < -20) return [-1, 0];
+    var d = Math.cosh(2 * x) + Math.cos(2 * y);
+    return [Math.sinh(2 * x) / d, Math.sin(2 * y) / d];
+  }
+  function ctan(x, y) {
+    var d = Math.cos(2 * x) + Math.cosh(2 * y);
+    return [Math.sin(2 * x) / d, Math.sinh(2 * y) / d];
+  }
+
+  // ------------------------------------------------------------------ tmm.py: end correction, absorption
+  function dlSlitArray(h, d, nterms) {   // h slit, d period, m
+    nterms = nterms || 4000;
+    var sg = h / d, s = 0;
+    for (var m = 1; m <= nterms; m++) {
+      var a = m * Math.PI * sg, sn = Math.sin(a);
+      s += sn * sn / (a * a * a);
+    }
+    return sg * h * s;
+  }
+  var dlCache = {};
+  function dl(wMm, yMm) {
+    var k = wMm + "|" + yMm;
+    if (!(k in dlCache)) dlCache[k] = dlSlitArray(wMm * MM, yMm * MM);
+    return dlCache[k];
+  }
+  function absorption(zs) {              // zs = [re, im] [Pa s/m]
+    var r = cdiv(csub(zs, [Z0, 0]), cadd(zs, [Z0, 0]));
+    return 1 - (r[0] * r[0] + r[1] * r[1]);
+  }
+
+  // ------------------------------------------------------------------ cell impedance (roomtrap.zs_qwr)
+  /* specific surface impedance [Pa s/m] of the QWR cell, slit w, acoustic channel length L (mm), at the complex angular
+     frequency om = omr + j omi; returns [re, im] */
+  function zsQwr(omr, omi, w, L, Y, rough) {
+    var mu = MU * rough, ws = w * MM;
+    var s = csqrt(-omi * RHO0 / mu, omr * RHO0 / mu);
+    var gr = ws / 2 * s[0], gi = ws / 2 * s[1];
+    s = csqrt(-omi * RHO0 * CP / KTH, omr * RHO0 * CP / KTH);
+    var tr = ws / 2 * s[0], ti = ws / 2 * s[1];
+    var th = cdiv(ctanh(gr, gi), [gr, gi]);
+    var xi = [1 - th[0], -th[1]];
+    th = cdiv(ctanh(tr, ti), [tr, ti]);
+    var psi = [1 - th[0], -th[1]];
+    var rho = cdiv([RHO0, 0], xi);
+    var den = [GAM - (GAM - 1) * psi[0], -(GAM - 1) * psi[1]];
+    var K = cdiv([GAM * P0, 0], den);
+    var q = csqrt.apply(null, cdiv(rho, K));
+    var k = cmul([omr, omi], q);
+    var rk = cmul(rho, K);
+    var zc = csqrt(rk[0], rk[1]);
+    zc = [zc[0] / ws, zc[1] / ws];
+    var kl = [k[0] * L * MM, k[1] * L * MM];
+    var t = ctan(kl[0], kl[1]);
+    var zt = cdiv(zc, t);
+    var zin = [zt[1], -zt[0]];            // -j * zc / tan(kL)
+    var c = RHO0 * dl(w, Y) / ws;
+    zin = [zin[0] - omi * c, zin[1] + omr * c];   // + j om RHO0 dl / ws
+    return [zin[0] * Y * MM, zin[1] * Y * MM];
+  }
+
+  /* first resonance [Hz] of a straight channel of acoustic length L (mm), slit w (mm): first upward zero crossing of Im Zs on
+     the grid 30, 30.25, ... 519.75 Hz, linear interpolation inside the grid cell (design_Q.first_res); NaN when none */
+  function firstRes(w, L, rough) {
+    rough = rough === undefined ? 1.0 : rough;
+    var prevY = null, prevF = 0, prevS = 0;
+    for (var i = 0; i < 1960; i++) {
+      var f = 30.0 + i * 0.25;
+      var y = zsQwr(2 * Math.PI * f, 0, w, L, Y_CELL, rough)[1];
+      var sgn = y > 0 ? 1 : (y < 0 ? -1 : (y === 0 ? 0 : NaN));
+      if (i > 0 && sgn - prevS > 0) return prevF + (f - prevF) * (-prevY) / (y - prevY);
+      prevY = y; prevF = f; prevS = sgn;
+    }
+    return NaN;
+  }
+  var solveCache = {};
+  /* acoustic channel length L (mm) whose firstRes is f0 (design_Q.solve_L: 40 bisection steps) */
+  function solveL(f0, w, rough) {
+    rough = rough === undefined ? 1.0 : rough;
+    var key = f0 + "|" + w + "|" + rough;
+    if (key in solveCache) return solveCache[key];
+    var lo = 0.8 * C0 / (4 * f0) * 1000, hi = 1.02 * C0 / (4 * f0) * 1000;
+    for (var i = 0; i < 40; i++) {
+      var mid = 0.5 * (lo + hi), fm = firstRes(w, mid, rough);
+      if (fm > f0) lo = mid; else hi = mid;
+    }
+    return solveCache[key] = 0.5 * (lo + hi);
+  }
+
+  /* a cell: slit w, channel L (mm, from solveL of the geometry design), radiation mass extraMass [kg/m2] of the patch */
+  function makeCell(fDesign, w, L, extraMass, rough) {
+    var cell = { fDesign: fDesign, w: w, L: L, Y: Y_CELL, rough: rough === undefined ? 1.0 : rough, extraMass: extraMass || 0 };
+    cell.zs = function (omr, omi) {
+      var z = zsQwr(omr, omi, cell.w, cell.L, cell.Y, cell.rough);
+      if (cell.extraMass) { z[0] -= omi * cell.extraMass; z[1] += omr * cell.extraMass; }
+      return z;
+    };
+    cell.dzs = function (om) {            // real om, central difference
+      var h = 1e-5 * Math.abs(om), a = cell.zs(om + h, 0), b = cell.zs(om - h, 0);
+      return [(a[0] - b[0]) / (2 * h), (a[1] - b[1]) / (2 * h)];
+    };
+    cell.alphaAt = function (f) { return absorption(cell.zs(2 * Math.PI * f, 0)); };
+    cell.gamma = function (f) {           // Re Zs / |dZs/dw| at f (default the design frequency)
+      var om = 2 * Math.PI * (f === undefined ? cell.fDesign : f);
+      return cell.zs(om, 0)[0] / cabs(cell.dzs(om));
+    };
+    return cell;
+  }
+  /* the cell of the geometry design for a mode: f cell = f mode x 1.005, L0 = solveL(f cell, w) unless L0 is given */
+  function cellForMode(fMode, L0, w) {
+    w = w === undefined ? SLOT_W : w;
+    var fCell = fMode * (1 + DETUNE_PCT / 100.0);
+    return makeCell(fCell, w, L0 === undefined || L0 === null ? solveL(fCell, w) : L0, 0);
+  }
+
+  // ------------------------------------------------------------------ room modes
+  /* rigid-wall modes up to fmax: {n, f, kind, Lam}, sorted by f. L = [Lx, Ly, Lz] in m */
+  function roomModes(L, fmax, c) {
+    fmax = fmax === undefined ? 120.0 : fmax; c = c || C0;
+    var V = L[0] * L[1] * L[2], nm = [], out = [], i;
+    for (i = 0; i < 3; i++) nm.push(Math.floor(2 * fmax * L[i] / c));
+    for (var nx = 0; nx <= nm[0]; nx++) for (var ny = 0; ny <= nm[1]; ny++) for (var nz = 0; nz <= nm[2]; nz++) {
+      if (nx === 0 && ny === 0 && nz === 0) continue;
+      var ax = nx / L[0], ay = ny / L[1], az = nz / L[2];
+      var f = c / 2 * Math.sqrt(ax * ax + ay * ay + az * az);
+      if (f <= fmax) {
+        var k = (nx > 0 ? 1 : 0) + (ny > 0 ? 1 : 0) + (nz > 0 ? 1 : 0);
+        out.push({ n: [nx, ny, nz], f: f, kind: KIND[k - 1], Lam: V / Math.pow(2, k) });
+      }
+    }
+    out.sort(function (a, b) { return a.f - b.f || a.n[0] - b.n[0] || a.n[1] - b.n[1] || a.n[2] - b.n[2]; });
+    return out;
+  }
+  function psiAt(n, L, p) {
+    var r = 1;
+    for (var i = 0; i < 3; i++) r *= Math.cos(n[i] * Math.PI * p[i] / L[i]);
+    return r;
+  }
+  function wallPsi2Integral(n, L, wall) {   // walls 0:x0 1:xL 2:y0 3:yL 4:z0 5:zL
+    var ax = Math.floor(wall / 2), o = [0, 1, 2].filter(function (i) { return i !== ax; });
+    return L[o[0]] * L[o[1]] * Math.pow(2, -((n[o[0]] > 0 ? 1 : 0) + (n[o[1]] > 0 ? 1 : 0)));
+  }
+  function sixAlpha(a) { return typeof a === "number" ? [a, a, a, a, a, a] : a.slice(0, 6); }
+  /* decay rate [1/s] of the pressure amplitude of a mode from the walls alone; alpha: one value or six (Sabine, Re beta = alpha / 8) */
+  function baseDecay(mode, L, alpha, c) {
+    c = c || C0;
+    var aw = sixAlpha(alpha), s = 0;
+    for (var w = 0; w < 6; w++) s += aw[w] / 8.0 * wallPsi2Integral(mode.n, L, w);
+    return c * s / (2 * mode.Lam);
+  }
+  function sabineDecay(L, alpha, c) {
+    c = c || C0;
+    var aw = sixAlpha(alpha), sx = L[1] * L[2], sy = L[0] * L[2], sz = L[0] * L[1], S = [sx, sx, sy, sy, sz, sz], a = 0;
+    for (var i = 0; i < 6; i++) a += aw[i] * S[i];
+    return c * a / (8 * (L[0] * L[1] * L[2]));
+  }
+  function t60(delta) { return delta > 0 ? LN1000 / delta : Infinity; }
+  function alphaScalar(alpha) { var a = sixAlpha(alpha); return a.reduce(function (x, y) { return x + y; }, 0) / 6; }
+
+  // ------------------------------------------------------------------ anchors and cell clusters
+  /* id: point as fractions of the room dimensions, adjoining walls (research names in comments) */
+  var ANCHORS = [
+    { id: "corner", p: [0, 0, 0], walls: [0, 2, 4] },        // narożnik
+    { id: "edge-z", p: [0, 0, 0.5], walls: [0, 2] },         // krawędź-z
+    { id: "edge-y", p: [0, 0.5, 0], walls: [0, 4] },         // krawędź-y
+    { id: "edge-x", p: [0.5, 0, 0], walls: [2, 4] },         // krawędź-x
+    { id: "wall-x", p: [0, 0.5, 0.5], walls: [0] },          // środek ściany-x
+    { id: "wall-y", p: [0.5, 0, 0.5], walls: [2] },          // środek ściany-y
+    { id: "wall-z", p: [0.5, 0.5, 0], walls: [4] }           // środek ściany-z
+  ];
+  var IMG_FACTOR = { corner: 2.0, "edge-x": Math.SQRT2, "edge-y": Math.SQRT2, "edge-z": Math.SQRT2 };   // others 1
+  function anchorById(id) {
+    for (var i = 0; i < ANCHORS.length; i++) if (ANCHORS[i].id === id) return ANCHORS[i];
+    return null;
+  }
+  function wallAxes(wall) {
+    var ax = Math.floor(wall / 2), o = [0, 1, 2].filter(function (i) { return i !== ax; });
+    return [ax, o[0], o[1]];
+  }
+  function makeCellPos(L, wall, u, v) {
+    var a = wallAxes(wall), c = [0, 0, 0];
+    c[a[0]] = wall % 2 === 0 ? 0.0 : L[a[0]];
+    c[a[1]] = u; c[a[2]] = v;
+    return { wall: wall, center: c };
+  }
+  /* the nmax cells closest to an anchor: a prefix of N cells is a trap of N cells (roomtrap.cluster); grid 0.12 m */
+  function cluster(L, anchorId, nmax) {
+    var an = anchorById(anchorId), P = [an.p[0] * L[0], an.p[1] * L[1], an.p[2] * L[2]], cands = [];
+    an.walls.forEach(function (wall, wi) {
+      var ax = wallAxes(wall), coords = [];
+      [ax[1], ax[2]].forEach(function (ii) {
+        var cs = [], k;
+        if (P[ii] === 0.0) {
+          var cnt = Math.floor(L[ii] / CELL);
+          for (k = 0; k < cnt; k++) cs.push(CELL * (k + 0.5));
+        } else {
+          var kk = Math.floor(L[ii] / CELL / 2) - 1;
+          for (k = -kk; k <= kk; k++) cs.push(P[ii] + CELL * k);
+        }
+        coords.push(cs);
+      });
+      coords[0].forEach(function (u) {
+        coords[1].forEach(function (v) {
+          var cell = makeCellPos(L, wall, u, v);
+          var d = Math.hypot(cell.center[0] - P[0], cell.center[1] - P[1], cell.center[2] - P[2]);
+          cands.push([Number(d.toFixed(9)), wi, v, u, cell]);
+        });
+      });
+    });
+    cands.sort(function (a, b) { return a[0] - b[0] || a[1] - b[1] || a[2] - b[2] || a[3] - b[3]; });
+    return cands.slice(0, nmax).map(function (c) { return c[4]; });
+  }
+  function facePts(center, wall) {
+    var a = wallAxes(wall), n = 3, offs = [], pts = [], i, j;
+    for (i = 0; i < n; i++) offs.push((i - (n - 1) / 2) * CELL / n);
+    for (i = 0; i < n; i++) for (j = 0; j < n; j++) {
+      var p = center.slice();
+      p[a[1]] += offs[i]; p[a[2]] += offs[j];
+      pts.push(p);
+    }
+    return pts;
+  }
+  /* matrix <psi_m>_s: mean over the cell face (3 x 3 points), [cells][modes] */
+  function cellsPsi(modes, L, cells) {
+    return cells.map(function (cl) {
+      var pts = facePts(cl.center, cl.wall);
+      return modes.map(function (md) {
+        var s = 0;
+        pts.forEach(function (p) { s += psiAt(md.n, L, p); });
+        return s / pts.length;
+      });
+    });
+  }
+  /* radiation mass [kg/m2] of a patch of N cells: piston of radius a_eq, the images in the walls enlarge it by sqrt(images) */
+  function loadingMass(N, anchorId) {
+    var a = Math.sqrt(N * CELL_AREA / Math.PI);
+    return (IMG_FACTOR[anchorId] || 1.0) * RHO0 * 8 * a / (3 * Math.PI);
+  }
+
+  // ------------------------------------------------------------------ the single-mode equation
+  function newton(F, x0, tol, maxit) {
+    tol = tol || 1e-10; maxit = maxit || 60;
+    var x = [x0[0], x0[1]], h = 1e-6 * Math.max(cabs(x), 1.0);
+    for (var it = 0; it < maxit; it++) {
+      var f0 = F(x), fp = F([x[0] + h, x[1]]), fm = F([x[0] - h, x[1]]);
+      var d = [(fp[0] - fm[0]) / (2 * h), (fp[1] - fm[1]) / (2 * h)];
+      if (d[0] === 0 && d[1] === 0) return null;
+      var dx = cdiv(f0, d);
+      x = csub(x, dx);
+      if (cabs(dx) < tol * cabs(x)) return x;
+    }
+    return null;
+  }
+  /* roots of a polynomial given by complex coefficients, highest power first (Durand-Kerner on the scaled variable) */
+  function polyRoots(coef, scale) {
+    var n = coef.length - 1, a = coef.map(function (c) { return cdiv(c, coef[0]); }), r = [], i, j;
+    // variable s = w / scale
+    for (i = 1; i <= n; i++) a[i] = [a[i][0] / Math.pow(scale, i), a[i][1] / Math.pow(scale, i)];
+    for (i = 0; i < n; i++) { var ang = 0.4 + 2 * Math.PI * i / n; r.push([Math.cos(ang) * 1.1, Math.sin(ang) * 1.1]); }
+    function val(z) {
+      var v = [1, 0];
+      for (var k = 1; k <= n; k++) v = cadd(cmul(v, z), a[k]);
+      return v;
+    }
+    for (var it = 0; it < 2000; it++) {
+      var worst = 0;
+      for (i = 0; i < n; i++) {
+        var den = [1, 0];
+        for (j = 0; j < n; j++) if (j !== i) den = cmul(den, csub(r[i], r[j]));
+        var step = cdiv(val(r[i]), den);
+        r[i] = csub(r[i], step);
+        worst = Math.max(worst, cabs(step));
+      }
+      if (worst < 1e-15) break;
+    }
+    return r.map(function (z) { return [z[0] * scale, z[1] * scale]; });
+  }
+  /* roots near the mode of (w^2 - wn^2 - 2 j w dw) Zs(w) = j w c Z0 G, sorted by Im: from the cubic with Zs linearised around wn,
+     polished by Newton on the exact Zs (roomtrap.solve_single). Roots as [re, im] in rad/s */
+  function solveSingle(wn, deltaW, G, cell, c) {
+    c = c || C0;
+    function F(w) {
+      var zs = cell.zs(w[0], w[1]);
+      var p = [w[0] * w[0] - w[1] * w[1] - wn * wn + 2 * w[1] * deltaW, 2 * w[0] * w[1] - 2 * w[0] * deltaW];   // w^2 - wn^2 - 2 j w dw
+      var f = cmul(p, zs);
+      // - j w c Z0 G
+      var k = c * Z0 * G;
+      return [f[0] + w[1] * k, f[1] - w[0] * k];
+    }
+    var z = cell.zs(wn, 0), z1 = cell.dzs(wn);
+    var z0 = [z[0] - z1[0] * wn, z[1] - z1[1] * wn];
+    // [1, b, c0] x [z1, z0] + [0, 0, -j c Z0 G, 0]
+    var b = [0, -2 * deltaW], c0 = [-wn * wn, 0];
+    var q = [z1, cadd(z0, cmul(b, z1)), cadd(cmul(b, z0), cmul(c0, z1)), cmul(c0, z0)];
+    q[2] = cadd(q[2], [0, -c * Z0 * G]);
+    var roots = polyRoots(q, wn), out = [];
+    roots.forEach(function (r) {
+      if (r[0] <= 0 || Math.abs(r[0] - wn) > 0.2 * wn || r[1] < -0.2 * wn) return;
+      var rr = newton(F, r);
+      if (rr !== null && rr[0] > 0 && Math.abs(rr[0] - wn) < 0.25 * wn) {
+        if (!out.some(function (o) { return cabs(csub(rr, o)) < 1e-6 * wn; })) out.push(rr);
+      }
+    });
+    out.sort(function (a, b2) { return a[1] - b2[1]; });
+    return out;
+  }
+  /* exact single-mode result (Trap.single): the slower of the two roots nearest the mode is deltaEff (null when no root is found) */
+  function singleModeEffect(mode, deltaWEff, G, cell, c) {
+    c = c || C0;
+    var wn = 2 * Math.PI * mode.f, roots = solveSingle(wn, deltaWEff, G, cell, c);
+    var z = cell.zs(wn, 0), z1 = cell.dzs(wn), r = cdiv(z, z1);
+    var omz = [wn - r[0], -r[1]];
+    var res = { roots: roots.map(function (x) { return [x[0] / (2 * Math.PI), x[1]]; }), gammaZero: omz[1],
+                detuneHz: omz[0] / (2 * Math.PI) - mode.f, deltaEff: null, fEff: null, splitHz: 0 };
+    if (roots.length) {
+      var rr = roots.slice().sort(function (a, b) { return Math.abs(a[0] - wn) - Math.abs(b[0] - wn); }).slice(0, 2);
+      var slow = rr.length > 1 && rr[1][1] < rr[0][1] ? rr[1] : rr[0];
+      res.deltaEff = slow[1];
+      res.fEff = slow[0] / (2 * Math.PI);
+      res.splitHz = rr.length > 1 ? Math.abs(rr[0][0] - rr[1][0]) / (2 * Math.PI) : 0;
+    }
+    return res;
+  }
+
+  /* a trap of the first N cells of a cluster; psiCol = <psi>_s of the mode for every cell, bw = Re beta of the wall under each cell */
+  function trapTools(mode, L, alpha, cells, psiCol, anchorId, cell) {
+    var aw = sixAlpha(alpha), cache = {};
+    var bw = cells.map(function (cl) { return aw[cl.wall] / 8.0; });
+    var dw = baseDecay(mode, L, alpha);
+    return {
+      deltaBase: dw,
+      cellN: function (N) {
+        if (!(N in cache)) cache[N] = makeCell(cell.fDesign, cell.w, cell.L, loadingMass(N, anchorId), cell.rough);
+        return cache[N];
+      },
+      G: function (N) { var s = 0; for (var i = 0; i < N; i++) s += psiCol[i] * psiCol[i]; return CELL_AREA * s / mode.Lam; },
+      deltaWEff: function (N) {
+        var s = 0;
+        for (var i = 0; i < N; i++) s += CELL_AREA * psiCol[i] * psiCol[i] / mode.Lam * bw[i];
+        return dw - 0.5 * C0 * s;
+      }
+    };
+  }
+
+  // ------------------------------------------------------------------ peak drop, flags
+  /* drop of the resonance peak of the mode in dB for a force on the mode (new in the generator):
+       H_base = 1 / (w^2 - wn^2 - 2 j w d_n),  H_trap = Zs / ((w^2 - wn^2 - 2 j w d') Zs - j w c Z0 G),
+     peak = max |H| on w = wn x linspace(0.85, 1.15, 3001); 20 log10(peak_trap / peak_base), negative = lower peak.
+     grid (optional): the result of peakGrid(mode, cell), the same Zs without the radiation mass, to save the 3001 evaluations */
+  function peakGrid(mode, cell) {         // Zs of the cell WITHOUT radiation mass on the frequency grid of peakDropDb (reusable per mode)
+    var wn = 2 * Math.PI * mode.f, step = (PEAK_HI - PEAK_LO) / (PEAK_POINTS - 1), g = [];
+    for (var i = 0; i < PEAK_POINTS; i++) g.push(zsQwr(wn * (i === PEAK_POINTS - 1 ? PEAK_HI : PEAK_LO + i * step), 0, cell.w, cell.L, cell.Y, cell.rough));
+    return g;
+  }
+  function peakDropDb(mode, deltaBase, deltaWEff, G, cell, c, grid) {
+    c = c || C0;
+    var wn = 2 * Math.PI * mode.f, step = (PEAK_HI - PEAK_LO) / (PEAK_POINTS - 1), mb = 0, mt = 0, k = c * Z0 * G;
+    for (var i = 0; i < PEAK_POINTS; i++) {
+      var w = wn * (i === PEAK_POINTS - 1 ? PEAK_HI : PEAK_LO + i * step);
+      var hb = Math.hypot(w * w - wn * wn, -2 * w * deltaBase);
+      if (1 / hb > mb) mb = 1 / hb;
+      var zs = grid ? [grid[i][0], grid[i][1] + (cell.extraMass ? w * cell.extraMass : 0)] : cell.zs(w, 0);
+      var p = [w * w - wn * wn, -2 * w * deltaWEff];
+      var den = cmul(p, zs);
+      den = [den[0], den[1] - w * k];
+      var ht = cabs(zs) / cabs(den);
+      if (ht > mt) mt = ht;
+    }
+    return 20 * Math.log10(mt / mb);
+  }
+  function nearestOther(modes, i) {
+    var best = null, bi = null;
+    for (var k = 0; k < modes.length; k++) {
+      if (k === i) continue;
+      var d = Math.abs(modes[k].f - modes[i].f);
+      if (best === null || d < best) { best = d; bi = k; }
+    }
+    return bi;
+  }
+  /* run_room.overlap_at: the nearest mode is closer than the sum of the two mode widths (delta / pi each) */
+  function overlapFlag(modes, i, L, alpha) {
+    var o = nearestOther(modes, i);
+    if (o === null) return false;
+    return Math.abs(modes[o].f - modes[i].f) < (baseDecay(modes[i], L, alpha) + baseDecay(modes[o], L, alpha)) / Math.PI;
+  }
+  /* run_room.orient: true = approximate (the single-mode model is off the multi-mode / FEM results) */
+  function orient(kind, overlap, N) { return !!(overlap || N > 8 || (kind !== "axial" && N >= 4)); }
+  function approximateReasons(kind, overlap, N, anchorId, neighbourInWindow) {
+    var r = [];
+    if (overlap) r.push("overlapping modes");
+    if (N > 8) r.push("more than 8 cells");
+    if (kind !== "axial" && N >= 4) r.push("tangential or oblique mode with 4 or more cells");
+    if (anchorId === "corner" && neighbourInWindow) r.push("corner with a neighbouring mode within 10 % of the cell frequency");
+    return r;
+  }
+  function neighbourInWindow(modes, i, fCell, win) {
+    win = win || 0.10;
+    return modes.some(function (m, k) { return k !== i && Math.abs(m.f - fCell) < win * fCell; });
+  }
+  /* reasons to show a result as uncertain (REVIEW.md 3, slot-width-decision.md) */
+  function uncertainReasons(kind, alphaMean, deltaBase, gamma) {
+    var r = [];
+    if (deltaBase > 0.8 * gamma && deltaBase <= gamma) r.push("base decay above 0.8 of the cell width");
+    if (kind === "oblique" && alphaMean >= 0.10 - 1e-9) r.push("oblique mode at alpha >= 0.10");
+    if (alphaMean >= 0.15 - 1e-9) r.push("alpha >= 0.15");   // tolerance: the mean of six 0.1 is 0.0999...
+    return r;
+  }
+  function fmtM(x) { var s = String(Math.round(x * 100) / 100); return s.indexOf(".") < 0 ? s + ".0" : s; }
+  /* English description of an anchor position in the room L = [Lx, Ly, Lz] (m) */
+  function anchorText(id, L) {
+    var lx = fmtM(L[0]), ly = fmtM(L[1]), lz = fmtM(L[2]);
+    return {
+      "corner": "floor corner (the three walls meet)",
+      "edge-z": "vertical corner edge, half height (" + lz + " m)",
+      "edge-y": "floor edge under the " + ly + " x " + lz + " m wall, middle of the " + ly + " m edge",
+      "edge-x": "floor edge under the " + lx + " x " + lz + " m wall, middle of the " + lx + " m edge",
+      "wall-x": "middle of the " + ly + " x " + lz + " m wall",
+      "wall-y": "middle of the " + lx + " x " + lz + " m wall",
+      "wall-z": "middle of the floor (" + lx + " x " + ly + " m)"
+    }[id];
+  }
+
+  // ------------------------------------------------------------------ the room and the trap, high level
+  /* all modes up to fmax with base decay, T60 before and the overlap flag: the table behind the mode picker.
+     L = [Lx, Ly, Lz] in m; alpha = Sabine coefficient of the walls (one value or six). Returns {L, alpha, fmax, modes, rows} */
+  function analyzeRoom(L, alpha, fmax) {
+    fmax = fmax === undefined ? 120.0 : fmax;
+    var modes = roomModes(L, fmax), rows = modes.map(function (m, i) {
+      var d = baseDecay(m, L, alpha), o = nearestOther(modes, i);
+      return { index: i, n: m.n.slice(), f: m.f, kind: m.kind, Lam: m.Lam, deltaBase: d, t60Before: t60(d),
+               spacingHz: o === null ? null : Math.abs(modes[o].f - m.f), overlap: overlapFlag(modes, i, L, alpha) };
+    });
+    return { L: L.slice(), alpha: alpha, fmax: fmax, modes: modes, rows: rows };
+  }
+  /* everything for mode i of a room from analyzeRoom: the cell, base decay, flags, and for every anchor and N (default
+     1, 2, 4, 8, 16) the exact single-mode result with T60 after, decay factor and peak drop in dB; best[N] = anchor id with the
+     largest deltaEff (ties: first). opts: {ns, anchors (ids), L0 (mm), w (mm)}. Never throws for a normal input: a trap that does not
+     fit the walls gets available: false, an unsolved equation solved: false */
+  function evaluateMode(room, i, opts) {
+    opts = opts || {};
+    var L = room.L, modes = room.modes, alpha = room.alpha, mode = modes[i];
+    var ns = opts.ns || N_LIST, ids = opts.anchors || ANCHORS.map(function (a) { return a.id; });
+    var cell = cellForMode(mode.f, opts.L0, opts.w);
+    var dBase = baseDecay(mode, L, alpha), gamma = cell.gamma(), aMean = alphaScalar(alpha);
+    var ov = overlapFlag(modes, i, L, alpha), nbw = neighbourInWindow(modes, i, cell.fDesign);
+    var out = { mode: { n: mode.n.slice(), f: mode.f, kind: mode.kind, Lam: mode.Lam }, deltaBase: dBase, t60Before: t60(dBase),
+                gammaCell: gamma, fCell: cell.fDesign, L0: cell.L, noEffect: dBase > gamma, overlap: ov,
+                uncertain: uncertainReasons(mode.kind, aMean, dBase, gamma), anchors: {}, best: {} };
+    var nmax = Math.max.apply(null, ns), grid = peakGrid(mode, cell);
+    ids.forEach(function (id) {
+      var cl = cluster(L, id, nmax), P = cellsPsi([mode], L, cl).map(function (r) { return r[0]; });
+      var tt = trapTools(mode, L, alpha, cl, P, id, cell);
+      var rec = { text: anchorText(id, L), psi2: P.length ? P[0] * P[0] : 0, nodal: P.length ? P[0] * P[0] < 0.05 : true,
+                  cellsAvailable: cl.length, byN: {} };
+      ns.forEach(function (N) {
+        if (N > cl.length) { rec.byN[N] = { available: false }; return; }
+        var dwe = tt.deltaWEff(N), G = tt.G(N), cN = tt.cellN(N);
+        var s = singleModeEffect(mode, dwe, G, cN), pk = peakDropDb(mode, dBase, dwe, G, cN, undefined, grid);
+        var reasons = approximateReasons(mode.kind, ov, N, id, nbw), de = s.deltaEff;
+        rec.byN[N] = { available: true, solved: de !== null, deltaEff: de, fEff: s.fEff,
+                       t60After: de !== null ? t60(de) : null, decayFactor: de !== null ? de / dBase : null,
+                       peakDropDb: pk, deltaWallsEff: dwe, G: G,
+                       approximate: orient(mode.kind, ov, N) || reasons.length > 0, approximateReasons: reasons };
+      });
+      out.anchors[id] = rec;
+    });
+    ns.forEach(function (N) {
+      var best = null, bd = null;
+      ids.forEach(function (id) {
+        var r = out.anchors[id].byN[N];
+        if (r && r.available && r.solved && (bd === null || r.deltaEff > bd)) { best = id; bd = r.deltaEff; }
+      });
+      out.best[N] = best;
+    });
+    return out;
+  }
+
+  // ------------------------------------------------------------------ the verdict of the mode table (interface policy)
+  /* NOT physics and without a Python twin: the policy of the interface, set by the owner on 25.10.2026. For a mode evaluated by
+     evaluateMode (at the alpha of the room) it takes the best case with at most maxN cells (default 8; best place per N is
+     already inside evaluateMode, here every place of every N <= maxN is looked at) and sorts the decay factor x = T60 before /
+     T60 after:  x >= 1.25 and no "no effect" flag -> "worth";  1.08 <= x < 1.25 -> "small";  x < 1.08, no solved case, or the
+     "no effect" flag (delta of the walls above the width of the cell) -> "none". Markers beside it: approximate (the flags of the
+     best case: overlapping modes, tangential / oblique with 4 or more cells, a corner with a neighbouring mode) and uncertain
+     (the reasons of evaluateMode: delta above 0.8 of the cell width, oblique at alpha >= 0.10, alpha >= 0.15).
+     Returns {level, label, x, N, anchor, noEffect, approximate, approximateReasons, uncertain, uncertainReasons}; x, N and anchor
+     are null when no case could be solved. Ties go to the smaller N, then to the earlier place of ANCHORS. */
+  var VERDICT_WORTH = 1.25, VERDICT_SMALL = 1.08, VERDICT_MAX_N = 8;
+  var VERDICT_LABELS = { worth: "Worth trying", small: "Small effect", none: "No effect" };
+  function verdict(ev, opts) {
+    var maxN = opts && opts.maxN !== undefined ? opts.maxN : VERDICT_MAX_N, best = null;
+    ANCHORS.forEach(function (a) {
+      var rec = ev.anchors && ev.anchors[a.id];
+      if (!rec) return;
+      Object.keys(rec.byN).map(Number).sort(function (p, q) { return p - q; }).forEach(function (n) {
+        var r = rec.byN[n];
+        if (n > maxN || !r || !r.available || !r.solved || r.decayFactor === null || r.decayFactor === undefined) return;
+        if (best === null || r.decayFactor > best.x || (r.decayFactor === best.x && n < best.N)) best = { x: r.decayFactor, N: n, anchor: a.id, rec: r };
+      });
+    });
+    var x = best ? best.x : null, noEffect = !!ev.noEffect;
+    var level = noEffect || x === null || x < VERDICT_SMALL ? "none" : x < VERDICT_WORTH ? "small" : "worth";
+    var reasons = best ? best.rec.approximateReasons.slice() : (ev.overlap ? ["overlapping modes"] : []);
+    return { level: level, label: VERDICT_LABELS[level], x: x, N: best ? best.N : null, anchor: best ? best.anchor : null, noEffect: noEffect,
+             approximate: best ? !!best.rec.approximate : reasons.length > 0, approximateReasons: reasons,
+             uncertain: ev.uncertain.length > 0, uncertainReasons: ev.uncertain.slice() };
+  }
+
+  return {
+    C0: C0, RHO0: RHO0, Z0: Z0, CELL: CELL, DETUNE_PCT: DETUNE_PCT, SLOT_W: SLOT_W, N_LIST: N_LIST, ANCHORS: ANCHORS,
+    PEAK_POINTS: PEAK_POINTS, PEAK_SPAN: [PEAK_LO, PEAK_HI],
+    dlSlitArray: dlSlitArray, absorption: absorption, zsQwr: zsQwr, firstRes: firstRes, solveL: solveL, makeCell: makeCell,
+    cellForMode: cellForMode, roomModes: roomModes, baseDecay: baseDecay, sabineDecay: sabineDecay, t60: t60,
+    cluster: cluster, cellsPsi: cellsPsi, loadingMass: loadingMass, solveSingle: solveSingle, singleModeEffect: singleModeEffect,
+    peakDropDb: peakDropDb, peakGrid: peakGrid, overlapFlag: overlapFlag, orient: orient, approximateReasons: approximateReasons,
+    uncertainReasons: uncertainReasons, anchorText: anchorText, analyzeRoom: analyzeRoom, evaluateMode: evaluateMode,
+    verdict: verdict, VERDICT_WORTH: VERDICT_WORTH, VERDICT_SMALL: VERDICT_SMALL, VERDICT_MAX_N: VERDICT_MAX_N
+  };
+}
+</script>
+
+<script id="bass-geometry">
+/* Soundblooms bass traps, geometry core. A 1:1 port of mode-traps/cell/qwr_cell.py (reference/bass_cell.py is the Python twin):
+   the folded quarter-wave (QWR) cell 120 x 120 mm, slit 6 mm, wall 1.2 mm, channel length from solveL of createBassPhysics()
+   (the 0.25 Hz grid of design_Q.first_res), bend correction -0.245 w per 90 degree bend, f cell = f mode x 1.005, blocks of cells,
+   end caps and tuning inserts, the inserts plate, packing on a printer bed and the print time / filament estimate.
+   createBassGeometry(M, physics): M = initialised manifold-3d module (touched only by blockSolid, insertSolid, platesSolid),
+   physics = createBassPhysics() (only solveL / firstRes are used). No DOM, no window, no fetch.
+   Coordinates in mm: x = depth from the face (face plane x = 0), y = face width, z = height = print axis (no supports). */
+function createBassGeometry(M, physics) {
+  "use strict";
+  if (M && typeof M.setup === "function") M.setup();
+  if (!physics) throw new Error("createBassGeometry(M, physics): physics = createBassPhysics() is required");
+
+  var DEF = { w: 6.0, wall: 1.2, width: 120.0, height: 120.0, bend_dL: null, detune_pct: 0.5, steps_down: 2, steps_up: 8,
+              step_pct: 0.5, max_depth: 150.0, insert_min: 10.0, ins_cx: 0.25, ins_cz: 0.30, flange_t: 1.6, flange_front: 8.0 };
+  var BEND_K = -0.245;                 // length correction per 90 degree bend = BEND_K * w (2D FEM)
+  var FMODE_MIN = 35.0, FMODE_MAX = 120.0;   // modes the generator designs cells for
+  var BED_MARGIN = 5.0;                // mm kept free on every bed axis (a block is a cuboid, it does not lift off like a tile)
+  var MAX_HOURS = 12.0;                // preferred print time of one block
+  var PLATE_GAP = 3.0;                 // mm between inserts on a plate
+  /* printer beds as in createDiffuser(M).BEDS */
+  var BEDS = [
+    { key: "a1mini", name: "Bambu Lab A1 mini", short: "A1 mini", x: 180, y: 180, z: 180 },
+    { key: "mk4", name: "Prusa MK4 / Core One", short: "MK4 / Core One", x: 250, y: 210, z: 220 },
+    { key: "p1s", name: "Bambu Lab P1S / X1", short: "P1S / X1", x: 256, y: 256, z: 256 }
+  ];
+  /* block layouts tried in this order: 2x2 with 4 cells, 2x2 with 3 (an L, no overhang), 1x2, 2x1, 1x1 (ny x nz, k cells) */
+  var BLOCK_ORDER = [{ ny: 2, nz: 2, k: 4 }, { ny: 2, nz: 2, k: 3 }, { ny: 1, nz: 2, k: 2 }, { ny: 2, nz: 1, k: 2 }, { ny: 1, nz: 1, k: 1 }];
+  /* calibrated on 10 blocks + 10 inserts plates of the research set, Bambu P1S, 0.4 nozzle, PLA, "Diffuser blocks 0.20"
+     (scripts/calibration/bass-estimate.json, written by scripts/calibration/bass-calibrate.py): kind -> quantity -> feature -> coefficient */
+  var ESTIMATE = {"block":{"grams":{"volume_cm3":1.1748627684021904,"footprint_cm2":0.049320968528349274},"minutes":{"volume_cm3":1.3928158431886952,"footprint_cm2":0.0648015190812548}},"plate":{"grams":{"area_cm2":0.1152803430393738,"volume_cm3":0.05032876906918458,"height_mm":0.06234341753934945},"minutes":{"area_cm2":0.11973040998406786,"volume_cm3":0.04122024896249438,"footprint_cm2":0.08506192306284675}}};
+
+  function r4(x) { return Number(x.toFixed(4)); }           // Python round(x, 4)
+  function fmtG(v) { return String(+v.toPrecision(6)); }     // Python f"{v:g}" for the magnitudes used here
+  function defaultBendDL(w) { return BEND_K * w; }
+
+  // ------------------------------------------------------------------ axis and plan
+  /* length of the axis (base orientation: leg 0 goes +y) from the face to the end of an insert of length p; [L, y_end] */
+  function axisLength(n, yIn, p, w, TW, Y) {
+    var xc0 = TW + w / 2, yT = Y - TW - w / 2, yB = TW + w / 2, ycIn = yIn + w / 2, pitch = w + TW, yEnd, L;
+    if (n === 1) { yEnd = Y - p; return [xc0 + (yEnd - ycIn), yEnd]; }
+    L = xc0 + (yT - ycIn) + (n - 1) * pitch + (n - 2) * (yT - yB);
+    if ((n - 1) % 2 === 0) { yEnd = Y - p; L += yEnd - yB; } else { yEnd = p; L += yT - yEnd; }
+    return [L, yEnd];
+  }
+  /* number of legs n, inlet position y_in and nominal insert length p (>= pNom) so that L_acoustic = L_axis + bends * bend_dL = LAc */
+  function planCell(LAc, w, TW, Y, bendDL, pNom) {
+    for (var n = 1; n < 80; n++) {
+      var bends = 1 + 2 * (n - 1), LGeom = LAc - bends * bendDL, needed = LGeom + pNom;
+      var Lmax = axisLength(n, TW, 0.0, w, TW, Y)[0];
+      if (Lmax < needed) continue;
+      var yIn = TW + (Lmax - needed), p = pNom, ymax = Y - TW - w;
+      if (yIn > ymax) {
+        yIn = ymax;
+        var Lmin = axisLength(n, ymax, 0.0, w, TW, Y)[0];
+        p = pNom + (Lmin - needed);
+      }
+      return { n: n, y_in: yIn, p_nom: p, bends: bends, L_geom: LGeom };
+    }
+    throw new Error("L too long");
+  }
+  /* design of the cell for a MODE frequency fMode (Hz): f cell = fMode x (1 + detune / 100); L nominal (acoustic), the leg
+     plan, the inserts k = -steps_down ... steps_up (L_k, length p_k). opts: any key of DEF. Never throws: {ok: false, error} when
+     the mode is outside 35 - 120 Hz or the channel does not fit; warnings (cut tuning range, depth > max_depth) in `warn` */
+  function design(fMode, opts) {
+    var o = {}, key;
+    for (key in DEF) o[key] = DEF[key];
+    if (opts) for (key in opts) o[key] = opts[key];
+    var w = o.w, wall = o.wall, Y = o.width, H = o.height;
+    if (!(fMode >= FMODE_MIN && fMode <= FMODE_MAX)) return { ok: false, error: "mode frequency outside " + FMODE_MIN + " - " + FMODE_MAX + " Hz" };
+    var bendDL = o.bend_dL === null || o.bend_dL === undefined ? defaultBendDL(w) : o.bend_dL;
+    try {
+      var f0n = fMode * (1 + o.detune_pct / 100.0), L0 = physics.solveL(f0n, w);
+      var pLimit = Y - wall - w - 3.0, warn = [], Lk = {}, pk = {}, k;
+      for (k = -o.steps_down; k <= o.steps_up; k++) Lk[k] = k === 0 ? L0 : physics.solveL(f0n * (1 + k * o.step_pct / 100.0), w);
+      var pNomReq = o.insert_min + (Lk[-o.steps_down] - L0);
+      var pl = planCell(L0, w, wall, Y, bendDL, pNomReq), pNom = pl.p_nom;
+      for (k in Lk) pk[k] = pNom + (L0 - Lk[k]);
+      var up = o.steps_up;
+      while (up > 0 && pk[up] > pLimit) up--;
+      if (up < o.steps_up) {
+        warn.push("upper tuning range cut from +" + fmtG(o.steps_up * o.step_pct) + " % to +" + fmtG(up * o.step_pct) + " % (" + up +
+                  " steps of " + fmtG(o.step_pct) + " %): the +" + fmtG(o.steps_up * o.step_pct) + " % insert (" + pk[o.steps_up].toFixed(0) +
+                  " mm) does not fit the last leg (limit " + pLimit.toFixed(0) + " mm)");
+        for (k = up + 1; k <= o.steps_up; k++) { delete Lk[k]; delete pk[k]; }
+      }
+      var T = wall + pl.n * (w + wall);
+      if (T > o.max_depth) warn.push("cell depth " + T.toFixed(1) + " mm > " + fmtG(o.max_depth) + " mm");
+      return { ok: true, L0: L0, f0: f0n, f_mode: fMode, plan: pl, Lk: Lk, pk: pk, ns_down: o.steps_down, ns_up: up, warn: warn, w: w,
+               wall: wall, width: Y, height: H, bend_dL: bendDL, step_pct: o.step_pct, detune_pct: o.detune_pct, p_limit: pLimit, depth: T,
+               max_depth: o.max_depth };
+    } catch (e) {
+      return { ok: false, error: String(e && e.message || e) };
+    }
+  }
+
+  /* rectangles of air / walls / voids of one cell in the base orientation (leg 0 goes +y) */
+  function cellLayout(plan, w, TW, Y, H) {
+    var n = plan.n, yIn = plan.y_in, T = TW + n * (w + TW), z0 = TW, z1 = H - TW, xs = [], air = [], walls = [], voids = [], j;
+    for (j = 0; j < n; j++) xs.push(TW + j * (w + TW));
+    function R(lst, kind, x0, x1, y0, y1, zz) {
+      zz = zz || [z0, z1];
+      lst.push({ kind: kind, x: [r4(x0), r4(x1)], y: [r4(y0), r4(y1)], z: [r4(zz[0]), r4(zz[1])] });
+    }
+    R(air, "inlet", 0.0, xs[0], yIn, yIn + w);
+    for (j = 0; j < n; j++) {
+      R(air, "leg", xs[j], xs[j] + w, j === 0 ? yIn : TW, Y - TW);
+      if (j < n - 1) {
+        if (j % 2 === 0) R(air, "turn", xs[j], xs[j + 1] + w, Y - TW - w, Y - TW);
+        else R(air, "turn", xs[j], xs[j + 1] + w, TW, TW + w);
+      }
+    }
+    var wallY;
+    if ((n - 1) % 2 === 0) { R(air, "window", xs[n - 1], xs[n - 1] + w, Y - TW, Y); wallY = Y; }
+    else { R(air, "window", xs[n - 1], xs[n - 1] + w, 0.0, TW); wallY = 0.0; }
+    var pocket = (yIn - 2 * TW) >= 1.0;
+    if (pocket) R(voids, "pocket", xs[0], xs[0] + w, TW, yIn - TW);
+    var zz = [0.0, H];
+    R(walls, "front", 0.0, TW, 0.0, yIn, zz);
+    R(walls, "front", 0.0, TW, yIn + w, Y, zz);
+    R(walls, "back", T - TW, T, 0.0, Y, zz);
+    [["lat-y0", 0.0, TW], ["lat-ymax", Y - TW, Y]].forEach(function (s) {
+      if ((s[0] === "lat-ymax" && wallY === Y) || (s[0] === "lat-y0" && wallY === 0.0)) {
+        R(walls, s[0], 0.0, xs[n - 1], s[1], s[2], zz);
+        R(walls, s[0], xs[n - 1] + w, T, s[1], s[2], zz);
+      } else R(walls, s[0], 0.0, T, s[1], s[2], zz);
+    });
+    for (j = 0; j < n - 1; j++) {
+      if (j % 2 === 0) R(walls, "partition", xs[j] + w, xs[j] + w + TW, TW, Y - TW - w, zz);
+      else R(walls, "partition", xs[j] + w, xs[j] + w + TW, TW + w, Y - TW, zz);
+    }
+    if (pocket) R(walls, "leg0-end", xs[0], xs[0] + w, yIn - TW, yIn, zz);
+    else if (yIn > TW + 1e-9) R(walls, "leg0-fill", xs[0], xs[0] + w, TW, yIn, zz);
+    return { T: T, xs: xs, air: air, walls: walls, voids: voids, wall_y: wallY, pocket: pocket };
+  }
+  function axisPolyline(plan, w, TW, Y) {
+    var n = plan.n, yIn = plan.y_in, p = plan.p_nom, xs = [], j;
+    for (j = 0; j < n; j++) xs.push(TW + j * (w + TW) + w / 2);
+    var yT = Y - TW - w / 2, yB = TW + w / 2, yc = yIn + w / 2, pts = [[0.0, yc], [xs[0], yc]];
+    for (j = 0; j < n - 1; j++) { var yt = j % 2 === 0 ? yT : yB; pts.push([xs[j], yt]); pts.push([xs[j + 1], yt]); }
+    pts.push([xs[n - 1], axisLength(n, yIn, p, w, TW, Y)[1]]);
+    return pts;
+  }
+  function unionArea(rects) {              // exact area of the union of axis-aligned rectangles
+    function uniq(vals) { return vals.slice().sort(function (a, b) { return a - b; }).filter(function (v, i, a) { return i === 0 || v !== a[i - 1]; }); }
+    var xs = uniq([].concat.apply([], rects.map(function (r) { return r.x; }))), ys = uniq([].concat.apply([], rects.map(function (r) { return r.y; }))), a = 0;
+    for (var i = 0; i < xs.length - 1; i++) for (var j = 0; j < ys.length - 1; j++) {
+      var cx = (xs[i] + xs[i + 1]) / 2, cy = (ys[j] + ys[j + 1]) / 2;
+      if (rects.some(function (r) { return r.x[0] <= cx && cx <= r.x[1] && r.y[0] <= cy && cy <= r.y[1]; })) a += (xs[i + 1] - xs[i]) * (ys[j + 1] - ys[j]);
+    }
+    return a;
+  }
+  function polyLen(pts) {
+    var s = 0;
+    for (var i = 0; i < pts.length - 1; i++) s += Math.hypot(pts[i + 1][0] - pts[i][0], pts[i + 1][1] - pts[i][1]);
+    return s;
+  }
+  function trRect(r, mirror, Y, oy, oz) {
+    var y0 = r.y[0], y1 = r.y[1];
+    if (mirror) { var t = Y - y1; y1 = Y - y0; y0 = t; }
+    return { kind: r.kind, x: r.x.slice(), y: [r4(y0 + oy), r4(y1 + oy)], z: [r4(r.z[0] + oz), r4(r.z[1] + oz)] };
+  }
+  function trPt(pt, mirror, Y, oy) { return [r4(pt[0]), r4((mirror ? Y - pt[1] : pt[1]) + oy)]; }
+  /* cell positions [iy, iz] of a block ny x nz holding k cells, filled in rows from the bottom (2x2 with k = 3 is an L, no overhang) */
+  function blockCells(ny, nz, k) {
+    var cells = [];
+    for (var iz = 0; iz < nz; iz++) for (var iy = 0; iy < ny; iy++) if (cells.length < k) cells.push([iy, iz]);
+    return cells;
+  }
+  /* the block of k cells in an ny x nz grid for design d: size, every cell's rectangles and axis, the expected volume (mm3) */
+  function planBlock(d, ny, nz, k) {
+    var pl = d.plan, w = d.w, wall = d.wall, Y = d.width, H = d.height, n = pl.n;
+    var baseEnd = n % 2 === 1 ? "+y" : "-y", lay = cellLayout(pl, w, wall, Y, H), T = lay.T;
+    var pts = axisPolyline(pl, w, wall, Y), LAxis = polyLen(pts), LAc = LAxis + pl.bends * d.bend_dL, hc = H - 2 * wall;
+    var cells = blockCells(ny, nz, k).map(function (pos, idx) {
+      var iy = pos[0], iz = pos[1], want = (ny > 1 && iy < ny / 2) ? "-y" : "+y";
+      if (ny === 1) want = "+y";
+      var mirror = want !== baseEnd, oy = iy * Y, oz = iz * H;
+      var wallY = (mirror ? Y - lay.wall_y : lay.wall_y) + oy, axisPts = pts.map(function (q) { return trPt(q, mirror, Y, oy); });
+      var sgn = axisPts[axisPts.length - 1][1] < wallY ? 1.0 : -1.0, xl = lay.xs[n - 1];
+      return { index: idx, index_y: iy, index_z: iz, origin: [0.0, oy, oz], mirror_y: mirror,
+               air: lay.air.map(function (r) { return trRect(r, mirror, Y, oy, oz); }),
+               walls: lay.walls.map(function (r) { return trRect(r, mirror, Y, oy, oz); }),
+               voids: lay.voids.map(function (r) { return trRect(r, mirror, Y, oy, oz); }),
+               axis_points_xy: axisPts,
+               window: { outer_wall_plane_y: r4(wallY), x: [xl, xl + w], z: [oz + wall, oz + H - wall], insert_axis_into_cell: sgn > 0 ? "+y" : "-y" } };
+    });
+    var airArea = unionArea(lay.air), voidArea = lay.voids.length ? unionArea(lay.voids) : 0.0;
+    return { T: T, size_mm: [T, ny * Y, nz * H], ny: ny, nz: nz, k: cells.length, cells: cells, x_last: lay.xs[n - 1], hc: hc,
+             L_axis: LAxis, L_acoustic: LAc, bends: pl.bends, legs: n, volume_mm3: (T * Y * H - hc * (airArea + voidArea)) * cells.length };
+  }
+
+  // ------------------------------------------------------------------ inserts and the inserts plate
+  /* dimensions of one insert: flange [fx, fz, ft] and body [bw, bh, p] (print orientation: flange on the bed) */
+  function insertDims(p, d, T, xLast, hc, H) {
+    var ft = DEF.flange_t, ff = DEF.flange_front, cx = DEF.ins_cx, cz = DEF.ins_cz;
+    var fx = T - (xLast - ff), fz = H - 1.0, bw = d.w - 2 * cx, bh = hc - 2 * cz;
+    return { flange: [fx, fz, ft], body: [bw, bh, p], body_origin: [ff + cx, (fz - bh) / 2, ft] };
+  }
+  /* inserts k = -ns_down ... ns_up in a row along x with PLATE_GAP between them (the research plate): positions and dims */
+  function platePlan(d, bp) {
+    var out = [], xc = 0.0;
+    for (var k = -d.ns_down; k <= d.ns_up; k++) {
+      var dims = insertDims(d.pk[k], d, bp.T, bp.x_last, bp.hc, d.height);
+      out.push({ k: k, x0: xc, p: d.pk[k], dims: dims });
+      xc += dims.flange[0] + PLATE_GAP;
+    }
+    return out;
+  }
+  function insertSuffix(kk) { return (kk < 0 ? "m" : kk > 0 ? "p" : "") + Math.abs(kk); }
+
+  // ------------------------------------------------------------------ solids (manifold)
+  function asPoints(polys) {
+    return polys.map(function (poly) { return poly.map(function (q) { return { x: q[0], y: q[1] }; }); });
+  }
+  function rect(x0, y0, x1, y1) { return [[x0, y0], [x1, y0], [x1, y1], [x0, y1]]; }
+  function scope() {
+    var own = [];
+    return { k: function (x) { own.push(x); return x; },
+             free: function () { while (own.length) { var o = own.pop(); try { o.delete(); } catch (e) { /* already freed */ } } } };
+  }
+  /* the block as a Manifold: the hull of the grid cells (a union in the y-z plane, extruded along x) minus the channel air and the
+     closed pockets of every cell (extruded over the channel height). The window and the inlet reach 1 mm out of the hull so no cut
+     face lies in a hull face. The caller frees the result with .delete() */
+  function blockSolid(d, bp) {
+    var S = scope(), k = S.k, CS = M.CrossSection, MF = M.Manifold;
+    try {
+      var Y = d.width, H = d.height, cs = function (polys) { return k(new CS(asPoints(polys), "Positive")); };
+      var hullCs = cs(bp.cells.map(function (c) { return rect(c.origin[1], c.origin[2], c.origin[1] + Y, c.origin[2] + H); }));
+      var hull = k(k(k(hullCs.extrude(bp.T)).rotate(90, 0, 90)));       // (y, z, x) -> (x, y, z)
+      var cuts = bp.cells.map(function (c) {
+        var polys = c.air.concat(c.voids).map(function (r) {
+          var x0 = r.x[0], x1 = r.x[1], y0 = r.y[0], y1 = r.y[1];
+          if (r.kind === "inlet") x0 -= 1;
+          if (r.kind === "window") { if (Math.abs(y0 - c.window.outer_wall_plane_y) < 1e-6) y0 -= 1; else y1 += 1; }
+          return rect(x0, y0, x1, y1);
+        });
+        return k(k(cs(polys).extrude(bp.hc)).translate(0, 0, c.origin[2] + d.wall));
+      });
+      return hull.subtract(k(MF.union(cuts)));
+    } finally { S.free(); }
+  }
+  function insertSolidIn(S, p, d, bp) {
+    var k = S.k, MF = M.Manifold, dm = insertDims(p, d, bp.T, bp.x_last, bp.hc, d.height);
+    var fx = dm.flange[0], fz = dm.flange[1], ft = dm.flange[2], bw = dm.body[0], bh = dm.body[1], b0 = dm.body_origin;
+    var flange = k(MF.cube({ x: fx, y: fz, z: ft }));
+    var c = 0.6, zt = ft + p, zs = zt - c, zb = ft - 0.1, pts = [];          // body: a prism with the 4 top edges chamfered 0.6
+    [[0, 0], [bw, 0], [bw, bh], [0, bh]].forEach(function (q) {
+      pts.push({ x: b0[0] + q[0], y: b0[1] + q[1], z: zb });
+      pts.push({ x: b0[0] + q[0], y: b0[1] + q[1], z: zs });
+    });
+    [[c, c], [bw - c, c], [bw - c, bh - c], [c, bh - c]].forEach(function (q) { pts.push({ x: b0[0] + q[0], y: b0[1] + q[1], z: zt }); });
+    var body = k(MF.hull(pts));
+    return MF.union([flange, body]);          // not registered in S: the caller owns the result
+  }
+  /* insert of tuning step kk (0 = the nominal insert, the end cap) as a Manifold in print orientation */
+  function insertSolid(d, bp, kk) {
+    var S = scope();
+    try { return insertSolidIn(S, d.pk[kk], d, bp); } finally { S.free(); }
+  }
+
+  // ------------------------------------------------------------------ features, estimate
+  /* quantities of a solid in print orientation (Z up = print height) */
+  function features(m) {
+    var mesh = m.getMesh(), np = mesh.numProp, vp = mesh.vertProperties, tv = mesh.triVerts;
+    var mn = [Infinity, Infinity, Infinity], mx = [-Infinity, -Infinity, -Infinity], i, a;
+    for (i = 0; i < vp.length; i += np) for (a = 0; a < 3; a++) { var v = vp[i + a]; if (v < mn[a]) mn[a] = v; if (v > mx[a]) mx[a] = v; }
+    var area = 0;
+    for (i = 0; i < tv.length; i += 3) {
+      var o = tv[i] * np, q = tv[i + 1] * np, r = tv[i + 2] * np;
+      var ux = vp[q] - vp[o], uy = vp[q + 1] - vp[o + 1], uz = vp[q + 2] - vp[o + 2];
+      var wx = vp[r] - vp[o], wy = vp[r + 1] - vp[o + 1], wz = vp[r + 2] - vp[o + 2];
+      area += 0.5 * Math.sqrt(Math.pow(uy * wz - uz * wy, 2) + Math.pow(uz * wx - ux * wz, 2) + Math.pow(ux * wy - uy * wx, 2));
+    }
+    return { area_cm2: area / 100, volume_cm3: m.volume() / 1000, height_mm: mx[2] - mn[2], footprint_cm2: (mx[0] - mn[0]) * (mx[1] - mn[1]) / 100 };
+  }
+  /* features of a block that follow from the rectangle plan alone (no solid): volume, height, footprint */
+  function planFeatures(bp) {
+    return { volume_cm3: bp.volume_mm3 / 1000, height_mm: bp.size_mm[2], footprint_cm2: bp.size_mm[0] * bp.size_mm[1] / 100 };
+  }
+  /* {grams, minutes} = sum of coefficient x feature per kind ("block" or "plate"), over the keys present in ESTIMATE */
+  function estimate(kind, f) {
+    var E = ESTIMATE[kind], out = {};
+    ["grams", "minutes"].forEach(function (q) {
+      var s = 0, co = E[q];
+      for (var key in co) if (Object.prototype.hasOwnProperty.call(co, key)) s += co[key] * (key === "const" ? 1 : (typeof f[key] === "number" ? f[key] : 0));
+      out[q] = s;
+    });
+    return out;
+  }
+
+  // ------------------------------------------------------------------ names
+  function pad3(f) { var s = f.toFixed(1); return (s.length < 5 ? "0".repeat(5 - s.length) : "") + s; }
+  /* file stem like the diffuser generator: soundblooms-bass-trap-qwr-f042.9-w6-block-1x2-k2-58.8x120x240 */
+  function stem(d) { return "soundblooms-bass-trap-qwr-f" + pad3(d.f_mode) + "-w" + fmtG(d.w); }
+  function blockName(d, bp) { return stem(d) + "-block-" + bp.ny + "x" + bp.nz + "-k" + bp.k + "-" + bp.size_mm.map(fmtG).join("x"); }
+  function insertName(d, kk) { return stem(d) + "-insert-" + insertSuffix(kk); }
+  function platesName(d, index, count) { return stem(d) + "-inserts-plate" + (count > 1 ? "-" + (index + 1) + "of" + count : ""); }
+
+  // ------------------------------------------------------------------ bed, packing
+  function bedLimits(bed) { return { x: bed.x - BED_MARGIN, y: bed.y - BED_MARGIN, z: bed.z - BED_MARGIN }; }
+  /* does a cuboid (x depth, y width, z height) fit the bed? z is the print axis; x and y may swap on the bed */
+  function fitsBed(size, bed) {
+    var b = bedLimits(bed), eps = 1e-6;
+    return size[2] <= b.z + eps && ((size[0] <= b.x + eps && size[1] <= b.y + eps) || (size[0] <= b.y + eps && size[1] <= b.x + eps));
+  }
+  /* the blocks that carry N cells of design d on a bed {x, y, z}: the first layout of BLOCK_ORDER that fits the bed and prints in
+     at most 12 h (estimate), a remainder block for the cells left over. If one cell does not fit (deeper than the bed or than
+     max_depth, or the bed is lower than the 120 mm cell) the result is {ok: false, reasons} - never an exception. A layout that fits
+     but needs more than 12 h is used only when nothing quicker fits (overLimit: true) */
+  function packBlocks(d, N, bed, opts) {
+    opts = opts || {};
+    var maxHours = opts.maxHours === undefined ? MAX_HOURS : opts.maxHours;
+    var res = { ok: false, cells: N, reasons: [], blocks: [], prints: 0, totalMinutes: 0, totalGrams: 0, maxHours: maxHours };
+    if (!d || !d.ok) { res.reasons.push(d && d.error ? d.error : "no cell design"); return res; }
+    if (!(N >= 1) || N !== Math.floor(N)) { res.reasons.push("the number of cells must be a whole number of at least 1"); return res; }
+    var b = bedLimits(bed), T = d.depth;
+    if (T > d.max_depth) res.reasons.push("one cell is " + T.toFixed(1) + " mm deep, more than the " + fmtG(d.max_depth) + " mm limit");
+    if (d.height > b.z) res.reasons.push("the bed is too low: a cell is " + fmtG(d.height) + " mm tall, the bed allows " + fmtG(b.z) + " mm");
+    if (!fitsBed([T, d.width, d.height], bed)) {
+      if (!(d.height > b.z)) res.reasons.push("one cell (" + [T, d.width, d.height].map(fmtG).join(" x ") + " mm) does not fit the bed (" + fmtG(b.x) + " x " + fmtG(b.y) + " mm usable)");
+    }
+    if (res.reasons.length) return res;
+    var cellVol = planBlock(d, 1, 1, 1).volume_mm3;
+    function describe(c, count) {
+      var size = [T, c.ny * d.width, c.nz * d.height];
+      var f = { volume_cm3: cellVol * c.k / 1000, height_mm: size[2], footprint_cm2: size[0] * size[1] / 100 }, e = estimate("block", f);
+      return { ny: c.ny, nz: c.nz, k: c.k, count: count, size_mm: size, fits: fitsBed(size, bed), minutes: e.minutes, grams: e.grams,
+               hours: e.minutes / 60, overLimit: e.minutes / 60 > maxHours };
+    }
+    var cands = BLOCK_ORDER.map(function (c) { return describe(c, 0); }).filter(function (c) { return c.fits && c.k <= N; });
+    var pick = cands.filter(function (c) { return !c.overLimit; })[0];
+    if (!pick) pick = cands.slice().sort(function (a, b2) { return a.minutes - b2.minutes; })[0];
+    var full = Math.floor(N / pick.k), rest = N - full * pick.k, blocks = [];
+    if (full) { pick.count = full; blocks.push(pick); }
+    if (rest) {
+      var rc = BLOCK_ORDER.map(function (c) { return describe(c, 1); }).filter(function (c) { return c.fits && c.k === rest; })[0];
+      if (!rc) rc = describe(BLOCK_ORDER[BLOCK_ORDER.length - 1], rest);       // k = 1 blocks, rest times
+      blocks.push(rc);
+    }
+    blocks.forEach(function (c) {
+      c.name = stem(d) + "-block-" + c.ny + "x" + c.nz + "-k" + c.k + "-" + c.size_mm.map(fmtG).join("x");
+      res.prints += c.count; res.totalMinutes += c.minutes * c.count; res.totalGrams += c.grams * c.count;
+    });
+    res.ok = true; res.blocks = blocks; res.cells = N;
+    res.notes = blocks.some(function (c) { return c.overLimit; }) ? ["a block needs more than " + maxHours + " h on a P1S (estimate)"] : [];
+    return res;
+  }
+  /* inserts for N cells on plates for a bed: spec = {caps: N (copies of the nominal insert, one end cap per cell; default 1),
+     tuning: true (one of every other insert, optional parts for use with a before / after decay measurement)}. The plates are
+     filled row by row (the plate may turn 90 degrees on the bed); returns {ok, plates: [{items: [{k, x0, y0}], rotated,
+     size_mm, minutes, grams}], reasons}. Never throws */
+  function packPlates(d, bp, bed, spec) {
+    spec = spec || {};
+    var caps = spec.caps === undefined ? 1 : spec.caps, tuning = spec.tuning === undefined ? true : spec.tuning;
+    var res = { ok: false, reasons: [], plates: [] };
+    if (!d || !d.ok) { res.reasons.push(d && d.error ? d.error : "no cell design"); return res; }
+    var items = [], pp = platePlan(d, bp), b = bedLimits(bed), maxTop = 0;
+    pp.forEach(function (it) {
+      var copies = it.k === 0 ? caps : (tuning ? 1 : 0);
+      for (var c = 0; c < copies; c++) items.push(it);
+      if (copies) maxTop = Math.max(maxTop, it.dims.flange[2] + it.p);
+    });
+    if (!items.length) { res.ok = true; return res; }
+    var fx = items[0].dims.flange[0], fz = items[0].dims.flange[1];
+    if (maxTop > b.z) { res.reasons.push("the longest insert is " + maxTop.toFixed(1) + " mm tall, the bed allows " + fmtG(b.z) + " mm"); return res; }
+    var opt = [false, true].map(function (rot) {
+      var A = rot ? b.y : b.x, B = rot ? b.x : b.y;
+      var perRow = Math.floor((A + PLATE_GAP + 1e-9) / (fx + PLATE_GAP)), rows = Math.floor((B + PLATE_GAP + 1e-9) / (fz + PLATE_GAP));
+      return { rot: rot, perRow: perRow, rows: rows, cap: Math.max(0, perRow) * Math.max(0, rows) };
+    });
+    var best = opt[0].cap >= opt[1].cap ? opt[0] : opt[1];
+    if (best.cap < 1) { res.reasons.push("one insert (" + fmtG(fx) + " x " + fmtG(fz) + " mm) does not fit the bed (" + fmtG(b.x) + " x " + fmtG(b.y) + " mm usable)"); return res; }
+    for (var s = 0; s < items.length; s += best.cap) {
+      var chunk = items.slice(s, s + best.cap), placed = chunk.map(function (it, i) {
+        return { k: it.k, p: it.p, x0: (i % best.perRow) * (fx + PLATE_GAP), y0: Math.floor(i / best.perRow) * (fz + PLATE_GAP) };
+      });
+      var cols = Math.min(best.perRow, chunk.length), rws = Math.ceil(chunk.length / best.perRow);
+      var sx = cols * fx + (cols - 1) * PLATE_GAP, sy = rws * fz + (rws - 1) * PLATE_GAP, top = Math.max.apply(null, chunk.map(function (it) { return it.dims.flange[2] + it.p; }));
+      res.plates.push({ items: placed, rotated: best.rot, size_mm: best.rot ? [sy, sx, top] : [sx, sy, top] });
+    }
+    res.plates.forEach(function (pl, i) {
+      pl.name = platesName(d, i, res.plates.length);
+      var S = scope();
+      try {
+        var m = S.k(platesSolidIn(S, d, bp, pl)), f = features(m), e = estimate("plate", f);
+        pl.minutes = e.minutes; pl.grams = e.grams;
+      } finally { S.free(); }
+    });
+    res.ok = true;
+    return res;
+  }
+  function platesSolidIn(S, d, bp, plate) {
+    var k = S.k, MF = M.Manifold, parts = plate.items.map(function (it) {
+      return k(k(insertSolidIn(S, it.p, d, bp)).translate(it.x0, it.y0, 0));
+    });
+    var m = MF.union(parts);                                   // not registered in S: the caller owns the result
+    if (plate.rotated) {
+      var sy = plate.items.reduce(function (a, it) { return Math.max(a, it.y0); }, 0) + d.height - 1.0;
+      k(m);
+      m = k(m.rotate(0, 0, 90)).translate(sy, 0, 0);          // (x, y) -> (-y, x), then back to x >= 0
+    }
+    return m;
+  }
+  /* the plate of packPlates(...).plates[i] as a Manifold in print orientation (the caller frees it) */
+  function platesSolid(d, bp, plate) {
+    var S = scope();
+    try { return platesSolidIn(S, d, bp, plate); } finally { S.free(); }
+  }
+
+  return {
+    DEF: DEF, BEND_K: BEND_K, BEDS: BEDS, BED_MARGIN: BED_MARGIN, MAX_HOURS: MAX_HOURS, PLATE_GAP: PLATE_GAP, BLOCK_ORDER: BLOCK_ORDER,
+    FMODE_MIN: FMODE_MIN, FMODE_MAX: FMODE_MAX, ESTIMATE: ESTIMATE,
+    axisLength: axisLength, planCell: planCell, design: design, cellLayout: cellLayout, axisPolyline: axisPolyline, unionArea: unionArea,
+    blockCells: blockCells, planBlock: planBlock, insertDims: insertDims, platePlan: platePlan, insertSuffix: insertSuffix,
+    blockSolid: blockSolid, insertSolid: insertSolid, platesSolid: platesSolid, features: features, planFeatures: planFeatures,
+    estimate: estimate, stem: stem, blockName: blockName, insertName: insertName, platesName: platesName,
+    bedLimits: bedLimits, fitsBed: fitsBed, packBlocks: packBlocks, packPlates: packPlates
   };
 }
 </script>
@@ -1501,6 +2686,7 @@ function showMesh(mesh) {
   meshObj = new T3.Mesh(geo, new T3.MeshStandardMaterial({ color: colour.hex, roughness: colour.rough, metalness: 0, flatShading: true, polygonOffset: true, polygonOffsetFactor: 1, polygonOffsetUnits: 1 }));
   edgeObj = new T3.LineSegments(new T3.EdgesGeometry(geo, 30), new T3.LineBasicMaterial({ color: new T3.Color(colour.hex).multiplyScalar(0.4) }));
   scene.add(meshObj, edgeObj);
+  if ($("paneDiff").hidden) diffNeedsFit = true;                // built while the tab is hidden: frame it when it is shown
   const key = state.series + "|" + state.bed + "|" + [state.cx, state.cy, state.cz].join(",");
   fitView(key !== fitKey);
   fitKey = key;
@@ -1663,11 +2849,634 @@ async function downloadSet() {
   }
 }
 
+/* ------------------------------------------------------------------ tabs: Diffusers | Bass traps (#bass-traps) */
+let diffNeedsFit = false;       // the Diffusers preview was built while its tab was hidden (no size yet): frame it when it is shown
+function currentTab() { return location.hash === "#bass-traps" ? "bass" : "diff"; }
+function setTab(which, push) {
+  const bass = which === "bass";
+  $("paneDiff").hidden = bass;
+  $("paneBass").hidden = !bass;
+  [["tabDiff", !bass], ["tabBass", bass]].forEach(([id, on]) => { const b = $(id); b.setAttribute("aria-selected", String(on)); b.tabIndex = on ? 0 : -1; });
+  if (push && currentTab() !== which) {
+    try { history.pushState(null, "", bass ? "#bass-traps" : location.pathname + location.search); }
+    catch (e) { try { location.hash = bass ? "bass-traps" : ""; } catch (e2) { /* the address stays as it is */ } }
+  }
+  if (bass) btActivate();
+  else {
+    bt.active = false;
+    requestAnimationFrame(() => { resizeView(); if (diffNeedsFit) { diffNeedsFit = false; fitView(true); } });
+  }
+}
+function buildTabs() {
+  document.querySelectorAll(".tabs button").forEach((b) => {
+    b.addEventListener("click", () => setTab(b.dataset.tab, true));
+    b.addEventListener("keydown", (e) => {
+      if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+      const next = b.dataset.tab === "diff" ? "bass" : "diff";
+      setTab(next, true);
+      $(next === "diff" ? "tabDiff" : "tabBass").focus();
+    });
+  });
+  window.addEventListener("hashchange", () => setTab(currentTab(), false));
+  window.addEventListener("popstate", () => setTab(currentTab(), false));
+  setTab(currentTab(), false);
+}
+
+/* ================================================================== BASS TRAPS
+   The interface of the bass trap mode. The computing is in the cores <script id="bass-physics"> and <script id="bass-geometry">:
+   modes and the decay of the room, the verdict, the cell, the blocks and plates. Everything on the page is calculated, not measured. */
+const BASS_DOCS_URL = "https://github.com/Chronosauros/diffuser-generator/blob/main/docs/bass-traps.md";
+const BASS_DISCUSSIONS_URL = "https://github.com/Chronosauros/diffuser-generator/discussions";
+const BP = createBassPhysics();
+const G0 = createBassGeometry(null, BP);           // pure functions (design, packBlocks) before the geometry engine has loaded
+let G = null;                                       // the same with manifold, once loaded
+const ALPHAS = [{ a: 0.05, name: "Lively" }, { a: 0.10, name: "Medium" }, { a: 0.20, name: "Damped" }];
+const ROOM_MIN = 2, ROOM_MAX = 12, N_MAX = 16;
+const bt = {
+  active: false, ready: false, L: [4.0, 3.2, 2.6], alpha: 0.10, N: 8, bed: "p1s", cx: 250, cy: 250, cz: 250,
+  room: null, rows: [], sel: -1, pickedKey: null, evaluating: false, seq: 0, printVisible: false, busy: false, previewKey: "", pvTimer: 0
+};
+const f1 = (v) => v.toFixed(1);
+const t60s = (v) => v.toFixed(2) + " s";
+const dbs = (v) => (Math.abs(v) < 0.05 ? "0.0" : v.toFixed(1)) + " dB";
+const modeKey = (r) => r.n.join(",");
+const modeIdx = (r) => "(" + r.n.join(",") + ")";
+const alphaName = (a) => { const x = ALPHAS.find((q) => Math.abs(q.a - a) < 1e-9); return x ? x.name : "Custom"; };
+const kgs = (gr) => gr < 1000 ? `${Math.max(10, Math.round(gr / 10) * 10)} g` : `${(gr / 1000).toFixed(1)} kg`;
+const hs = (min) => `${Math.max(1, Math.round(min / 60))} h`;
+/* one place, rounded down: "about" must not promise more than the model gives */
+const aboutNum = (x) => Math.floor(x * 20 + 1e-9) / 20;
+const aboutX = (x) => { const v = aboutNum(x); return Math.abs(v * 10 - Math.round(v * 10)) < 1e-9 ? v.toFixed(1) : v.toFixed(2); };
+const APPROX_TEXT = "can be off by 25 % or more (up to about 40 % against the 3D simulation)";
+const wallsText = (a) => `alpha ${a.toFixed(2)} (${alphaName(a)} walls)`;
+/* lines that are always shown next to the numbers: what nobody has measured, the ceiling, the room that must let the mode ring */
+const FIXED_LINES = [
+  "The resistance of the printed channel is the biggest unknown, about 2x either way. It can shrink the effect and, with wider slots, even reverse it - that is why this tool only makes 6 mm slots. Only a measurement settles it.",
+  "More cells help less and less: the model and the 3D simulation level off at about 1.5-1.75x faster decay however many cells.",
+  "It only works in a room that lets the mode ring: if the walls already damp the mode faster than the cell rings, it does nothing."
+];
+const upFirst = (s) => s.charAt(0).toUpperCase() + s.slice(1);
+const PLACE_SHORT = { corner: "Corner", "edge-z": "Corner edge", "edge-y": "Floor edge", "edge-x": "Floor edge", "wall-x": "Wall", "wall-y": "Wall", "wall-z": "Floor" };
+const bedBt = () => bt.bed === "custom" ? { name: "Custom", x: bt.cx, y: bt.cy, z: bt.cz } : D.BEDS.find((b) => b.key === bt.bed);
+
+/* ---- room and modes */
+function btReadRoom() {
+  const els = [["Length", "btL"], ["Width", "btW"], ["Height", "btH"]];
+  const v = els.map(([, id]) => $(id).valueAsNumber);
+  for (let i = 0; i < 3; i++) {
+    if (!(v[i] >= ROOM_MIN && v[i] <= ROOM_MAX))
+      return { ok: false, msg: Number.isNaN(v[i]) ? `${els[i][0]} is missing: enter it in metres, between ${ROOM_MIN} and ${ROOM_MAX} m.` : `${els[i][0]} of ${v[i]} m is outside the range this page can calculate: use ${ROOM_MIN} to ${ROOM_MAX} m.` };
+  }
+  return { ok: true, L: v };
+}
+/* a mode can be treated when the cell exists (35 - 120 Hz) and is at most 150 mm deep */
+function btRange(f) {
+  if (f < G0.FMODE_MIN) return { ok: false, why: `below ${G0.FMODE_MIN} Hz` };
+  const d = G0.design(f);
+  if (!d.ok) return { ok: false, why: d.error };
+  if (d.depth > d.max_depth) return { ok: false, why: `cell would be ${Math.round(d.depth)} mm deep, limit ${d.max_depth} mm` };
+  return { ok: true, d };
+}
+function btRoomChanged() {
+  const rd = btReadRoom(), err = $("btRoomErr");
+  bt.seq++;                                         // stops an evaluation in progress
+  if (!rd.ok) {
+    err.textContent = rd.msg;
+    err.hidden = false;
+    bt.room = null; bt.rows = []; bt.sel = -1; bt.evaluating = false;
+    btRenderAll();
+    return;
+  }
+  err.hidden = true;
+  bt.L = rd.L;
+  bt.room = BP.analyzeRoom(bt.L, bt.alpha, 120);
+  bt.rows = bt.room.rows.map((r, i) => ({ i, r, range: btRange(r.f), ev4: null, v: null, ev: null }));
+  const keep = bt.rows.find((x) => x.range.ok && modeKey(x.r) === bt.pickedKey);
+  bt.sel = keep ? keep.i : -1;
+  bt.evaluating = true;
+  if (keep) btEnsureEval(keep);
+  btRenderAll();
+  btEvaluateAll();
+}
+/* every treatable mode gets its verdict (<= 8 cells, best place); a slice of 40 ms at a time keeps the page responsive */
+function btEvaluateAll() {
+  const seq = bt.seq, todo = bt.rows.filter((x) => x.range.ok);
+  let k = 0;
+  const step = () => {
+    if (seq !== bt.seq) return;
+    const t0 = performance.now();
+    while (k < todo.length && performance.now() - t0 < 40) {
+      const x = todo[k++];
+      x.ev4 = BP.evaluateMode(bt.room, x.i, { ns: [1, 2, 4, 8] });
+      x.v = BP.verdict(x.ev4);
+    }
+    btRenderRows();
+    if (k < todo.length) { setTimeout(step, 0); return; }
+    bt.evaluating = false;
+    if (bt.sel < 0) {                               // default: the lowest mode with the best verdict
+      const rank = { worth: 2, small: 1, none: 0 };
+      let best = null;
+      todo.forEach((x) => { if (best === null || rank[x.v.level] > rank[best.v.level]) best = x; });
+      if (best) { bt.sel = best.i; btEnsureEval(best); }
+    }
+    btRenderAll();
+  };
+  setTimeout(step, 0);
+}
+/* the full evaluation of one mode (N = 1 ... 16, seven places) behind the card and the print plan */
+function btEnsureEval(x) {
+  if (!x.ev) x.ev = BP.evaluateMode(bt.room, x.i, { ns: Array.from({ length: N_MAX }, (_, j) => j + 1) });
+  return x.ev;
+}
+function btSelect(i) {
+  const x = bt.rows[i];
+  if (!x || !x.range.ok) return;
+  bt.sel = i;
+  bt.pickedKey = modeKey(x.r);
+  btEnsureEval(x);
+  btRenderRows();
+  btRenderCard();
+  btRenderPrint();
+}
+
+/* ---- the numbers behind the card and the print step for the chosen mode and N */
+function btCase() {
+  const x = bt.rows[bt.sel];
+  if (!x || !x.range.ok || !x.ev) return null;
+  const ev = x.ev, id = ev.best[bt.N], rec = id ? ev.anchors[id].byN[bt.N] : null;
+  return { x, ev, id, rec, d: x.range.d };
+}
+
+function btRenderAll() { btRenderRows(); btRenderCard(); btRenderPrint(); }
+
+/* ---- step: pick a mode */
+/* the best case behind a verdict: the factor, the cells and the print time of that many cells on the chosen bed */
+function btBestCase(x) {
+  const v = x.v;
+  if (v.x === null) return "no place with a solution";
+  if (v.noEffect) return "the walls already damp this mode";
+  const pk = G0.packBlocks(x.range.d, v.N, bedBt());
+  return `about ${aboutX(v.x)}x with ${v.N} ${v.N === 1 ? "cell" : "cells"}, ${pk.ok ? "about " + hs(pk.totalMinutes) : "does not fit this bed"}`;
+}
+function btRowHtml(x) {
+  const r = x.r, sel = x.i === bt.sel;
+  const idx = modeIdx(r);
+  if (!x.range.ok)
+    return `<tr class="oor" data-i="${x.i}"><td class="hz"><button type="button" class="bt-pick" disabled>${f1(r.f)} Hz<small class="m-only">${idx} ${r.kind}</small></button></td>`
+      + `<td class="hide-m">${idx}</td><td class="hide-m">${r.kind}</td><td>${t60s(r.t60Before)}</td>`
+      + `<td class="vcell"><span class="vm"></span>Out of range<small class="m-only">${esc(x.range.why)}</small></td><td class="hide-m"><small>${esc(x.range.why)}</small></td></tr>`;
+  const v = x.v;
+  if (!v)
+    return `<tr data-i="${x.i}"><td class="hz"><button type="button" class="bt-pick">${f1(r.f)} Hz<small class="m-only">${idx} ${r.kind}</small></button></td>`
+      + `<td class="hide-m">${idx}</td><td class="hide-m">${r.kind}</td><td>${t60s(r.t60Before)}</td><td class="vcell wait">Calculating...</td><td class="hide-m"></td></tr>`;
+  const marks = [v.approximate ? "~ approximate" : "", v.uncertain ? "? uncertain" : ""].filter(Boolean);
+  const best = `<small>${esc(btBestCase(x))}</small>`;
+  return `<tr data-i="${x.i}"${sel ? ' class="sel"' : ""}><td class="hz"><button type="button" class="bt-pick" aria-pressed="${sel}">${f1(r.f)} Hz<small class="m-only">${idx} ${r.kind}</small></button></td>`
+    + `<td class="hide-m">${idx}</td><td class="hide-m">${r.kind}</td><td>${t60s(r.t60Before)}</td>`
+    + `<td class="vcell"><span class="vm ${v.level}"></span>${esc(v.label)}${best}${marks.length ? `<small class="m-only">${marks.join("  ")}</small>` : ""}</td>`
+    + `<td class="hide-m"><small>${marks.join("<br>")}</small></td></tr>`;
+}
+function btRenderRows() {
+  const tb = $("btRows");
+  if (!bt.room) {
+    tb.innerHTML = "";
+    $("btLegend").innerHTML = "";
+    $("btModesAside").textContent = "Enter a valid room above.";
+    return;
+  }
+  tb.innerHTML = bt.rows.map(btRowHtml).join("");
+  const ok = bt.rows.filter((x) => x.range.ok).length;
+  $("btModesAside").textContent = `Room modes up to 120 Hz, ${bt.rows.length} found${ok < bt.rows.length ? `, ${ok} in range` : ""}`;
+  const withV = bt.rows.filter((x) => x.v);
+  const lg = [];
+  if (withV.some((x) => x.v.approximate)) lg.push(`<p><b>~ approximate:</b> the single-mode model is less exact here (modes close together, tangential or oblique modes with 4 or more cells, a corner next to another mode); the numbers ${APPROX_TEXT}.</p>`);
+  if (withV.some((x) => x.v.uncertain)) lg.push(`<p><b>? uncertain:</b> the result depends on things nobody has measured (the walls already damp the mode almost as fast as the cell works, an oblique mode at alpha 0.10 or more, or alpha 0.15 or more).</p>`);
+  lg.push(`<p>The verdict is what the model gives with up to 8 cells at the best place, at ${wallsText(bt.alpha)}: worth trying from 1.25x faster decay, small effect from 1.08x. The small line shows that best case and its print time on the bed chosen below. It does not say you will hear it. Modes below ${G0.FMODE_MIN} Hz or needing a cell deeper than 150 mm are out of range. Calculated, not measured.</p>`);
+  $("btLegend").innerHTML = lg.join("");
+}
+
+/* ---- step: what to expect (card) */
+function btRenderCard() {
+  const el = $("btCard"), c = btCase();
+  $("btN").value = bt.N;
+  $("btMinus").disabled = bt.N <= 1;
+  $("btPlus").disabled = bt.N >= N_MAX;
+  const x = bt.rows[bt.sel];
+  $("btCellsFor").textContent = x && x.range.ok ? `for ${f1(x.r.f)} Hz` : "";
+  if (!bt.room) { el.innerHTML = `<div class="bt-wait">Enter a valid room first.</div>`; return; }
+  if (!c) {
+    const anyOk = bt.rows.some((r) => r.range.ok);
+    el.innerHTML = `<div class="bt-wait">${bt.evaluating ? "Calculating the modes..." : anyOk ? "Pick a mode in the table to see what to expect." : "None of the modes of this room can be treated: they are below 35 Hz or need a cell deeper than 150 mm."}</div>`;
+    return;
+  }
+  const { ev, id, rec, d } = c;
+  const f = ev.mode.f, head = `${f1(f)} Hz, ${bt.N} ${bt.N === 1 ? "cell" : "cells"}`;
+  if (!rec) {
+    el.innerHTML = `<div class="hrow"><h3>What to expect</h3><span class="aside">${esc(head)}</span></div><div class="bt-wait">No place on the walls of this room holds ${bt.N} ${bt.N === 1 ? "cell" : "cells"} for this mode, or the model has no solution there. Try fewer cells or another mode.</div>`;
+    return;
+  }
+  const x1 = rec.decayFactor;
+  const sub = ev.noEffect ? "no useful change in decay"
+    : aboutNum(x1) >= 1.1 ? `decays about ${aboutX(x1)}x faster` : x1 >= 1 ? "practically no change in decay" : "decay is not shortened";
+  const pk = G0.packBlocks(d, bt.N, bedBt());
+  const printVal = pk.ok ? `${pk.prints} ${pk.prints === 1 ? "block" : "blocks"}` : "does not fit";
+  const printSub = pk.ok ? `about ${hs(pk.totalMinutes)}, about ${kgs(pk.totalGrams)} PLA` : "see the Print step";
+  const place = ev.anchors[id].text;
+  const notes = [`<p class="lead"><strong>Calculated, not measured.</strong>${bt.N === 1 ? " One cell alone is practically inaudible." : ""}</p>`];
+  if (ev.noEffect) notes.push(`<p>Your walls already damp this mode faster than the cell rings - a trap here would not shorten the decay.</p>`);
+  if (rec.approximate) notes.push(`<p><b>~ approximate:</b> ${esc(rec.approximateReasons.join("; ") || "the single-mode model is less exact here")}. The numbers ${APPROX_TEXT}.</p>`);
+  if (ev.uncertain.length) notes.push(`<p><b>? uncertain:</b> ${esc(ev.uncertain.join("; "))}. The result depends on things nobody has measured.</p>`);
+  notes.push(`<p class="lead"><strong>What nobody has measured yet</strong></p>${FIXED_LINES.map((t) => `<p>${esc(t)}</p>`).join("")}`);
+  notes.push(`<p>This is an experiment you can join: measure the decay of this mode before and after (<a href="https://www.roomeqwizard.com/" target="_blank" rel="noopener">REW</a> and a measurement microphone) and tell us what you got in <a href="${BASS_DISCUSSIONS_URL}" target="_blank" rel="noopener">GitHub Discussions</a>.</p>`);
+  notes.push(`<p><a href="${BASS_DOCS_URL}" target="_blank" rel="noopener">How this is calculated</a></p>`);
+  el.innerHTML = `<div class="hrow"><h3>What to expect</h3><span class="aside">${esc(head)}</span></div>`
+    + `<div class="bt-stats c2">`
+    + `<div class="bt-stat"><div class="lab">Mode decay</div><div class="val">${t60s(ev.t60Before)} <small>to</small> ${t60s(rec.t60After)}</div><div class="sub">${esc(sub)}</div><div class="sub">at ${esc(wallsText(bt.alpha))}</div></div>`
+    + `<div class="bt-stat"><div class="lab">Peak</div><div class="val">${dbs(rec.peakDropDb)}</div><div class="sub">at ${f1(f)} Hz</div></div>`
+    + `<div class="bt-stat"><div class="lab">Place</div><div class="val">${esc(PLACE_SHORT[id])}</div><div class="sub">${esc(place)}</div></div>`
+    + `<div class="bt-stat"><div class="lab">Print</div><div class="val">${esc(printVal)}</div><div class="sub">${esc(printSub)}</div></div>`
+    + `</div><div class="bt-notes">${notes.join("")}</div>`;
+}
+
+/* ---- step: print */
+const capsKey = (c, bed) => JSON.stringify([c.ev.mode.f, bt.N, bed.x, bed.y, bed.z]);
+let capsCache = { key: "", plan: null };
+function btCapsPlan(c, bed) {
+  if (!G) return null;
+  const k = capsKey(c, bed);
+  if (capsCache.key !== k) capsCache = { key: k, plan: G.packPlates(c.d, G.planBlock(c.d, 1, 1, 1), bed, { caps: bt.N, tuning: false }) };
+  return capsCache.plan;
+}
+function btRenderBeds() {
+  const el = $("btBeds");
+  if (!el.dataset.built) {
+    el.dataset.built = "1";
+    el.innerHTML = D.BEDS.map((b) => `<button type="button" class="key" data-btbed="${b.key}" aria-pressed="false"><b>${esc(b.short)}</b><small>${b.x} x ${b.y} x ${b.z} mm</small></button>`).join("")
+      + `<button type="button" class="key" data-btbed="custom" aria-pressed="false"><b>Custom</b><small>your own bed</small></button>`;
+  }
+  const bed = bedBt();
+  el.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.btbed === bt.bed)));
+  [["btx", bed.x], ["bty", bed.y], ["btz", bed.z]].forEach(([id, v]) => { const i = $(id); if (document.activeElement !== i) i.value = v; });
+}
+function btRenderPrint() {
+  btRenderBeds();
+  const c = btCase(), sum = $("btSum"), fit = $("btFit");
+  const zip = $("btZip"), tune = $("btTune");
+  zip.disabled = true; tune.disabled = true;
+  fit.hidden = true;
+  if (!c || !c.rec) {
+    $("btPrintAside").textContent = "";
+    sum.innerHTML = `<div class="bt-wait">${!bt.room ? "Enter a valid room first." : bt.evaluating ? "Calculating the modes..." : c ? "No place found for this number of cells." : "Pick a mode first."}</div>`;
+    btShowNone(!bt.room ? "Enter a valid room first." : "Pick a mode to see one block.");
+    return;
+  }
+  const bed = bedBt(), pk = G0.packBlocks(c.d, bt.N, bed), N = bt.N;
+  $("btPrintAside").textContent = `One block${pk.ok && pk.prints > 1 ? `, repeated ${pk.prints} times` : ""}.`;
+  if (!pk.ok) {
+    sum.innerHTML = `<div class="bt-wait">Does not fit this bed.</div>`;
+    fit.innerHTML = `<p><b>Does not fit on ${esc(bed.name)}.</b></p><ul>${pk.reasons.map((r) => `<li>${esc(r)}</li>`).join("")}</ul><p>Pick a bigger bed or a mode with a shallower cell (a higher mode).</p>`;
+    fit.hidden = false;
+    btShowNone("This cell does not fit the printer bed.");
+    return;
+  }
+  const caps = btCapsPlan(c, bed);
+  if (caps && !caps.ok) {
+    sum.innerHTML = `<div class="bt-wait">Does not fit this bed.</div>`;
+    fit.innerHTML = `<p><b>The end caps do not fit on ${esc(bed.name)}.</b></p><ul>${caps.reasons.map((r) => `<li>${esc(r)}</li>`).join("")}</ul>`;
+    fit.hidden = false;
+    btShowNone("The end caps do not fit the printer bed.");
+    return;
+  }
+  const lines = pk.blocks.map((b) => `<p>${b.count} x block of ${b.k} ${b.k === 1 ? "cell" : "cells"}: ${b.size_mm.map((v) => +v.toFixed(1)).join(" x ")} mm, about ${hs(b.minutes)} each</p>`);
+  if (caps) lines.push(`<p>End caps: ${N} (one per cell) on ${caps.plates.length} ${caps.plates.length === 1 ? "plate" : "plates"}, about ${hs(caps.plates.reduce((s, p) => s + p.minutes, 0))} and ${kgs(caps.plates.reduce((s, p) => s + p.grams, 0))} more</p>`);
+  sum.innerHTML = `<div class="bt-stats c3">`
+    + `<div class="bt-stat"><div class="lab">Blocks</div><div class="val">${pk.prints}</div></div>`
+    + `<div class="bt-stat"><div class="lab">Print time</div><div class="val">${esc(hs(pk.totalMinutes))}</div></div>`
+    + `<div class="bt-stat"><div class="lab">PLA</div><div class="val">${esc(kgs(pk.totalGrams))}</div></div></div>`
+    + `<div class="bt-sumnote"><p><strong>Calculated, not measured.</strong> About figures for a Bambu Lab P1S, 0.4 mm nozzle, PLA; the three numbers above are blocks only.</p>${lines.join("")}${pk.notes && pk.notes.length ? `<p>Note: ${esc(pk.notes.join("; "))}.</p>` : ""}</div>`;
+  zip.disabled = !G || bt.busy;
+  tune.disabled = !G || bt.busy;
+  btSchedulePreview();
+}
+
+/* ---- 3D preview of one block (second three.js view, built lazily: only while the Print step is near the screen) */
+let btV = null;
+function btShowNone(text) {
+  if (!btV || btV.dead) { $("btViewNone").textContent = text; return; }
+  if (btV.mesh) { btV.scene.remove(btV.mesh, btV.edges); btV.mesh.geometry.dispose(); btV.mesh.material.dispose(); btV.edges.geometry.dispose(); btV.edges.material.dispose(); btV.mesh = btV.edges = null; btV.key = ""; }
+  btV.renderer.domElement.style.display = "none";
+  let none = $("btViewNone2");
+  if (!none) { none = document.createElement("div"); none.className = "none"; none.id = "btViewNone2"; $("btView").appendChild(none); }
+  none.textContent = text;
+  none.style.display = "";
+  bt.previewKey = "";
+}
+function btInitViewer() {
+  if (btV || !T3 || !OrbitControls) return;
+  const view = $("btView");
+  let renderer;
+  try { renderer = new T3.WebGLRenderer({ antialias: true }); }
+  catch (e) { $("btViewNone").textContent = "3D preview unavailable (WebGL is not enabled in this browser). The downloads still work."; btV = { dead: true }; return; }
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.setClearColor(0x22252A, 1);
+  view.innerHTML = "";
+  view.appendChild(renderer.domElement);
+  const scene = new T3.Scene(), camera = new T3.PerspectiveCamera(35, 1, 1, 5000);
+  camera.up.set(0, 0, 1);
+  scene.add(new T3.HemisphereLight(0xffffff, 0x3a3d42, 1.0));
+  const key = new T3.DirectionalLight(0xffffff, 1.6);
+  key.position.set(0.4, 0.6, 1);
+  camera.add(key, key.target);
+  key.target.position.set(0, 0, -1);
+  scene.add(camera);
+  const controls = new OrbitControls(camera, renderer.domElement);
+  btV = { renderer, scene, camera, controls, mesh: null, edges: null, key: "" };
+  controls.addEventListener("change", btRender);
+  new ResizeObserver(() => {
+    const w = view.clientWidth, h = view.clientHeight;
+    if (!w || !h) return;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+    btRender();
+  }).observe(view);
+}
+function btRender() { if (btV && !btV.dead) btV.renderer.render(btV.scene, btV.camera); }
+function btFit(force) {
+  const v = btV;
+  if (!v || v.dead || !v.mesh) return;
+  const sph = v.mesh.geometry.boundingSphere, center = v.mesh.geometry.boundingBox.getCenter(new T3.Vector3());
+  if (force) {
+    let dist = sph.radius / Math.sin((v.camera.fov / 2) * Math.PI / 180) * 1.08;
+    if ((v.camera.aspect || 1) < 1) dist /= v.camera.aspect;
+    v.camera.position.copy(center).addScaledVector(new T3.Vector3(-1, -0.55, 0.5).normalize(), dist);   // from the room: the face with the slit is x = 0
+    v.camera.near = dist / 100; v.camera.far = dist * 20;
+    v.camera.updateProjectionMatrix();
+  }
+  v.controls.target.copy(center);
+  v.controls.update();
+  btRender();
+}
+function btSchedulePreview() {
+  clearTimeout(bt.pvTimer);
+  bt.pvTimer = setTimeout(btBuildPreview, 200);
+}
+function btBuildPreview() {
+  if (!bt.active || !bt.printVisible) return;           // built when the Print step comes near the screen
+  const c = btCase();
+  if (!c || !c.rec) return;
+  const bed = bedBt(), pk = G0.packBlocks(c.d, bt.N, bed);
+  if (!pk.ok) return;
+  if (!G) { btShowNone("Loading the geometry engine..."); return; }
+  if (!T3) { btShowNone("Loading the 3D preview..."); return; }
+  btInitViewer();
+  if (!btV || btV.dead) return;
+  const b = pk.blocks[0], key = JSON.stringify([c.ev.mode.f, b.ny, b.nz, b.k, colour.hex]);
+  if (key === bt.previewKey) return;
+  try {
+    const m = G.blockSolid(c.d, G.planBlock(c.d, b.ny, b.nz, b.k));
+    let mesh;
+    try { mesh = extractMesh(m); } finally { m.delete(); }
+    const v = btV;
+    if (v.mesh) { v.scene.remove(v.mesh, v.edges); v.mesh.geometry.dispose(); v.mesh.material.dispose(); v.edges.geometry.dispose(); v.edges.material.dispose(); }
+    const geo = new T3.BufferGeometry();
+    geo.setAttribute("position", new T3.BufferAttribute(mesh.pos, 3));
+    geo.setIndex(new T3.BufferAttribute(mesh.idx, 1));
+    geo.computeBoundingBox(); geo.computeBoundingSphere();
+    v.mesh = new T3.Mesh(geo, new T3.MeshStandardMaterial({ color: colour.hex, roughness: colour.rough, metalness: 0, flatShading: true, polygonOffset: true, polygonOffsetFactor: 1, polygonOffsetUnits: 1 }));
+    v.edges = new T3.LineSegments(new T3.EdgesGeometry(geo, 30), new T3.LineBasicMaterial({ color: new T3.Color(colour.hex).multiplyScalar(0.4) }));
+    v.scene.add(v.mesh, v.edges);
+    v.renderer.domElement.style.display = "";
+    const none = $("btViewNone2"); if (none) none.style.display = "none";
+    const newShape = v.key !== JSON.stringify([c.ev.mode.f, b.ny, b.nz, b.k]);
+    v.key = JSON.stringify([c.ev.mode.f, b.ny, b.nz, b.k]);
+    bt.previewKey = key;
+    btFit(newShape);
+  } catch (e) {
+    btShowNone("Could not build the preview: " + (e.message || e));
+  }
+}
+
+/* ---- downloads */
+const SETTINGS = "Bambu Lab P1S profile of the estimate: PLA, 0.4 mm nozzle, layer 0.20 mm, 3 walls, 15 % infill, no supports, chamber fan off. Print every part in the orientation of its STL, the block with its 120 mm face standing on its side.";
+function btStem(c) { return G.stem(c.d); }
+function btReadme(c, pk, caps, bed, folder) {
+  const { ev, id, rec, d } = c, f = ev.mode.f, N = bt.N, L = [];
+  const v = c.x.v || BP.verdict(ev);
+  L.push("Soundblooms bass trap - a folded quarter-wave resonator tuned to one room mode");
+  L.push("Made with the Soundblooms Diffuser Generator - https://soundblooms.com");
+  L.push("Source, GPL-3.0 licence and a place for questions and results: https://github.com/Chronosauros/diffuser-generator", "");
+  L.push("Calculated, not measured. Nobody has printed these cells and measured them in a room yet: every number below comes from a model, described with its limits at");
+  L.push(BASS_DOCS_URL, "");
+  L.push("Room");
+  L.push(`  ${bt.L.map((x) => x.toFixed(1)).join(" x ")} m (length x width x height), walls: ${alphaName(bt.alpha)}, alpha ${bt.alpha.toFixed(2)} (a guess, and it matters: with damped walls the same trap can do almost nothing)`, "");
+  L.push("Mode");
+  L.push(`  ${f1(f)} Hz, indices ${modeIdx(ev.mode)}, ${ev.mode.kind}; verdict on this page (best case, up to 8 cells): ${v.label}${v.approximate ? " (~ approximate)" : ""}${v.uncertain ? " (? uncertain)" : ""}`, "");
+  L.push(`Cells and place: ${N} ${N === 1 ? "cell" : "cells"}`);
+  L.push(`  Place: ${ev.anchors[id].text}`);
+  L.push(`  The cells (120 x 120 mm each) sit in one tight patch around that place: the cells nearest to it on the 120 mm grid of the walls (${N} in all).`, "");
+  L.push("Calculated effect for this case");
+  L.push(`  Mode decay (T60) at ${wallsText(bt.alpha)}: ${t60s(ev.t60Before)} to ${t60s(rec.t60After)}${aboutNum(rec.decayFactor) >= 1.1 && !ev.noEffect ? `, decays about ${aboutX(rec.decayFactor)}x faster` : ""}`);
+  L.push(`  Peak of the mode: ${dbs(rec.peakDropDb)}`);
+  if (N === 1) L.push("  One cell alone is practically inaudible.");
+  if (ev.noEffect) L.push("  Your walls already damp this mode faster than the cell rings - a trap here would not shorten the decay.");
+  if (rec.approximate) L.push(`  ~ approximate: ${rec.approximateReasons.join("; ")}; the numbers ${APPROX_TEXT}`);
+  if (ev.uncertain.length) L.push(`  ? uncertain: ${ev.uncertain.join("; ")}`);
+  L.push("", "What nobody has measured yet");
+  FIXED_LINES.forEach((t) => L.push(`  - ${t}`));
+  L.push("  For broadband bass, porous or membrane traps in the corners do more per kilogram of material; this is a narrow tool for one ringing mode.");
+  L.push("", "What to print");
+  pk.blocks.forEach((b) => L.push(`  ${b.count} x ${b.name}.stl - block of ${b.k} ${b.k === 1 ? "cell" : "cells"}, ${b.size_mm.map((x) => +x.toFixed(1)).join(" x ")} mm, about ${hs(b.minutes)} and ${kgs(b.grams)} each`));
+  caps.plates.forEach((p) => L.push(`  1 x ${btCapsName(c, caps, p)}.stl - end caps (${p.items.length} on this plate), about ${hs(p.minutes)} and ${kgs(p.grams)}`));
+  L.push(`  Cells: ${N}. Blocks: ${pk.prints}. End caps: ${N} (one per cell, the nominal insert, needed: it closes the channel).`);
+  L.push(`  Total, about: ${hs(pk.totalMinutes + caps.plates.reduce((s, p) => s + p.minutes, 0))} and ${kgs(pk.totalGrams + caps.plates.reduce((s, p) => s + p.grams, 0))} PLA (blocks ${hs(pk.totalMinutes)}, ${kgs(pk.totalGrams)}).`);
+  L.push(`  Printer bed: ${bed.name}, ${bed.x} x ${bed.y} x ${bed.z} mm, 5 mm kept free on every axis.`);
+  L.push("  The estimate is a fit to a few sliced parts: only for a Bambu Lab P1S, 0.4 mm nozzle, PLA; approximate.", "");
+  L.push("Print settings");
+  L.push(`  ${SETTINGS}`, "");
+  L.push("Assembly");
+  L.push("  1. Push one end cap into the window in the side wall at the end of every channel.");
+  L.push("  2. Seal the flange of the cap with foam or aluminium tape. This is untested: a leak raises the tuning frequency of the cell.");
+  L.push("  3. Fix the blocks on the wall at the place above, the face with the slit toward the room.", "");
+  L.push("Tuning inserts");
+  L.push("  Only with a measurement of the decay before and after (a sweep and a decay plot with any measurement microphone, e.g. in REW, https://www.roomeqwizard.com/).");
+  L.push("  Without a measurement print the nominal end caps from this ZIP and use them as they are. The plate of tuning inserts is a separate download on the page.", "");
+  L.push("Try it and tell us");
+  L.push("  This is an experiment you can join: measure the decay of this mode before and after and tell us what you got:");
+  L.push(`  ${BASS_DISCUSSIONS_URL}`, "");
+  L.push(`Generated by the Soundblooms Diffuser Generator, bass traps. Folder: ${folder}`);
+  return L.join("\n") + "\n";
+}
+function btCapsName(c, caps, p) {
+  const i = caps.plates.indexOf(p);
+  return btStem(c) + "-end-caps-plate" + (caps.plates.length > 1 ? `-${i + 1}of${caps.plates.length}` : "");
+}
+function meshOfSolid(m) { try { return extractMesh(m); } finally { m.delete(); } }
+async function btDownloadZip() {
+  const c = btCase();
+  if (bt.busy || !G || !c || !c.rec) return;
+  bt.busy = true;
+  $("btZip").disabled = true; $("btTune").disabled = true;
+  const st = (t) => { $("btStatus").textContent = t; };
+  try {
+    const bed = bedBt(), pk = G.packBlocks(c.d, bt.N, bed), bp1 = G.planBlock(c.d, 1, 1, 1);
+    if (!pk.ok) throw new Error(pk.reasons.join("; "));
+    const caps = G.packPlates(c.d, bp1, bed, { caps: bt.N, tuning: false });
+    if (!caps.ok) throw new Error(caps.reasons.join("; "));
+    const folder = `${btStem(c)}-${bt.N}-${bt.N === 1 ? "cell" : "cells"}`;
+    const files = [];
+    for (let i = 0; i < pk.blocks.length; i++) {
+      const b = pk.blocks[i];
+      st(`Building block ${i + 1} of ${pk.blocks.length}...`);
+      await sleep(20);
+      files.push({ name: `${folder}/${b.name}.stl`, data: stlBytes(meshOfSolid(G.blockSolid(c.d, G.planBlock(c.d, b.ny, b.nz, b.k)))) });
+    }
+    for (let i = 0; i < caps.plates.length; i++) {
+      st(`Building the end-cap plate ${i + 1} of ${caps.plates.length}...`);
+      await sleep(20);
+      files.push({ name: `${folder}/${btCapsName(c, caps, caps.plates[i])}.stl`, data: stlBytes(meshOfSolid(G.platesSolid(c.d, bp1, caps.plates[i]))) });
+    }
+    st("Packing the ZIP...");
+    await sleep(20);
+    files.push({ name: `${folder}/README.txt`, data: new TextEncoder().encode(btReadme(c, pk, caps, bed, folder)) });
+    saveFile(folder + ".zip", makeZip(files), "application/zip");
+    st(`Saved ${folder}.zip (${pk.blocks.length} block ${pk.blocks.length === 1 ? "file" : "files"}, ${caps.plates.length} end-cap ${caps.plates.length === 1 ? "plate" : "plates"}, README).`);
+  } catch (e) {
+    st("Could not build the ZIP.");
+    showError("Could not build the bass trap files: " + (e.message || e));
+  } finally {
+    bt.busy = false;
+    btRenderPrint();
+  }
+}
+async function btDownloadTuning() {
+  const c = btCase();
+  if (bt.busy || !G || !c || !c.rec) return;
+  bt.busy = true;
+  $("btZip").disabled = true; $("btTune").disabled = true;
+  const st = (t) => { $("btStatus").textContent = t; };
+  try {
+    const bed = bedBt(), bp1 = G.planBlock(c.d, 1, 1, 1);
+    const tp = G.packPlates(c.d, bp1, bed, { caps: 0, tuning: true });
+    if (!tp.ok) throw new Error(tp.reasons.join("; "));
+    if (!tp.plates.length) throw new Error("no tuning inserts for this cell");
+    const name = (i) => btStem(c) + "-tuning-inserts-plate" + (tp.plates.length > 1 ? `-${i + 1}of${tp.plates.length}` : "");
+    st("Building the tuning inserts plate...");
+    await sleep(20);
+    if (tp.plates.length === 1) {
+      saveFile(name(0) + ".stl", stlBytes(meshOfSolid(G.platesSolid(c.d, bp1, tp.plates[0]))), "model/stl");
+      st(`Saved ${name(0)}.stl. Use these only with a decay measurement before and after.`);
+    } else {
+      const folder = btStem(c) + "-tuning-inserts";
+      const files = tp.plates.map((p, i) => ({ name: `${folder}/${name(i)}.stl`, data: stlBytes(meshOfSolid(G.platesSolid(c.d, bp1, p))) }));
+      files.push({ name: `${folder}/README.txt`, data: new TextEncoder().encode("Tuning inserts of the Soundblooms bass trap cell for " + f1(c.ev.mode.f) + " Hz (steps of 0.5 % of the frequency; 0 is the nominal end cap, minus / plus lower / raise the tuning).\nUse them only with a measurement of the decay before and after; without one print the nominal end caps from the main ZIP.\nCalculated, not measured. " + BASS_DOCS_URL + "\n") });
+      saveFile(folder + ".zip", makeZip(files), "application/zip");
+      st(`Saved ${folder}.zip (${tp.plates.length} plates). Use these only with a decay measurement before and after.`);
+    }
+  } catch (e) {
+    st("Could not build the tuning inserts.");
+    showError("Could not build the tuning inserts: " + (e.message || e));
+  } finally {
+    bt.busy = false;
+    btRenderPrint();
+  }
+}
+
+/* ---- wiring */
+function btGoto(id) {
+  const el = $(id);
+  if (!el) return;
+  el.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+}
+function btSetN(n) {
+  if (!Number.isFinite(n)) return;
+  bt.N = clamp(Math.round(n), 1, N_MAX);
+  btRenderCard();
+  btRenderPrint();
+}
+let btRoomTimer = 0;
+function btBuildStatic() {
+  ["btL", "btW", "btH"].forEach((id) => $(id).addEventListener("input", () => { clearTimeout(btRoomTimer); btRoomTimer = setTimeout(btRoomChanged, 250); }));
+  $("btAlpha").addEventListener("click", (e) => {
+    const b = e.target.closest("button[data-alpha]");
+    if (!b) return;
+    bt.alpha = +b.dataset.alpha;
+    document.querySelectorAll("#btAlpha button").forEach((k) => k.setAttribute("aria-pressed", String(k === b)));
+    btRoomChanged();
+  });
+  $("btRows").addEventListener("click", (e) => {
+    const tr = e.target.closest("tr[data-i]");
+    if (tr) btSelect(+tr.dataset.i);
+  });
+  $("btMinus").addEventListener("click", () => btSetN(bt.N - 1));
+  $("btPlus").addEventListener("click", () => btSetN(bt.N + 1));
+  $("btN").addEventListener("change", () => { const v = $("btN").valueAsNumber; if (Number.isFinite(v)) btSetN(v); else $("btN").value = bt.N; });
+  $("btN").addEventListener("input", () => { const v = $("btN").valueAsNumber; if (Number.isInteger(v) && v >= 1 && v <= N_MAX) btSetN(v); });
+  document.querySelectorAll("[data-step]").forEach((b) => b.addEventListener("click", () => btGoto(b.dataset.step)));
+  $("btBeds").addEventListener("click", (e) => {
+    const b = e.target.closest("button[data-btbed]");
+    if (!b) return;
+    if (b.dataset.btbed === "custom") { const cur = bedBt(); bt.cx = cur.x; bt.cy = cur.y; bt.cz = cur.z; }
+    bt.bed = b.dataset.btbed;
+    btRenderRows();
+    btRenderCard();
+    btRenderPrint();
+  });
+  const xyz = ["btx", "bty", "btz"].map($);
+  xyz.forEach((inp) => inp.addEventListener("input", () => {
+    const v = xyz.map((i) => i.valueAsNumber);
+    if (v.some((n) => !(n >= 100 && n <= 600) || !Number.isInteger(n))) return;
+    if (bt.bed !== "custom" || v[0] !== bt.cx || v[1] !== bt.cy || v[2] !== bt.cz) {
+      bt.bed = "custom"; bt.cx = v[0]; bt.cy = v[1]; bt.cz = v[2];
+      btRenderRows();
+      btRenderCard();
+      btRenderPrint();
+    }
+  }));
+  $("btZip").addEventListener("click", btDownloadZip);
+  $("btTune").addEventListener("click", btDownloadTuning);
+  $("btReset").addEventListener("click", () => btFit(true));
+  /* the Print step builds its preview only when it is near the screen; the step bar follows the scroll */
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver((es) => { es.forEach((en) => { bt.printVisible = en.isIntersecting; if (en.isIntersecting) btSchedulePreview(); }); }, { rootMargin: "300px 0px" }).observe($("btPrint"));
+  } else bt.printVisible = true;
+  /* the step bar follows the scroll: the step whose top has passed the upper third of the screen */
+  const secs = ["btRoom", "btModes", "btPrint"];
+  let tick = 0;
+  const follow = () => {
+    tick = 0;
+    if (!bt.active) return;
+    let on = secs[0];
+    secs.forEach((id) => { if ($(id).getBoundingClientRect().top <= window.innerHeight * 0.35) on = id; });
+    document.querySelectorAll("#btSteps button").forEach((k) => k.classList.toggle("on", k.dataset.step === on));
+  };
+  window.addEventListener("scroll", () => { if (!tick) tick = requestAnimationFrame(follow); }, { passive: true });
+  follow();
+}
+function btActivate() {
+  bt.active = true;
+  if (!bt.ready) {
+    bt.ready = true;
+    btBuildStatic();
+    btRoomChanged();
+  } else btSchedulePreview();
+}
+/* called by boot() when the geometry engine, then three.js, have loaded */
+function btEngineReady() {
+  G = createBassGeometry(M, BP);
+  capsCache = { key: "", plan: null };
+  if (bt.ready) btRenderPrint();
+}
+function btViewerReady() {
+  if (bt.ready) btSchedulePreview();
+}
+
 /* ------------------------------------------------------------------ boot */
 async function boot() {
   buildStaticControls();
   resetDepth();
   update();
+  buildTabs();
   setStatus("Loading the geometry engine...");
   const loadManifold = (async () => {
     const mod = await import(CDN_MANIFOLD);
@@ -1675,11 +3484,13 @@ async function boot() {
     m.setup();
     M = m;
     D = createDiffuser(m);
+    try { btEngineReady(); } catch (e) { showError("Could not start the bass trap geometry: " + (e.message || e)); }
   })();
   const loadThree = (async () => {
     T3 = await import("three");
     OrbitControls = (await import("three/addons/controls/OrbitControls.js")).OrbitControls;
     initThree();
+    try { btViewerReady(); } catch (e) { showError("Could not start the bass trap preview: " + (e.message || e)); }
   })();
   const [a, b] = await Promise.allSettled([loadManifold, loadThree]);
   if (b.status === "rejected") {
