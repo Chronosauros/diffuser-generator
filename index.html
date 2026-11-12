@@ -2,6 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<!-- soundblooms-redirect:start - since 13.11.2026 this tool lives at https://soundblooms.com/tools/diffuser-generator; GitHub Pages sends visitors there. Opening this file from disk or another host does not redirect. -->
+<link rel="canonical" href="https://soundblooms.com/tools/diffuser-generator">
+<script>if(/(^|\.)github\.io$/.test(location.hostname))location.replace("https://soundblooms.com/tools/diffuser-generator"+location.search+location.hash)</script>
+<noscript><meta http-equiv="refresh" content="0; url=https://soundblooms.com/tools/diffuser-generator"></noscript>
+<!-- soundblooms-redirect:end -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#22252A">
 <title>Soundblooms Diffuser Generator</title>
@@ -3446,8 +3451,9 @@ function btBuildStatic() {
   const follow = () => {
     tick = 0;
     if (!bt.active) return;
+    const vp = window.sbEmbed || { top: 0, height: window.innerHeight };
     let on = secs[0];
-    secs.forEach((id) => { if ($(id).getBoundingClientRect().top <= window.innerHeight * 0.35) on = id; });
+    secs.forEach((id) => { if ($(id).getBoundingClientRect().top - vp.top <= vp.height * 0.35) on = id; });
     document.querySelectorAll("#btSteps button").forEach((k) => k.classList.toggle("on", k.dataset.step === on));
   };
   window.addEventListener("scroll", () => { if (!tick) tick = requestAnimationFrame(follow); }, { passive: true });

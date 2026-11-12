@@ -3,7 +3,7 @@
 A free browser tool that makes printable acoustic diffuser tiles (quadratic residue diffusers) sized to your 3D
 printer. Pick a series, a wall and your printer bed, check each tile in 3D and download print-ready STL files.
 
-Use it online: https://chronosauros.github.io/diffuser-generator/
+Use it online: https://soundblooms.com/tools/diffuser-generator (the old https://chronosauros.github.io/diffuser-generator/ address redirects there).
 
 The generator was built with AI assistance and the tiles have not been measured. The maths follows Cox and D'Antonio,
 but I would like people who know acoustics to check it. If you see a mistake or a better way, open an issue or start a
