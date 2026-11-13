@@ -36,3 +36,5 @@ Calculated, not measured. A Printables model for the bass traps is a separate st
 Next result: owner's decision on the Printables set with the old order; block tiles need 3D BEM; maybe an
 advanced mode with N, design frequency and well width as inputs; a measurement is still the only proof. Move any fixes
 into `reference/` and the core of `index.html` together.
+
+13.11.2026, owner's decision (soundblooms tools, `_Projects/soundblooms/2026-11-13-tools-prints`): the tool now lives at https://soundblooms.com/tools/diffuser-generator. The GitHub Pages address (https://chronosauros.github.io/diffuser-generator/) redirects there, keeping the search and the hash, so `#bass-traps` still opens the Bass traps tab. The soundblooms copy is made by `apps/web/scripts/tools-sync.mjs` in the soundblooms repo, which reads this `index.html` and strips the redirect block. Only other change in this tool: the Bass traps step bar in `follow()` reads the visible area from `window.sbEmbed` when the tool runs inside the soundblooms frame (`window.sbEmbed` is set by `embed-bridge.js`), else the window. `npm test` 307 of 307.
