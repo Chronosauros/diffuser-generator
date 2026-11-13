@@ -2653,7 +2653,7 @@ function initThree() {
     return;
   }
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-  renderer.setClearColor(0x22252A, 1);                  // the page Graphite, flat
+  renderer.setClearColor(getComputedStyle(document.documentElement).getPropertyValue("--paper").trim() || "#22252A", 1); // follow the tool's own --paper, so the canvas matches the page when embedded (#22252A standalone)
   view.innerHTML = "";
   view.appendChild(renderer.domElement);
   scene = new T3.Scene();
@@ -3183,7 +3183,7 @@ function btInitViewer() {
   try { renderer = new T3.WebGLRenderer({ antialias: true }); }
   catch (e) { $("btViewNone").textContent = "3D preview unavailable (WebGL is not enabled in this browser). The downloads still work."; btV = { dead: true }; return; }
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-  renderer.setClearColor(0x22252A, 1);
+  renderer.setClearColor(getComputedStyle(document.documentElement).getPropertyValue("--paper").trim() || "#22252A", 1); // follow the tool's own --paper, so the canvas matches the page when embedded (#22252A standalone)
   view.innerHTML = "";
   view.appendChild(renderer.domElement);
   const scene = new T3.Scene(), camera = new T3.PerspectiveCamera(35, 1, 1, 5000);
